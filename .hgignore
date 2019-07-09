@@ -1,3 +1,3 @@
 syntax: regexp
 .vs
-daq-driver/daq-driver.vcxproj.filters
+daq-driver/daq-driver.vcxproj.user
