@@ -123,6 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProtocolParser.cpp" />
+    <ClCompile Include="SerialDriver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProtocolParser.h" />
+    <ClInclude Include="SerialDriver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
