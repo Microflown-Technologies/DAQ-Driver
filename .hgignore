@@ -3,3 +3,4 @@ syntax: regexp
 daq-driver/daq-driver.vcxproj.user
 DoxyGen/html
 DoxyGen/latex
+daq-driver/Debug
