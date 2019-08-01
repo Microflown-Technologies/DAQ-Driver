@@ -69,7 +69,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -123,13 +125,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractDriverInterface.cpp" />
+    <ClCompile Include="Configuration.pb.cc" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ProtocolParser.cpp" />
-    <ClCompile Include="SerialDriver.cpp" />
+    <ClCompile Include="SerialDriverInterface.cpp" />
+    <ClCompile Include="VoyagerAbstractionLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProtocolParser.h" />
-    <ClInclude Include="SerialDriver.h" />
+    <ClInclude Include="..\JSON\json\single_include\nlohmann\json.hpp" />
+    <ClInclude Include="AbstractDriverInterface.h" />
+    <ClInclude Include="Configuration.pb.h" />
+    <ClInclude Include="SerialDriverInterface.h" />
+    <ClInclude Include="VoyagerAbstractionLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libprotobuf.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

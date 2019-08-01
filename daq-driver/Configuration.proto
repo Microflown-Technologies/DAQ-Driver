@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+enum Gain{
+	LOW = 0;
+	MEDIUM = 1;
+	HIGH = 2;
+}
+
+enum Iepe{
+	OFF = 0;
+	ON = 1;
+	NOTUSED = 2;
+}
+
+message Lemo{
+	Gain Gain = 1;
+}
+
+message BNC{
+	Gain Gain = 1;
+	Iepe Iepe = 2;
+}
+
+message VoyagerConfiguration{
+	bytes audioData = 1;
+	uint32 samplingFrequency = 2;
+	BNC BNC1 = 3;
+	BNC BNC2 = 4;
+	Lemo Lemo = 5;
+	uint32 channelCount = 6;
+	uint32 sampleSize = 7;
+	uint32 selectedChannels = 8;
+	uint64 timestamp = 9;
+	string command = 10;
+}
+
+
+
