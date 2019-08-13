@@ -1,5 +1,4 @@
 #define NOMINMAX
-#include "../InterThreadStorage.h"
 
 
 #pragma warning( push )
@@ -13,7 +12,7 @@
 class ProtobufParser
 {
 public:
-	ProtobufParser(InterThreadStorage &communication);
+	ProtobufParser();
 
 	/**
 	*@details Converts a char array into a Protobuffer
@@ -33,6 +32,5 @@ public:
 
 private:
 
-	InterThreadStorage *m_InterThreadStorage;
 };
 

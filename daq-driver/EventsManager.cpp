@@ -9,7 +9,6 @@ EventsManager::EventsManager() : m_enableEvents(false)
 		});
 
 	voyagerEvent += eventHandler;
-
 }
 
 EventsManager::~EventsManager()
@@ -23,7 +22,7 @@ void EventsManager::call(Events eventje)
 		voyagerEvent(eventje);
 	}
 	else {
-		std::cerr << "Event called but events are not enabled" << std::endl;
+		std::cerr << "Event called but not enabled" << std::endl;
 	}
 }
 

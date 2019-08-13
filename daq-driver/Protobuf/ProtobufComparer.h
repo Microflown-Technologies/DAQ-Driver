@@ -14,9 +14,7 @@ public:
 	ProtobufComparer();
 	~ProtobufComparer();
 
-	bool compareProtobufs(ProtobufConfiguration proto1, ProtobufConfiguration proto2);
-
-	bool compareAgainstPrevProtobuf(ProtobufConfiguration protobuf);
+	bool compareProtobufs(ProtobufConfiguration &proto1, ProtobufConfiguration &proto2);
 
 	void addIgnoreField(std::string Field);
 

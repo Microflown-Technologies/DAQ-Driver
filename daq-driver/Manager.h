@@ -13,8 +13,12 @@
 #endif 
 
 
+#include "InterThreadStorage.h"
 #include "EventsManager.h"
+
 #include "Protobuf/ProtobufParser.h"
+#include "Protobuf/ProtobufComparer.h"
+
 
 
 #pragma once
@@ -98,6 +102,7 @@ protected:
 
 private:
 	VoyagerHandle m_voyagerHandle;						/*!<The Comport Handle to the Voyager*/
+	std::mutex m_voyagerHandleMutex;					/*!<Mutex for ensuring that it is not used at the same time*/
 
 	std::thread m_threadSerial;							/*!<This thread reads/writes serial data to/from the ComPort*/
 	std::thread m_threadConnection;						/*!<This thread checks if the Voyager is disconnected*/
@@ -106,7 +111,12 @@ private:
 
 	InterThreadStorage		m_interThreadStorage;		/*!<Contains the storage that can be reached from different threads*/
 	EventsManager			m_eventsManager;			/*!<Handles the events*/
+
+	ProtobufConfiguration	m_protobufConfigurationBuf;
 	ProtobufConfiguration	m_protobufConfiguration;	/*!<Contains the protobuf functions and setup*/
+	ProtobufComparer		m_protobufComparer;
+	ProtobufParser			m_protobufParser;		
+
 	SerialDriverInterface	m_serialDriverInterface;	/*!<Contains member functions to control the SerialInterface/connection with the Voyager */
 };
 

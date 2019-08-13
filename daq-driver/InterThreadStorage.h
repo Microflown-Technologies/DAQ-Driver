@@ -20,7 +20,7 @@ public:
 
 	void appendRawSerialBuffer(const char* buffer, size_t size);
 
-	void appendParsedSerialBuffer(const char* buffer, size_t size);
+	void appendParsedSerialBuffer(std::string buffer);
 
 	void appendSerialDataToSend(const char* buffer, size_t size);
 
@@ -42,7 +42,7 @@ private:
 	std::mutex mutexSerialDataToSend;
 
 	std::vector<char> parsedBuffer;
-	std::mutex mutexParsedSerialBuffer;
+	std::mutex mutexParsedBuffer;
 
 	EventsManager* m_eventsManager;
 };

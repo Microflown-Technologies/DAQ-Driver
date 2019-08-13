@@ -8,6 +8,7 @@ enum Events {
 	DISCONNECT,
 	DATARECEIVED,
 	DATAPARSED,
+	DATAREADY,
 	NEWCONFIGURATION,
 	RAWDATAVECTOREMPTY,
 	PARSEDDATAVECTOREMPTY,
@@ -38,6 +39,7 @@ private:
 	bool m_enableEvents;
 
 	sz::event<Events> voyagerEvent;
+
 	std::function<void(Events)> m_eventCallback; /*!<Is called when a Voyager is connected to the system*/
 };
 

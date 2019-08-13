@@ -1,6 +1,6 @@
 #include "ProtobufParser.h"
 
-ProtobufParser::ProtobufParser(InterThreadStorage& communication) : m_InterThreadStorage(&communication)
+ProtobufParser::ProtobufParser()
 {
 }
 

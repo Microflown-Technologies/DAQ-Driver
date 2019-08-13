@@ -4,6 +4,9 @@
 Manager::Manager() : m_interThreadStorage(m_eventsManager), m_voyagerHandle(NULL)
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+	m_protobufComparer.addIgnoreField("audioData");
+	m_protobufComparer.addIgnoreField("timestamp");
 }
 
 
@@ -18,16 +21,44 @@ void Manager::serialLoop()
 	char* buffer;
 
 	while (m_interThreadStorage.allowedToRun()) {
+		m_voyagerHandleMutex.lock();
 		if (size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle)) {
-			
+			m_voyagerHandleMutex.unlock();
+
+			m_eventsManager.call(DATARECEIVED);
+
 			buffer = new char[size];
 
 			//Read the serialInterface of size bytes
+			m_voyagerHandleMutex.lock();
 			m_serialDriverInterface.read(m_voyagerHandle, buffer, size);
+			m_voyagerHandleMutex.unlock();
+			
+			m_interThreadStorage.appendRawSerialBuffer(buffer, size);
+
+			m_protobufConfigurationBuf = m_protobufParser.parseSerialData(buffer, size);
+
+			auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
+
+			m_interThreadStorage.appendParsedSerialBuffer(m_protobufConfiguration.audiodata());
+
+
+			//m_protobufConfiguration.audiod
+
+
+			futureCompareResult.wait();
+
+			if (!futureCompareResult.get()) {
+
+				m_eventsManager.call(NEWCONFIGURATION);
+			}
+
+
+
 
 			delete[] buffer;
-
 		}
+		else m_voyagerHandleMutex.unlock();
 	}
 }
 
@@ -51,8 +82,9 @@ void Manager::updateVoyagerConfiguration()
 	m_protobufConfiguration.SerializeToArray(buffer, size);
 
 	//Write new configuration
+	m_voyagerHandleMutex.lock();
 	m_serialDriverInterface.write(m_voyagerHandle, buffer, size);
-
+	m_voyagerHandleMutex.unlock();
 	delete[] buffer;
 }
 
@@ -84,7 +116,10 @@ bool Manager::establishConnection()
 {
 	//Check if a Callback function have been set and if so open a connection
 	if (m_eventsManager.getEventCallback()) {
+		m_voyagerHandleMutex.lock();
 		m_voyagerHandle = m_serialDriverInterface.open(m_serialDriverInterface.isConnected());
+		m_voyagerHandleMutex.unlock();
+		m_eventsManager.call(CONNECT);
 		return true;
 	}
 	else {
@@ -144,10 +179,13 @@ bool Manager::stop()
 	//m_threadConnection.join();
 
 	//Close the connection with the SerialInterface
+	m_voyagerHandleMutex.lock();
 	m_serialDriverInterface.close(m_voyagerHandle);
+	
 
 	//Delete the handle
 	m_voyagerHandle = NULL;
+	m_voyagerHandleMutex.unlock();
 
 	//Stop the events
 	m_eventsManager.disableEvents();
