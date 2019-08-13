@@ -1,32 +1,43 @@
 #include "Manager.h"
 
+
 Manager::Manager() : m_interThreadStorage(m_eventsManager), m_voyagerHandle(NULL)
 {
-
-
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
-
 }
+
 
 Manager::~Manager()
 {
 
 }
 
-
-void Manager::serialLoop(int x)
+void Manager::serialLoop()
 {
 	size_t size;
+	char* buffer;
 
-
-	while (!m_interThreadStorage.stopApplication() && m_interThreadStorage.voyagerConnected()) {
-
+	while (m_interThreadStorage.allowedToRun()) {
 		if (size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle)) {
 			
+			buffer = new char[size];
 
+			//Read the serialInterface of size bytes
+			m_serialDriverInterface.read(m_voyagerHandle, buffer, size);
 
+			delete[] buffer;
 
+		}
+	}
+}
 
+void Manager::connectionLoop()
+{
+	while (m_interThreadStorage.allowedToRun()) {
+		if (!isVoyagerConnected()) {
+			std::cout << "Voyager is disconnected" << std::endl;
+			m_interThreadStorage.set_AllowedToRun(false);
+			m_eventsManager.call(DISCONNECT);
 		}
 	}
 }
@@ -39,28 +50,28 @@ void Manager::updateVoyagerConfiguration()
 	//Serialize the protobuffer into an char * array
 	m_protobufConfiguration.SerializeToArray(buffer, size);
 
-	//Append the serialzed protobuffer to the buffer that is meant for sending arrays to the Voyager
-	m_interThreadStorage.appendSerialDataToSend(buffer, size);
+	//Write new configuration
+	m_serialDriverInterface.write(m_voyagerHandle, buffer, size);
+
+	delete[] buffer;
 }
 
-/***************************************************************************************************************************************************************************/
-/********************************************************************-----------------------********************************************************************************/
-/********************************************************************|  GETTERS & SETTERS  |********************************************************************************/
-/********************************************************************-----------------------********************************************************************************/
-/***************************************************************************************************************************************************************************/
 
 void Manager::setEventCallback(std::function<void(Events)> callback)
 {
+	//Set the callback function
 	m_eventsManager.setEventCallback(callback);
 }
 
 void Manager::clearEventCallback()
 {
+	//Clear the set callback function
 	m_eventsManager.clearEventCallback();
 }
 
 bool Manager::isVoyagerConnected()
 {
+	//Check if the Voyager is connected 
 	if (m_serialDriverInterface.isConnected() == "") {
 		return false;
 	}
@@ -71,6 +82,7 @@ bool Manager::isVoyagerConnected()
 
 bool Manager::establishConnection()
 {
+	//Check if a Callback function have been set and if so open a connection
 	if (m_eventsManager.getEventCallback()) {
 		m_voyagerHandle = m_serialDriverInterface.open(m_serialDriverInterface.isConnected());
 		return true;
@@ -82,32 +94,72 @@ bool Manager::establishConnection()
 }
 
 bool Manager::disconnect() {
-
-
+	//Close the connection
 	m_serialDriverInterface.close(m_voyagerHandle);
 	return false;
 }
 
-void Manager::addRawDataBuffer(std::vector<char>* buffer)
-{
-}
-
 bool Manager::start()
 {
+	//Check if there is a Voyager which can be read
 	if (!isVoyagerConnected()) {
 		std::cerr << "Start called but no Voyager is connected" << std::endl;
-		return;
+		return false;
 	}
 	
+	//Try to connect to the Voyager
 	if (!establishConnection()) {
 		std::cerr << "Was not able to establish connection" << std::endl;
-		return;
+		return false;
 	}
 
-	m_threadSerial = std::thread(Manager::serialLoop, 0);
+	//Set allowedToRun to false and Voyager connected to true
+	m_interThreadStorage.set_AllowedToRun(true);
 
+	//Enable events and start the serial/connection threads
+	m_eventsManager.enableEvents();
+	m_threadSerial = std::thread(std::bind(&Manager::serialLoop, this));
+	m_threadConnection = std::thread(std::bind(&Manager::connectionLoop, this));
 
+	m_threadConnection.detach();
+	m_threadSerial.detach();
+
+	return true;
 }
+
+bool Manager::pause()
+{
+	//Disable events
+	m_eventsManager.disableEvents();
+	return true;
+}
+
+bool Manager::stop()
+{
+	//Send a signal to the threads to stop
+	m_interThreadStorage.set_AllowedToRun(false);
+
+	//Wait till threads are closed
+	//m_threadSerial.join();
+	//m_threadConnection.join();
+
+	//Close the connection with the SerialInterface
+	m_serialDriverInterface.close(m_voyagerHandle);
+
+	//Delete the handle
+	m_voyagerHandle = NULL;
+
+	//Stop the events
+	m_eventsManager.disableEvents();
+
+	return true;
+}
+
+/***************************************************************************************************************************************************************************/
+/********************************************************************-----------------------********************************************************************************/
+/********************************************************************|  GETTERS & SETTERS  |********************************************************************************/
+/********************************************************************-----------------------********************************************************************************/
+/***************************************************************************************************************************************************************************/
 
 uint32_t Manager::getSamplingFrequency() const
 {
@@ -205,7 +257,10 @@ void Manager::setSamplingFrequency(uint32_t samplingfrequency)
 {
 	if (samplingfrequency == 8000 || samplingfrequency == 16000 || samplingfrequency == 24000 || samplingfrequency == 32000 || samplingfrequency == 48000 && samplingfrequency != 5) {
 		m_protobufConfiguration.set_samplingfrequency(samplingfrequency);
-		updateVoyagerConfiguration();
+		
+		if (m_interThreadStorage.allowedToRun()) {
+			std::async(std::bind(&Manager::updateVoyagerConfiguration, this));
+		}	
 	}
 }
 
@@ -222,6 +277,10 @@ void Manager::setGain(Gain gain, Input input) {
 		break;
 	default:
 		std::cerr << "setGain: Input type is not availlable" << std::endl;
+		return;
+	}
+	if (m_interThreadStorage.allowedToRun()) {
+		std::async(std::bind(&Manager::updateVoyagerConfiguration, this));
 	}
 }
 
@@ -238,5 +297,9 @@ void Manager::setIEPE(Iepe iepe, Input input) {
 		break;
 	default:
 		std::cerr << "setIEPE: Input type is not availlable" << std::endl;
+		return;
+	}
+	if (m_interThreadStorage.allowedToRun()) {
+		std::async(std::bind(&Manager::updateVoyagerConfiguration, this));
 	}
 }

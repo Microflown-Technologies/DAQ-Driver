@@ -8,13 +8,9 @@ class InterThreadStorage {
 public:
 	InterThreadStorage(EventsManager &events);
 
-	void set_StopApplication(bool state);
+	void set_AllowedToRun(bool state);
 
-	void set_VoyagerConnected(bool state);
-
-	const bool stopApplication();
-
-	const bool voyagerConnected();
+	const bool allowedToRun();
 	
 	const size_t rawDataAvailable();
 
@@ -36,11 +32,8 @@ public:
 
 private:
 
-	bool m_stopApplication;
-	std::mutex mutexStopApplication;
-
-	bool m_voyagerConnected;
-	std::mutex mutexVoyagerConnected;
+	bool m_allowedToRun;
+	std::mutex mutexAllowedToRun;
 
 	std::vector<char> rawBuffer;
 	std::mutex mutexRawSerialBuffer;

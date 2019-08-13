@@ -1,8 +1,5 @@
-#include <mutex>
-#include <iostream>
-#include "szevent.h"
-#include "EventsManager.h"
-#include "SerialInterface/Windows/WindowsSerialInterface.h"
+
+#include "Manager.h"
 
 #include <windows.h>
 
@@ -11,8 +8,25 @@
 #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
 #endif
 
+
+void testFunction(Events) {
+
+	std::cout << "Event is binnengekomen" << std::endl;
+}
+
+
+
 int main()
 {
+
+	Manager manage;
+	manage.setEventCallback(&testFunction);
+
+	Sleep(2000);
+
+	manage.start();
+
+	Sleep(100000);
 
 	return 0;
 }

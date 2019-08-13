@@ -51,9 +51,9 @@ public:
 
 	bool start();
 
-	void pause();
+	bool pause();
 
-	void stop();
+	bool stop();
 
 	uint32_t getSamplingFrequency() const;
 
@@ -89,24 +89,24 @@ public:
 
 protected:
 
-
-	void serialLoop(int x);
-
+	void serialLoop();
+	void connectionLoop();
 
 	bool establishConnection();
 
 	void updateVoyagerConfiguration();
 
 private:
-	
-	VoyagerHandle m_voyagerHandle;
+	VoyagerHandle m_voyagerHandle;						/*!<The Comport Handle to the Voyager*/
 
+	std::thread m_threadSerial;							/*!<This thread reads/writes serial data to/from the ComPort*/
+	std::thread m_threadConnection;						/*!<This thread checks if the Voyager is disconnected*/
 
-	std::thread m_threadSerial;
+	std::vector<char> emptyBuffers;
 
-	InterThreadStorage		m_interThreadStorage;
-	EventsManager			m_eventsManager;
-	ProtobufConfiguration	m_protobufConfiguration;
-	SerialDriverInterface	m_serialDriverInterface;
+	InterThreadStorage		m_interThreadStorage;		/*!<Contains the storage that can be reached from different threads*/
+	EventsManager			m_eventsManager;			/*!<Handles the events*/
+	ProtobufConfiguration	m_protobufConfiguration;	/*!<Contains the protobuf functions and setup*/
+	SerialDriverInterface	m_serialDriverInterface;	/*!<Contains member functions to control the SerialInterface/connection with the Voyager */
 };
 

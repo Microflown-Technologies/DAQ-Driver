@@ -3,7 +3,7 @@
 
 #include "szevent.h"
 
-typedef enum Events {
+enum Events {
 	CONNECT,
 	DISCONNECT,
 	DATARECEIVED,
@@ -38,7 +38,7 @@ private:
 	bool m_enableEvents;
 
 	sz::event<Events> voyagerEvent;
-	std::function<void(Events)> m_eventCallback; /*!< Is called when a Voyager is connected to the system*/
+	std::function<void(Events)> m_eventCallback; /*!<Is called when a Voyager is connected to the system*/
 };
 
 #endif // __EVENTSPUBLISHER_H__

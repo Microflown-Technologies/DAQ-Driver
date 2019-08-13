@@ -136,7 +136,12 @@ std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle)
 	COMSTAT comStat;
 	DWORD errorMask = 0;
 
-	ClearCommError(handle, &errorMask, &comStat);
+	if (!ClearCommError(handle, &errorMask, &comStat)) {
+		return 0;
+	}
+
+
+
 	return std::size_t(comStat.cbInQue);
 }
 
@@ -150,7 +155,7 @@ void WindowsSerialInterface::clear(VoyagerHandle handle)
 
 void WindowsSerialInterface::refreshDevicesListHandle(HDEVINFO &m_hDevInfo)
 {
-	SetupDiDestroyDeviceInfoList(m_hDevInfo);
+	//SetupDiDestroyDeviceInfoList(m_hDevInfo);
 	m_hDevInfo = SetupDiGetClassDevs(NULL, TEXT("USB"), NULL, DIGCF_PRESENT | DIGCF_ALLCLASSES);
 }
 
