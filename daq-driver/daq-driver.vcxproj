@@ -23,6 +23,7 @@
     <ProjectGuid>{B0827C61-8700-42D5-9132-93F172B46191}</ProjectGuid>
     <RootNamespace>daqdriver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>VoyagerUSBLibrary</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -125,24 +126,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AbstractDriverInterface.cpp" />
-    <ClCompile Include="Configuration.pb.cc" />
+    <ClCompile Include="EventsManager.cpp" />
+    <ClCompile Include="InterThreadStorage.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SerialDriverInterface.cpp" />
-    <ClCompile Include="VoyagerAbstractionLayer.cpp" />
+    <ClCompile Include="Protobuf\ProtobufComparer.cpp" />
+    <ClCompile Include="Protobuf\ProtobufConfiguration.pb.cc" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Protobuf\ProtobufParser.cpp" />
+    <ClCompile Include="SerialInterface\AbstractDriverInterface.cpp" />
+    <ClCompile Include="SerialInterface\Linux\LinuxSerialInterface.cpp" />
+    <ClCompile Include="SerialInterface\Voyager\VoyagerSerialInterface.cpp" />
+    <ClCompile Include="SerialInterface\Windows\WindowsSerialInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\JSON\json\single_include\nlohmann\json.hpp" />
-    <ClInclude Include="AbstractDriverInterface.h" />
-    <ClInclude Include="Configuration.pb.h" />
-    <ClInclude Include="SerialDriverInterface.h" />
-    <ClInclude Include="VoyagerAbstractionLayer.h" />
+    <ClInclude Include="EventsManager.h" />
+    <ClInclude Include="InterThreadStorage.h" />
+    <ClInclude Include="Protobuf\ProtobufComparer.h" />
+    <ClInclude Include="Protobuf\ProtobufConfiguration.pb.h" />
+    <ClInclude Include="Protobuf\ProtobufParser.h" />
+    <ClInclude Include="SerialInterface\AbstractDriverInterface.h" />
+    <ClInclude Include="SerialInterface\Linux\LinuxSerialInterface.h" />
+    <ClInclude Include="SerialInterface\Voyager\VoyagerSerialInterface.h" />
+    <ClInclude Include="SerialInterface\Windows\WindowsSerialInterface.h" />
+    <ClInclude Include="szevent.h" />
+    <ClInclude Include="Manager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration.proto" />
+    <None Include="Protobuf\ProtobufConfiguration.proto" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="libprotobuf.lib" />
+    <Library Include="Protobuf\libprotobuf.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,38 +1,49 @@
-#include "SerialDriverInterface.h"
+#include "WindowsSerialInterface.h"
 
-SerialDriverInterface::SerialDriverInterface()
+WindowsSerialInterface::WindowsSerialInterface()
 {
-	m_hDevInfo = SetupDiGetClassDevs(NULL, TEXT("USB"), NULL, DIGCF_PRESENT | DIGCF_ALLCLASSES);
 }
 
 
-SerialDriverInterface::~SerialDriverInterface()
+WindowsSerialInterface::~WindowsSerialInterface()
 {
-	SetupDiDestroyDeviceInfoList(m_hDevInfo);
+	
 }
 
-bool SerialDriverInterface::voyagerIsPresent()
+std::string WindowsSerialInterface::isConnected()
 {	
-	refreshDevicesListHandle();
+
+	HDEVINFO m_hDevInfo;
+	SP_DEVINFO_DATA DeviceInfoData;
+
+	//Refresh the List if currently connected devices
+	refreshDevicesListHandle(m_hDevInfo);
+
+	//Loop through all the DeviceList entries
 	for (unsigned index = 0; ; index++) {
 		DeviceInfoData.cbSize = sizeof(DeviceInfoData);
 		if (!SetupDiEnumDeviceInfo(m_hDevInfo, index, &DeviceInfoData)) {
-			return false;							// No USB device found with hardware id of the Voyager
+			SetupDiDestroyDeviceInfoList(m_hDevInfo);
+			return "";							// No USB device found with hardware id of the Voyager
 		}
 
 		TCHAR HardwareID[1024];
 		SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_HARDWAREID, NULL, (BYTE*)HardwareID, sizeof(HardwareID), NULL);
 		if (_tcsstr(HardwareID, _T("VID_1D6B&PID_0100")) && IsEqualGUID(DeviceInfoData.ClassGuid, GUID_SERENUM_BUS_ENUMERATOR)) {
-			return true;							// Found USB device with hardware id of the Voyager
+			std::string ComPort = getComPort(m_hDevInfo, DeviceInfoData);							// Found USB device with hardware id of the Voyager
+			SetupDiDestroyDeviceInfoList(m_hDevInfo);
+			return ComPort;
 		}
 	}
-	return false;
+
+	SetupDiDestroyDeviceInfoList(m_hDevInfo);
+	return "";
 }
 
-void SerialDriverInterface::open()
+VoyagerHandle WindowsSerialInterface::open(std::string input)
 {
 
-	m_hComm = CreateFile(getComPort().c_str(),		// port name
+	HANDLE m_hComm = CreateFile(input.c_str(),		// port name
 		GENERIC_READ | GENERIC_WRITE,				// Read/Write
 		0,											// No Sharing
 		NULL,										// No Security
@@ -80,25 +91,29 @@ void SerialDriverInterface::open()
 		printf("Error in setting com mask\n");
 	else
 		printf("Setting com mask successful\n");
+
+	clear(m_hComm);
+	
+	return m_hComm;
 }
 
-void SerialDriverInterface::close()
+void WindowsSerialInterface::close(VoyagerHandle handle)
 {
-	CloseHandle(m_hComm);
+	CloseHandle(handle);
 }
 
-void SerialDriverInterface::write(const char* data, std::size_t bytes)
+void WindowsSerialInterface::write(VoyagerHandle handle, const char* data, std::size_t bytes)
 {
-	if (m_hComm == INVALID_HANDLE_VALUE) {
+	if (handle == INVALID_HANDLE_VALUE) {
 		std::cerr << "Error in SerialDriverInterface::write - serial port not open" << std::endl;
 		return;
 	}
 
 	DWORD bytesWritten;
-	if (WriteFile(m_hComm, (void*)data, (DWORD)bytes, &bytesWritten, NULL))
+	if (WriteFile(handle, (void*)data, (DWORD)bytes, &bytesWritten, NULL))
 	{
 		// Flush the bytes
-		FlushFileBuffers(m_hComm);
+		FlushFileBuffers(handle);
 	}
 	else
 	{
@@ -106,45 +121,40 @@ void SerialDriverInterface::write(const char* data, std::size_t bytes)
 	}
 }
 
-std::size_t SerialDriverInterface::read(char* data, std::size_t bytes)
+std::size_t WindowsSerialInterface::read(VoyagerHandle handle, char* data, std::size_t bytes)
 {
 	DWORD bytesRead;
 
-	if (!ReadFile(m_hComm, data, bytes, &bytesRead, NULL)) {
+	if (!ReadFile(handle, data, bytes, &bytesRead, NULL)) {
 		std::cerr << "Error in SerialDriverInterface::read - reading bytes\n" << std::endl;
 	};
-
 	return std::size_t(bytesRead);
 }
 
-std::size_t SerialDriverInterface::bytesAvailable()
+std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle)
 {
 	COMSTAT comStat;
 	DWORD errorMask = 0;
 
-	ClearCommError(m_hComm, &errorMask, &comStat);
-	if (comStat.cbInQue == 3435973836) {
-		return 0;
-	}
+	ClearCommError(handle, &errorMask, &comStat);
 	return std::size_t(comStat.cbInQue);
 }
 
-void SerialDriverInterface::clear()
+void WindowsSerialInterface::clear(VoyagerHandle handle)
 {
-	if (!PurgeComm(m_hComm, PURGE_RXCLEAR | PURGE_TXCLEAR | PURGE_RXABORT | PURGE_TXABORT)) {
+	if (!PurgeComm(handle, PURGE_RXCLEAR | PURGE_TXCLEAR | PURGE_RXABORT | PURGE_TXABORT)) {
 		std::cerr << "Error in SerialDriverInterface::clear - not able to clear buffer" << std::endl;
 		std::cerr <<  GetLastError() << std::endl;
-	
 	}
 }
 
-void SerialDriverInterface::refreshDevicesListHandle()
+void WindowsSerialInterface::refreshDevicesListHandle(HDEVINFO &m_hDevInfo)
 {
 	SetupDiDestroyDeviceInfoList(m_hDevInfo);
 	m_hDevInfo = SetupDiGetClassDevs(NULL, TEXT("USB"), NULL, DIGCF_PRESENT | DIGCF_ALLCLASSES);
 }
 
-std::string SerialDriverInterface::getComPort()
+std::string WindowsSerialInterface::getComPort(HDEVINFO m_hDevInfo, SP_DEVINFO_DATA DeviceInfoData)
 {
 	TCHAR FriendlyName[1024];
 	SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_FRIENDLYNAME, NULL, (BYTE*)FriendlyName, sizeof(FriendlyName), NULL);

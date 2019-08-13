@@ -4,6 +4,10 @@ AbstractDriverInterface::AbstractDriverInterface() : m_connectionState(Disconnec
 {
 }
 
+AbstractDriverInterface::~AbstractDriverInterface()
+{
+}
+
 AbstractDriverInterface::ConnectionState AbstractDriverInterface::connectionState() {
 	return m_connectionState;
 }

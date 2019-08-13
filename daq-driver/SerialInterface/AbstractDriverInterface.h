@@ -4,11 +4,18 @@
 #include <iostream>
 #include <functional>
 
+#if defined(_WIN32)
+typedef void* VoyagerHandle;
+#else
+typedef int VoyagerHandle;
+#endif
+
+
 class AbstractDriverInterface
 {
 public:
 	AbstractDriverInterface();
-
+	virtual ~AbstractDriverInterface();
 	/**
 	* @details States the connection between Voyager and system is able to be
 	**/
@@ -23,17 +30,17 @@ public:
 	* @details Check if a Voyager is connected to the system
 	* @returns returns true if a Voyager is connected
 	**/
-	virtual bool voyagerIsPresent() = 0;
+	virtual std::string isConnected() = 0;
 
 	/**
 	* @details Attempts to open a connection to the Voyager
 	**/
-	virtual void open() = 0;
+	virtual VoyagerHandle open(std::string port) = 0;
 
 	/**
 	* @details Attempts to close the connection to the Voyager (if any exists)
 	**/
-	virtual void close() = 0;
+	virtual void close(VoyagerHandle handle) = 0;
 
 	/**
 	* @details gets the current connection state of the connection between the voyager and the system
@@ -65,22 +72,24 @@ public:
 	* @param data pointer to data to write
 	* @param bytes amount of bytes to write from data pointer
 	**/
-	virtual void write(const char* data, std::size_t bytes) = 0;
+	virtual void write(VoyagerHandle handle, const char* data, std::size_t bytes) = 0;
 
 	/**
 	* @details Returns the amount of bytes that are available to read 
 	* @returns the amount of bytes that are available for reading
 	**/
-	virtual std::size_t bytesAvailable() = 0;
+	virtual std::size_t bytesAvailable(VoyagerHandle handle) = 0;
 
 	/**
 	* @details Copies available data to data pointer
 	* @param data location to write available data to
-	* @param bytes amount of bytes to write
+	* @param bytes amount of bytes to read | if bytes is < 0 it will read indeffinitely
 	* @warning if bytes is larger than bytesAvailable() the remaining space will be filled with zeroes
 	* @returns the amount of actual bytes that where copied to data
 	**/
-	virtual std::size_t read(char* data, std::size_t bytes) = 0;
+	virtual std::size_t read(VoyagerHandle handle, char* data, std::size_t bytes) = 0;
+
+	virtual void clear(VoyagerHandle handle) = 0;
 
 protected:
 	/**
@@ -100,6 +109,7 @@ protected:
 	void callConnectionStateChangedCallback(ConnectionState connectionState);
 
 private:
+	VoyagerHandle m_handle;
 	ConnectionState m_connectionState; /*! Contains the current state of the connection*/
 	std::function<void(void)> m_voyagerConnectedCallback; /*!< Is called when a Voyager is connected to the system*/
 	std::function<void(void)> m_newDataAvailableCallback; /*!< Is called when new data is recieved from the Voyager */

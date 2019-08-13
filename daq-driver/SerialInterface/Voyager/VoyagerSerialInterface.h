@@ -1,40 +1,40 @@
 #pragma once
-#include "AbstractDriverInterface.h"
-#include <windows.h>
-#include <SetupAPI.h>
-#include <tchar.h>
+#include "../AbstractDriverInterface.h"
 
-#pragma once
-#pragma comment (lib, "Setupapi.lib")
+//Standard C++ includes
+#include <fstream>
+#include <string>
+//#include <unistd.h> // write(), read(), close()
 
-class SerialDriverInterface : public AbstractDriverInterface
+class VoyagerSerialInterface : public AbstractDriverInterface
 {
 public:
-	SerialDriverInterface();
-	~SerialDriverInterface();
+	VoyagerSerialInterface();
+	~VoyagerSerialInterface();
+
 
 	/**
 	* @details Check if a Voyager is connected to the system
 	* @returns returns true if a Voyager is connected
 	**/
-	bool voyagerIsPresent() override;
+	std::string isConnected() override;
 
 	/**
 	* @details Attempts to open a connection to the Voyager
 	**/
-	void open() override;
+	VoyagerHandle open(std::string port) override;
 
 	/**
 	* @details Attempts to close the connection to the Voyager (if any exists)
 	**/
-	void close() override;
+	void close(VoyagerHandle handle) override;
 
 	/**
 	* @details Writes/sends data to the Voyager
 	* @param data pointer to data to write
 	* @param bytes amount of bytes to write from data pointer
 	**/
-	void write(const char* data, std::size_t bytes) override;
+	void write(VoyagerHandle handle, const char* data, std::size_t bytes) override;
 
 	/**
 	* @details Copies available data to data pointer
@@ -43,34 +43,22 @@ public:
 	* @warning if bytes is larger than bytesAvailable() the remaining space will be filled with zeroes
 	* @returns the amount of actual bytes that where copied to data
 	**/
-	std::size_t read(char* data, std::size_t bytes)	override;
-	
+	std::size_t read(VoyagerHandle handle, char* data, std::size_t bytes)	override;
+
 	/**
 	* @details Returns the amount of bytes that are available to read
 	* @returns the amount of bytes that are available for reading
 	**/
-	std::size_t bytesAvailable() override;
+	std::size_t bytesAvailable(VoyagerHandle handle) override;
 
 	/**
-	* @details Clears the pending buffer of the serial port 
+	* @details Clears the pending buffer of the serial port
 	**/
-	void clear();
-
-	/**
-	* @details Refreshes the list of connected USB devices
-	**/
-	void refreshDevicesListHandle();
+	void clear(VoyagerHandle handle) override;
+protected:
 
 private:
 
-	/**
-	* @details
-	**/
-	std::string getComPort();
 
-	HANDLE m_hComm;
-	HDEVINFO m_hDevInfo = NULL;
-	SP_DEVINFO_DATA DeviceInfoData = SP_DEVINFO_DATA();
-	std::string m_portNumber;
 };
 

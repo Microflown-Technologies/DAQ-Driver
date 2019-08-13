@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+enum Gain{
+	LOW = 0;
+	MEDIUM = 1;
+	HIGH = 2;
+	GAINNOTUSED = 3;
+}
+
+enum Iepe{
+	OFF = 0;
+	ON = 1;
+	IEPENOTUSED = 2;
+}
+
+enum Input{
+	Aux1 = 0;
+	Aux2 = 1;
+	Flown = 2;
+}
+
+message Lemo{
+	Gain Gain = 1;
+}
+
+message BNC{
+	Gain Gain = 1;
+	Iepe Iepe = 2;
+}
+
+message ProtobufConfiguration{
+	bytes audioData = 1;
+
+	uint32 samplingFrequency = 2;
+	uint32 TDMMode = 3;
+	uint32 nrOfChannels = 4;
+	uint32 selectedChannels = 5;
+	uint32 MsAudio = 6;
+	uint32 frameSize = 7;
+	uint32 samplesPerChannel = 8;
+	uint32 bytesPerSample = 9;
+	uint32 bytesPerChannel = 10;
+	
+	uint64 timestamp = 11;
+	string command = 12;
+
+	BNC BNC1 = 13;
+	BNC BNC2 = 14;
+	Lemo Lemo = 15;
+}

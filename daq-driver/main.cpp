@@ -1,21 +1,18 @@
-#include "VoyagerAbstractionLayer.h"
+#include <mutex>
+#include <iostream>
+#include "szevent.h"
+#include "EventsManager.h"
+#include "SerialInterface/Windows/WindowsSerialInterface.h"
 
-int main() {
+#include <windows.h>
 
-	SerialDriverInterface m_serial;
-	VoyagerAbstractionLayer m_voyager(&m_serial);
+// Define ENABLE_VIRTUAL_TERMINAL_PROCESSING, if it isn't defined.
+#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+#endif
 
-
-	m_serial.write("hallo", 5);
-
-
-
-	//m_voyager.setGain(Aux1, HIGH);
-
+int main()
+{
 
 	return 0;
 }
-
-
-
-

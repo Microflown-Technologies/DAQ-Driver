@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,47 +12,107 @@
     <Filter Include="Protobuffer">
       <UniqueIdentifier>{992bbfd5-0da2-443d-ba80-ab0118281914}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Protobuffer\Header Files">
+      <UniqueIdentifier>{e675f818-dbd1-4031-bcb8-c260a97bc33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protobuffer\Source Files">
+      <UniqueIdentifier>{116c857b-9554-43b4-8579-19a66ced5b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SerialInterfaces">
+      <UniqueIdentifier>{41ead0af-c9ca-4890-860a-9a3b43b60bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SerialInterfaces\Windows">
+      <UniqueIdentifier>{bd21f1e0-9a5d-434b-9c17-bc4420af8b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SerialInterfaces\Voyager">
+      <UniqueIdentifier>{b3468c20-3d1c-43a3-845c-9573ae5d6f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SerialInterfaces\Linux">
+      <UniqueIdentifier>{73f6526f-bcd3-4e7f-a8db-60334393e1a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractDriverInterface.cpp">
+    <ClCompile Include="InterThreadStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SerialDriverInterface.cpp">
+    <ClCompile Include="Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VoyagerAbstractionLayer.cpp">
+    <ClCompile Include="SerialInterface\Linux\LinuxSerialInterface.cpp">
+      <Filter>SerialInterfaces\Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialInterface\Voyager\VoyagerSerialInterface.cpp">
+      <Filter>SerialInterfaces\Voyager</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialInterface\Windows\WindowsSerialInterface.cpp">
+      <Filter>SerialInterfaces\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialInterface\AbstractDriverInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Configuration.pb.cc">
+    <ClCompile Include="Protobuf\ProtobufComparer.cpp">
+      <Filter>Protobuffer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\ProtobufConfiguration.pb.cc">
+      <Filter>Protobuffer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protobuf\ProtobufParser.cpp">
+      <Filter>Protobuffer\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractDriverInterface.h">
+    <ClInclude Include="InterThreadStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SerialDriverInterface.h">
+    <ClInclude Include="Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VoyagerAbstractionLayer.h">
+    <ClInclude Include="szevent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\JSON\json\single_include\nlohmann\json.hpp">
+    <ClInclude Include="SerialInterface\Linux\LinuxSerialInterface.h">
+      <Filter>SerialInterfaces\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialInterface\Voyager\VoyagerSerialInterface.h">
+      <Filter>SerialInterfaces\Voyager</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialInterface\Windows\WindowsSerialInterface.h">
+      <Filter>SerialInterfaces\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialInterface\AbstractDriverInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Configuration.pb.h">
+    <ClInclude Include="Protobuf\ProtobufComparer.h">
+      <Filter>Protobuffer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\ProtobufConfiguration.pb.h">
+      <Filter>Protobuffer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protobuf\ProtobufParser.h">
+      <Filter>Protobuffer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration.proto">
+    <None Include="Protobuf\ProtobufConfiguration.proto">
       <Filter>Protobuffer</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="libprotobuf.lib" />
+    <Library Include="Protobuf\libprotobuf.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>
