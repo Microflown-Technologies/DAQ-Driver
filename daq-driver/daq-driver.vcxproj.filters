@@ -54,9 +54,6 @@
     <ClCompile Include="SerialInterface\Windows\WindowsSerialInterface.cpp">
       <Filter>SerialInterfaces\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="SerialInterface\AbstractDriverInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Protobuf\ProtobufComparer.cpp">
       <Filter>Protobuffer\Source Files</Filter>
     </ClCompile>
@@ -66,8 +63,11 @@
     <ClCompile Include="Protobuf\ProtobufParser.cpp">
       <Filter>Protobuffer\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventsManager.cpp">
+    <ClCompile Include="EventManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialInterface\AbstractDriverInterface.cpp">
+      <Filter>SerialInterfaces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="SerialInterface\Windows\WindowsSerialInterface.h">
       <Filter>SerialInterfaces\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="SerialInterface\AbstractDriverInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Protobuf\ProtobufComparer.h">
       <Filter>Protobuffer\Header Files</Filter>
     </ClInclude>
@@ -101,8 +98,11 @@
     <ClInclude Include="Protobuf\ProtobufParser.h">
       <Filter>Protobuffer\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EventsManager.h">
+    <ClInclude Include="EventManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialInterface\AbstractDriverInterface.h">
+      <Filter>SerialInterfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

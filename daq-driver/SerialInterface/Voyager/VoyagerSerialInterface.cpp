@@ -1,6 +1,6 @@
 #include "VoyagerSerialInterface.h"
 
-VoyagerSerialInterface::VoyagerSerialInterface() 
+VoyagerSerialInterface::VoyagerSerialInterface(EventManager& eventmanager) : AbstractDriverInterface(eventmanager)
 {
 
 }

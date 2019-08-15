@@ -1,6 +1,10 @@
 #include "InterThreadStorage.h"
 
-InterThreadStorage::InterThreadStorage(EventsManager& events) : m_allowedToRun(false), m_eventsManager(&events)
+InterThreadStorage::InterThreadStorage() : m_allowedToRun(false)
+{
+}
+
+InterThreadStorage::~InterThreadStorage()
 {
 }
 
@@ -16,63 +20,54 @@ const bool InterThreadStorage::allowedToRun()
 	return m_allowedToRun;
 }
 
-const size_t InterThreadStorage::rawDataAvailable()
+void InterThreadStorage::set_Connected(bool state)
 {
-	std::lock_guard<std::mutex> lock(mutexRawSerialBuffer);
-	return rawBuffer.size();
+	std::lock_guard<std::mutex> lock(mutexConnected);
+	m_connected = state;
 }
 
-const size_t InterThreadStorage::parsedDataAvailable()
+const bool InterThreadStorage::connected()
 {
-	std::lock_guard<std::mutex> lock(mutexParsedBuffer);
-	return parsedBuffer.size();
+	std::lock_guard<std::mutex> lock(mutexConnected);
+	return m_connected;
 }
 
-const size_t InterThreadStorage::serialDataAvailableToSend()
+void InterThreadStorage::addVector(std::vector<char>* vector)
 {
-	std::lock_guard<std::mutex> lock(mutexSerialDataToSend);
-	return serialDataToSend.size();
+	std::lock_guard<std::mutex> lock(m_mutexEmptyBuffers);
+	vector->clear();
+	m_emptyBuffers.insert(m_emptyBuffers.end(), vector);
 }
 
-void InterThreadStorage::appendRawSerialBuffer(const char* buffer, size_t size)
+std::vector<char>* InterThreadStorage::getDataVector()
 {
-	std::lock_guard<std::mutex> lock(mutexRawSerialBuffer);
-	rawBuffer.insert(rawBuffer.end(), buffer, buffer + size);
-	m_eventsManager->call(DATARECEIVED);
+	std::vector<char>* buffer = m_filledBuffers.front();
+	m_filledBuffers.erase(m_filledBuffers.begin());
+
+	return buffer;
 }
 
-void InterThreadStorage::appendParsedSerialBuffer(std::string buffer)
+void InterThreadStorage::fillVector(char* buffer, size_t size)
 {
-	std::lock_guard<std::mutex> lock(mutexParsedBuffer);
-	parsedBuffer.insert(parsedBuffer.end(), buffer, buffer + size);
-	m_eventsManager->call(DATAPARSED);
+	std::lock(m_mutexEmptyBuffers, m_mutexFilledBuffers);
+	std::lock_guard<std::mutex> lock(m_mutexEmptyBuffers, std::adopt_lock);
+	std::lock_guard<std::mutex> lock(m_mutexFilledBuffers, std::adopt_lock);
+
+	m_emptyBuffers.front.resize(size);
+	m_emptyBuffers.front = buffer;
+	m_filledBuffers.insert(m_filledBuffers.end(), m_emptyBuffers.front());
+	m_emptyBuffers.erase(m_emptyBuffers.begin());
 }
 
-void InterThreadStorage::appendSerialDataToSend(const char* buffer, size_t size)
+bool InterThreadStorage::removeVector()
 {
-	serialDataToSend.insert(serialDataToSend.end(), buffer, buffer + size);
+	std::lock_guard<std::mutex> lock(m_mutexEmptyBuffers);
+	if (m_emptyBuffers.size()) {
+		m_emptyBuffers.pop_back();
+		return true;
+	}
+	else {
+		std::cerr << "InterThreadStorage::removeVector: No empty buffers to delete";
+		return false;
+	}
 }
-
-void InterThreadStorage::getRawSerialBuffer(char* buffer, size_t size)
-{
-	std::lock_guard<std::mutex> lock(mutexRawSerialBuffer);
-	std::copy(rawBuffer.begin(), rawBuffer.begin() + size, buffer);
-	rawBuffer.clear();
-}
-
-void InterThreadStorage::getParsedSerialBuffer(char* buffer, size_t size)
-{
-	std::lock_guard<std::mutex> lock(mutexParsedBuffer);
-	std::copy(parsedBuffer.begin(), parsedBuffer.begin() + size, buffer);
-	parsedBuffer.clear();
-}
-
-void InterThreadStorage::getSerialDataToSend(char* buffer, size_t size)
-{
-	std::lock_guard<std::mutex> lock(mutexSerialDataToSend);
-	std::copy(serialDataToSend.begin(), serialDataToSend.begin() + size, buffer);
-	serialDataToSend.clear();
-}
-
-
-

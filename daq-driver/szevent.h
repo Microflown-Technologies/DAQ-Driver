@@ -53,7 +53,7 @@ namespace sz
 			return *this;
 		}
 
-		// function call operator
+		// function throwLibraryEvent operator
 		void operator()(Args... params) const
 		{
 			if (m_handlerFunc)
@@ -175,7 +175,7 @@ namespace sz
 			return false;
 		}
 
-		void call(Args... params) const
+		void throwLibraryEvent(Args... params) const
 		{
 			handler_collection_type handlersCopy = get_handlers_copy();
 
@@ -184,12 +184,12 @@ namespace sz
 
 		std::future<void> call_async(Args... params) const
 		{
-			return std::async(std::launch::async, [this](Args... asyncParams) { call(asyncParams...); }, params...);
+			return std::async(std::launch::async, [this](Args... asyncParams) { throwLibraryEvent(asyncParams...); }, params...);
 		}
 
 		inline void operator()(Args... params) const
 		{
-			call(params...);
+			throwLibraryEvent(params...);
 		}
 
 		inline typename handler_type::handler_id_type operator+=(const handler_type& handler)

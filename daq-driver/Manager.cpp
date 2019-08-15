@@ -1,12 +1,15 @@
 #include "Manager.h"
 
 
-Manager::Manager() : m_interThreadStorage(m_eventsManager), m_voyagerHandle(NULL)
+Manager::Manager() : m_serialDriverInterface(&m_eventManager, &m_interThreadStorage), m_voyagerHandle(NULL)
 {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 
 	m_protobufComparer.addIgnoreField("audioData");
 	m_protobufComparer.addIgnoreField("timestamp");
+
+	m_eventManager.setDataEventCallback(std::bind(&Manager::dataHandler, this));
+	m_eventManager.setHardwareEventCallback(std::bind(&Manager::hardwareHandler, this));
 }
 
 
@@ -15,61 +18,58 @@ Manager::~Manager()
 
 }
 
-void Manager::serialLoop()
+void Manager::dataHandler()
 {
 	size_t size;
 	char* buffer;
 
-	while (m_interThreadStorage.allowedToRun()) {
+	m_voyagerHandleMutex.lock();
+	if (size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle)) {
+		m_voyagerHandleMutex.unlock();
+
+		//Notify the callback function that data is received
+		m_eventManager.throwLibraryEvent(DATARECEIVED);
+
+		//Allocate memory for the data that is about to be read
+		buffer = new char[size];
+
+		//Read the serialInterface of size bytes
 		m_voyagerHandleMutex.lock();
-		if (size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle)) {
-			m_voyagerHandleMutex.unlock();
+		m_serialDriverInterface.read(m_voyagerHandle, buffer, size);
+		m_voyagerHandleMutex.unlock();
 
-			m_eventsManager.call(DATARECEIVED);
+		//Write the data to the RawBuffer
+		m_interThreadStorage.appendRawBuffer(buffer, size);
 
-			buffer = new char[size];
+		//Parse the serial data to the Protobuf format
+		m_protobufConfigurationBuf = m_protobufParser.parseSerialData(buffer, size);
 
-			//Read the serialInterface of size bytes
-			m_voyagerHandleMutex.lock();
-			m_serialDriverInterface.read(m_voyagerHandle, buffer, size);
-			m_voyagerHandleMutex.unlock();
-			
-			m_interThreadStorage.appendRawSerialBuffer(buffer, size);
+		//Compare the received protobuffer with the saved protobuffer
+		auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
 
-			m_protobufConfigurationBuf = m_protobufParser.parseSerialData(buffer, size);
-
-			auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
-
-			m_interThreadStorage.appendParsedSerialBuffer(m_protobufConfiguration.audiodata());
+		//Write the parsed data to the ParsedBuffer
+		m_interThreadStorage.appendParsedBuffer(m_protobufConfiguration.audiodata());
 
 
-			//m_protobufConfiguration.audiod
+		//m_protobufConfiguration.audiod
 
+		futureCompareResult.wait();
 
-			futureCompareResult.wait();
-
-			if (!futureCompareResult.get()) {
-
-				m_eventsManager.call(NEWCONFIGURATION);
-			}
-
-
-
-
-			delete[] buffer;
+		if (!futureCompareResult.get()) {
+			m_eventManager.throwLibraryEvent(NEWCONFIGURATION);
 		}
-		else m_voyagerHandleMutex.unlock();
+
+		delete[] buffer;
 	}
+	else m_voyagerHandleMutex.unlock();
 }
 
-void Manager::connectionLoop()
+void Manager::hardwareHandler()
 {
-	while (m_interThreadStorage.allowedToRun()) {
-		if (!isVoyagerConnected()) {
-			std::cout << "Voyager is disconnected" << std::endl;
-			m_interThreadStorage.set_AllowedToRun(false);
-			m_eventsManager.call(DISCONNECT);
-		}
+	if (!isVoyagerConnected()) {
+		std::cout << "Voyager is disconnected" << std::endl;
+		m_interThreadStorage.set_AllowedToRun(false);
+		m_eventManager.throwLibraryEvent(DISCONNECT);
 	}
 }
 
@@ -89,16 +89,16 @@ void Manager::updateVoyagerConfiguration()
 }
 
 
-void Manager::setEventCallback(std::function<void(Events)> callback)
+void Manager::setLibraryEventCallback(std::function<void(Events)> callback)
 {
 	//Set the callback function
-	m_eventsManager.setEventCallback(callback);
+	m_eventManager.setLibraryEventCallback(callback);
 }
 
 void Manager::clearEventCallback()
 {
 	//Clear the set callback function
-	m_eventsManager.clearEventCallback();
+	m_eventManager.clearEventCallback();
 }
 
 bool Manager::isVoyagerConnected()
@@ -115,11 +115,11 @@ bool Manager::isVoyagerConnected()
 bool Manager::establishConnection()
 {
 	//Check if a Callback function have been set and if so open a connection
-	if (m_eventsManager.getEventCallback()) {
+	if (m_eventManager.getEventCallback()) {
 		m_voyagerHandleMutex.lock();
 		m_voyagerHandle = m_serialDriverInterface.open(m_serialDriverInterface.isConnected());
 		m_voyagerHandleMutex.unlock();
-		m_eventsManager.call(CONNECT);
+		m_eventManager.throwLibraryEvent(CONNECT);
 		return true;
 	}
 	else {
@@ -152,9 +152,9 @@ bool Manager::start()
 	m_interThreadStorage.set_AllowedToRun(true);
 
 	//Enable events and start the serial/connection threads
-	m_eventsManager.enableEvents();
-	m_threadSerial = std::thread(std::bind(&Manager::serialLoop, this));
-	m_threadConnection = std::thread(std::bind(&Manager::connectionLoop, this));
+	m_eventManager.enableEvents();
+	m_serialDriverInterface.isConnectedLoop(m_voyagerHandle, m_voyagerHandleMutex);
+	m_serialDriverInterface.dataAvaillableLoop(m_voyagerHandle, m_voyagerHandleMutex);
 
 	m_threadConnection.detach();
 	m_threadSerial.detach();
@@ -165,7 +165,7 @@ bool Manager::start()
 bool Manager::pause()
 {
 	//Disable events
-	m_eventsManager.disableEvents();
+	m_eventManager.disableEvents();
 	return true;
 }
 
@@ -188,7 +188,7 @@ bool Manager::stop()
 	m_voyagerHandleMutex.unlock();
 
 	//Stop the events
-	m_eventsManager.disableEvents();
+	m_eventManager.disableEvents();
 
 	return true;
 }
@@ -323,6 +323,8 @@ void Manager::setGain(Gain gain, Input input) {
 }
 
 void Manager::setIEPE(Iepe iepe, Input input) {
+	if (input == IEPENOTUSED) return;
+
 	switch (input) {
 	case Aux1:
 		m_protobufConfiguration.mutable_bnc1()->set_iepe(iepe);

@@ -1,12 +1,13 @@
-//#include <usb.h>
 
+#ifdef __linux__
+#include <usb.h>
 #include "../AbstractDriverInterface.h"
 
 #pragma once
 class LinuxSerialInterface : public AbstractDriverInterface
 {
 public: 
-	LinuxSerialInterface();
+	LinuxSerialInterface(EventManager& eventmanager);
 	~LinuxSerialInterface();
 
 
@@ -56,3 +57,4 @@ public:
 
 };
 
+#endif

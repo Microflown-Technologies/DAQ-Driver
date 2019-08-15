@@ -1,5 +1,5 @@
 #define NOMINMAX
-#include "../../EventsManager.h"
+
 #include "../AbstractDriverInterface.h"
 #include <windows.h>
 #include <SetupAPI.h>
@@ -12,14 +12,19 @@
 class WindowsSerialInterface : public AbstractDriverInterface
 {
 public:
-	WindowsSerialInterface();
+	WindowsSerialInterface(EventManager* eventmanager, InterThreadStorage* interthreadstorage);
 	~WindowsSerialInterface();
 
 	/**
 	* @details Check if a Voyager is connected to the system
 	* @returns returns true if a Voyager is connected
 	**/
-	std::string isConnected() override;
+	std::string isConnected(bool loop) override;
+
+	/**
+	* @details keeps checking the connection until the allowedToRun variable is set to false
+	**/
+	void isConnectedLoop() override;
 
 	/**
 	* @details Attempts to open a connection to the Voyager
@@ -48,10 +53,15 @@ public:
 	std::size_t read(VoyagerHandle handle, char* data, std::size_t bytes)	override;
 	
 	/**
+	*@ details checks if data is availlable and sends a event to the Manager class
+	**/
+	void dataAvaillableLoop(VoyagerHandle handle, std::mutex& handlemutex) override;
+
+	/**
 	* @details Returns the amount of bytes that are available to read
 	* @returns the amount of bytes that are available for reading
 	**/
-	std::size_t bytesAvailable(VoyagerHandle handle) override;
+	std::size_t bytesAvailable(VoyagerHandle handle, std::mutex& handleMutex, bool loop) override;
 
 	/**
 	* @details Clears the pending buffer of the serial port 

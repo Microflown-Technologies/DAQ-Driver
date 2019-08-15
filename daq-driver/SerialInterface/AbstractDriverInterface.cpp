@@ -1,6 +1,6 @@
 #include "AbstractDriverInterface.h"
 
-AbstractDriverInterface::AbstractDriverInterface() : m_connectionState(Disconnected)
+AbstractDriverInterface::AbstractDriverInterface(EventManager *eventmanager, InterThreadStorage* interthreadstorage): m_interThreadStorage(interthreadstorage), m_eventManager(eventmanager) ,m_handle(NULL), m_connectionState(Disconnected)
 {
 }
 

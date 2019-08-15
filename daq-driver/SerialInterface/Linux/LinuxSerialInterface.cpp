@@ -1,6 +1,6 @@
 #include "LinuxSerialInterface.h"
 
-LinuxSerialInterface::LinuxSerialInterface()
+LinuxSerialInterface::LinuxSerialInterface(EventManager& eventmanager) : AbstractDriverInterface(eventmanager)
 {
 }
 

@@ -3,6 +3,9 @@
 //STD framework
 #include <iostream>
 #include <functional>
+#include "../InterThreadStorage.h"
+#include "../EventManager.h"
+
 
 #if defined(_WIN32)
 typedef void* VoyagerHandle;
@@ -14,7 +17,7 @@ typedef int VoyagerHandle;
 class AbstractDriverInterface
 {
 public:
-	AbstractDriverInterface();
+	AbstractDriverInterface(EventManager *eventmanager, InterThreadStorage *interthreadstorage);
 	virtual ~AbstractDriverInterface();
 	/**
 	* @details States the connection between Voyager and system is able to be
@@ -30,7 +33,12 @@ public:
 	* @details Check if a Voyager is connected to the system
 	* @returns returns true if a Voyager is connected
 	**/
-	virtual std::string isConnected() = 0;
+	virtual std::string isConnected(bool loop) = 0;
+
+	/**
+	* @details keeps checking the connection until the allowedToRun variable is set to false
+	**/
+	virtual void isConnectedLoop() = 0;
 
 	/**
 	* @details Attempts to open a connection to the Voyager
@@ -78,7 +86,7 @@ public:
 	* @details Returns the amount of bytes that are available to read 
 	* @returns the amount of bytes that are available for reading
 	**/
-	virtual std::size_t bytesAvailable(VoyagerHandle handle) = 0;
+	virtual std::size_t bytesAvailable(VoyagerHandle handle, std::mutex& handleMutex, bool loop) = 0;
 
 	/**
 	* @details Copies available data to data pointer
@@ -88,6 +96,11 @@ public:
 	* @returns the amount of actual bytes that where copied to data
 	**/
 	virtual std::size_t read(VoyagerHandle handle, char* data, std::size_t bytes) = 0;
+
+	/**
+	*@ details checks if data is availlable and sends a event to the Manager class
+	**/
+	virtual void dataAvaillableLoop(VoyagerHandle handle, std::mutex &handlemutex) = 0;
 
 	virtual void clear(VoyagerHandle handle) = 0;
 
@@ -108,9 +121,14 @@ protected:
 	**/
 	void callConnectionStateChangedCallback(ConnectionState connectionState);
 
+	EventManager* m_eventManager;
+	InterThreadStorage* m_interThreadStorage;
+
 private:
 	VoyagerHandle m_handle;
 	ConnectionState m_connectionState; /*! Contains the current state of the connection*/
+
+
 	std::function<void(void)> m_voyagerConnectedCallback; /*!< Is called when a Voyager is connected to the system*/
 	std::function<void(void)> m_newDataAvailableCallback; /*!< Is called when new data is recieved from the Voyager */
 	std::function<void(ConnectionState)> m_connectionStateChangedCallback; /*!< Is called when the state of connection between Voyager and the system changed */

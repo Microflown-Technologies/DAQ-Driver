@@ -20,7 +20,7 @@ int main()
 {
 
 	Manager manage;
-	manage.setEventCallback(&testFunction);
+	manage.setLibraryEventCallback(&testFunction);
 
 	Sleep(2000);
 

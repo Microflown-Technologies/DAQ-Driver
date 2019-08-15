@@ -1,15 +1,17 @@
+
+#ifdef _VOYAGER
 #pragma once
 #include "../AbstractDriverInterface.h"
 
 //Standard C++ includes
 #include <fstream>
 #include <string>
-//#include <unistd.h> // write(), read(), close()
+#include <unistd.h> // write(), read(), close()
 
 class VoyagerSerialInterface : public AbstractDriverInterface
 {
 public:
-	VoyagerSerialInterface();
+	VoyagerSerialInterface(EventManager& eventmanager);
 	~VoyagerSerialInterface();
 
 
@@ -61,4 +63,6 @@ private:
 
 
 };
+
+#endif
 
