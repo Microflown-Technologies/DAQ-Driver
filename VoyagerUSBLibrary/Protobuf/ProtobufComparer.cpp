@@ -12,7 +12,9 @@ ProtobufComparer::~ProtobufComparer()
 
 bool ProtobufComparer::compareProtobufs(ProtobufConfiguration &proto1, ProtobufConfiguration &proto2)
 {
-	return m_messageDifferencer.Compare(proto1, proto2);
+
+	bool temp = m_messageDifferencer.Compare(proto1, proto2);
+	return temp;
 }
 
 void ProtobufComparer::addIgnoreField(std::string Field)

@@ -1,6 +1,6 @@
 #include "WindowsSerialInterface.h"
 
-WindowsSerialInterface::WindowsSerialInterface(EventManager& eventmanager, InterThreadStorage &interthreadstorage) : AbstractDriverInterface(eventmanager, interthreadstorage)
+WindowsSerialInterface::WindowsSerialInterface(EventManager* eventmanager, InterThreadStorage *interthreadstorage): AbstractDriverInterface(eventmanager, interthreadstorage)
 {
 }
 
@@ -10,11 +10,8 @@ WindowsSerialInterface::~WindowsSerialInterface()
 	
 }
 
-std::string WindowsSerialInterface::isConnected(bool loop)
+std::string WindowsSerialInterface::isConnected()
 {	
-	std::string result;
-
-	do {
 		HDEVINFO m_hDevInfo;
 		SP_DEVINFO_DATA DeviceInfoData;
 
@@ -26,35 +23,39 @@ std::string WindowsSerialInterface::isConnected(bool loop)
 			DeviceInfoData.cbSize = sizeof(DeviceInfoData);
 			if (!SetupDiEnumDeviceInfo(m_hDevInfo, index, &DeviceInfoData)) {
 				SetupDiDestroyDeviceInfoList(m_hDevInfo);
-				result = "";							// No USB device found with hardware id of the Voyager
-				if (m_interThreadStorage.connected) {
-					m_interThreadStorage.set_Connected(false);
-					m_eventManager.throwHardwareEvent();
-				}
+					return ""; 							// No USB device found with hardware id of the Voyager
 			}
 
 			TCHAR HardwareID[1024];
 			SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_HARDWAREID, NULL, (BYTE*)HardwareID, sizeof(HardwareID), NULL);
 			if (_tcsstr(HardwareID, _T("VID_1D6B&PID_0100")) && IsEqualGUID(DeviceInfoData.ClassGuid, GUID_SERENUM_BUS_ENUMERATOR)) {
 				std::string ComPort = getComPort(m_hDevInfo, DeviceInfoData);							// Found USB device with hardware id of the Voyager
-				SetupDiDestroyDeviceInfoList(m_hDevInfo);
-				result = ComPort;
-				if (!m_interThreadStorage.connected) {
-					m_interThreadStorage.set_Connected(true);
-					m_eventManager.throwHardwareEvent();
-				}
+				SetupDiDestroyDeviceInfoList(m_hDevInfo);		
+				return ComPort;			
 			}
 		}
-
 		SetupDiDestroyDeviceInfoList(m_hDevInfo);
-	} while (m_interThreadStorage.allowedToRun() && loop);
-
-	return result;
 }
 
 void WindowsSerialInterface::isConnectedLoop()
 {
-	std::async(std::launch::async, std::bind(&WindowsSerialInterface::isConnected, this, true));
+	m_threadHardware = std::thread(std::bind(&WindowsSerialInterface::isConnectedtry, this));
+	m_threadHardware.detach();
+}
+
+void WindowsSerialInterface::isConnectedtry()
+{
+	while (AbstractDriverInterface::m_interThreadStorage->allowedToRun()) {
+
+		if (isConnected() == "" && AbstractDriverInterface::m_interThreadStorage->connected()) {
+			AbstractDriverInterface::m_interThreadStorage->set_Connected(false);
+			AbstractDriverInterface::m_eventManager->throwHardwareEvent();
+		}
+		else if(!AbstractDriverInterface::m_interThreadStorage->connected()){
+			AbstractDriverInterface::m_interThreadStorage->set_Connected(true);
+			AbstractDriverInterface::m_eventManager->throwHardwareEvent();
+		}
+	}
 }
 
 VoyagerHandle WindowsSerialInterface::open(std::string input)
@@ -148,28 +149,36 @@ std::size_t WindowsSerialInterface::read(VoyagerHandle handle, char* data, std::
 	return std::size_t(bytesRead);
 }
 
-void WindowsSerialInterface::dataAvaillableLoop(VoyagerHandle handle, std::mutex& handleMutex)
+void WindowsSerialInterface::dataAvailableLoop(VoyagerHandle handle, std::mutex& handleMutex)
 {
-	std::async(std::launch::async, std::bind(&WindowsSerialInterface::bytesAvailable, this, handle, handleMutex, true));
+	m_threadData = std::thread(std::bind(&WindowsSerialInterface::bytesAvailable, this, handle, &handleMutex, true));
+	m_threadData.detach();
 }
 
-std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle, std::mutex& handleMutex, bool loop)
+std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle, std::mutex *handleMutex, bool loop)
 {
 	COMSTAT comStat;
 	DWORD errorMask = 0;
 	size_t size = 0;
 
 	do {
+		handleMutex->lock();
 		if (!ClearCommError(handle, &errorMask, &comStat)) {
+			handleMutex->unlock();
 			return 0;
 		}
+		handleMutex->unlock();
 		if (size = comStat.cbInQue) {
-			m_eventManager.throwDataEvent();
+			if (loop) {
+				AbstractDriverInterface::m_eventManager->throwDataEvent();
+			}
+			else {
+				return size;
+
+			}
 		}
-	} while (m_interThreadStorage.allowedToRun() && loop);
 
-
-	return size;
+	} while (AbstractDriverInterface::m_interThreadStorage->allowedToRun());
 }
 
 void WindowsSerialInterface::clear(VoyagerHandle handle)

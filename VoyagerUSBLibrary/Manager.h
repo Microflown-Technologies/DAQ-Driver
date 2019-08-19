@@ -45,17 +45,12 @@ public:
 	**/
 	bool isVoyagerConnected();
 
-	//void addRawDataBuffer(std::vector<char>* buffer);
 
-	//void addRawDataBuffer(std::vector<std::vector<char>>* buffers);
+	void provideStorageVector(std::string *bufferVector);
 
-	//void addParsedDataBuffer(std::vector<char>* buffer);
+	void provideStorageVector(std::vector<std::string> *bufferVectors);
 
-	//void addParsedDataBuffer(std::vector<std::vector<char>>* buffers);
-
-	//void addProtobufBuffer(std::vector<ProtobufConfiguration>* proBuf);
-
-	//void addProtobufBuffer(std::vector<std::vector<ProtobufConfiguration>>* proBuffs);
+	std::string* getData();
 
 	/**
 	* @details Starts sending events start communication with the connected device

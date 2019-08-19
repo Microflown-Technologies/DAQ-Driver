@@ -16,6 +16,7 @@ Manager::Manager() : m_serialDriverInterface(&m_eventManager, &m_interThreadStor
 Manager::~Manager()
 {
 
+	m_interThreadStorage.set_AllowedToRun(false);
 }
 
 void Manager::dataHandler()
@@ -23,9 +24,7 @@ void Manager::dataHandler()
 	size_t size;
 	char* buffer;
 
-	m_voyagerHandleMutex.lock();
-	if (size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle)) {
-		m_voyagerHandleMutex.unlock();
+	if ((size = m_serialDriverInterface.bytesAvailable(m_voyagerHandle, &m_voyagerHandleMutex))) {
 
 		//Notify the callback function that data is received
 		m_eventManager.throwLibraryEvent(DATARECEIVED);
@@ -38,30 +37,29 @@ void Manager::dataHandler()
 		m_serialDriverInterface.read(m_voyagerHandle, buffer, size);
 		m_voyagerHandleMutex.unlock();
 
-		//Write the data to the RawBuffer
-		m_interThreadStorage.appendRawBuffer(buffer, size);
-
 		//Parse the serial data to the Protobuf format
 		m_protobufConfigurationBuf = m_protobufParser.parseSerialData(buffer, size);
 
 		//Compare the received protobuffer with the saved protobuffer
-		auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
+		//auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
+
+		auto compareResult = m_protobufComparer.compareProtobufs(m_protobufConfiguration, m_protobufConfigurationBuf);
 
 		//Write the parsed data to the ParsedBuffer
-		m_interThreadStorage.appendParsedBuffer(m_protobufConfiguration.audiodata());
+		if (!m_interThreadStorage.fillVector(m_protobufConfigurationBuf.audiodata())) {
+			m_eventManager.throwLibraryEvent(ALLBUFFERSUSED);
+		}
+		m_eventManager.throwLibraryEvent(DATAREADY);
 
+		//Wait til the protobuffers are compared
+		//futureCompareResult.wait();
 
-		//m_protobufConfiguration.audiod
-
-		futureCompareResult.wait();
-
-		if (!futureCompareResult.get()) {
+		if (!compareResult) {
 			m_eventManager.throwLibraryEvent(NEWCONFIGURATION);
 		}
 
 		delete[] buffer;
 	}
-	else m_voyagerHandleMutex.unlock();
 }
 
 void Manager::hardwareHandler()
@@ -70,6 +68,11 @@ void Manager::hardwareHandler()
 		std::cout << "Voyager is disconnected" << std::endl;
 		m_interThreadStorage.set_AllowedToRun(false);
 		m_eventManager.throwLibraryEvent(DISCONNECT);
+	}
+	else {
+		std::cout << "Voyager is connected" << std::endl;
+		m_interThreadStorage.set_AllowedToRun(true);
+		m_eventManager.throwLibraryEvent(CONNECT);
 	}
 }
 
@@ -112,6 +115,22 @@ bool Manager::isVoyagerConnected()
 	}
 }
 
+void Manager::provideStorageVector(std::string* bufferVector)
+{
+	m_interThreadStorage.addVector(bufferVector);
+}
+
+void Manager::provideStorageVector(std::vector<std::string>* bufferVectors) {
+	for (auto& vector : *bufferVectors) {
+		m_interThreadStorage.addVector(&vector);
+	}
+}
+
+std::string* Manager::getData()
+{
+	return m_interThreadStorage.getDataVector();
+}
+
 bool Manager::establishConnection()
 {
 	//Check if a Callback function have been set and if so open a connection
@@ -119,7 +138,6 @@ bool Manager::establishConnection()
 		m_voyagerHandleMutex.lock();
 		m_voyagerHandle = m_serialDriverInterface.open(m_serialDriverInterface.isConnected());
 		m_voyagerHandleMutex.unlock();
-		m_eventManager.throwLibraryEvent(CONNECT);
 		return true;
 	}
 	else {
@@ -141,6 +159,9 @@ bool Manager::start()
 		std::cerr << "Start called but no Voyager is connected" << std::endl;
 		return false;
 	}
+
+	//Enable events
+	m_eventManager.enableEvents();
 	
 	//Try to connect to the Voyager
 	if (!establishConnection()) {
@@ -151,14 +172,9 @@ bool Manager::start()
 	//Set allowedToRun to false and Voyager connected to true
 	m_interThreadStorage.set_AllowedToRun(true);
 
-	//Enable events and start the serial/connection threads
-	m_eventManager.enableEvents();
-	m_serialDriverInterface.isConnectedLoop(m_voyagerHandle, m_voyagerHandleMutex);
-	m_serialDriverInterface.dataAvaillableLoop(m_voyagerHandle, m_voyagerHandleMutex);
-
-	m_threadConnection.detach();
-	m_threadSerial.detach();
-
+	//start the serial/connection threads
+	m_serialDriverInterface.isConnectedLoop();
+	m_serialDriverInterface.dataAvailableLoop(m_voyagerHandle, m_voyagerHandleMutex);
 	return true;
 }
 

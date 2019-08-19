@@ -1,5 +1,7 @@
 #include "VoyagerSerialInterface.h"
 
+#ifdef _VOYAGER
+
 VoyagerSerialInterface::VoyagerSerialInterface(EventManager& eventmanager) : AbstractDriverInterface(eventmanager)
 {
 
@@ -49,3 +51,5 @@ std::size_t VoyagerSerialInterface::bytesAvailable(VoyagerHandle handle)
 void VoyagerSerialInterface::clear(VoyagerHandle handle)
 {
 }
+
+#endif

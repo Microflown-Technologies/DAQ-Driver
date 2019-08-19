@@ -19,12 +19,14 @@ public:
 	* @details Check if a Voyager is connected to the system
 	* @returns returns true if a Voyager is connected
 	**/
-	std::string isConnected(bool loop) override;
+	std::string isConnected() override;
 
 	/**
 	* @details keeps checking the connection until the allowedToRun variable is set to false
 	**/
 	void isConnectedLoop() override;
+
+	void isConnectedtry();
 
 	/**
 	* @details Attempts to open a connection to the Voyager
@@ -55,13 +57,13 @@ public:
 	/**
 	*@ details checks if data is availlable and sends a event to the Manager class
 	**/
-	void dataAvaillableLoop(VoyagerHandle handle, std::mutex& handlemutex) override;
+	void dataAvailableLoop(VoyagerHandle handle, std::mutex& handlemutex) override;
 
 	/**
 	* @details Returns the amount of bytes that are available to read
 	* @returns the amount of bytes that are available for reading
 	**/
-	std::size_t bytesAvailable(VoyagerHandle handle, std::mutex& handleMutex, bool loop) override;
+	std::size_t bytesAvailable(VoyagerHandle handle, std::mutex *handleMutex, bool loop = false) override;
 
 	/**
 	* @details Clears the pending buffer of the serial port 
@@ -69,6 +71,11 @@ public:
 	void clear(VoyagerHandle handle) override;
 
 private:
+
+	std::thread m_threadHardware;
+
+	std::thread m_threadData;
+
 
 	/**
 	* @details Refreshes the list of connected USB devices

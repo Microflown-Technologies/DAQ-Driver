@@ -19,12 +19,11 @@ public:
 
 	const bool connected();
 	
-	void addVector(std::vector<char>* vector);
+	void addVector(std::string *string);
 
-	std::vector<char>* getDataVector();
+	std::string* getDataVector();
 
-protected:
-	void fillVector(char* buffer, size_t size);
+	bool fillVector(std::string string);
 
 	bool removeVector();
 
@@ -42,10 +41,10 @@ private:
 	std::vector<char> parsedBuffer;						/*<!A vector<char> which can be used to transfer the parsed audio data between threads*/
 	std::mutex mutexParsedBuffer;						/*<!Mutex to ensure that parsedBuffer is not read/written at the same time*/
 
-	std::vector<std::vector<char>*> m_emptyBuffers;
+	std::vector<std::string*> m_emptyBuffers;
 	std::mutex m_mutexEmptyBuffers;
 
-	std::vector<std::vector<char>*> m_filledBuffers;
+	std::vector<std::string*> m_filledBuffers;
 	std::mutex m_mutexFilledBuffers;
 
 };

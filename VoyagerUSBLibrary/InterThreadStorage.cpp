@@ -32,31 +32,51 @@ const bool InterThreadStorage::connected()
 	return m_connected;
 }
 
-void InterThreadStorage::addVector(std::vector<char>* vector)
+void InterThreadStorage::addVector(std::string* string)
 {
 	std::lock_guard<std::mutex> lock(m_mutexEmptyBuffers);
-	vector->clear();
-	m_emptyBuffers.insert(m_emptyBuffers.end(), vector);
+	string->clear();
+	m_emptyBuffers.insert(m_emptyBuffers.end(), string);
 }
 
-std::vector<char>* InterThreadStorage::getDataVector()
+std::string* InterThreadStorage::getDataVector()
 {
-	std::vector<char>* buffer = m_filledBuffers.front();
+	if (!m_filledBuffers.size()) {
+		std::cerr << "Tried to retrieve data but there are no vectors to retrieve from" << std::endl;
+		return NULL;
+	}
+	std::string* buffer = m_filledBuffers.front();
 	m_filledBuffers.erase(m_filledBuffers.begin());
 
 	return buffer;
 }
 
-void InterThreadStorage::fillVector(char* buffer, size_t size)
+bool InterThreadStorage::fillVector(std::string string)
 {
-	std::lock(m_mutexEmptyBuffers, m_mutexFilledBuffers);
-	std::lock_guard<std::mutex> lock(m_mutexEmptyBuffers, std::adopt_lock);
-	std::lock_guard<std::mutex> lock(m_mutexFilledBuffers, std::adopt_lock);
+	m_mutexEmptyBuffers.lock();
+	m_mutexFilledBuffers.lock();
 
-	m_emptyBuffers.front.resize(size);
-	m_emptyBuffers.front = buffer;
+	if (!m_emptyBuffers.size()) {
+		m_mutexFilledBuffers.unlock();
+		m_mutexEmptyBuffers.unlock();
+		std::cerr << "InterThreadStorage::fillVector: No empty buffers to fill" << std::endl;
+		return false;
+	}
+	m_emptyBuffers.front()->reserve(string.size());
+	const auto vector = m_emptyBuffers.front();
+
+	for (int i = 0; i < string.size(); i++) {
+		vector->push_back(string[i]);
+	}
+
 	m_filledBuffers.insert(m_filledBuffers.end(), m_emptyBuffers.front());
 	m_emptyBuffers.erase(m_emptyBuffers.begin());
+
+	m_mutexFilledBuffers.unlock();
+	m_mutexEmptyBuffers.unlock();
+
+	return true;
+
 }
 
 bool InterThreadStorage::removeVector()

@@ -1,5 +1,6 @@
 #include "LinuxSerialInterface.h"
 
+#ifdef __linux__
 LinuxSerialInterface::LinuxSerialInterface(EventManager& eventmanager) : AbstractDriverInterface(eventmanager)
 {
 }
@@ -39,3 +40,5 @@ std::size_t LinuxSerialInterface::bytesAvailable(VoyagerHandle handle)
 void LinuxSerialInterface::clear(VoyagerHandle handle)
 {
 }
+
+#endif
