@@ -30,7 +30,7 @@ void testFunction(Events hallo) {
 		test = manage.getData();
 		if (test->size()) {			
 			std::cout << "--------------------------------------------------------------------------------" << std::endl;
-			std::cout << test << std::endl;
+			std::cout << *test << std::endl;
 		}
 		manage.provideStorageVector(test);
 		break;
@@ -78,13 +78,7 @@ int main()
 
 	manage.start();
 
-	//manage.start();
 
 	getchar();
-
-	manage.start();
-
-	getchar();
-
 	return 0;
 }

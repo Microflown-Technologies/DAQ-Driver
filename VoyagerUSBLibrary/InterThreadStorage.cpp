@@ -51,7 +51,7 @@ std::string* InterThreadStorage::getDataVector()
 	return buffer;
 }
 
-bool InterThreadStorage::fillVector(std::string string)
+bool InterThreadStorage::fillVector(std::string &string, size_t size)
 {
 	m_mutexEmptyBuffers.lock();
 	m_mutexFilledBuffers.lock();
@@ -62,10 +62,10 @@ bool InterThreadStorage::fillVector(std::string string)
 		std::cerr << "InterThreadStorage::fillVector: No empty buffers to fill" << std::endl;
 		return false;
 	}
-	m_emptyBuffers.front()->reserve(string.size());
+	m_emptyBuffers.front()->reserve(size);
 	const auto vector = m_emptyBuffers.front();
 
-	for (int i = 0; i < string.size(); i++) {
+	for (int i = 0; i < size; i++) {
 		vector->push_back(string[i]);
 	}
 

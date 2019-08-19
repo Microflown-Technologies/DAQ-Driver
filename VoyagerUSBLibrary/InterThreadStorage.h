@@ -23,7 +23,7 @@ public:
 
 	std::string* getDataVector();
 
-	bool fillVector(std::string string);
+	bool fillVector(std::string &string, size_t size);
 
 	bool removeVector();
 

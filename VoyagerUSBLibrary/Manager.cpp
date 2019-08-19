@@ -41,21 +41,25 @@ void Manager::dataHandler()
 		m_protobufConfigurationBuf = m_protobufParser.parseSerialData(buffer, size);
 
 		//Compare the received protobuffer with the saved protobuffer
-		//auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
+		auto futureCompareResult = std::async(std::launch::async, std::bind(&ProtobufComparer::compareProtobufs, &m_protobufComparer, m_protobufConfiguration, m_protobufConfigurationBuf));
 
-		auto compareResult = m_protobufComparer.compareProtobufs(m_protobufConfiguration, m_protobufConfigurationBuf);
+		//auto compareResult = m_protobufComparer.compareProtobufs(m_protobufConfiguration, m_protobufConfigurationBuf);
+
+		size_t wow = m_protobufConfigurationBuf.audiodata().size();
+
 
 		//Write the parsed data to the ParsedBuffer
-		if (!m_interThreadStorage.fillVector(m_protobufConfigurationBuf.audiodata())) {
+		if (!m_interThreadStorage.fillVector(*m_protobufConfigurationBuf.mutable_audiodata(), wow)) {
 			m_eventManager.throwLibraryEvent(ALLBUFFERSUSED);
 		}
 		m_eventManager.throwLibraryEvent(DATAREADY);
 
 		//Wait til the protobuffers are compared
-		//futureCompareResult.wait();
+		futureCompareResult.wait();
 
-		if (!compareResult) {
+		if (!futureCompareResult.get()) {
 			m_eventManager.throwLibraryEvent(NEWCONFIGURATION);
+			m_protobufConfiguration = m_protobufConfigurationBuf;
 		}
 
 		delete[] buffer;
@@ -173,7 +177,7 @@ bool Manager::start()
 	m_interThreadStorage.set_AllowedToRun(true);
 
 	//start the serial/connection threads
-	m_serialDriverInterface.isConnectedLoop();
+	//m_serialDriverInterface.isConnectedLoop();
 	m_serialDriverInterface.dataAvailableLoop(m_voyagerHandle, m_voyagerHandleMutex);
 	return true;
 }

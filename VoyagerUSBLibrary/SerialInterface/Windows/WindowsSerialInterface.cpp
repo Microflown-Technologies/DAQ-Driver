@@ -30,7 +30,8 @@ std::string WindowsSerialInterface::isConnected()
 			SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_HARDWAREID, NULL, (BYTE*)HardwareID, sizeof(HardwareID), NULL);
 			if (_tcsstr(HardwareID, _T("VID_1D6B&PID_0100")) && IsEqualGUID(DeviceInfoData.ClassGuid, GUID_SERENUM_BUS_ENUMERATOR)) {
 				std::string ComPort = getComPort(m_hDevInfo, DeviceInfoData);							// Found USB device with hardware id of the Voyager
-				SetupDiDestroyDeviceInfoList(m_hDevInfo);		
+				SetupDiDestroyDeviceInfoList(m_hDevInfo);	
+				AbstractDriverInterface::m_interThreadStorage->set_Connected(true);
 				return ComPort;			
 			}
 		}
@@ -164,8 +165,8 @@ std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle, std::mu
 	do {
 		handleMutex->lock();
 		if (!ClearCommError(handle, &errorMask, &comStat)) {
-			handleMutex->unlock();
-			return 0;
+			//handleMutex->unlock();
+			//return 0;
 		}
 		handleMutex->unlock();
 		if (size = comStat.cbInQue) {
@@ -176,6 +177,11 @@ std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle, std::mu
 				return size;
 
 			}
+		}
+		else if(isConnected() == "") {
+			AbstractDriverInterface::m_interThreadStorage->set_Connected(false);
+			AbstractDriverInterface::m_eventManager->throwHardwareEvent();		
+			Sleep(1000);
 		}
 
 	} while (AbstractDriverInterface::m_interThreadStorage->allowedToRun());
