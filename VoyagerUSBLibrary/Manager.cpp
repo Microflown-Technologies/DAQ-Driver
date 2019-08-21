@@ -15,8 +15,8 @@ Manager::Manager() : m_serialDriverInterface(&m_eventManager, &m_interThreadStor
 
 Manager::~Manager()
 {
-
 	m_interThreadStorage.set_AllowedToRun(false);
+	stop();
 }
 
 void Manager::dataHandler()
@@ -57,9 +57,16 @@ void Manager::dataHandler()
 		//Wait til the protobuffers are compared
 		futureCompareResult.wait();
 
-		if (!futureCompareResult.get()) {
-			m_eventManager.throwLibraryEvent(NEWCONFIGURATION);
+
+		if (!m_protobufConfiguration.samplingfrequency()) {
 			m_protobufConfiguration = m_protobufConfigurationBuf;
+			delete[] buffer;
+			return;
+		}
+
+		if (!futureCompareResult.get()) {
+			m_protobufConfiguration = m_protobufConfigurationBuf;
+			m_eventManager.throwLibraryEvent(NEWCONFIGURATION);
 		}
 
 		delete[] buffer;
@@ -177,7 +184,6 @@ bool Manager::start()
 	m_interThreadStorage.set_AllowedToRun(true);
 
 	//start the serial/connection threads
-	//m_serialDriverInterface.isConnectedLoop();
 	m_serialDriverInterface.dataAvailableLoop(m_voyagerHandle, m_voyagerHandleMutex);
 	return true;
 }

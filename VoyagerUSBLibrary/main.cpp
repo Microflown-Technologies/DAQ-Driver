@@ -29,8 +29,8 @@ void testFunction(Events hallo) {
 	case DATAREADY:
 		test = manage.getData();
 		if (test->size()) {			
-			std::cout << "--------------------------------------------------------------------------------" << std::endl;
 			std::cout << *test << std::endl;
+			std::cout << "--------------------------------------------------------------------------------" << std::endl;
 		}
 		manage.provideStorageVector(test);
 		break;
@@ -78,7 +78,7 @@ int main()
 
 	manage.start();
 
-
 	getchar();
+
 	return 0;
 }

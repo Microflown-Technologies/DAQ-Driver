@@ -38,27 +38,6 @@ std::string WindowsSerialInterface::isConnected()
 		SetupDiDestroyDeviceInfoList(m_hDevInfo);
 }
 
-void WindowsSerialInterface::isConnectedLoop()
-{
-	m_threadHardware = std::thread(std::bind(&WindowsSerialInterface::isConnectedtry, this));
-	m_threadHardware.detach();
-}
-
-void WindowsSerialInterface::isConnectedtry()
-{
-	while (AbstractDriverInterface::m_interThreadStorage->allowedToRun()) {
-
-		if (isConnected() == "" && AbstractDriverInterface::m_interThreadStorage->connected()) {
-			AbstractDriverInterface::m_interThreadStorage->set_Connected(false);
-			AbstractDriverInterface::m_eventManager->throwHardwareEvent();
-		}
-		else if(!AbstractDriverInterface::m_interThreadStorage->connected()){
-			AbstractDriverInterface::m_interThreadStorage->set_Connected(true);
-			AbstractDriverInterface::m_eventManager->throwHardwareEvent();
-		}
-	}
-}
-
 VoyagerHandle WindowsSerialInterface::open(std::string input)
 {
 
@@ -164,10 +143,7 @@ std::size_t WindowsSerialInterface::bytesAvailable(VoyagerHandle handle, std::mu
 
 	do {
 		handleMutex->lock();
-		if (!ClearCommError(handle, &errorMask, &comStat)) {
-			//handleMutex->unlock();
-			//return 0;
-		}
+		ClearCommError(handle, &errorMask, &comStat);
 		handleMutex->unlock();
 		if (size = comStat.cbInQue) {
 			if (loop) {

@@ -157,11 +157,6 @@ private:
 	VoyagerHandle m_voyagerHandle;						/*!<The Comport Handle to the Voyager*/
 	std::mutex m_voyagerHandleMutex;					/*!<Mutex for ensuring that the handle is not used at the same time*/
 
-	std::thread m_threadSerial;							/*!<This thread reads/writes serial data to/from the ComPort*/
-	std::thread m_threadConnection;						/*!<This thread checks if the Voyager is disconnected*/
-
-	std::vector<char> emptyBuffers;
-
 	InterThreadStorage		m_interThreadStorage;		/*!<Contains the storage that can be reached from different threads*/
 	EventManager			m_eventManager;				/*!<Handles the events*/
 

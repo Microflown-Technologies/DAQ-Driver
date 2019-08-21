@@ -36,11 +36,6 @@ public:
 	virtual std::string isConnected() = 0;
 
 	/**
-	* @details keeps checking the connection until the allowedToRun variable is set to false
-	**/
-	virtual void isConnectedLoop() = 0;
-
-	/**
 	* @details Attempts to open a connection to the Voyager
 	**/
 	virtual VoyagerHandle open(std::string port) = 0;
@@ -127,7 +122,6 @@ protected:
 private:
 	VoyagerHandle m_handle;
 	ConnectionState m_connectionState; /*! Contains the current state of the connection*/
-
 
 	std::function<void(void)> m_voyagerConnectedCallback; /*!< Is called when a Voyager is connected to the system*/
 	std::function<void(void)> m_newDataAvailableCallback; /*!< Is called when new data is recieved from the Voyager */

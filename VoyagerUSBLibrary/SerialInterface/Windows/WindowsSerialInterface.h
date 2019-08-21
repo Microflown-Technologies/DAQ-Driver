@@ -22,13 +22,6 @@ public:
 	std::string isConnected() override;
 
 	/**
-	* @details keeps checking the connection until the allowedToRun variable is set to false
-	**/
-	void isConnectedLoop() override;
-
-	void isConnectedtry();
-
-	/**
 	* @details Attempts to open a connection to the Voyager
 	**/
 	VoyagerHandle open(std::string port) override;
@@ -72,10 +65,7 @@ public:
 
 private:
 
-	std::thread m_threadHardware;
-
 	std::thread m_threadData;
-
 
 	/**
 	* @details Refreshes the list of connected USB devices
