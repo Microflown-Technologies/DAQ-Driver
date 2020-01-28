@@ -1,7 +1,2 @@
 syntax: regexp
-.vs
-daq-driver/daq-driver.vcxproj.user
-DoxyGen/html
-DoxyGen/latex
-Debug
-daq-driver/Debug
+.user
