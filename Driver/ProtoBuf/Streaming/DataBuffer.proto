@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message DataBuffer {
+        uint64 timestampNs = 1;
+        uint64 frameCounter = 2;
+        bytes data = 3;
+}

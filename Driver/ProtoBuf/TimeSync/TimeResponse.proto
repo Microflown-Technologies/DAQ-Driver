@@ -1,0 +1,7 @@
+syntax = "proto3";
+import "TimeRequest.proto";
+
+message TimeResponse {
+        TimeRequest timeRequest = 1;
+        uint64 msSinceEpoch = 2;
+}

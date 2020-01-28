@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message MessageAck {
+        uint32 MessageHash = 1;	
+}

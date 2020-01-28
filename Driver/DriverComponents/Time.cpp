@@ -15,6 +15,10 @@ void Time::sync()
     m_messageProcessor.transmit(timeRequest);
 }
 
+void Time::reset() {
+    m_timeDifference = 0;
+}
+
 uint64_t Time::mSecSinceEpoch() const {
     using namespace std::chrono;
     return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
@@ -39,8 +43,9 @@ void Time::handleTimeResponse(const google::protobuf::Message &message)
     //Calculate roundtrip delay
     uint64_t currentTime = mSecSinceEpoch();
     uint64_t roundTripDelay = currentTime - timeResponse.timerequest().mssinceepoch();
-    std::cout << "Round trip delay for time sync" << roundTripDelay << std::endl;
     //Calculate different
     m_timeDifference = timeResponse.mssinceepoch() - timeResponse.timerequest().mssinceepoch() - (roundTripDelay / 2);
-    std::cout << "Time difference between devices" << m_timeDifference << std::endl;
+#ifdef QT_IS_AVAILABLE
+    emit timeSynced(m_timeDifference);
+#endif
 }

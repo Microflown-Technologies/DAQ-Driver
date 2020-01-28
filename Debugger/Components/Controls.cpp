@@ -7,6 +7,7 @@ Controls::Controls(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(&m_processTimer, &QTimer::timeout, this, &Controls::processTimerTimeout);
+    connect(&m_daqDriver.time(), &Time::timeSynced, this, &Controls::onTimesynced);
     m_processTimer.start(1);
     populateSampleRateComboBox();
 }
@@ -57,6 +58,11 @@ void Controls::on_cmb_sampleRates_currentIndexChanged(int index) {
     DataFormat dataFormat = m_daqDriver.formatting().dataFormat();
     dataFormat.set_samplerate(DataFormat::SampleRate(index));
     m_daqDriver.formatting().setDataFormat(dataFormat);
+}
+
+void Controls::onTimesynced(int64_t difference)
+{
+    ui->lbl_differenceMS->setText(QString::number(difference) + " ms");
 }
 
 void Controls::processTimerTimeout()

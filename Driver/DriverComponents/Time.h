@@ -16,6 +16,9 @@
  */
 class Time : public AbstractDriverComponent
 {
+#ifdef QT_IS_AVAILABLE
+    Q_OBJECT
+#endif
 public:
     Time(MessageProcessor &messageProcessor);
 
@@ -24,6 +27,16 @@ public:
      *
      */
     void sync();
+
+    /**
+     * @brief reset Resets m_timeDifference to 0
+     */
+    void reset();
+
+#ifdef QT_IS_AVAILABLE
+signals:
+    void timeSynced(int64_t difference);
+#endif
 
 protected:
     uint64_t mSecSinceEpoch() const;

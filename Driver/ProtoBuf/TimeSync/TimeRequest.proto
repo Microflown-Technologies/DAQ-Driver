@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message TimeRequest {
+        uint64 msSinceEpoch = 1;
+}

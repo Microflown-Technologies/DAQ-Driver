@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message DataFormat {
+        enum SampleRate {
+                _8000 = 0;
+                _16000 = 1;
+                _24000 = 2;
+                _32000 = 3;
+                _48000 = 4;
+        }
+        SampleRate sampleRate = 1;
+        uint32 bitDepth = 2;
+}

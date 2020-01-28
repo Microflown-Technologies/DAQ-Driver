@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+message ChannelConfiguration {
+        uint32 ChannelNumber = 1;
+	enum Gain {
+		_0 = 0;
+		_1 = 1; 
+                _2 = 2;
+		_4 = 3;
+		_8 = 4;
+		_16 = 5;
+		_32 = 6;
+		_64 = 7;
+	}
+	Gain ChannelGain = 2;
+	bool IEPEPowerEnabled = 3; 
+	
+}

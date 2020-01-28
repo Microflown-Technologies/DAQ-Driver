@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "DataFormat.proto";
+
+message SetDataFormat {
+	DataFormat newformat = 1;
+}

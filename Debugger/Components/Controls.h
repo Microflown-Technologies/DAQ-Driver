@@ -39,6 +39,7 @@ private slots:
 
     void on_cmb_sampleRates_currentIndexChanged(int index);
 
+    void onTimesynced(int64_t difference);
     void processTimerTimeout();
     void on_btn_Sync_pressed();
 
