@@ -42,8 +42,8 @@ public:
 
     void reset() override;
 
-signals:
 #ifdef QT_IS_AVAILABLE
+signals:
     void inputRangeChanged(uint8_t channel, Voltage voltage);
 #endif
 

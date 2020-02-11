@@ -6,7 +6,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,5 +39,5 @@ file(GLOB_RECURSE UI_FILES "*.ui")
 # Create library from sources
 add_executable(${PROJECT_NAME} ${UI_FILES} ${HEADER_FILES} ${SOURCE_FILES} )
 
-target_link_libraries(Debugger PRIVATE Qt5::Widgets Qt5::Charts Qt5::Multimedia)
-target_link_libraries(Debugger PRIVATE daq-driver)
+target_link_libraries(Debugger daq-driver)
+target_link_libraries(Debugger Qt5::Widgets Qt5::Charts Qt5::Multimedia)

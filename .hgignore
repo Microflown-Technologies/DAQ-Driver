@@ -1,2 +1,4 @@
 syntax: regexp
 .user
+.vs
+Environment/

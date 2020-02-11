@@ -6,14 +6,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find dependencies
-find_package(Qt5 REQUIRED COMPONENTS Core SerialPort)
+find_package(Qt5 COMPONENTS Core SerialPort OPTIONAL)
+if(Qt5SerialPort_FOUND)
+    add_definitions(-DQT_IS_AVAILABLE)
+endif()
 
 # Find the Protobuf library
-find_package(Protobuf REQUIRED)
-
+find_package(protobuf REQUIRED)
 
 # Optimize CRC
-add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11 -DQT_IS_AVAILABLE)
+add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
 
 #Generate protobuff pb.h and pb.cc files, set define with all Protobuff Messages
 file(GLOB_RECURSE PROTOBUF_DEFINITION_FILES "*.proto")
@@ -26,7 +28,7 @@ file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.c" "*.cc")
 
 # Create library from sources
-add_library(${PROJECT_NAME} STATIC ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${PROJECT_NAME} SHARED ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
 add_library(Voyager::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 #On windows, export all symbols
@@ -37,6 +39,13 @@ target_include_directories( ${PROJECT_NAME}
     SYSTEM PUBLIC ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+# Link with windows api on windows
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} SetupAPI)
+endif()
+
 # Link with dependencies
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
+if(Qt5SerialPort_FOUND)
+	target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
+endif()
 target_link_libraries(${PROJECT_NAME} protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
