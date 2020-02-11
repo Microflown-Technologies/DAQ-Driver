@@ -28,7 +28,7 @@ file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.c" "*.cc")
 
 # Create library from sources
-add_library(${PROJECT_NAME} SHARED ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${PROJECT_NAME} SHARED ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
 add_library(Voyager::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 #On windows, export all symbols

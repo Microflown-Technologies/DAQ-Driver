@@ -26,6 +26,13 @@ project(DAQ-Driver)
 #Load the subprojects for this project
 add_subdirectory(Driver)
 
+# Generate nicer visual studio SLN
+set(CMAKE_SUPPRESS_REGENERATION true)
+set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY ON)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set (PREDEFINED_TARGETS_FOLDER "CustomTargets")
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "daq-driver")
+
 find_package(Qt5 COMPONENTS Widgets OPTIONAL)
 if(Qt5Widgets_FOUND)
     add_subdirectory(Debugger)

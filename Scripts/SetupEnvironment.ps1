@@ -1,5 +1,5 @@
 # Delete olf environment
-Remove-Item -LiteralPath "Environment" -Force -Recurse
+Remove-Item -LiteralPath "..\Environment" -Force -Recurse
 
 # Create environment dir and CD to it
 mkdir -p Environment
