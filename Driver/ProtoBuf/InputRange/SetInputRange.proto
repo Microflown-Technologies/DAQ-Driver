@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message SetInputRange {
+    enum Voltage {
+        _0_1 = 0;
+        _1 = 1;
+        _10 = 2;
+    }
+    uint32 Channel = 1;
+    Voltage voltage = 2;
+}

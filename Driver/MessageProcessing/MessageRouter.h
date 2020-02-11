@@ -26,12 +26,11 @@ public:
     static void route(const google::protobuf::Message &message);
 
     template <class T>
-    static void addMessageRoute(std::function<void(const google::protobuf::Message &message)> route){
+    static void addMessageRoute(std::function<void(const google::protobuf::Message &message)> route) {
         uint16_t messageHash = MessageHashTable::hashForMessageType<T>();
         m_routeMap[messageHash].emplace_back(route);
     }
     
-
 private:
     static std::map<uint16_t, std::vector<std::function<void(const google::protobuf::Message &message)>>> m_routeMap;
 };

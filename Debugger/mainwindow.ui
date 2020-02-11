@@ -15,22 +15,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="Controls" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
-     <widget class="Controls" name="widget" native="true"/>
+     <widget class="QtCharts::QChartView" name="graphicsView"/>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
@@ -38,6 +37,11 @@
    <extends>QWidget</extends>
    <header>Components/Controls.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtCharts::QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>QtCharts/QChartView.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -23,11 +23,14 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTOBUF_DEFINITION_FILES})
 file(GLOB_RECURSE HEADER_FILES "*.h")
 
 # Find Sources
-file(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.c")
+file(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.c" "*.cc")
 
 # Create library from sources
-add_library(${PROJECT_NAME} SHARED ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${PROJECT_NAME} STATIC ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
 add_library(Voyager::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+#On windows, export all symbols
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # Configure include directory
 target_include_directories( ${PROJECT_NAME}
@@ -37,4 +40,3 @@ target_include_directories( ${PROJECT_NAME}
 # Link with dependencies
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
 target_link_libraries(${PROJECT_NAME} protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)

@@ -6,9 +6,11 @@ Controls::Controls(QWidget *parent) :
     ui(new Ui::Controls)
 {
     ui->setupUi(this);
+    connect(&m_uiTimer, &QTimer::timeout, this, &Controls::uiTimerTimeout);
     connect(&m_processTimer, &QTimer::timeout, this, &Controls::processTimerTimeout);
     connect(&m_daqDriver.time(), &Time::timeSynced, this, &Controls::onTimesynced);
     m_processTimer.start(1);
+    m_uiTimer.start(500);
     populateSampleRateComboBox();
 }
 
@@ -27,28 +29,11 @@ void Controls::populateSampleRateComboBox()
     ui->cmb_sampleRates->setCurrentIndex(DataFormat::SampleRate::DataFormat_SampleRate__48000);
 }
 
-void Controls::on_btn_GrabControl_pressed() {
-    m_daqDriver.deviceControl().takeControl();
-    ui->btn_GrabControl->setEnabled(!m_daqDriver.deviceControl().hasControl());
-    ui->btn_ReleaseControl->setEnabled(m_daqDriver.deviceControl().hasControl());
-}
-
-void Controls::on_btn_ReleaseControl_pressed() {
-    m_daqDriver.deviceControl().releaseControl();
-    ui->btn_GrabControl->setEnabled(!m_daqDriver.deviceControl().hasControl());
-    ui->btn_ReleaseControl->setEnabled(m_daqDriver.deviceControl().hasControl());
-}
 
 void Controls::on_btn_resetDevice_pressed() {
-    m_daqDriver.deviceControl().reset();
-    ui->btn_GrabControl->setEnabled(!m_daqDriver.deviceControl().hasControl());
-    ui->btn_ReleaseControl->setEnabled(m_daqDriver.deviceControl().hasControl());
+    m_daqDriver.reset();
 }
 
-void Controls::on_chk_StreamEnabled_toggled(bool checked) {
-    if(checked) m_daqDriver.streaming().start();
-    else m_daqDriver.streaming().stop();
-}
 
 void Controls::on_cmb_sampleRates_activated(int index) {
 
@@ -65,6 +50,29 @@ void Controls::onTimesynced(int64_t difference)
     ui->lbl_differenceMS->setText(QString::number(difference) + " ms");
 }
 
+void Controls::uiTimerTimeout()
+{
+    bool present = m_daqDriver.voyagerConnected();
+    ui->btn_connect->setEnabled(present);
+    if(present) {
+        ui->lbl_present->setText("Yes");
+        ui->lbl_present->setStyleSheet("color: green;");
+    } else {
+        ui->lbl_present->setText("No");
+        ui->lbl_present->setStyleSheet("color: red;");
+    }
+    bool connected = m_daqDriver.isConnected();
+    ui->grp_Sync->setEnabled(connected);
+    ui->grp_StreamControl->setEnabled(connected);
+    ui->groupBox->setEnabled(connected);
+    ui->btn_resetDevice->setEnabled(connected);
+    ui->btn_connect->setChecked(connected);
+    ui->btn_Aux1IEPE->setChecked(m_daqDriver.iepe().getIEPE(IEPE::Aux1));
+    ui->btn_Aux2IEPE->setChecked(m_daqDriver.iepe().getIEPE(IEPE::Aux2));
+    ui->chk_StreamEnabled->setChecked(m_daqDriver.streaming().isStreaming());
+    ui->lbl_buffer_count->setText(QString::number(m_daqDriver.streaming().pendingBufferCount()));
+}
+
 void Controls::processTimerTimeout()
 {
     m_daqDriver.process();
@@ -73,4 +81,40 @@ void Controls::processTimerTimeout()
 void Controls::on_btn_Sync_pressed()
 {
     m_daqDriver.time().sync();
+}
+
+void Controls::on_btn_connect_toggled(bool checked)
+{
+    if(checked) ui->btn_connect->setChecked(m_daqDriver.connect());
+    else m_daqDriver.disconnect();
+
+}
+
+DAQDriver& Controls::daqDriver()
+{
+    return m_daqDriver;
+}
+
+void Controls::on_chk_StreamEnabled_clicked(bool checked)
+{
+    if(checked) m_daqDriver.streaming().start();
+    else m_daqDriver.streaming().stop();
+}
+
+void Controls::on_btn_Aux1IEPE_clicked(bool checked) {
+    m_daqDriver.iepe().setIEPE(IEPE::Aux1, checked);
+}
+
+void Controls::on_btn_Aux2IEPE_clicked(bool checked) {
+    m_daqDriver.iepe().setIEPE(IEPE::Aux2, checked);
+}
+
+void Controls::on_btn_setinputRange_clicked()
+{
+    m_daqDriver.inputRange().setInputRange(ui->cmb_input_Channel->currentIndex(),
+                                           static_cast<InputRange::Voltage>(ui->cmb_inputrange->currentIndex()));
+}
+
+void Controls::on_cmb_input_Channel_currentIndexChanged(int index) {
+    ui->cmb_inputrange->setCurrentIndex(m_daqDriver.inputRange().getInputRange(index));
 }

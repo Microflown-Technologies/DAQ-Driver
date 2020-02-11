@@ -5,7 +5,6 @@
 #include <vector>
 #include <stdint.h>
 
-
 class AbstractSerialConnector
 {
 public:
@@ -25,13 +24,31 @@ public:
      * @brief dataAvailable Checks the amount of bytes available
      * @return the amount of bytes available
      */
-    virtual uint64_t dataAvailable() const = 0;
+    virtual size_t dataAvailable() const = 0;
 
     /**
      * @brief read Reads pending data (if any) to a buffer
      * @return data that was read
      */
     virtual std::vector<uint8_t> read() = 0;
+
+    /**
+     * @brief open Opens the serial connection to the Voyager
+     * @return returns true on succes
+     */
+    virtual bool open() = 0;
+
+    /**
+     * @brief close Closes the serial connection to the Voyager
+     */
+    virtual void close() = 0;
+
+
+    /**
+     * @brief isOpen Checks if there is an connection to the Voyager
+     * @return returns true if there is an connector to a Voyager
+     */
+    virtual bool isOpen() = 0;
 
     /**
      * @brief voyagerConnected Checks if the Voyager is connected

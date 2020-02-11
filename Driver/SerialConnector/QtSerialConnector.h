@@ -1,3 +1,5 @@
+#ifdef QT_IS_AVAILABLE
+
 #ifndef QTSERIALCONNECTOR_H
 #define QTSERIALCONNECTOR_H
 
@@ -13,22 +15,30 @@
 /**
  * @brief The SerialConnector class automatically connects to the correct serial port
  */
-class QtSerialConnector : private QSerialPort, public AbstractSerialConnector
+class QtSerialConnector : public QSerialPort, public AbstractSerialConnector
 {
     Q_OBJECT
 public:
     QtSerialConnector();
 
-    std::vector<uint8_t> read();
+    std::vector<uint8_t> read() override;
 
-    void write(const std::vector<uint8_t> &data);
+    void write(const std::vector<uint8_t> &data) override;
 
-    void priorityWrite(const std::vector<uint8_t> &data);
+    void priorityWrite(const std::vector<uint8_t> &data) override;
 
-    uint64_t dataAvailable() const;
+    size_t dataAvailable() const override;
 
-    bool voyagerConnected();
+    bool isOpen() override;
 
+    void close() override;
+
+    bool voyagerConnected() override;
+
+    bool open();
+
+private slots:
+    void on_errorOccurred(QSerialPort::SerialPortError error);
 protected:
     /**
      * @brief getSerialPortInfo Gets information about the right serial port
@@ -39,7 +49,8 @@ protected:
     /**
      * @brief openConnection Opens connection to the right serial port
      */
-    void openConnection();
 };
 
 #endif // QTSERIALCONNECTOR_H
+
+#endif

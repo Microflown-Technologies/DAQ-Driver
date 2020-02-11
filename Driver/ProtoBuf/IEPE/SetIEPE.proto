@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message SetIEPE {
+    enum Input {
+        Aux1 = 0;
+        Aux2 = 1;
+    }
+    Input input = 1;
+    bool enabled = 2;
+}

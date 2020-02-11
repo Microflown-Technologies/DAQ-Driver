@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
+    <width>300</width>
     <height>500</height>
    </rect>
   </property>
@@ -14,65 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="grp_StreamControl">
-     <property name="title">
-      <string>Streaming Control</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Sample Rate</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="cmb_sampleRates"/>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QCheckBox" name="chk_StreamEnabled">
-        <property name="text">
-         <string>Stream Enabled</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="grp_deviceControl">
-     <property name="title">
-      <string>Device Control</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="btn_GrabControl">
-        <property name="text">
-         <string>Take Control</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_ReleaseControl">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Release Control</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_resetDevice">
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="grp_Sync">
      <property name="title">
@@ -97,6 +38,199 @@
        <widget class="QPushButton" name="btn_Sync">
         <property name="text">
          <string>Sync</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="grp_StreamControl">
+     <property name="title">
+      <string>Streaming Control</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="chk_StreamEnabled">
+        <property name="text">
+         <string>Stream Enabled</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="cmb_sampleRates"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Sample Rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Buffer count</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="lbl_buffer_count">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="grp_deviceControl">
+     <property name="title">
+      <string>Device Control</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1">
+       <widget class="QLabel" name="lbl_present">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Voyager Present</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QPushButton" name="btn_connect">
+        <property name="text">
+         <string>Connect</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QPushButton" name="btn_resetDevice">
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Gain and IEPE</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Inputrange</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QComboBox" name="cmb_inputrange">
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>0.1V</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1V</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>10V</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Aux1 IEPE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Aux2 IEPE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="cmb_input_Channel">
+        <item>
+         <property name="text">
+          <string>P</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ux</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Uy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Uz</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Aux1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Aux2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="btn_setinputRange">
+        <property name="text">
+         <string>Set</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="3">
+       <widget class="QPushButton" name="btn_Aux1IEPE">
+        <property name="text">
+         <string>Enabled</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="3">
+       <widget class="QPushButton" name="btn_Aux2IEPE">
+        <property name="text">
+         <string>Enabled</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

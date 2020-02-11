@@ -14,7 +14,7 @@ void Streaming::start() {
 
 void Streaming::stop() {
     m_messageProcessor.transmit(StopStream());
-    m_isStreaming = true;
+    m_isStreaming = false;
 }
 
 void Streaming::reset() {
@@ -48,9 +48,15 @@ DataBuffer Streaming::nextQueuedBuffer() {
 void Streaming::handleStopStreamRecieved(const google::protobuf::Message &message) {
     (void) message;
     m_isStreaming = false;
+#ifdef QT_IS_AVAILABLE
+    emit streamingChanged(m_isStreaming);
+#endif
 }
 
 void Streaming::handleStartStreamRecieved(const google::protobuf::Message &message) {
     (void) message;
     m_isStreaming = true;
+#ifdef QT_IS_AVAILABLE
+    emit streamingChanged(m_isStreaming);
+#endif
 }

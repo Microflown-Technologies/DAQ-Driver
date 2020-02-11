@@ -14,12 +14,21 @@
  */
 class Heartbeat : public AbstractDriverComponent
 {
+#ifdef QT_IS_AVAILABLE
+    Q_OBJECT
+#endif
 public:
     Heartbeat(std::function<void(void)> callback, MessageProcessor &messageProcessor);
 
     void reset();
 
     void process();
+
+#ifdef QT_IS_AVAILABLE
+signals:
+    void died();
+    void stillAlive();
+#endif
 
 protected:
     void hearthbeatTimerTimeout();

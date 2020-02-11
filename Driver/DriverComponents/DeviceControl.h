@@ -42,9 +42,11 @@ public:
      * @return returns true if the Voyager is being controlled
      */
     bool hasControl() const;
-#ifdef QT_IS_AVAILABLE
     void setResetCallback(const std::function<void ()> &resetCallback);
+    void setGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback);
+    void setReleasedControlCallback(const std::function<void ()> &releasedControlCallback);
 
+#ifdef QT_IS_AVAILABLE
 signals:
     void releasedControl();
     void takenControl();
@@ -60,6 +62,9 @@ protected:
 private:
     bool m_hasControl;
     std::function<void(void)> m_resetCallback;
+    std::function<void(void)> m_grabbedControlCallback;
+    std::function<void(void)> m_releasedControlCallback;
+
 };
 
 #endif // DEVICECONTROL_H

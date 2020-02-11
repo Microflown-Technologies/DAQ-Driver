@@ -5,7 +5,7 @@ Heartbeat::Heartbeat(std::function<void(void)> callback, MessageProcessor &messa
 {
     MessageRouter::addMessageRoute<Beat>(std::bind(&Heartbeat::handleHearthbeatMessage, this, std::placeholders::_1));
     m_hearthbeatTimer.setCallback(std::bind(std::bind(&Heartbeat::hearthbeatTimerTimeout, this)));
-    m_hearthbeatTimer.start(2500);
+//    m_hearthbeatTimer.start(1000);
     m_hearthbeatDieTimer.setCallback(std::bind(std::bind(&Heartbeat::hearthbeatDieTimerTimeout, this)));
     m_hearthbeatDieTimer.setSingleShot(true);
 }
@@ -24,15 +24,20 @@ void Heartbeat::process()
 void Heartbeat::hearthbeatTimerTimeout() {
     Beat beat;
     m_messageProcessor.transmit(beat);
+#ifdef QT_IS_AVAILABLE
+    emit stillAlive();
+#endif
 }
 
 void Heartbeat::hearthbeatDieTimerTimeout() {
+#ifdef QT_IS_AVAILABLE
+    emit died();
+#endif
     std::cout << "Died, now resetting!" << std::endl;
     m_callback();
 }
 
 void Heartbeat::handleHearthbeatMessage(const google::protobuf::Message &message) {
     (void)message;
-    std::cout << "Still alive" << std::endl;
-    m_hearthbeatDieTimer.start(5000);
+    m_hearthbeatDieTimer.start(10000);
 }

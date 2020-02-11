@@ -18,6 +18,9 @@
  */
 class Streaming : public AbstractDriverComponent
 {
+#ifdef QT_IS_AVAILABLE
+    Q_OBJECT
+#endif
 public:
     Streaming(MessageProcessor &messageProcessor);
 
@@ -59,6 +62,10 @@ public:
      * @return next queued buffer
      */
     DataBuffer nextQueuedBuffer();
+#ifdef QT_IS_AVAILABLE
+signals:
+    void streamingChanged(bool streaming);
+#endif
 
 protected:
     void handleNewDataRecieved(const google::protobuf::Message &message);

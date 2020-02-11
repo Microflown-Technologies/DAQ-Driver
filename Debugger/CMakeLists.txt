@@ -26,7 +26,7 @@ add_definitions(-DQT_IS_AVAILABLE)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Charts Multimedia REQUIRED)
 
 # Find Headers
 file(GLOB_RECURSE HEADER_FILES "*.h")
@@ -40,5 +40,5 @@ file(GLOB_RECURSE UI_FILES "*.ui")
 # Create library from sources
 add_executable(${PROJECT_NAME} ${UI_FILES} ${HEADER_FILES} ${SOURCE_FILES} )
 
-target_link_libraries(Debugger PRIVATE Qt5::Widgets)
+target_link_libraries(Debugger PRIVATE Qt5::Widgets Qt5::Charts Qt5::Multimedia)
 target_link_libraries(Debugger PRIVATE daq-driver)

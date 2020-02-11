@@ -2,7 +2,6 @@
 
 Formatting::Formatting(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor)
 {
-    // Set callbacks je pc was niet gelockt
     MessageRouter::addMessageRoute<SetDataFormat>(std::bind(&Formatting::handleNewFormatRecieved, this, std::placeholders::_1));
     reset();
 }
