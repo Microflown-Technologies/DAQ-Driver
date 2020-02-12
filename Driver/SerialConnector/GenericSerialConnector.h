@@ -2,6 +2,7 @@
 #define GENERICSERIALCONNECTOR_H
 #ifdef _WIN32
 //STD framework
+#include <mutex>
 #include <string>
 #include <iostream>
 
@@ -25,8 +26,7 @@ public:
     void write(const std::vector<uint8_t> &data) override;
     void priorityWrite(const std::vector<uint8_t> &data) override;
 
-
-    size_t dataAvailable() const override;
+    size_t dataAvailable() override;
 
     std::vector<uint8_t> read() override;
 
@@ -40,6 +40,7 @@ public:
 
 
 protected:
+    bool isHandleValid();
     std::string getVoyagerComPort();
     void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);
     std::string getComPort(HDEVINFO m_hDevInfo, SP_DEVINFO_DATA DeviceInfoData);
@@ -47,9 +48,8 @@ protected:
 private:
     HANDLE m_serialHandle;
     DCB m_serialPortParameters;
+    std::mutex m_serialHandleMutex;
     COMMTIMEOUTS m_serialPortTimeout;
-
-
 };
 #endif
 #endif // GENERICSERIALCONNECTOR_H

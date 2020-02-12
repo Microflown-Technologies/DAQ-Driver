@@ -1,6 +1,9 @@
 ﻿#ifndef DEVICECONTROL_H
 #define DEVICECONTROL_H
 
+//Std framework
+#include <atomic>
+
 //Internal headers
 #include "AbstractDriverComponent.h"
 
@@ -42,10 +45,14 @@ public:
      * @return returns true if the Voyager is being controlled
      */
     bool hasControl() const;
-    void setResetCallback(const std::function<void ()> &resetCallback);
-    void setGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback);
-    void setReleasedControlCallback(const std::function<void ()> &releasedControlCallback);
 
+    void handleResetRecieved(const google::protobuf::Message &message);
+    void handleGrabControlRecieved(const google::protobuf::Message &message);
+    void handleReleaseControlRecieved(const google::protobuf::Message &message);
+
+    void addResetCallback(const std::function<void ()> &resetCallback);
+    void addGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback);
+    void addReleasedControlCallback(const std::function<void ()> &releasedControlCallback);
 #ifdef QT_IS_AVAILABLE
 signals:
     void releasedControl();
@@ -54,17 +61,14 @@ signals:
     void hasControlChanged(bool hasControl);
 #endif
 
-protected:
-    void handleResetRecieved(const google::protobuf::Message &message);
-    void handleGrabControlRecieved(const google::protobuf::Message &message);
-    void handleReleaseControlRecieved(const google::protobuf::Message &message);
-
 private:
-    bool m_hasControl;
-    std::function<void(void)> m_resetCallback;
-    std::function<void(void)> m_grabbedControlCallback;
-    std::function<void(void)> m_releasedControlCallback;
-
+    std::atomic_bool m_hasControl;
+    std::mutex m_resetCallbackMutex;
+    std::mutex m_grabbedControlCallbackMutex;
+    std::mutex m_releasedControlCallbackMutex;
+    std::vector<std::function<void(void)>> m_resetCallback;
+    std::vector<std::function<void(void)>> m_grabbedControlCallback;
+    std::vector<std::function<void(void)>> m_releasedControlCallback;
 };
 
 #endif // DEVICECONTROL_H

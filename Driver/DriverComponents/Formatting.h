@@ -1,6 +1,10 @@
 #ifndef FORMATTING_H
 #define FORMATTING_H
 
+//Std framework
+#include <mutex>
+#include <atomic>
+
 //Internal headers
 #include "AbstractDriverComponent.h"
 
@@ -43,9 +47,11 @@ signals:
 
 protected:
     void handleNewFormatRecieved(const google::protobuf::Message &message);
+    void swapDataFormat(const DataFormat &newFormat);
 
 private:
     DataFormat m_dataFormat;
+    std::mutex m_dataFormatMutex;
 };
 
 #endif // FORMATTING_H

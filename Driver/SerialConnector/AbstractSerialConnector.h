@@ -24,7 +24,7 @@ public:
      * @brief dataAvailable Checks the amount of bytes available
      * @return the amount of bytes available
      */
-    virtual size_t dataAvailable() const = 0;
+    virtual size_t dataAvailable() = 0;
 
     /**
      * @brief read Reads pending data (if any) to a buffer

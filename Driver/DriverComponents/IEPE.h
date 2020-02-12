@@ -2,6 +2,7 @@
 #define IEPE_H
 
 //STD framework
+#include <atomic>
 #include <stdint.h>
 
 //Internal headers
@@ -52,7 +53,7 @@ protected:
     void handleSetIEPERecieved(const google::protobuf::Message &message);
 
 private:
-    bool m_iepeEnabled[2];
+    std::atomic_bool m_iepeEnabled[2];
 };
 
 

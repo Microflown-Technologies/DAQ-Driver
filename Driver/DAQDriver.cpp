@@ -11,18 +11,13 @@ DAQDriver::DAQDriver() :
     m_formatting(m_messageProcessor),
     m_deviceControl(m_messageProcessor)
 {
-    m_deviceControl.setResetCallback(std::bind(&DAQDriver::reset, this));
-    m_deviceControl.setReleasedControlCallback(std::bind(&DAQDriver::reset, this));
-    m_deviceControl.setGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
-
+    m_deviceControl.addResetCallback(std::bind(&DAQDriver::reset, this));
+    m_deviceControl.addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
+    m_deviceControl.addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
+    m_eventLoopThread.addCallback(std::bind(&DAQDriver::process, this));
+    m_eventLoopThread.start();
 }
 
-void DAQDriver::process() {
-    m_hearthbeat.process();
-    if(m_serialConnector.isOpen()) {
-        m_messageProcessor.process();
-    }
-}
 
 Streaming &DAQDriver::streaming() {
     return m_streaming;
@@ -79,8 +74,15 @@ void DAQDriver::disconnect() {
     m_connected = false;
 }
 
-bool DAQDriver::isConnected() const {
-    return m_connected;
+bool DAQDriver::isConnected() {
+    return m_connected && voyagerConnected();
+}
+
+void DAQDriver::process() {
+    m_hearthbeat.process();
+    if(m_serialConnector.isOpen() && voyagerConnected()) {
+        m_messageProcessor.process();
+    } else disconnect();
 }
 
 InputRange &DAQDriver::inputRange() {

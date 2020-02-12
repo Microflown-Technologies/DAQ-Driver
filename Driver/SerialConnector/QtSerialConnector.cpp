@@ -26,7 +26,7 @@ void QtSerialConnector::priorityWrite(const std::vector<uint8_t> &data) {
     flush();
 }
 
-size_t QtSerialConnector::dataAvailable() const {
+size_t QtSerialConnector::dataAvailable() {
     return QSerialPort::bytesAvailable();
 }
 

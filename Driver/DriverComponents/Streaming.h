@@ -62,6 +62,13 @@ public:
      * @return next queued buffer
      */
     DataBuffer nextQueuedBuffer();
+
+    /**
+     * @brief addNewBufferCallback Adds callback that is called when a new buffer is recieved
+     * @param newBufferCallback callback to call when a new buffer is recieved
+     */
+    void addNewBufferCallback(const std::function<void ()> &newBufferCallback);
+
 #ifdef QT_IS_AVAILABLE
 signals:
     void streamingChanged(bool streaming);
@@ -73,9 +80,12 @@ protected:
     void handleStartStreamRecieved(const google::protobuf::Message &message);
 
 private:
+    std::vector<std::function<void(void)>> m_newBufferCallbacks;
+    std::atomic<size_t> m_totalBufferCount;
+    std::mutex m_newBufferCallbacksMutex;
     std::queue<DataBuffer> m_dataQueue;
-    size_t totalBufferCount;
-    bool m_isStreaming;
+    std::atomic_bool m_isStreaming;
+    std::mutex m_dataQueueMutex;
 };
 
 #endif // STREAMING_H

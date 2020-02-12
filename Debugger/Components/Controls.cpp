@@ -75,7 +75,7 @@ void Controls::uiTimerTimeout()
 
 void Controls::processTimerTimeout()
 {
-    m_daqDriver.process();
+
 }
 
 void Controls::on_btn_Sync_pressed()

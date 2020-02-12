@@ -7,6 +7,7 @@
 //Internal headers
 #include "DriverComponents/IEPE.h"
 #include "DriverComponents/Time.h"
+#include "Threading/EventLoopThread.h"
 #include "DriverComponents/Streaming.h"
 #include "DriverComponents/Heartbeat.h"
 #include "DriverComponents/InputRange.h"
@@ -23,11 +24,6 @@ class DAQDriver
 {
 public:
     DAQDriver();
-
-    /**
-     * @brief process Run periodically to run the library internal functions
-     */
-    void process();
 
     /**
      * @brief streaming Get driver component that controls streaming data/audio
@@ -91,9 +87,13 @@ public:
      * @brief isConnected Checks if the driver is connected to the Voyager
      * @return returns true if driver is connected to Voyager
      */
-    bool isConnected() const;
+    bool isConnected();
 
-
+protected:
+    /**
+     * @brief process Run periodically to run the library internal functions
+     */
+    void process();
 
 private:
     bool m_connected;
@@ -110,6 +110,7 @@ private:
     InputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
     Formatting m_formatting; ///< Driver component that handles formatting
     DeviceControl m_deviceControl; ///< Handles control of the device
+    EventLoopThread m_eventLoopThread; ///< Threaded event loop for the driver
 };
 
 #endif // DAQDRIVER_H

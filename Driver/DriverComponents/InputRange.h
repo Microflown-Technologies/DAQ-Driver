@@ -2,6 +2,7 @@
 #define INPUTRANGE_H
 
 //STD framework
+#include <atomic>
 #include <cstdint>
 
 //Internal headers
@@ -51,7 +52,7 @@ protected:
     void handleSetInputRangeRecieved(const google::protobuf::Message &message);
 
 private:
-    Voltage m_inputRangeVoltages[6];
+    std::atomic<Voltage> m_inputRangeVoltages[6];
 };
 
 #endif // INPUTRANGE_H

@@ -10,8 +10,9 @@ set (CMAKE_BUILD_PARALLEL_LEVEL ${N})
 
 # Find protobuf
 option(protobuf_BUILD_TESTS "Build tests" OFF)
-option(protobuf_BUILD_SHARED_LIBS "Build Shared Libraries" ON)
+option(protobuf_BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 option(protobuf_WITH_ZLIB "Build with zlib support" OFF)
+option(protobuf_MSVC_STATIC_RUNTIME "Link static runtime libraries" OFF)
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
 
 # Enable CMAKE

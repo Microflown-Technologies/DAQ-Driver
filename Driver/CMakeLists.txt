@@ -27,8 +27,19 @@ file(GLOB_RECURSE HEADER_FILES "*.h")
 # Find Sources
 file(GLOB_RECURSE SOURCE_FILES "*.cpp" "*.c" "*.cc")
 
+#Order sources nicely for visual studio projects
+file(GLOB_RECURSE DriverComponents_FILES "DriverComponents/*.h" "DriverComponents/*.cpp")
+source_group(DriverComponents FILES ${DriverComponents_FILES})
+file(GLOB_RECURSE MessageProcessing_FILES "MessageProcessing/*.h" "MessageProcessing/*.cpp")
+source_group(MessageProcessing FILES ${MessageProcessing_FILES})
+file(GLOB_RECURSE SerialConnector_FILES "SerialConnector/*.h" "SerialConnector/*.cpp")
+source_group(SerialConnector FILES ${SerialConnector_FILES})
+file(GLOB_RECURSE Threading_FILES "Threading/*.h" "Threading/*.cpp")
+source_group(Threading FILES ${Threading_FILES})
+source_group(ProtoBuf FILES ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS})
+
 # Create library from sources
-add_library(${PROJECT_NAME} SHARED ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${PROJECT_NAME} STATIC ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS} ${HEADER_FILES} ${SOURCE_FILES} )
 add_library(Voyager::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 #On windows, export all symbols

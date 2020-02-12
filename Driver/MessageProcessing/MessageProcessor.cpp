@@ -9,7 +9,6 @@ void MessageProcessor::transmit(const google::protobuf::Message &message) {
     const Message parsedMessage = MessageParser::parse(message);
     const std::vector<uint8_t> serializedMessage = MessageSerializer::serialize(parsedMessage);
     if(message.GetDescriptor() != MessageAck::descriptor()) {
-        m_messageAcknowledgement.setPendingMessage(message);
         m_serialConnector.priorityWrite(serializedMessage);
     } else {
         m_serialConnector.priorityWrite(serializedMessage);

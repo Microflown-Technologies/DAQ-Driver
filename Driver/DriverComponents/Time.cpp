@@ -45,7 +45,22 @@ void Time::handleTimeResponse(const google::protobuf::Message &message)
     uint64_t roundTripDelay = currentTime - timeResponse.timerequest().mssinceepoch();
     //Calculate different
     m_timeDifference = timeResponse.mssinceepoch() - timeResponse.timerequest().mssinceepoch() - (roundTripDelay / 2);
+    //Call callbacks
+    std::lock_guard<std::mutex> gaurd(m_timeSyncedCallbacksMutex);
+    for(auto callback: m_timeSyncedCallbacks) {
+        callback();
+    }
 #ifdef QT_IS_AVAILABLE
     emit timeSynced(m_timeDifference);
 #endif
 }
+
+int64_t Time::timeDifference() const {
+    return m_timeDifference;
+}
+
+void Time::addTimeSyncedCallback(const std::function<void ()> &newCallback) {
+    std::lock_guard<std::mutex> gaurd(m_timeSyncedCallbacksMutex);
+    m_timeSyncedCallbacks.push_back(newCallback);
+}
+

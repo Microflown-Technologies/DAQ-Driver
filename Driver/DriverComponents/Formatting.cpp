@@ -8,7 +8,7 @@ Formatting::Formatting(MessageProcessor &messageProcessor) : AbstractDriverCompo
 
 void Formatting::setDataFormat(const DataFormat &dataFormat) {
     SetDataFormat newFormat;
-    m_dataFormat.CopyFrom(dataFormat);
+    swapDataFormat(dataFormat);
     newFormat.set_allocated_newformat(new DataFormat(m_dataFormat));
     m_messageProcessor.transmit(newFormat);
 }
@@ -17,11 +17,11 @@ DataFormat Formatting::dataFormat() const {
     return m_dataFormat;
 }
 
-void Formatting::reset()
-{
+void Formatting::reset() {
     // Set Format
-    m_dataFormat.set_samplerate(DataFormat::SampleRate::DataFormat_SampleRate__48000);
-    setDataFormat(m_dataFormat);
+    DataFormat newFormat;
+    newFormat.set_samplerate(DataFormat::SampleRate::DataFormat_SampleRate__48000);
+    setDataFormat(newFormat);
 }
 
 void Formatting::handleNewFormatRecieved(const google::protobuf::Message &message) {
@@ -29,4 +29,9 @@ void Formatting::handleNewFormatRecieved(const google::protobuf::Message &messag
 #ifdef QT_IS_AVAILABLE
     emit dataFormatChanged(m_dataFormat);
 #endif
+}
+
+void Formatting::swapDataFormat(const DataFormat &newFormat) {
+    const std::lock_guard<std::mutex> gaurd(m_dataFormatMutex);
+    m_dataFormat.CopyFrom(newFormat);
 }

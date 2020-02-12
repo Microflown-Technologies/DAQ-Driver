@@ -9,7 +9,6 @@
 #include "MessageHashTable.h"
 #include "MessageSerializer.h"
 #include "MessageDeserializer.h"
-#include "MessageAcknowledgement.h"
 #include "SerialConnector/AbstractSerialConnector.h"
 
 //Protobuff
@@ -40,7 +39,6 @@ public:
 private:
     Timer m_clearTimer;
     AbstractSerialConnector &m_serialConnector; ///< Serial connection to the Voyager
-    MessageAcknowledgement m_messageAcknowledgement; ///< Handles acknowledgement of messages
 };
 
 #endif // MESSAGEPROCESSOR_H

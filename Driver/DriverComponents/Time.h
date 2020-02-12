@@ -2,6 +2,7 @@
 #define TIME_H
 
 //STD Framework
+#include <atomic>
 #include <chrono>
 
 //Internal headers
@@ -33,9 +34,21 @@ public:
      */
     void reset();
 
+    /**
+     * @brief timeDifference Gets time difference between this pc and the Voyager in ms
+     * @return time difference in ms
+     */
+    int64_t timeDifference() const;
+
+    /**
+     * @brief addTimeSyncedCallback Adds a callback that is called when the time is synced
+     * @param newCallback new callbback to call when the time is synced
+     */
+    void addTimeSyncedCallback(const std::function<void ()> &newCallback);
+
 #ifdef QT_IS_AVAILABLE
 signals:
-    void timeSynced(int64_t difference);
+    void timeSynced(int difference);
 #endif
 
 protected:
@@ -44,7 +57,9 @@ protected:
     void handleTimeResponse(const google::protobuf::Message &message);
 
 private:
-    int64_t m_timeDifference;
+    std::vector<std::function<void(void)>> m_timeSyncedCallbacks;
+    std::mutex m_timeSyncedCallbacksMutex;
+    std::atomic<int64_t> m_timeDifference;
 };
 
 #endif // TIME_H

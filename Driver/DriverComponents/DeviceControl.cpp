@@ -32,7 +32,10 @@ bool DeviceControl::hasControl() const {
 void DeviceControl::handleResetRecieved(const google::protobuf::Message &message)
 {
     (void) message;
-    if(m_resetCallback) m_resetCallback();
+    const std::lock_guard<std::mutex> gaurd(m_resetCallbackMutex);
+    for(auto callback: m_resetCallback) {
+        callback();
+    }
 #ifdef QT_IS_AVAILABLE
     emit resetRequested();
 #endif
@@ -42,7 +45,10 @@ void DeviceControl::handleGrabControlRecieved(const google::protobuf::Message &m
 {
     (void) message;
     m_hasControl = true;
-    if(m_grabbedControlCallback) m_grabbedControlCallback();
+    const std::lock_guard<std::mutex> gaurd(m_grabbedControlCallbackMutex);
+    for(auto callback: m_grabbedControlCallback) {
+        callback();
+    }
 #ifdef QT_IS_AVAILABLE
     emit takenControl();
     emit hasControlChanged(m_hasControl);
@@ -53,26 +59,29 @@ void DeviceControl::handleReleaseControlRecieved(const google::protobuf::Message
 {
     (void) message;
     m_hasControl = false;
-    if(m_releasedControlCallback) m_releasedControlCallback();
+    const std::lock_guard<std::mutex> gaurd(m_releasedControlCallbackMutex);
+    for(auto callback: m_releasedControlCallback) {
+        callback();
+    }
 #ifdef QT_IS_AVAILABLE
     emit releasedControl();
     emit hasControlChanged(m_hasControl);
 #endif
 }
 
-void DeviceControl::setReleasedControlCallback(const std::function<void ()> &releasedControlCallback)
-{
-    m_releasedControlCallback = releasedControlCallback;
+void DeviceControl::addReleasedControlCallback(const std::function<void ()> &releasedControlCallback) {
+    const std::lock_guard<std::mutex> gaurd(m_releasedControlCallbackMutex);
+    m_releasedControlCallback.push_back(releasedControlCallback);
 }
 
-void DeviceControl::setGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback)
-{
-    m_grabbedControlCallback = grabbedControlCallback;
+void DeviceControl::addGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback) {
+    const std::lock_guard<std::mutex> gaurd(m_grabbedControlCallbackMutex);
+    m_grabbedControlCallback.push_back(grabbedControlCallback);
 }
 
-void DeviceControl::setResetCallback(const std::function<void ()> &resetCallback)
-{
-    m_resetCallback = resetCallback;
+void DeviceControl::addResetCallback(const std::function<void ()> &resetCallback) {
+    const std::lock_guard<std::mutex> gaurd(m_resetCallbackMutex);
+    m_resetCallback.push_back(resetCallback);
 }
 
 

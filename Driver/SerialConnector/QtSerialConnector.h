@@ -27,7 +27,7 @@ public:
 
     void priorityWrite(const std::vector<uint8_t> &data) override;
 
-    size_t dataAvailable() const override;
+    size_t dataAvailable() override;
 
     bool isOpen() override;
 

@@ -6,16 +6,19 @@ GenericSerialConnector::GenericSerialConnector() : m_serialHandle(INVALID_HANDLE
 }
 
 void GenericSerialConnector::write(const std::vector<uint8_t> &data) {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     WriteFile(m_serialHandle, data.data(), data.size(), nullptr, nullptr);
 }
 
 void GenericSerialConnector::priorityWrite(const std::vector<uint8_t> &data)
 {
     write(data);
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     FlushFileBuffers(m_serialHandle);
 }
 
-size_t GenericSerialConnector::dataAvailable() const {
+size_t GenericSerialConnector::dataAvailable() {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     DWORD errorMask = 0;
     COMSTAT serialPortStatistics;
     if(ClearCommError(m_serialHandle, &errorMask, &serialPortStatistics) == 0) return 0;
@@ -24,11 +27,12 @@ size_t GenericSerialConnector::dataAvailable() const {
 
 std::vector<uint8_t> GenericSerialConnector::read()
 {
-    if(m_serialHandle == INVALID_HANDLE_VALUE) return std::vector<uint8_t>();
+    if(!isHandleValid()) return std::vector<uint8_t>();
     //Allocate space in memory to read to
     std::vector<uint8_t> dataBuffer;
     dataBuffer.resize(dataAvailable());
     DWORD bytesRead;
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     //Read data to buffer
     ReadFile(m_serialHandle, dataBuffer.data(), dataBuffer.size(), &bytesRead, nullptr);
     dataBuffer.resize(bytesRead);
@@ -37,6 +41,7 @@ std::vector<uint8_t> GenericSerialConnector::read()
 
 bool GenericSerialConnector::open()
 {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     //Check if Voyager is connected
     if (!voyagerConnected()) return false;
     //Open the serial port
@@ -70,16 +75,22 @@ bool GenericSerialConnector::open()
 
 void GenericSerialConnector::close()
 {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     CloseHandle(m_serialHandle);
     m_serialHandle = INVALID_HANDLE_VALUE;
 }
 
 bool GenericSerialConnector::isOpen() {
-    return (m_serialHandle != INVALID_HANDLE_VALUE);
+    return isHandleValid();
 }
 
 bool GenericSerialConnector::voyagerConnected() {
     return !getVoyagerComPort().empty();
+}
+
+bool GenericSerialConnector::isHandleValid() {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
+    return (m_serialHandle != INVALID_HANDLE_VALUE);
 }
 
 std::string GenericSerialConnector::getVoyagerComPort()
