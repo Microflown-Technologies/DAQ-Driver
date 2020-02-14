@@ -17,7 +17,7 @@ if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.1
     add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
 endif()
 
-# Enable CMAKE
+# Enable CMake
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
