@@ -12,7 +12,7 @@ if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
 endif()
 
 # Find the Protobuf library
-find_package(protobuf QUIET REQUIRED)
+find_package(Protobuf QUIET REQUIRED)
 
 # Optimize CRC
 add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
@@ -48,7 +48,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # Configure include directory
 target_include_directories( ${PROJECT_NAME}
-    SYSTEM PUBLIC ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
+    PUBLIC ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 # Link with windows api on windows
