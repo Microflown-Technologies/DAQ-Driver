@@ -1,5 +1,5 @@
 #Set minimum Cmake version
-cmake_minimum_required(VERSION 3.12.0)
+cmake_minimum_required(VERSION 3.12.1)
 
 #Set compiler flags
 include(ProcessorCount)
