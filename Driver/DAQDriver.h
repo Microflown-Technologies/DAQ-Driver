@@ -97,7 +97,7 @@ protected:
 
 private:
     bool m_connected;
-#if defined(_WIN32) && !defined(QT_IS_AVAILABLE)
+#if defined(_WIN32)
     GenericSerialConnector m_serialConnector; ///< Connects to the Voyager via serial
 #else
     QtSerialConnector m_serialConnector;

@@ -4,3 +4,4 @@ syntax: regexp
 Environment/
 syntax: glob
 SLN/
+Documentation/Generated

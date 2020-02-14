@@ -18,7 +18,6 @@
 /**
  * @brief The MessageProcessor class Handles and processes all incomming and outgoing messages
  */
-class MessageAcknowledgement;
 class MessageProcessor
 {
 public:

@@ -5,6 +5,9 @@
 #include <vector>
 #include <stdint.h>
 
+/**
+ * @brief The AbstractSerialConnector class Defines an generic API for a serial port connection
+ */
 class AbstractSerialConnector
 {
 public:
