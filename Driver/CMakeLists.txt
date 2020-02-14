@@ -6,13 +6,13 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find dependencies
-find_package(Qt5 COMPONENTS Core SerialPort OPTIONAL)
-if(Qt5SerialPort_FOUND)
+find_package(Qt5 OPTIONAL_COMPONENTS Core SerialPort)
+if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
     add_definitions(-DQT_IS_AVAILABLE)
 endif()
 
 # Find the Protobuf library
-find_package(protobuf REQUIRED)
+find_package(protobuf QUIET REQUIRED)
 
 # Optimize CRC
 add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
@@ -20,6 +20,7 @@ add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
 #Generate protobuff pb.h and pb.cc files, set define with all Protobuff Messages
 file(GLOB_RECURSE PROTOBUF_DEFINITION_FILES "*.proto")
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTOBUF_DEFINITION_FILES})
+set_property(SOURCE ${PROTO_SRCS} ${PROTO_HDRS} PROPERTY SKIP_AUTOMOC ON)
 
 # Find Headers
 file(GLOB_RECURSE HEADER_FILES "*.h")
@@ -56,7 +57,7 @@ if(WIN32)
 endif()
 
 # Link with dependencies
-if(Qt5SerialPort_FOUND)
-	target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
+if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
+        target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
 endif()
 target_link_libraries(${PROJECT_NAME} protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)

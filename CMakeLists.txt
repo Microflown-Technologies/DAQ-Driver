@@ -9,11 +9,13 @@ set (CMAKE_AUTOGEN_PARALLEL ${N})
 set (CMAKE_BUILD_PARALLEL_LEVEL ${N})
 
 # Find protobuf
-option(protobuf_BUILD_TESTS "Build tests" OFF)
-option(protobuf_BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
-option(protobuf_WITH_ZLIB "Build with zlib support" OFF)
-option(protobuf_MSVC_STATIC_RUNTIME "Link static runtime libraries" OFF)
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
+    option(protobuf_BUILD_TESTS "Build tests" OFF)
+    option(protobuf_BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
+    option(protobuf_WITH_ZLIB "Build with zlib support" OFF)
+    option(protobuf_MSVC_STATIC_RUNTIME "Link static runtime libraries" OFF)
+    add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
+endif()
 
 # Enable CMAKE
 find_program(CCACHE_PROGRAM ccache)
@@ -34,7 +36,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set (PREDEFINED_TARGETS_FOLDER "CustomTargets")
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "daq-driver")
 
-find_package(Qt5 COMPONENTS Widgets OPTIONAL)
+find_package(Qt5 OPTIONAL_COMPONENTS Widgets)
 if(Qt5Widgets_FOUND)
     add_subdirectory(Debugger)
 endif()

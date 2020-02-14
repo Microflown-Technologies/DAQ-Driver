@@ -7,6 +7,10 @@ mkdir -p Environment\Downloads
 mkdir -p Environment\Libraries
 mkdir -p Environment\Applications
 
+# Download doxygen from internet
+Invoke-WebRequest "http://doxygen.nl/files/doxygen-1.8.17.windows.x64.bin.zip" -OutFile "Environment\Downloads\doxygen.zip"
+Expand-Archive -LiteralPath "Environment\Downloads\doxygen.zip" -DestinationPath "Environment\Applications\doxygen"
+
 # Download cmake from internet
 Invoke-WebRequest "https://github.com/Kitware/CMake/releases/download/v3.16.4/cmake-3.16.4-win64-x64.zip" -OutFile "Environment\Downloads\cmake.zip"
 Expand-Archive -LiteralPath "Environment\Downloads\cmake.zip" -DestinationPath "Environment\Applications\cmake"
