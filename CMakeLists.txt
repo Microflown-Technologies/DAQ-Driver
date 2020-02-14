@@ -25,6 +25,7 @@ endif()
 
 #Set the name of this project
 project(DAQ-Driver)
+option(BUILD_DEBUGGER "Defines if the debugger should also be build" OFF)
 
 #Load the subprojects for this project
 add_subdirectory(Driver)
@@ -36,8 +37,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set (PREDEFINED_TARGETS_FOLDER "CustomTargets")
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "daq-driver")
 
-find_package(Qt5 OPTIONAL_COMPONENTS Widgets)
-if(Qt5Widgets_FOUND)
+if(BUILD_DEBUGGER)
+    find_package(Qt5 REQUIRED Core Widgets)
     add_subdirectory(Debugger)
 endif()
 
