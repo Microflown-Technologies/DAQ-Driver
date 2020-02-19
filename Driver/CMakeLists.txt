@@ -12,7 +12,11 @@ if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
 endif()
 
 # Find the Protobuf library
-find_package(protobuf QUIET REQUIRED)
+if (WIN32)
+	find_package(protobuf QUIET REQUIRED)
+else()
+	find_package(Protobuf QUIET REQUIRED)
+endif()
 
 # Optimize CRC
 add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
