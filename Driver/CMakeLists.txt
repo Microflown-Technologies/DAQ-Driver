@@ -3,16 +3,16 @@ cmake_minimum_required(VERSION 3.0.0)
 project(daq-driver VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
 
 # Find dependencies
-find_package(Qt5 OPTIONAL_COMPONENTS Core SerialPort)
+find_package(Qt5 QUIET OPTIONAL_COMPONENTS Core SerialPort)
 if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
     add_definitions(-DQT_IS_AVAILABLE)
+    set(CMAKE_AUTOMOC ON)
 endif()
 
 # Find the Protobuf library
-find_package(Protobuf QUIET REQUIRED)
+find_package(protobuf QUIET REQUIRED)
 
 # Optimize CRC
 add_definitions(-DCRCPP_BRANCHLESS -DCRCPP_USE_CPP11)
