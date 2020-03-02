@@ -52,6 +52,8 @@ private slots:
 
     void on_cmb_input_Channel_currentIndexChanged(int index);
 
+    void on_btn_refreshDeviceInfo_pressed();
+
 private:
     DAQDriver m_daqDriver;
     QTimer m_processTimer;

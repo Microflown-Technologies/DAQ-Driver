@@ -10,6 +10,7 @@
 #include "Threading/EventLoopThread.h"
 #include "DriverComponents/Streaming.h"
 #include "DriverComponents/Heartbeat.h"
+#include "DriverComponents/DeviceInfo.h"
 #include "DriverComponents/InputRange.h"
 #include "DriverComponents/Formatting.h"
 #include "DriverComponents/DeviceControl.h"
@@ -42,6 +43,12 @@ public:
      * @return control of the device
      */
     DeviceControl& deviceControl();
+
+    /**
+     * @brief deviceInfo Gets driver component that provides device information
+     * @return deviceinfo
+     */
+    DeviceInfo& deviceInfo();
 
     /**
      * @brief time Gets driver component that controls time synchronisation
@@ -107,6 +114,7 @@ private:
     Time m_time; ///< Driver component that handles time synchronisation
     Streaming m_streaming; ///< Driver component that handles streaming data
     Heartbeat m_hearthbeat; ///< Driver component that handles keeping alive of the connection
+    DeviceInfo m_deviceInfo; ///< Driver component that provides device information
     InputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
     Formatting m_formatting; ///< Driver component that handles formatting
     DeviceControl m_deviceControl; ///< Handles control of the device

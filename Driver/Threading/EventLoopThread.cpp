@@ -10,8 +10,7 @@ EventLoopThread::~EventLoopThread() {
 }
 
 void EventLoopThread::addCallback(std::function<void ()> callback) {
-    const std::lock_guard<std::mutex> lock(m_callbackFunctionMutex);
-    m_callbackFunctions.push_back(callback);
+    m_callbackFunctions.addCallback(callback);
 }
 
 void EventLoopThread::start() {
@@ -26,14 +25,8 @@ void EventLoopThread::stop() {
 
 void EventLoopThread::enterEventLoop() {
     while(m_eventLoopRunning) {
-        processCallbacks();
+        m_callbackFunctions.invokeCallbacks();
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    }
-}
-
-void EventLoopThread::processCallbacks() {
-    for (auto callback: m_callbackFunctions) {
-        callback();
     }
 }
 

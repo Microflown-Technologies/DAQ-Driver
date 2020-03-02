@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message DeviceInfoStructure {
+    string deviceName = 1;
+    string ModelName = 2;
+    string DriverName = 3;
+    string DriverVersion = 4;
+    string SoftwareVersion = 5;
+    string DeviceSerial = 6;
+}

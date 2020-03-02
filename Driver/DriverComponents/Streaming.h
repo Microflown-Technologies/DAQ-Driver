@@ -6,6 +6,7 @@
 
 //Internal headers
 #include "AbstractDriverComponent.h"
+#include "Threading/CallbackHandler.h"
 
 //Protobuf
 #include "StopStream.pb.h"
@@ -67,7 +68,15 @@ public:
      * @brief addNewBufferCallback Adds callback that is called when a new buffer is recieved
      * @param newBufferCallback callback to call when a new buffer is recieved
      */
-    void addNewBufferCallback(const std::function<void ()> &newBufferCallback);
+    std::shared_ptr<std::function<void ()> > addNewBufferCallback(const std::function<void ()> &newBufferCallback);
+    bool removeNewBufferCallback(std::shared_ptr<std::function<void(void)>> callback);
+
+    std::shared_ptr<std::function<void ()> > addStreamStartedCallback(const std::function<void ()> &callback);
+    bool removeStreamStartedCallback(std::shared_ptr<std::function<void(void)>> callback);
+
+    std::shared_ptr<std::function<void ()> > addStreamStoppedCallback(const std::function<void ()> &callback);
+    bool removeStreamStoppedCallback(std::shared_ptr<std::function<void(void)>> callback);
+
 
 #ifdef QT_IS_AVAILABLE
 signals:
@@ -80,9 +89,10 @@ protected:
     void handleStartStreamRecieved(const google::protobuf::Message &message);
 
 private:
-    std::vector<std::function<void(void)>> m_newBufferCallbacks;
+    CallbackHandler m_streamStoppedCallbackHandler;
+    CallbackHandler m_streamStartedCallbackHandler;
+    CallbackHandler m_newBufferCallbackHandler;
     std::atomic<size_t> m_totalBufferCount;
-    std::mutex m_newBufferCallbacksMutex;
     std::queue<DataBuffer> m_dataQueue;
     std::atomic_bool m_isStreaming;
     std::mutex m_dataQueueMutex;

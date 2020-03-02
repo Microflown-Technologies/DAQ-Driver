@@ -71,6 +71,13 @@ void Controls::uiTimerTimeout()
     ui->btn_Aux2IEPE->setChecked(m_daqDriver.iepe().getIEPE(IEPE::Aux2));
     ui->chk_StreamEnabled->setChecked(m_daqDriver.streaming().isStreaming());
     ui->lbl_buffer_count->setText(QString::number(m_daqDriver.streaming().pendingBufferCount()));
+    //Update deviceinformation
+    ui->lbl_deviceName->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().devicename()));
+    ui->lbl_modelName->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().modelname()));
+    ui->lbl_driverName->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().drivername()));
+    ui->lbl_driverVersion->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().driverversion()));
+    ui->lbl_softwareVersion->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().softwareversion()));
+    ui->lbl_deviceSerial->setText(QString::fromStdString(m_daqDriver.deviceInfo().remoteDeviceInfo().deviceserial()));
 }
 
 void Controls::processTimerTimeout()
@@ -117,4 +124,8 @@ void Controls::on_btn_setinputRange_clicked()
 
 void Controls::on_cmb_input_Channel_currentIndexChanged(int index) {
     ui->cmb_inputrange->setCurrentIndex(m_daqDriver.inputRange().getInputRange(index));
+}
+
+void Controls::on_btn_refreshDeviceInfo_pressed() {
+    m_daqDriver.deviceInfo().refresh();
 }

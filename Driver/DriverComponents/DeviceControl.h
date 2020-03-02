@@ -6,6 +6,7 @@
 
 //Internal headers
 #include "AbstractDriverComponent.h"
+#include "Threading/CallbackHandler.h"
 
 //Protobuff Messages
 #include "Reset.pb.h"
@@ -46,13 +47,20 @@ public:
      */
     bool hasControl() const;
 
+    bool removeResetCallback(std::shared_ptr<std::function<void (void)>> callback);
+    std::shared_ptr<std::function<void (void)>> addResetCallback(const std::function<void ()> &resetCallback);
+
+    bool removeGrabbedControlCallback(std::shared_ptr<std::function<void (void)>> callback);
+    std::shared_ptr<std::function<void (void)>> addGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback);
+
+    bool removeReleasedControlCallback(std::shared_ptr<std::function<void (void)>> callback);
+    std::shared_ptr<std::function<void (void)>> addReleasedControlCallback(const std::function<void ()> &releasedControlCallback);
+
+protected:
     void handleResetRecieved(const google::protobuf::Message &message);
     void handleGrabControlRecieved(const google::protobuf::Message &message);
     void handleReleaseControlRecieved(const google::protobuf::Message &message);
 
-    void addResetCallback(const std::function<void ()> &resetCallback);
-    void addGrabbedControlCallback(const std::function<void ()> &grabbedControlCallback);
-    void addReleasedControlCallback(const std::function<void ()> &releasedControlCallback);
 #ifdef QT_IS_AVAILABLE
 signals:
     void releasedControl();
@@ -63,12 +71,9 @@ signals:
 
 private:
     std::atomic_bool m_hasControl;
-    std::mutex m_resetCallbackMutex;
-    std::mutex m_grabbedControlCallbackMutex;
-    std::mutex m_releasedControlCallbackMutex;
-    std::vector<std::function<void(void)>> m_resetCallback;
-    std::vector<std::function<void(void)>> m_grabbedControlCallback;
-    std::vector<std::function<void(void)>> m_releasedControlCallback;
+    CallbackHandler m_resetCallbackHandler;
+    CallbackHandler m_grabbedControlCallbackHandler;
+    CallbackHandler m_releasedControlCallbackHandler;
 };
 
 #endif // DEVICECONTROL_H

@@ -7,6 +7,10 @@
 #include <vector>
 #include <atomic>
 #include <functional>
+
+//Internal headers
+#include "CallbackHandler.h"
+
 /**
  * @brief The EventLoopThread class calls callback functions from a different thread
  */
@@ -43,16 +47,10 @@ protected:
      */
     void enterEventLoop();
 
-    /**
-     * @brief processCallbacks runs all callback functions from m_callbackFunctions
-     */
-    void processCallbacks();
-
 private:
     std::thread m_eventloopThread;
-    std::mutex m_callbackFunctionMutex;
     std::atomic_bool m_eventLoopRunning;
-    std::vector<std::function<void(void)>> m_callbackFunctions; ///< Holds the callback functions to call in the thread
+    CallbackHandler m_callbackFunctions; ///< Holds the callback functions to call in the thread
 };
 
 #endif // EVENTLOOPTHREAD_H
