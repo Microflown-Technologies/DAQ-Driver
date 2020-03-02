@@ -2,6 +2,9 @@
 
 DeviceInfo::DeviceInfo(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor)
 {
+    // Set callbacks
+    MessageRouter::addMessageRoute<DeviceInfoResponse>(std::bind(&DeviceInfo::handleDeviceInfoResponseRecieved, this, std::placeholders::_1));
+    MessageRouter::addMessageRoute<DeviceInfoRequest>(std::bind(&DeviceInfo::handleDeviceInfoRequestRecieved, this, std::placeholders::_1));
     m_localDeviceInfo.set_modelname("Computer");
     m_localDeviceInfo.set_devicename("Computer");
     m_localDeviceInfo.set_drivername("VOYAGERV1");
