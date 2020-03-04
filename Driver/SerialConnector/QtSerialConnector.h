@@ -33,22 +33,14 @@ public:
 
     void close() override;
 
-    bool voyagerConnected() override;
+    std::vector<std::string> presentVoyagers() override;
 
-    bool open();
+    bool open(std::string port) override;
 
 private slots:
     void on_errorOccurred(QSerialPort::SerialPortError error);
 protected:
-    /**
-     * @brief getSerialPortInfo Gets information about the right serial port
-     * @return the found information about the right serial port
-     */
-    QSerialPortInfo getSerialPortInfo() const;
 
-    /**
-     * @brief openConnection Opens connection to the right serial port
-     */
 };
 
 #endif // QTSERIALCONNECTOR_H

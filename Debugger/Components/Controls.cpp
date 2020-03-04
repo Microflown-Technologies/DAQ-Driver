@@ -52,15 +52,6 @@ void Controls::onTimesynced(int64_t difference)
 
 void Controls::uiTimerTimeout()
 {
-    bool present = m_daqDriver.voyagerConnected();
-    ui->btn_connect->setEnabled(present);
-    if(present) {
-        ui->lbl_present->setText("Yes");
-        ui->lbl_present->setStyleSheet("color: green;");
-    } else {
-        ui->lbl_present->setText("No");
-        ui->lbl_present->setStyleSheet("color: red;");
-    }
     bool connected = m_daqDriver.isConnected();
     ui->grp_Sync->setEnabled(connected);
     ui->grp_StreamControl->setEnabled(connected);
@@ -92,7 +83,7 @@ void Controls::on_btn_Sync_pressed()
 
 void Controls::on_btn_connect_toggled(bool checked)
 {
-    if(checked) ui->btn_connect->setChecked(m_daqDriver.connect());
+    if(checked) ui->btn_connect->setChecked(m_daqDriver.connect(ui->cmb_voyagerPorts->currentText().toStdString()));
     else m_daqDriver.disconnect();
 
 }
@@ -128,4 +119,23 @@ void Controls::on_cmb_input_Channel_currentIndexChanged(int index) {
 
 void Controls::on_btn_refreshDeviceInfo_pressed() {
     m_daqDriver.deviceInfo().refresh();
+}
+
+void Controls::on_btn_refresh_pressed()
+{
+    bool present = !m_daqDriver.presentVoyagers().empty();
+    ui->btn_connect->setEnabled(present);
+    if(present) {
+        ui->cmb_voyagerPorts->clear();
+        for(std::string port: m_daqDriver.presentVoyagers()) {
+            ui->cmb_voyagerPorts->addItem(QString::fromStdString(port));
+        }
+        ui->lbl_present->setText("Yes");
+        ui->lbl_present->setStyleSheet("color: green;");
+    } else {
+        ui->lbl_present->setText("No");
+        ui->lbl_present->setStyleSheet("color: red;");
+    }
+    bool connected = m_daqDriver.isConnected();
+    ui->cmb_voyagerPorts->setEnabled(!connected && present);
 }

@@ -37,9 +37,10 @@ public:
 
     /**
      * @brief open Opens the serial connection to the Voyager
+     * @param port specified which port to connect to
      * @return returns true on succes
      */
-    virtual bool open() = 0;
+    virtual bool open(std::string port) = 0;
 
     /**
      * @brief close Closes the serial connection to the Voyager
@@ -54,10 +55,10 @@ public:
     virtual bool isOpen() = 0;
 
     /**
-     * @brief voyagerConnected Checks if the Voyager is connected
-     * @return returns true if the Voyager is connected
+     * @brief presentVoyagers Enumerates all connected Voyager
+     * @return returns list of serial ports that are connected to the Voyager
      */
-    virtual bool voyagerConnected() = 0;
+    virtual std::vector<std::string> presentVoyagers() = 0;
 
 };
 
