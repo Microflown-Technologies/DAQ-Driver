@@ -5,8 +5,8 @@ DeviceInfo::DeviceInfo(MessageProcessor &messageProcessor) : AbstractDriverCompo
     // Set callbacks
     MessageRouter::addMessageRoute<DeviceInfoResponse>(std::bind(&DeviceInfo::handleDeviceInfoResponseRecieved, this, std::placeholders::_1));
     MessageRouter::addMessageRoute<DeviceInfoRequest>(std::bind(&DeviceInfo::handleDeviceInfoRequestRecieved, this, std::placeholders::_1));
-    m_localDeviceInfo.set_modelname("Computer");
-    m_localDeviceInfo.set_devicename("Computer");
+    m_localDeviceInfo.set_modelname("");
+    m_localDeviceInfo.set_devicename("");
     m_localDeviceInfo.set_drivername("VOYAGERV1");
     m_localDeviceInfo.set_driverversion(DRIVER_VERSION);
     m_localDeviceInfo.set_softwareversion("");
@@ -40,8 +40,8 @@ void DeviceInfo::reset()
 void DeviceInfo::handleDeviceInfoRequestRecieved(const google::protobuf::Message &message) {
     (void) message;
     std::lock_guard<std::mutex> mutexLocker(m_remoteDeviceInfoMutex);
-    DeviceInfoResponse deviceInfoResponse;
-    deviceInfoResponse.set_allocated_deviceinfo(&m_localDeviceInfo);
+    DeviceInfoResponse deviceInfoResponse = DeviceInfoResponse();
+    deviceInfoResponse.set_allocated_deviceinfo(new DeviceInfoStructure(m_localDeviceInfo));
     m_messageProcessor.transmit(deviceInfoResponse);
 }
 
