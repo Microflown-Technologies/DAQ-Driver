@@ -30,18 +30,16 @@ public:
 
     std::vector<uint8_t> read() override;
 
-    bool open() override;
+    bool open(std::string port) override;
 
     void close() override;
 
     bool isOpen() override;
 
-    bool voyagerConnected() override;
-
+    std::vector<std::string> presentVoyagers() override;
 
 protected:
     bool isHandleValid();
-    std::string getVoyagerComPort();
     void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);
     std::string getComPort(HDEVINFO m_hDevInfo, SP_DEVINFO_DATA DeviceInfoData);
 

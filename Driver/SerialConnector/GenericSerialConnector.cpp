@@ -39,13 +39,14 @@ std::vector<uint8_t> GenericSerialConnector::read()
     return dataBuffer;
 }
 
-bool GenericSerialConnector::open()
+bool GenericSerialConnector::open(std::string port)
 {
     const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
     //Check if Voyager is connected
-    if (!voyagerConnected()) return false;
+    auto currentPresentVoyagers = presentVoyagers();
+    if (std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) == currentPresentVoyagers.end()) return false;
     //Open the serial port
-    m_serialHandle = CreateFile(getVoyagerComPort().c_str(),
+    m_serialHandle = CreateFile(port.c_str(),
                                  GENERIC_READ | GENERIC_WRITE,
                                  0,
                                  nullptr,
@@ -84,19 +85,11 @@ bool GenericSerialConnector::isOpen() {
     return isHandleValid();
 }
 
-bool GenericSerialConnector::voyagerConnected() {
-    return !getVoyagerComPort().empty();
-}
-
-bool GenericSerialConnector::isHandleValid() {
-    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
-    return (m_serialHandle != INVALID_HANDLE_VALUE);
-}
-
-std::string GenericSerialConnector::getVoyagerComPort()
+std::vector<std::string> GenericSerialConnector::presentVoyagers()
 {
-    HDEVINFO m_hDevInfo;
+    std::vector<std::string> connectedVoyagers;
     SP_DEVINFO_DATA DeviceInfoData;
+    HDEVINFO m_hDevInfo;
 
     //Refresh the List if currently connected devices
     refreshDevicesListHandle(m_hDevInfo);
@@ -106,17 +99,23 @@ std::string GenericSerialConnector::getVoyagerComPort()
         DeviceInfoData.cbSize = sizeof(DeviceInfoData);
         if (!SetupDiEnumDeviceInfo(m_hDevInfo, index, &DeviceInfoData)) {
             SetupDiDestroyDeviceInfoList(m_hDevInfo);
-                return ""; 							// No USB device found with hardware id of the Voyager
+            break;						// No USB device found with hardware id of the Voyager
         }
 
         TCHAR HardwareID[1024];
         SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_HARDWAREID, nullptr, reinterpret_cast<BYTE*>(HardwareID), sizeof(HardwareID), nullptr);
         if (_tcsstr(HardwareID, _T("VID_1D6B&PID_0100")) && IsEqualGUID(DeviceInfoData.ClassGuid, GUID_SERENUM_BUS_ENUMERATOR)) {
-            std::string ComPort = getComPort(m_hDevInfo, DeviceInfoData);							// Found USB device with hardware id of the Voyager
-            SetupDiDestroyDeviceInfoList(m_hDevInfo);
-            return ComPort;
+            std::string comPort = getComPort(m_hDevInfo, DeviceInfoData);							// Found USB device with hardware id of the Voyager
+            connectedVoyagers.push_back(comPort);
         }
     }
+
+    return connectedVoyagers;
+}
+
+bool GenericSerialConnector::isHandleValid() {
+    const std::lock_guard<std::mutex> gaurd(m_serialHandleMutex);
+    return (m_serialHandle != INVALID_HANDLE_VALUE);
 }
 
 void GenericSerialConnector::refreshDevicesListHandle(HDEVINFO &m_hDevInfo) {

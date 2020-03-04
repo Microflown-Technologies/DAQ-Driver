@@ -54,6 +54,8 @@ private slots:
 
     void on_btn_refreshDeviceInfo_pressed();
 
+    void on_btn_refresh_pressed();
+
 private:
     DAQDriver m_daqDriver;
     QTimer m_processTimer;

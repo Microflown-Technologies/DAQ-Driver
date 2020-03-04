@@ -41,13 +41,26 @@ public:
      */
     bool isRunning() const;
 
+    /**
+     * @brief pollingInterval Gets the polling interval in milliseconds
+     * @return retuns polling interval in milliseconds
+     */
+    int pollingInterval() const;
+
+    /**
+     * @brief setPollingInterval Sets the polling interval in milliseconds
+     * @param milliseconds polling interval in milliseconds
+     */
+    void setPollingInterval(const int &milliseconds);
+
 protected:
     /**
-     * @brief startEventLoop Enters the eventloop
+     * @brief eventLoop Loops through the eventloop
      */
-    void enterEventLoop();
+    void eventLoop();
 
 private:
+    std::atomic_int m_pollingInterval; ///< Holds the polling interval in milliseconds
     std::thread m_eventloopThread;
     std::atomic_bool m_eventLoopRunning;
     CallbackHandler m_callbackFunctions; ///< Holds the callback functions to call in the thread

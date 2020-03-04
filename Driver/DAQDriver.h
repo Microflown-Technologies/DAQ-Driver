@@ -74,16 +74,17 @@ public:
     void reset();
 
     /**
-     * @brief voyagerConnected Checks if the Voyager is connected
-     * @return returns true if the Voyager is connected
+     * @brief voyagerConnected returns list of connected voyagers
+     * @return returns list of serialports with connected Voyager
      */
-    bool voyagerConnected();
+    std::vector<std::string> presentVoyagers();
 
     /**
      * @brief connect Attempts to connect to the Voyager
+     * @param port port to connect to
      * @return returns true on succes
      */
-    bool connect();
+    bool connect(std::string port);
 
     /**
      * @brief disconnect Disconnects the Voyager

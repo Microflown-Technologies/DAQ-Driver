@@ -57,15 +57,17 @@ void DAQDriver::reset() {
     m_deviceInfo.reset();
 }
 
-bool DAQDriver::voyagerConnected() {
-    return m_serialConnector.voyagerConnected();
+std::vector<std::string> DAQDriver::presentVoyagers() {
+    return m_serialConnector.presentVoyagers();
 }
 
-bool DAQDriver::connect() {
-    if(m_serialConnector.voyagerConnected()) {
+bool DAQDriver::connect(std::string port) {
+    auto currentPresentVoyagers = m_serialConnector.presentVoyagers();
+    if(std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) != currentPresentVoyagers.end()) {
         if(!m_serialConnector.isOpen()) {
-            if(!m_serialConnector.open()) return false;
+            if(!m_serialConnector.open(port)) return false;
         }
+        m_eventLoopThread.setPollingInterval(1);
         m_deviceControl.takeControl();
         m_connected = true;
         reset();
@@ -76,6 +78,7 @@ bool DAQDriver::connect() {
 }
 
 void DAQDriver::disconnect() {
+    m_eventLoopThread.setPollingInterval(500);
     m_deviceControl.releaseControl();
     m_serialConnector.close();
     reset();
@@ -83,14 +86,16 @@ void DAQDriver::disconnect() {
 }
 
 bool DAQDriver::isConnected() {
-    return m_connected && voyagerConnected();
+    return m_connected && !presentVoyagers().empty();
 }
 
 void DAQDriver::process() {
     m_hearthbeat.process();
-    if(m_serialConnector.isOpen() && voyagerConnected()) {
+    if(m_serialConnector.isOpen() && !presentVoyagers().empty()) {
         m_messageProcessor.process();
-    } else disconnect();
+    } else if(m_connected) {
+        disconnect();
+    }
 }
 
 InputRange &DAQDriver::inputRange() {

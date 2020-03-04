@@ -4,7 +4,9 @@
 QtSerialConnector::QtSerialConnector()
 {
     connect(this, &QSerialPort::errorOccurred, this, &QtSerialConnector::on_errorOccurred);
-    open();
+#if defined(__arm__)
+    open(presentVoyagers().front());
+#endif
 }
 
 std::vector<uint8_t> QtSerialConnector::read() {
@@ -41,24 +43,9 @@ void QtSerialConnector::close()
     QSerialPort::close();
 }
 
-bool QtSerialConnector::voyagerConnected() {
-    return true;
-}
-
-QSerialPortInfo QtSerialConnector::getSerialPortInfo() const {
-    for(auto port: QSerialPortInfo::availablePorts()) {
-        if(port.serialNumber() == "01234567")
-            return port;
-        if (port.manufacturer() == "Microflown Technologies")
-            return port;
-    }
-    QSerialPortInfo serialPortInfo("ttyGS0");
-    return serialPortInfo;
-}
-
-bool QtSerialConnector::open() {
+bool QtSerialConnector::open(std::string port) {
     if(!QSerialPort::isOpen()) {
-        setPort(getSerialPortInfo());
+        setPortName(QString::fromStdString(port));
         setBaudRate(4000000);
         if(!QSerialPort::open(QIODevice::ReadWrite)) {
             qWarning() << "Failed to open DAQ serial port" << errorString();
@@ -78,3 +65,17 @@ void QtSerialConnector::on_errorOccurred(QSerialPort::SerialPortError error) {
     if (error != QSerialPort::NoError) qWarning() << "DAQ Serial Port error:" <<QSerialPort::errorString();
 }
 #endif
+
+std::vector<std::string> QtSerialConnector::presentVoyagers() {
+    std::vector<std::string> voyagers;
+    for(auto port: QSerialPortInfo::availablePorts()) {
+        if(port.serialNumber() == "01234567")
+            voyagers.push_back(port.portName().toStdString());
+        if (port.manufacturer() == "Microflown Technologies")
+            voyagers.push_back(port.portName().toStdString());
+    }
+#if defined(__arm__)
+    voyagers.push_back("ttyGS0");
+#endif
+    return voyagers;
+}
