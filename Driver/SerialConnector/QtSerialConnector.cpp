@@ -75,7 +75,7 @@ std::vector<std::string> QtSerialConnector::presentVoyagers() {
             voyagers.push_back(port.portName().toStdString());
     }
 #if defined(__arm__)
-    voyagers.push_back("ttyGS0");
+    voyagers.push_back("/dev/ttyGS0");
 #endif
     return voyagers;
 }

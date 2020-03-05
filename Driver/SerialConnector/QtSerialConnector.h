@@ -9,6 +9,10 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 
+//Std framework
+#include <string>
+#include <vector>
+
 //Internal headers
 #include "AbstractSerialConnector.h"
 

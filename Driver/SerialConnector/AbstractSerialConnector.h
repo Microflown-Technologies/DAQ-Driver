@@ -3,6 +3,7 @@
 
 //STD framework
 #include <vector>
+#include <string>
 #include <stdint.h>
 
 /**
