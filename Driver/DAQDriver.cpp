@@ -57,7 +57,7 @@ bool DAQDriver::connect(std::string port) {
         if(!m_serialConnector->isOpen()) {
             if(!m_serialConnector->open(port)) return false;
         }
-        m_eventLoopThread.setPollingInterval(1);
+        m_eventLoopThread.setPollingInterval(50);
         m_deviceControl->takeControl();
         m_connected = true;
         reset();
@@ -106,6 +106,8 @@ void DAQDriver::initialize()
     m_deviceControl = pDeviceControl(new DeviceControl(m_messageProcessor));
 
     //Add callbacks
+    m_streaming->addStreamStartedCallback(std::bind(&DAQDriver::handleSteamStarted, this));
+    m_streaming->addStreamStoppedCallback(std::bind(&DAQDriver::handleStreamStopped, this));
     m_deviceControl->addResetCallback(std::bind(&DAQDriver::reset, this));
     m_deviceControl->addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
     m_deviceControl->addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
@@ -115,6 +117,14 @@ void DAQDriver::initialize()
     // Remove initialized callback
     m_eventLoopThread.callbackHandler()->removeCallback(m_initializeCallback);
     m_initialized = true;
+}
+
+void DAQDriver::handleSteamStarted() {
+    m_eventLoopThread.setPollingInterval(1);
+}
+
+void DAQDriver::handleStreamStopped() {
+    m_eventLoopThread.setPollingInterval(50);
 }
 
 
