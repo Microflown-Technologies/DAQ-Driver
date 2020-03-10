@@ -41,11 +41,11 @@ pCallbackHandler EventLoopThread::callbackHandler() const
 {
     return m_callbackHandler;
 }
-
+#ifdef QT_IS_AVAILABLE
 void EventLoopThread::run() {
     loop();
 }
-
+#endif
 void EventLoopThread::setPollingInterval(const int &milliseconds) {
     m_pollingInterval = milliseconds;
 }
