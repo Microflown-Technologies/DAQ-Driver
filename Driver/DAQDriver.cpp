@@ -53,6 +53,7 @@ std::vector<std::string> DAQDriver::presentVoyagers() {
 bool DAQDriver::connect(std::string port) {
     auto currentPresentVoyagers = m_serialConnector->presentVoyagers();
     if(std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) != currentPresentVoyagers.end()) {
+        m_connected = true;
         if(!m_serialConnector->isOpen()) {
             m_eventLoopThread.callbackHandler()->runOnce([=] {
                 m_serialConnector->open(port);
@@ -60,7 +61,6 @@ bool DAQDriver::connect(std::string port) {
         }
         m_eventLoopThread.setPollingInterval(50);
         m_deviceControl->takeControl();
-        m_connected = true;
         reset();
         return true;
     } else {
@@ -85,8 +85,6 @@ bool DAQDriver::isConnected() {
 void DAQDriver::process() {
     if(m_serialConnector->isOpen()) {
         m_messageProcessor->process();
-    } else if(m_connected) {
-        disconnect();
     }
 }
 
