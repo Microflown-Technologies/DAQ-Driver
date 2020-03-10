@@ -80,7 +80,7 @@ bool DAQDriver::isConnected() {
 }
 
 void DAQDriver::process() {
-    if(m_serialConnector->isOpen() && !presentVoyagers().empty()) {
+    if(m_serialConnector->isOpen()) {
         m_messageProcessor->process();
     } else if(m_connected) {
         disconnect();
