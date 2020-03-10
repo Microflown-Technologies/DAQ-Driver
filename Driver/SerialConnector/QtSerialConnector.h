@@ -5,8 +5,10 @@
 
 //Qt framework
 #include <QDebug>
+#include <QMutex>
 #include <QObject>
 #include <QSerialPort>
+#include <QMutexLocker>
 #include <QSerialPortInfo>
 
 //Std framework
@@ -41,10 +43,13 @@ public:
 
     bool open(std::string port) override;
 
+    void process() override;
+
 private slots:
     void on_errorOccurred(QSerialPort::SerialPortError error);
 protected:
-
+    QByteArray m_dataQueue;
+    QMutex m_dataQueueMutex;
 };
 
 #endif // QTSERIALCONNECTOR_H

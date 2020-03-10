@@ -1,6 +1,6 @@
 #include "InputRange.h"
 
-InputRange::InputRange(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor), m_inputRangeVoltages{_10}
+InputRange::InputRange(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor), m_inputRangeVoltages{_10}
 {
     MessageRouter::addMessageRoute<SetInputRange>(std::bind(&InputRange::handleSetInputRangeRecieved, this, std::placeholders::_1));
 
@@ -11,7 +11,7 @@ void InputRange::setInputRange(uint8_t channel, InputRange::Voltage voltage) {
     SetInputRange newInputRange;
     newInputRange.set_channel(channel);
     newInputRange.set_voltage(static_cast<SetInputRange::Voltage>(voltage));
-    m_messageProcessor.transmit(newInputRange);
+    m_messageProcessor->transmit(newInputRange);
     //Set internal value and emit signal if QT is available
     m_inputRangeVoltages[channel] = voltage;
 #ifdef QT_IS_AVAILABLE

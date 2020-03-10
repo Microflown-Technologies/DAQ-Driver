@@ -4,6 +4,7 @@
 //STD Framework
 #include <atomic>
 #include <chrono>
+#include <memory>
 
 //Internal headers
 #include "AbstractDriverComponent.h"
@@ -21,7 +22,7 @@ class Time : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    Time(MessageProcessor &messageProcessor);
+    Time(pMessageProcessor messageProcessor);
 
     /**
      * @brief sync Synchronizes time between devives through calculating clock difference in ms
@@ -61,5 +62,5 @@ private:
     std::mutex m_timeSyncedCallbacksMutex;
     std::atomic<int64_t> m_timeDifference;
 };
-
+typedef std::shared_ptr<Time> pTime;
 #endif // TIME_H

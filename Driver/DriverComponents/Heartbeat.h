@@ -1,6 +1,9 @@
 #ifndef HEARTBEAT_H
 #define HEARTBEAT_H
 
+//Std framework
+#include <memory>
+
 //Internal headers
 #include "AbstractDriverComponent.h"
 #include "MessageProcessing/MessageRouter.h"
@@ -18,7 +21,7 @@ class Heartbeat : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    Heartbeat(std::function<void(void)> callback, MessageProcessor &messageProcessor);
+    Heartbeat(std::function<void(void)> callback, pMessageProcessor messageProcessor);
 
     void reset();
 
@@ -40,5 +43,5 @@ private:
     Timer m_hearthbeatDieTimer;
     std::function<void(void)> m_callback;
 };
-
+typedef std::shared_ptr<Heartbeat> pHeartbeat;
 #endif // HEARTBEAT_H

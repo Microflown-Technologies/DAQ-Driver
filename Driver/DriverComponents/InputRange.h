@@ -3,6 +3,7 @@
 
 //STD framework
 #include <atomic>
+#include <memory>
 #include <cstdint>
 
 //Internal headers
@@ -24,7 +25,7 @@ public:
     typedef enum {_0_1  = SetInputRange::_0_1,
                   _1    = SetInputRange::_1,
                   _10   = SetInputRange::_10} Voltage;
-    explicit InputRange(MessageProcessor &messageProcessor);
+    explicit InputRange(pMessageProcessor messageProcessor);
 
 
     /**
@@ -54,5 +55,6 @@ protected:
 private:
     std::atomic<Voltage> m_inputRangeVoltages[6];
 };
+typedef std::shared_ptr<InputRange> pInputRange;
 
 #endif // INPUTRANGE_H

@@ -1,11 +1,18 @@
 #ifndef EVENTLOOPTHREAD_H
 #define EVENTLOOPTHREAD_H
 
+#ifdef QT_IS_AVAILABLE
+#include <QDebug>
+#include <QThread>
+#include <QCoreApplication>
+#endif
+
 //Std framework
 #include <mutex>
 #include <thread>
 #include <vector>
 #include <atomic>
+#include <memory>
 #include <functional>
 
 //Internal headers
@@ -14,16 +21,18 @@
 /**
  * @brief The EventLoopThread class calls callback functions from a different thread
  */
+#ifdef QT_IS_AVAILABLE
+class EventLoopThread : public QThread
+#else
 class EventLoopThread
+#endif
 {
+#ifdef QT_IS_AVAILABLE
+    Q_OBJECT
+#endif
 public:
     EventLoopThread();
     ~EventLoopThread();
-
-    /**
-     * @brief addCallback Adds a callback to the event loop to process
-     */
-    void addCallback(std::function<void(void)> callback);
 
     /**
      * @brief start starts the eventloop
@@ -53,17 +62,34 @@ public:
      */
     void setPollingInterval(const int &milliseconds);
 
+    /**
+     * @brief callbackHandler exposes the callback handler for the eventloopthread
+     * @return shared pointer to CallbackHandler for EventLoopThread
+     */
+    pCallbackHandler callbackHandler() const;
+
+
+
 protected:
+#ifdef QT_IS_AVAILABLE
+    virtual void run() override;
+#endif
+
+#ifdef QT_IS_AVAILABLE
+protected slots:
+#endif
+
     /**
      * @brief eventLoop Loops through the eventloop
      */
-    void eventLoop();
+    void loop();
 
 private:
     std::atomic_int m_pollingInterval; ///< Holds the polling interval in milliseconds
     std::thread m_eventloopThread;
+    pCallbackHandler m_callbackHandler; ///< Holds the callback functions to call in the thread
     std::atomic_bool m_eventLoopRunning;
-    CallbackHandler m_callbackFunctions; ///< Holds the callback functions to call in the thread
 };
+typedef std::shared_ptr<EventLoopThread> pEventLoopThread;
 
 #endif // EVENTLOOPTHREAD_H

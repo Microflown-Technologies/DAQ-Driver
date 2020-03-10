@@ -1,13 +1,13 @@
 #include "DeviceControl.h"
 
-DeviceControl::DeviceControl(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor), m_hasControl(false) {
+DeviceControl::DeviceControl(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor), m_hasControl(false) {
   MessageRouter::addMessageRoute<GrabControl>(std::bind(&DeviceControl::handleGrabControlRecieved, this, std::placeholders::_1));
   MessageRouter::addMessageRoute<ReleaseControl>(std::bind(&DeviceControl::handleReleaseControlRecieved, this, std::placeholders::_1));
   MessageRouter::addMessageRoute<Reset>(std::bind(&DeviceControl::handleResetRecieved, this, std::placeholders::_1));
 }
 
 void DeviceControl::reset() {
-    m_messageProcessor.transmit(Reset());
+    m_messageProcessor->transmit(Reset());
     m_hasControl = false;
 #ifdef QT_IS_AVAILABLE
     emit releasedControl();
@@ -16,12 +16,12 @@ void DeviceControl::reset() {
 }
 
 void DeviceControl::takeControl() {
-    m_messageProcessor.transmit(GrabControl());
+    m_messageProcessor->transmit(GrabControl());
     m_hasControl = true;
 }
 
 void DeviceControl::releaseControl() {
-    m_messageProcessor.transmit(ReleaseControl());
+    m_messageProcessor->transmit(ReleaseControl());
     m_hasControl = false;
 }
 

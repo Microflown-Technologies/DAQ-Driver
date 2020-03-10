@@ -3,6 +3,7 @@
 
 //STD framework
 #include <atomic>
+#include <memory>
 #include <stdint.h>
 
 //Internal headers
@@ -23,7 +24,7 @@ class IEPE : public AbstractDriverComponent
 public:
     typedef enum {Aux1 = SetIEPE::Aux1,
                   Aux2 = SetIEPE::Aux2} Input;
-    explicit IEPE(MessageProcessor &messageProcessor);
+    explicit IEPE(pMessageProcessor messageProcessor);
 
     /**
      * @brief setIEPE Enables or disables IEPE for channel
@@ -55,10 +56,5 @@ protected:
 private:
     std::atomic_bool m_iepeEnabled[2];
 };
-
-
-
-
-
-
+typedef std::shared_ptr<IEPE> pIEPE;
 #endif // IEPE_H

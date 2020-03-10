@@ -1,6 +1,6 @@
 #include "Time.h"
 
-Time::Time(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor), m_timeDifference(0)
+Time::Time(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor), m_timeDifference(0)
 {
     // Set callbacks
     MessageRouter::addMessageRoute<TimeRequest>(std::bind(&Time::handleTimeRequest, this, std::placeholders::_1));
@@ -12,7 +12,7 @@ void Time::sync()
 {
     TimeRequest timeRequest;
     timeRequest.set_mssinceepoch(mSecSinceEpoch());
-    m_messageProcessor.transmit(timeRequest);
+    m_messageProcessor->transmit(timeRequest);
 }
 
 void Time::reset() {
@@ -32,7 +32,7 @@ void Time::handleTimeRequest(const google::protobuf::Message &message) {
     TimeResponse timeResponse;
     timeResponse.set_allocated_timerequest(timeRequest);
     timeResponse.set_mssinceepoch(mSecSinceEpoch());
-    m_messageProcessor.transmit(timeResponse);
+    m_messageProcessor->transmit(timeResponse);
 }
 
 void Time::handleTimeResponse(const google::protobuf::Message &message)

@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <cstdint>
+#include <memory>
 
 // Protobuff
 #include <google/protobuf/message.h>

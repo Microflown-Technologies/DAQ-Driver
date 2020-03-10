@@ -3,6 +3,7 @@
 
 //STD framework
 #include <vector>
+#include <memory>
 #include <string>
 #include <stdint.h>
 
@@ -61,6 +62,12 @@ public:
      */
     virtual std::vector<std::string> presentVoyagers() = 0;
 
+    /**
+     * @brief process Processes sending data
+     */
+    virtual void process() = 0;
+
 };
+typedef std::shared_ptr<AbstractSerialConnector> pAbstractSerialConnector;
 
 #endif // ABSTRACTSERIALCONNECTOR_H

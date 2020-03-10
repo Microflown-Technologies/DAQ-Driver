@@ -4,6 +4,7 @@
 //Internal headers
 #include <mutex>
 #include <memory>
+#include <thread>
 #include <functional>
 
 /**
@@ -39,8 +40,10 @@ public:
     void invokeCallbacks();
 
 private:
+    std::thread::id m_invokeThreadID;
     std::mutex m_callbackFunctionsMutex; ///< Mutex that protects m_callbackFunction
     std::vector<std::shared_ptr<std::function<void(void)>>> m_callbackFunctions; ///< Holds list of shared pointers to callbacks
 };
+typedef std::shared_ptr<CallbackHandler> pCallbackHandler;
 
 #endif // CALLBACKHANDLER_H

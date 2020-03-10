@@ -1,6 +1,6 @@
 #include "DeviceInfo.h"
 
-DeviceInfo::DeviceInfo(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor)
+DeviceInfo::DeviceInfo(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor)
 {
     // Set callbacks
     MessageRouter::addMessageRoute<DeviceInfoResponse>(std::bind(&DeviceInfo::handleDeviceInfoResponseRecieved, this, std::placeholders::_1));
@@ -14,7 +14,7 @@ DeviceInfo::DeviceInfo(MessageProcessor &messageProcessor) : AbstractDriverCompo
 }
 
 void DeviceInfo::refresh() {
-    m_messageProcessor.transmit(DeviceInfoRequest());
+    m_messageProcessor->transmit(DeviceInfoRequest());
 }
 
 DeviceInfoStructure DeviceInfo::localDeviceInfo() {
@@ -42,7 +42,7 @@ void DeviceInfo::handleDeviceInfoRequestRecieved(const google::protobuf::Message
     std::lock_guard<std::mutex> mutexLocker(m_remoteDeviceInfoMutex);
     DeviceInfoResponse deviceInfoResponse = DeviceInfoResponse();
     deviceInfoResponse.set_allocated_deviceinfo(new DeviceInfoStructure(m_localDeviceInfo));
-    m_messageProcessor.transmit(deviceInfoResponse);
+    m_messageProcessor->transmit(deviceInfoResponse);
 }
 
 void DeviceInfo::handleDeviceInfoResponseRecieved(const google::protobuf::Message &message) {

@@ -2,6 +2,7 @@
 #define DAQDRIVER_H
 
 //STD framework
+#include <thread>
 #include <functional>
 
 //Internal headers
@@ -30,43 +31,43 @@ public:
      * @brief streaming Get driver component that controls streaming data/audio
      * @return streaming data/audio control
      */
-    Streaming& streaming();
+    pStreaming streaming();
 
     /**
      * @brief formatting Gets driver components that control the format of the streaming data/audio
      * @return format of the streaming data/audio control
      */
-    Formatting& formatting();
+    pFormatting formatting();
 
     /**
      * @brief deviceControl Gets driver component that controls the device
      * @return control of the device
      */
-    DeviceControl& deviceControl();
+    pDeviceControl deviceControl();
 
     /**
      * @brief deviceInfo Gets driver component that provides device information
      * @return deviceinfo
      */
-    DeviceInfo& deviceInfo();
+    pDeviceInfo deviceInfo();
 
     /**
      * @brief time Gets driver component that controls time synchronisation
      * @return time synchronisation
      */
-    Time& time();
+    pTime time();
 
     /**
      * @brief iepe Gets driver component that controls IEPE power for AUX channels
      * @return iepe power
      */
-    IEPE& iepe();
+    pIEPE iepe();
 
     /**
      * @brief inputRange driver component that configure the input range
      * @return input range
      */
-    InputRange& inputRange();
+    pInputRange inputRange();
 
     /**
      * @brief reset Resets the driver
@@ -103,22 +104,22 @@ protected:
      */
     void process();
 
+    void initialize();
+
 private:
-    bool m_connected;
-#if defined(_WIN32)
-    GenericSerialConnector m_serialConnector; ///< Connects to the Voyager via serial
-#else
-    QtSerialConnector m_serialConnector;
-#endif
-    MessageProcessor m_messageProcessor; ///< Processes incomming and outgoing messages
-    IEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels
-    Time m_time; ///< Driver component that handles time synchronisation
-    Streaming m_streaming; ///< Driver component that handles streaming data
-    Heartbeat m_hearthbeat; ///< Driver component that handles keeping alive of the connection
-    DeviceInfo m_deviceInfo; ///< Driver component that provides device information
-    InputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
-    Formatting m_formatting; ///< Driver component that handles formatting
-    DeviceControl m_deviceControl; ///< Handles control of the device
+    std::atomic_bool m_connected;
+    std::atomic_bool m_initialized;
+    pAbstractSerialConnector m_serialConnector;
+    std::shared_ptr<std::function<void (void)> > m_initializeCallback;
+    pMessageProcessor m_messageProcessor; ///< Processes incomming and outgoing messages
+    pIEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels
+    pTime m_time; ///< Driver component that handles time synchronisation
+    pStreaming m_streaming; ///< Driver component that handles streaming data
+    pHeartbeat m_heartbeat; ///< Driver component that handles keeping alive of the connection
+    pDeviceInfo m_deviceInfo; ///< Driver component that provides device information
+    pInputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
+    pFormatting m_formatting; ///< Driver component that handles formatting
+    pDeviceControl m_deviceControl; ///< Handles control of the device
     EventLoopThread m_eventLoopThread; ///< Threaded event loop for the driver
 };
 

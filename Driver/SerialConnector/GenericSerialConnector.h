@@ -38,6 +38,8 @@ public:
 
     std::vector<std::string> presentVoyagers() override;
 
+    void process() override;
+
 protected:
     bool isHandleValid();
     void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);

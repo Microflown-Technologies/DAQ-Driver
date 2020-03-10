@@ -11,6 +11,9 @@
 #include "MessageDeserializer.h"
 #include "SerialConnector/AbstractSerialConnector.h"
 
+//STD framework
+#include <memory>
+
 //Protobuff
 #include <MessageAck.pb.h>
 #include <google/protobuf/message.h>
@@ -21,7 +24,7 @@
 class MessageProcessor
 {
 public:
-    MessageProcessor(AbstractSerialConnector &serialConnector);
+    MessageProcessor(pAbstractSerialConnector serialConnector);
 
     /**
      * @brief transmit Transmits a message to the Voyager
@@ -37,7 +40,7 @@ public:
 
 private:
     Timer m_clearTimer;
-    AbstractSerialConnector &m_serialConnector; ///< Serial connection to the Voyager
+    pAbstractSerialConnector m_serialConnector; ///< Serial connection to the Voyager
 };
-
+typedef std::shared_ptr<MessageProcessor> pMessageProcessor;
 #endif // MESSAGEPROCESSOR_H

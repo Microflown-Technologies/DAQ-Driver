@@ -4,6 +4,7 @@
 //STD framework
 #include <queue>
 #include <vector>
+#include <memory>
 #include <cstring>
 #include <stdint.h>
 

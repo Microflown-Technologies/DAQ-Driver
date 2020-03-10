@@ -4,6 +4,7 @@
 //Std framework
 #include <mutex>
 #include <string>
+#include <memory>
 
 //Internal headers
 #include "DriverInfo.h"
@@ -23,7 +24,7 @@ class DeviceInfo : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    DeviceInfo(MessageProcessor &messageProcessor);
+    DeviceInfo(pMessageProcessor messageProcessor);
 
     /**
      * @brief refresh Updates the deviceInfo
@@ -49,5 +50,5 @@ private:
     DeviceInfoStructure m_remoteDeviceInfo; ///< Device information of remote device
 
 };
-
+typedef std::shared_ptr<DeviceInfo> pDeviceInfo;
 #endif // DEVICEINFO_H

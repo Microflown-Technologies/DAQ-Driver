@@ -6,6 +6,8 @@
 #include <cstring>
 #include <stdint.h>
 #include <iostream>
+#include <memory>
+
 
 //Internal headers
 #include "Message.h"

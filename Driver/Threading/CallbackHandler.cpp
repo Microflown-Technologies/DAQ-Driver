@@ -12,14 +12,14 @@ std::shared_ptr<std::function<void (void)> > CallbackHandler::addCallback(std::f
 
 void CallbackHandler::addCallback(std::shared_ptr<std::function<void (void)> > callback) {
     // Lock m_callbackFunctionsMutex and insert into m_callbackFunctions
-    std::lock_guard<std::mutex> m_callbackFunctionMutexLocker(m_callbackFunctionsMutex);
+    if(m_invokeThreadID!= std::this_thread::get_id()) std::lock_guard<std::mutex> m_callbackFunctionMutexLocker(m_callbackFunctionsMutex);
     m_callbackFunctions.push_back(callback);
 }
 
 bool CallbackHandler::removeCallback(std::shared_ptr<std::function<void (void)> > callback)
 {
     //Find callback inside m_callbackFunctions and remove if found
-    std::lock_guard<std::mutex> m_callbackFunctionMutexLocker(m_callbackFunctionsMutex);
+    if(m_invokeThreadID!= std::this_thread::get_id()) std::lock_guard<std::mutex> m_callbackFunctionMutexLocker(m_callbackFunctionsMutex);
     for(auto callbackIterator = m_callbackFunctions.begin(); callbackIterator != m_callbackFunctions.end(); callbackIterator++) {
         if(*callbackIterator == callback) {
             m_callbackFunctions.erase(callbackIterator);
@@ -31,6 +31,7 @@ bool CallbackHandler::removeCallback(std::shared_ptr<std::function<void (void)> 
 }
 
 void CallbackHandler::invokeCallbacks() {
+    m_invokeThreadID = std::this_thread::get_id();
     std::lock_guard<std::mutex> m_callbackFunctionMutexLocker(m_callbackFunctionsMutex);
     for(auto callback: m_callbackFunctions) {
         (*callback)();

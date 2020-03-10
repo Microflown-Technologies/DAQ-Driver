@@ -6,6 +6,9 @@
 #include <QObject>
 #endif
 
+//STD framework
+#include <memory>
+
 //Internal headers
 #include "MessageProcessing/MessageProcessor.h"
 
@@ -22,7 +25,7 @@ class AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    AbstractDriverComponent(MessageProcessor &messageProcessor);
+    AbstractDriverComponent(pMessageProcessor messageProcessor);
 
     /**
      * @brief reset Resets the components
@@ -30,8 +33,7 @@ public:
     virtual void reset() = 0;
 
 protected:
-    MessageProcessor &m_messageProcessor;
-
+    pMessageProcessor m_messageProcessor;
 };
-
+typedef std::shared_ptr<AbstractDriverComponent> pAbstractDriverComponent;
 #endif // ABSTRACTDRIVERCOMPONENT_H

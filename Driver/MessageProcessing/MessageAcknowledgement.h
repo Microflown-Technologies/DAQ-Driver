@@ -2,6 +2,7 @@
 #define MESSAGEACKNOWLEDGEMENT_H
 
 //STD library
+#include <memory>
 #include <chrono>
 
 //Internal headers

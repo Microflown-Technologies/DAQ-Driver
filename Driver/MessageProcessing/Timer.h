@@ -3,6 +3,7 @@
 
 //STD framework
 #include <chrono>
+#include <memory>
 #include <stdint.h>
 #include <functional>
 
@@ -78,5 +79,5 @@ private:
     std::function<void(void)> m_callback;
     std::chrono::system_clock::time_point m_nextTimeout;
 };
-
+typedef std::shared_ptr<Timer> pTimer;
 #endif // TIMER_H

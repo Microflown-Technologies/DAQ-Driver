@@ -1,6 +1,6 @@
 #include "Heartbeat.h"
 
-Heartbeat::Heartbeat(std::function<void(void)> callback, MessageProcessor &messageProcessor) :
+Heartbeat::Heartbeat(std::function<void(void)> callback, pMessageProcessor messageProcessor) :
     AbstractDriverComponent(messageProcessor), m_callback(callback)
 {
     MessageRouter::addMessageRoute<Beat>(std::bind(&Heartbeat::handleHearthbeatMessage, this, std::placeholders::_1));
@@ -23,7 +23,7 @@ void Heartbeat::process()
 
 void Heartbeat::hearthbeatTimerTimeout() {
     Beat beat;
-    m_messageProcessor.transmit(beat);
+    m_messageProcessor->transmit(beat);
 #ifdef QT_IS_AVAILABLE
     emit stillAlive();
 #endif

@@ -1,4 +1,4 @@
-#ifdef QT_IS_AVAILABLE
+﻿#ifdef QT_IS_AVAILABLE
 #include "QtSerialConnector.h"
 
 QtSerialConnector::QtSerialConnector()
@@ -20,12 +20,12 @@ std::vector<uint8_t> QtSerialConnector::read() {
 
 void QtSerialConnector::write(const std::vector<uint8_t> &data) {
     if(!QSerialPort::isOpen()) return;
-    QSerialPort::write(reinterpret_cast<const char*>(data.data()), data.size());
+    QMutexLocker mutexLocker(&m_dataQueueMutex);
+    m_dataQueue.append(reinterpret_cast<const char*>(data.data()), data.size());
 }
 
 void QtSerialConnector::priorityWrite(const std::vector<uint8_t> &data) {
     write(data);
-    flush();
 }
 
 size_t QtSerialConnector::dataAvailable() {
@@ -61,10 +61,21 @@ bool QtSerialConnector::open(std::string port) {
     }
 }
 
-void QtSerialConnector::on_errorOccurred(QSerialPort::SerialPortError error) {
-    if (error != QSerialPort::NoError) qWarning() << "DAQ Serial Port error:" <<QSerialPort::errorString();
+void QtSerialConnector::process() {
+    if(isOpen()) {
+        QMutexLocker mutexLocker(&m_dataQueueMutex);
+        qint64 bytesWritten = QSerialPort::write(m_dataQueue);
+        QSerialPort::flush();
+        m_dataQueue.remove(0, bytesWritten);
+    }
 }
-#endif
+
+void QtSerialConnector::on_errorOccurred(QSerialPort::SerialPortError error) {
+    if (error != QSerialPort::NoError) {
+        qWarning() << "DAQ Serial Port error:" <<QSerialPort::errorString();
+        close();
+    }
+}
 
 std::vector<std::string> QtSerialConnector::presentVoyagers() {
     std::vector<std::string> voyagers;
@@ -79,3 +90,5 @@ std::vector<std::string> QtSerialConnector::presentVoyagers() {
 #endif
     return voyagers;
 }
+#endif
+

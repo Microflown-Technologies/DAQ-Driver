@@ -3,6 +3,7 @@
 
 //Std framework
 #include <atomic>
+#include <memory>
 
 //Internal headers
 #include "AbstractDriverComponent.h"
@@ -24,7 +25,7 @@ class DeviceControl : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    DeviceControl(MessageProcessor &messageProcessor);
+    DeviceControl(pMessageProcessor messageProcessor);
 
     /**
      * @brief reset resets communication between the penis devices
@@ -75,5 +76,5 @@ private:
     CallbackHandler m_grabbedControlCallbackHandler;
     CallbackHandler m_releasedControlCallbackHandler;
 };
-
+typedef std::shared_ptr<DeviceControl> pDeviceControl;
 #endif // DEVICECONTROL_H

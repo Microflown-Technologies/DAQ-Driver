@@ -1,6 +1,6 @@
 #include "Formatting.h"
 
-Formatting::Formatting(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor)
+Formatting::Formatting(pMessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor)
 {
     MessageRouter::addMessageRoute<SetDataFormat>(std::bind(&Formatting::handleNewFormatRecieved, this, std::placeholders::_1));
     reset();
@@ -10,7 +10,7 @@ void Formatting::setDataFormat(const DataFormat &dataFormat) {
     SetDataFormat newFormat;
     swapDataFormat(dataFormat);
     newFormat.set_allocated_newformat(new DataFormat(m_dataFormat));
-    m_messageProcessor.transmit(newFormat);
+    m_messageProcessor->transmit(newFormat);
 }
 
 DataFormat Formatting::dataFormat() const {

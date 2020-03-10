@@ -1,6 +1,6 @@
 #include "Streaming.h"
 
-Streaming::Streaming(MessageProcessor &messageProcessor) : AbstractDriverComponent(messageProcessor), m_totalBufferCount(0), m_isStreaming(false)
+Streaming::Streaming(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor), m_totalBufferCount(0), m_isStreaming(false)
 {
     MessageRouter::addMessageRoute<StopStream>(std::bind(&Streaming::handleStopStreamRecieved, this, std::placeholders::_1));
     MessageRouter::addMessageRoute<StartStream>(std::bind(&Streaming::handleStartStreamRecieved, this, std::placeholders::_1));
@@ -8,12 +8,12 @@ Streaming::Streaming(MessageProcessor &messageProcessor) : AbstractDriverCompone
 }
 
 void Streaming::start() {
-    m_messageProcessor.transmit(StartStream());
+    m_messageProcessor->transmit(StartStream());
     m_isStreaming = true;
 }
 
 void Streaming::stop() {
-    m_messageProcessor.transmit(StopStream());
+    m_messageProcessor->transmit(StopStream());
     m_isStreaming = false;
 }
 
@@ -37,7 +37,7 @@ bool Streaming::isStreaming() const {
 }
 
 void Streaming::transmit(const DataBuffer &dataBuffer) {
-    if(m_isStreaming) m_messageProcessor.transmit(dataBuffer);
+    if(m_isStreaming) m_messageProcessor->transmit(dataBuffer);
 }
 
 size_t Streaming::pendingBufferCount() {

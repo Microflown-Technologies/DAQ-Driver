@@ -127,4 +127,8 @@ std::string GenericSerialConnector::getComPort(HDEVINFO m_hDevInfo, SP_DEVINFO_D
     SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_FRIENDLYNAME, nullptr, reinterpret_cast<BYTE*>(FriendlyName), sizeof(FriendlyName), nullptr);
     return(std::string("COM" + std::string(FriendlyName).substr(22, std::string(FriendlyName).find(')') - 22)));
 }
+
+void GenericSerialConnector::process() {
+
+}
 #endif

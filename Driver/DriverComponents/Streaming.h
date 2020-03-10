@@ -3,6 +3,7 @@
 
 //STD Framework
 #include <queue>
+#include <memory>
 
 //Internal headers
 #include "AbstractDriverComponent.h"
@@ -23,7 +24,7 @@ class Streaming : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    Streaming(MessageProcessor &messageProcessor);
+    Streaming(pMessageProcessor messageProcessor);
 
     /**
      * @brief start Start the audio stream
@@ -97,5 +98,5 @@ private:
     std::atomic_bool m_isStreaming;
     std::mutex m_dataQueueMutex;
 };
-
+typedef std::shared_ptr<Streaming> pStreaming;
 #endif // STREAMING_H

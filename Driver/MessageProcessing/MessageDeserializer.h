@@ -2,6 +2,7 @@
 #define MESSAGEDESERIALIZER_H
 
 //STD Framework
+#include <memory>
 #include <queue>
 #include <vector>
 #include <cstring>

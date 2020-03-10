@@ -5,6 +5,8 @@
 #include <map>
 #include <cstdint>
 #include <functional>
+#include <memory>
+
 
 //Internal headers
 #include "MessageHashTable.h"

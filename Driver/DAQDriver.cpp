@@ -1,74 +1,64 @@
 #include "DAQDriver.h"
 
 DAQDriver::DAQDriver() :
-    m_connected(false),
-    m_messageProcessor(m_serialConnector),
-    m_iepe(m_messageProcessor),
-    m_time(m_messageProcessor),
-    m_streaming(m_messageProcessor),
-    m_hearthbeat(std::bind(&DAQDriver::reset, this), m_messageProcessor),
-    m_deviceInfo(m_messageProcessor),
-    m_inputRange(m_messageProcessor),
-    m_formatting(m_messageProcessor),
-    m_deviceControl(m_messageProcessor)
+    m_connected(false), m_initialized(false)
 {
-
-    m_deviceControl.addResetCallback(std::bind(&DAQDriver::reset, this));
-    m_deviceControl.addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
-    m_deviceControl.addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
-    m_eventLoopThread.addCallback(std::bind(&DAQDriver::process, this));
+    m_initializeCallback = m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::initialize, this));
     m_eventLoopThread.start();
+    while(!m_initialized) { std::this_thread::sleep_for(std::chrono::milliseconds(5)); };
 }
 
-
-Streaming &DAQDriver::streaming() {
+pStreaming DAQDriver::streaming() {
     return m_streaming;
 }
 
-Formatting &DAQDriver::formatting() {
+pFormatting DAQDriver::formatting() {
     return m_formatting;
 }
 
-DeviceControl &DAQDriver::deviceControl() {
+pDeviceControl DAQDriver::deviceControl() {
     return m_deviceControl;
 }
 
-DeviceInfo &DAQDriver::deviceInfo()
+pDeviceInfo DAQDriver::deviceInfo()
 {
     return m_deviceInfo;
 }
 
-Time &DAQDriver::time(){
+pTime DAQDriver::time(){
     return m_time;
 }
 
-IEPE &DAQDriver::iepe() {
+pIEPE DAQDriver::iepe() {
     return m_iepe;
 }
 
+pInputRange DAQDriver::inputRange() {
+    return m_inputRange;
+}
 void DAQDriver::reset() {
     std::cout << "Resetting DAQ Driver" << std::endl;
-    m_iepe.reset();
-    m_time.reset();
-    m_streaming.reset();
-    m_hearthbeat.reset();
-    m_inputRange.reset();
-    m_formatting.reset();
-    m_deviceInfo.reset();
+    m_iepe->reset();
+    m_time->reset();
+    m_streaming->reset();
+    m_heartbeat->reset();
+    m_inputRange->reset();
+    m_formatting->reset();
+    m_deviceInfo->reset();
 }
 
 std::vector<std::string> DAQDriver::presentVoyagers() {
-    return m_serialConnector.presentVoyagers();
+    return m_serialConnector->presentVoyagers();
 }
 
 bool DAQDriver::connect(std::string port) {
-    auto currentPresentVoyagers = m_serialConnector.presentVoyagers();
+    auto currentPresentVoyagers = m_serialConnector->presentVoyagers();
     if(std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) != currentPresentVoyagers.end()) {
-        if(!m_serialConnector.isOpen()) {
-            if(!m_serialConnector.open(port)) return false;
+        if(!m_serialConnector->isOpen()) {
+            if(!m_serialConnector->open(port)) return false;
         }
         m_eventLoopThread.setPollingInterval(1);
-        m_deviceControl.takeControl();
+        m_deviceControl->takeControl();
         m_connected = true;
         reset();
         return true;
@@ -79,8 +69,8 @@ bool DAQDriver::connect(std::string port) {
 
 void DAQDriver::disconnect() {
     m_eventLoopThread.setPollingInterval(500);
-    m_deviceControl.releaseControl();
-    m_serialConnector.close();
+    m_deviceControl->releaseControl();
+    m_serialConnector->close();
     reset();
     m_connected = false;
 }
@@ -90,15 +80,41 @@ bool DAQDriver::isConnected() {
 }
 
 void DAQDriver::process() {
-    m_hearthbeat.process();
-    if(m_serialConnector.isOpen() && !presentVoyagers().empty()) {
-        m_messageProcessor.process();
+    if(m_serialConnector->isOpen() && !presentVoyagers().empty()) {
+        m_messageProcessor->process();
     } else if(m_connected) {
         disconnect();
     }
 }
 
-InputRange &DAQDriver::inputRange() {
-    return m_inputRange;
+void DAQDriver::initialize()
+{
+    //Create objects
+#if defined(_WIN32)
+    m_serialConnector = pAbstractDriverComponent(new GenericSerialConnector());
+#else
+    m_serialConnector = pAbstractSerialConnector(new QtSerialConnector());
+#endif
+    m_messageProcessor = pMessageProcessor(new MessageProcessor(m_serialConnector));
+    m_iepe = pIEPE(new IEPE(m_messageProcessor));
+    m_time = pTime(new Time(m_messageProcessor));
+    m_streaming = pStreaming(new Streaming(m_messageProcessor));
+    m_heartbeat = pHeartbeat(new Heartbeat(std::bind(&DAQDriver::reset,this) , m_messageProcessor));
+    m_deviceInfo = pDeviceInfo(new DeviceInfo(m_messageProcessor));
+    m_inputRange = pInputRange(new InputRange(m_messageProcessor));
+    m_formatting = pFormatting(new Formatting(m_messageProcessor));
+    m_deviceControl = pDeviceControl(new DeviceControl(m_messageProcessor));
+
+    //Add callbacks
+    m_deviceControl->addResetCallback(std::bind(&DAQDriver::reset, this));
+    m_deviceControl->addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
+    m_deviceControl->addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
+    m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::process, this));
+    m_eventLoopThread.callbackHandler()->addCallback(std::bind(&AbstractSerialConnector::process, m_serialConnector.get()));
+
+    // Remove initialized callback
+    m_eventLoopThread.callbackHandler()->removeCallback(m_initializeCallback);
+    m_initialized = true;
 }
+
 

@@ -4,6 +4,7 @@
 //Std framework
 #include <mutex>
 #include <atomic>
+#include <memory>
 
 //Internal headers
 #include "AbstractDriverComponent.h"
@@ -21,7 +22,7 @@ class Formatting : public AbstractDriverComponent
     Q_OBJECT
 #endif
 public:
-    Formatting(MessageProcessor &messageProcessor);
+    Formatting(pMessageProcessor &messageProcessor);
 
     /**
      * @brief setDataFormat Sets a new data format
@@ -53,5 +54,5 @@ private:
     DataFormat m_dataFormat;
     std::mutex m_dataFormatMutex;
 };
-
+typedef std::shared_ptr<Formatting> pFormatting;
 #endif // FORMATTING_H
