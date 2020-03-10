@@ -14,6 +14,12 @@ class CallbackHandler
 {
 public:
     /**
+     * @brief runOnce Runs callback once
+     * @param callback callback to run once
+     */
+    void runOnce(std::function<void(void)> callback);
+
+    /**
      * @brief addCallback Adds a callback function
      * @param callback callback function to add
      * @return returns shared pointer to created callback function
@@ -42,7 +48,9 @@ public:
 private:
     std::thread::id m_invokeThreadID;
     std::mutex m_callbackFunctionsMutex; ///< Mutex that protects m_callbackFunction
+    std::vector<std::shared_ptr<std::function<void(void)>>> m_runOnceFunctions; ///< Holds list of shared pointers to callbacks
     std::vector<std::shared_ptr<std::function<void(void)>>> m_callbackFunctions; ///< Holds list of shared pointers to callbacks
+
 };
 typedef std::shared_ptr<CallbackHandler> pCallbackHandler;
 
