@@ -104,8 +104,14 @@ protected:
      */
     void process();
 
+    /**
+     * @brief initialize initializes the driver components
+     */
     void initialize();
 
+    void handleStreamStopped();
+
+    void handleSteamStarted();
 private:
     std::atomic_bool m_connected;
     std::atomic_bool m_initialized;

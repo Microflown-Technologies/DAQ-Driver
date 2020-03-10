@@ -46,7 +46,7 @@ void QtSerialConnector::close()
 bool QtSerialConnector::open(std::string port) {
     if(!QSerialPort::isOpen()) {
         setPortName(QString::fromStdString(port));
-        setBaudRate(4000000);
+        setBaudRate(256000);
         if(!QSerialPort::open(QIODevice::ReadWrite)) {
             qWarning() << "Failed to open DAQ serial port" << errorString();
             return false;
@@ -65,7 +65,6 @@ void QtSerialConnector::process() {
     if(isOpen()) {
         QMutexLocker mutexLocker(&m_dataQueueMutex);
         qint64 bytesWritten = QSerialPort::write(m_dataQueue);
-        QSerialPort::flush();
         m_dataQueue.remove(0, bytesWritten);
     }
 }
@@ -74,6 +73,7 @@ void QtSerialConnector::on_errorOccurred(QSerialPort::SerialPortError error) {
     if (error != QSerialPort::NoError) {
         qWarning() << "DAQ Serial Port error:" <<QSerialPort::errorString();
         close();
+        open(presentVoyagers().front());
     }
 }
 
