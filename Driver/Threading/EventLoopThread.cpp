@@ -22,7 +22,7 @@ void EventLoopThread::stop() {
     m_eventLoopRunning = false;
 #ifdef QT_IS_AVAILABLE
     QThread::exit();
-#elif
+#else
     m_eventloopThread.join();
 #endif
 }

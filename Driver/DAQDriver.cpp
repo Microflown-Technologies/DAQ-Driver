@@ -37,7 +37,6 @@ pInputRange DAQDriver::inputRange() {
     return m_inputRange;
 }
 void DAQDriver::reset() {
-    std::cout << "Resetting DAQ Driver" << std::endl;
     m_iepe->reset();
     m_time->reset();
     m_streaming->reset();
@@ -55,7 +54,9 @@ bool DAQDriver::connect(std::string port) {
     auto currentPresentVoyagers = m_serialConnector->presentVoyagers();
     if(std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) != currentPresentVoyagers.end()) {
         if(!m_serialConnector->isOpen()) {
-            if(!m_serialConnector->open(port)) return false;
+            m_eventLoopThread.callbackHandler()->runOnce([=] {
+                m_serialConnector->open(port);
+            });
         }
         m_eventLoopThread.setPollingInterval(50);
         m_deviceControl->takeControl();
@@ -68,11 +69,13 @@ bool DAQDriver::connect(std::string port) {
 }
 
 void DAQDriver::disconnect() {
-    m_eventLoopThread.setPollingInterval(500);
-    m_deviceControl->releaseControl();
-    m_serialConnector->close();
-    reset();
-    m_connected = false;
+    m_eventLoopThread.callbackHandler()->runOnce([=] {
+        m_eventLoopThread.setPollingInterval(500);
+        m_deviceControl->releaseControl();
+        m_serialConnector->close();
+        reset();
+        m_connected = false;
+    });
 }
 
 bool DAQDriver::isConnected() {

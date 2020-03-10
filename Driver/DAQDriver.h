@@ -109,9 +109,10 @@ protected:
      */
     void initialize();
 
+    void handleSteamStarted();
+
     void handleStreamStopped();
 
-    void handleSteamStarted();
 private:
     std::atomic_bool m_connected;
     std::atomic_bool m_initialized;
