@@ -12,6 +12,7 @@ Controls::Controls(QWidget *parent) :
     m_processTimer.start(1);
     m_uiTimer.start(500);
     populateSampleRateComboBox();
+    on_btn_refresh_pressed();
 }
 
 Controls::~Controls()

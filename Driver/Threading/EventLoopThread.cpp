@@ -21,7 +21,7 @@ void EventLoopThread::start() {
 void EventLoopThread::stop() {
     m_eventLoopRunning = false;
 #ifdef QT_IS_AVAILABLE
-    QThread::exit();
+    QThread::wait();
 #elif
     m_eventloopThread.join();
 #endif

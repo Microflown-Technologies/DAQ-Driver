@@ -10,11 +10,13 @@ Streaming::Streaming(pMessageProcessor messageProcessor) : AbstractDriverCompone
 void Streaming::start() {
     m_messageProcessor->transmit(StartStream());
     m_isStreaming = true;
+    m_streamStartedCallbackHandler.invokeCallbacks();
 }
 
 void Streaming::stop() {
     m_messageProcessor->transmit(StopStream());
     m_isStreaming = false;
+    m_streamStoppedCallbackHandler.invokeCallbacks();
 }
 
 void Streaming::reset() {
