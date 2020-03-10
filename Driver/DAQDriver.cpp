@@ -91,7 +91,7 @@ void DAQDriver::initialize()
 {
     //Create objects
 #if defined(_WIN32)
-    m_serialConnector = pAbstractDriverComponent(new GenericSerialConnector());
+    m_serialConnector = pAbstractSerialConnector(new GenericSerialConnector());
 #else
     m_serialConnector = pAbstractSerialConnector(new QtSerialConnector());
 #endif

@@ -57,7 +57,7 @@ bool GenericSerialConnector::open(std::string port)
     //Configure the serial port
     m_serialPortParameters.DCBlength = sizeof (m_serialPortParameters);
     if(!GetCommState(m_serialHandle, &m_serialPortParameters)) return false;
-    m_serialPortParameters.BaudRate = 2000000;
+    m_serialPortParameters.BaudRate = CBR_256000;
     m_serialPortParameters.ByteSize = 8;
     m_serialPortParameters.StopBits = ONESTOPBIT;
     m_serialPortParameters.Parity   = NOPARITY;
