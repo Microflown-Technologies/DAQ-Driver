@@ -32,9 +32,8 @@ void EventLoopThread::loop() {
         m_callbackHandler->invokeCallbacks();
 #ifdef QT_IS_AVAILABLE
         QCoreApplication::processEvents();
-#else
-        std::this_thread::sleep_for(std::chrono::milliseconds(pollingInterval()));
 #endif
+        std::this_thread::sleep_for(std::chrono::milliseconds(pollingInterval()));
     }
 }
 
