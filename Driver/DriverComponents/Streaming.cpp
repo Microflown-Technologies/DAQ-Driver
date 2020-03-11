@@ -1,5 +1,4 @@
 #include "Streaming.h"
-
 Streaming::Streaming(pMessageProcessor messageProcessor) : AbstractDriverComponent(messageProcessor), m_totalBufferCount(0), m_isStreaming(false)
 {
     MessageRouter::addMessageRoute<StopStream>(std::bind(&Streaming::handleStopStreamRecieved, this, std::placeholders::_1));
@@ -31,6 +30,8 @@ void Streaming::handleNewDataRecieved(const google::protobuf::Message &message) 
         std::lock_guard<std::mutex> gaurd(m_dataQueueMutex);
         m_dataQueue.push(dynamic_cast<const DataBuffer&>(message));
         m_newBufferCallbackHandler.invokeCallbacks();
+    } else {
+        stop();
     }
 }
 

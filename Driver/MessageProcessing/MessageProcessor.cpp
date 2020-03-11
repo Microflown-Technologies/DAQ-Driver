@@ -17,7 +17,7 @@ void MessageProcessor::transmit(const google::protobuf::Message &message) {
 
 void MessageProcessor::process() {
     if(m_serialConnector->dataAvailable()) {
-        m_clearTimer.start();
+        m_clearTimer.start(1000);
         MessageDeserializer::processData(m_serialConnector->read());
         while (MessageDeserializer::hasMessagesAvailable()) {
             Message message = MessageDeserializer::nextMessage();

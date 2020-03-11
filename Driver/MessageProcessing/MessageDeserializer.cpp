@@ -1,5 +1,4 @@
 #include "MessageDeserializer.h"
-
 std::queue<Message>     MessageDeserializer::m_incommingMessages; ///< Temporarily stores incomming messages
 std::vector<uint8_t>    MessageDeserializer::m_incommingDataBuffer; ///< Temporarily buffers incomming data
 
