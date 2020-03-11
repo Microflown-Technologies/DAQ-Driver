@@ -65,7 +65,6 @@ bool DAQDriver::connect(std::string port) {
                 m_deviceControl->takeControl();
             });
         }
-        reset();
         return true;
     } else {
         return false;

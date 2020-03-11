@@ -82,13 +82,6 @@ void Controls::on_btn_Sync_pressed()
     m_daqDriver.time()->sync();
 }
 
-void Controls::on_btn_connect_toggled(bool checked)
-{
-    if(checked) ui->btn_connect->setChecked(m_daqDriver.connect(ui->cmb_voyagerPorts->currentText().toStdString()));
-    else m_daqDriver.disconnect();
-
-}
-
 DAQDriver& Controls::daqDriver()
 {
     return m_daqDriver;
@@ -139,4 +132,10 @@ void Controls::on_btn_refresh_pressed()
     }
     bool connected = m_daqDriver.isConnected();
     ui->cmb_voyagerPorts->setEnabled(!connected && present);
+}
+
+void Controls::on_btn_connect_pressed()
+{
+    if(!ui->btn_connect->isChecked()) ui->btn_connect->setChecked(m_daqDriver.connect(ui->cmb_voyagerPorts->currentText().toStdString()));
+    else m_daqDriver.disconnect();
 }

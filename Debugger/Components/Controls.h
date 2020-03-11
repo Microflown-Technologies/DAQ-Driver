@@ -40,8 +40,6 @@ private slots:
     void processTimerTimeout();
     void on_btn_Sync_pressed();
 
-    void on_btn_connect_toggled(bool checked);
-
     void on_chk_StreamEnabled_clicked(bool checked);
 
     void on_btn_Aux1IEPE_clicked(bool checked);
@@ -55,6 +53,8 @@ private slots:
     void on_btn_refreshDeviceInfo_pressed();
 
     void on_btn_refresh_pressed();
+
+    void on_btn_connect_pressed();
 
 private:
     DAQDriver m_daqDriver;
