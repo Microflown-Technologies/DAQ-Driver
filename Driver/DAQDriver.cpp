@@ -63,6 +63,7 @@ bool DAQDriver::connect(std::string port) {
             m_eventLoopThread.callbackHandler()->runOnce([=] {
                 m_serialConnector->open(port);
                 m_deviceControl->takeControl();
+                reset();
             });
         }
         return true;
