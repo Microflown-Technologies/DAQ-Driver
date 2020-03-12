@@ -26,14 +26,14 @@ void Streaming::reset() {
 }
 
 void Streaming::handleNewDataRecieved(const google::protobuf::Message &message) {
-    if(m_isStreaming) {
-        m_dataQueueMutex.lock();
-        m_dataQueue.push(dynamic_cast<const DataBuffer&>(message));
-        m_dataQueueMutex.unlock();
-        m_newBufferCallbackHandler.invokeCallbacks();
-    } else {
-        stop();
+    if(!m_isStreaming) {
+        m_isStreaming = true;
+        m_streamStartedCallbackHandler.invokeCallbacks();
     }
+    m_dataQueueMutex.lock();
+    m_dataQueue.push(dynamic_cast<const DataBuffer&>(message));
+    m_dataQueueMutex.unlock();
+    m_newBufferCallbackHandler.invokeCallbacks();
 }
 
 bool Streaming::isStreaming() const {
