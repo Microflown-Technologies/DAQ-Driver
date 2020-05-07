@@ -31,10 +31,7 @@ public:
      */
     virtual std::vector<uint8_t> nextMessage() = 0;
 
-    /**
-     * @brief process process data
-     */
-    virtual void process() = 0;
 };
+typedef std::shared_ptr<AbstractSocketConnector> pAbstractSocketConnector;
 
 #endif // ABSTRACTSOCKETCONNECTOR_H

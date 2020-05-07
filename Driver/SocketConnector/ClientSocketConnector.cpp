@@ -13,7 +13,7 @@ size_t ClientSocketConnector::messagesAvailable() {
     return m_messageQueue.size();
 }
 
-std::vector<uint8_t> ClientSocketConnector::nextMessage() {
+std::vector<uint8_t> ClientSocketConnector::nextMessage(){
     auto message = m_messageQueue.front();
     m_messageQueue.pop();
     return message;
