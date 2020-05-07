@@ -55,13 +55,9 @@ target_include_directories( ${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-# Link with windows api on windows
-if(WIN32)
-    target_link_libraries(${PROJECT_NAME} SetupAPI)
-endif()
-
 # Link with dependencies
 if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
         target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::SerialPort)
 endif()
 target_link_libraries(${PROJECT_NAME} protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+target_link_libraries(${PROJECT_NAME} ixwebsocket)
