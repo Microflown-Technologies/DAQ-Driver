@@ -26,13 +26,14 @@ void Streaming::reset() {
 }
 
 void Streaming::handleNewDataRecieved(const google::protobuf::Message &message) {
-    if(m_isStreaming) {
-        std::lock_guard<std::mutex> gaurd(m_dataQueueMutex);
-        m_dataQueue.push(dynamic_cast<const DataBuffer&>(message));
-        m_newBufferCallbackHandler.invokeCallbacks();
-    } else {
-        stop();
+    if(!m_isStreaming) {
+        m_isStreaming = true;
+        m_streamStartedCallbackHandler.invokeCallbacks();
     }
+    m_dataQueueMutex.lock();
+    m_dataQueue.push(dynamic_cast<const DataBuffer&>(message));
+    m_dataQueueMutex.unlock();
+    m_newBufferCallbackHandler.invokeCallbacks();
 }
 
 bool Streaming::isStreaming() const {
@@ -50,9 +51,13 @@ size_t Streaming::pendingBufferCount() {
 
 DataBuffer Streaming::nextQueuedBuffer() {
     std::lock_guard<std::mutex> gaurd(m_dataQueueMutex);
-    DataBuffer buffer =  m_dataQueue.front();
-    m_dataQueue.pop();
-    return buffer;
+    if(!m_dataQueue.empty()) {
+        DataBuffer buffer = m_dataQueue.front();
+        m_dataQueue.pop();
+        return buffer;
+    } else {
+        return DataBuffer();
+    }
 }
 
 std::shared_ptr<std::function<void (void)> > Streaming::addNewBufferCallback(const std::function<void ()> &newBufferCallback) {

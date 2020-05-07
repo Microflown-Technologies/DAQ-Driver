@@ -10,8 +10,8 @@ EventLoopThread::~EventLoopThread() {
 }
 
 void EventLoopThread::start() {
-#ifdef QT_IS_AVAILABLE
     m_eventLoopRunning = true;
+#ifdef QT_IS_AVAILABLE
     QThread::start(QThread::TimeCriticalPriority);
 #else
     m_eventloopThread = std::thread(&EventLoopThread::loop, this);

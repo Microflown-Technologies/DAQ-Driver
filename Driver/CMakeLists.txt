@@ -7,7 +7,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Find dependencies
 find_package(Qt5 QUIET OPTIONAL_COMPONENTS Core SerialPort)
 if(Qt5SerialPort_FOUND AND Qt5Core_FOUND)
-    add_definitions(-DQT_IS_AVAILABLE)
+#    add_definitions(-DQT_IS_AVAILABLE)
     set(CMAKE_AUTOMOC ON)
 endif()
 
