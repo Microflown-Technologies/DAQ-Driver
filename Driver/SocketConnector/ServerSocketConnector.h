@@ -7,6 +7,7 @@
 #include <memory>
 #include <string>
 #include <stdint.h>
+#include <iostream>
 
 //Internal headers
 #include "AbstractSocketConnector.h"
@@ -19,7 +20,7 @@
 class ServerSocketConnector : public AbstractSocketConnector
 {
 public:
-    ServerSocketConnector(uint16_t port = 80);
+    ServerSocketConnector(uint16_t port = 8080);
     ~ServerSocketConnector();
 
     virtual void sendMessage(const std::vector<uint8_t> &message) override;

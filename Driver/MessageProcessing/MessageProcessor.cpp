@@ -1,6 +1,6 @@
 #include "MessageProcessor.h"
 
-MessageProcessor::MessageProcessor(pAbstractSerialConnector serialConnector) : m_serialConnector(serialConnector)
+MessageProcessor::MessageProcessor(pAbstractSocketConnector socketConnector) : m_socketConnector(socketConnector)
 {
     m_clearTimer.setCallback(MessageDeserializer::clear);
 }
@@ -8,14 +8,14 @@ MessageProcessor::MessageProcessor(pAbstractSerialConnector serialConnector) : m
 void MessageProcessor::transmit(const google::protobuf::Message &message) {
     const Message parsedMessage = MessageParser::parse(message);
     const std::vector<uint8_t> serializedMessage = MessageSerializer::serialize(parsedMessage);
-    m_serialConnector->priorityWrite(serializedMessage);
+    m_socketConnector->sendMessage(serializedMessage);
 }
 
 void MessageProcessor::process() {
-    if(m_serialConnector->dataAvailable()) {
-        m_clearTimer.start(1000);
-        MessageDeserializer::processData(m_serialConnector->read());
+    while(m_socketConnector->messagesAvailable()) {
+        MessageDeserializer::processData(m_socketConnector->nextMessage());
         while (MessageDeserializer::hasMessagesAvailable()) {
+            m_clearTimer.start(1000);
             Message message = MessageDeserializer::nextMessage();
             std::shared_ptr<google::protobuf::Message> protobuffMessage = MessageParser::parse(message);
             if(protobuffMessage) {

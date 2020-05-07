@@ -9,7 +9,7 @@
 #include "MessageHashTable.h"
 #include "MessageSerializer.h"
 #include "MessageDeserializer.h"
-#include "SerialConnector/AbstractSerialConnector.h"
+#include "SocketConnector/AbstractSocketConnector.h"
 
 //STD framework
 #include <memory>
@@ -24,7 +24,7 @@
 class MessageProcessor
 {
 public:
-    MessageProcessor(pAbstractSerialConnector serialConnector);
+    MessageProcessor(pAbstractSocketConnector socketConnector);
 
     /**
      * @brief transmit Transmits a message to the Voyager
@@ -40,7 +40,7 @@ public:
 
 private:
     Timer m_clearTimer;
-    pAbstractSerialConnector m_serialConnector; ///< Serial connection to the Voyager
+    pAbstractSocketConnector m_socketConnector; ///< Serial connection to the Voyager
 };
 typedef std::shared_ptr<MessageProcessor> pMessageProcessor;
 #endif // MESSAGEPROCESSOR_H

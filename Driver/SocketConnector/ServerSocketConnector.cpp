@@ -37,6 +37,8 @@ void ServerSocketConnector::stopServer() {
 void ServerSocketConnector::startServer() {
     m_websocketServer = new ix::WebSocketServer(m_port);
     m_websocketServer->setOnConnectionCallback(std::bind(&ServerSocketConnector::onConnectionCallback, this, std::placeholders::_1, std::placeholders::_2));
+    auto listenStatus = m_websocketServer->listen();
+    std::cout << listenStatus.second << std::endl;
     m_websocketServer->start();
 }
 

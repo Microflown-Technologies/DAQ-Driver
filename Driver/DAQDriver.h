@@ -15,8 +15,7 @@
 #include "DriverComponents/InputRange.h"
 #include "DriverComponents/Formatting.h"
 #include "DriverComponents/DeviceControl.h"
-#include "SerialConnector/QtSerialConnector.h"
-#include "SerialConnector/GenericSerialConnector.h"
+#include "SocketConnector/AbstractSocketConnector.h"
 #include "MessageProcessing/MessageProcessor.h"
 
 /**
@@ -25,7 +24,7 @@
 class DAQDriver
 {
 public:
-    DAQDriver();
+    DAQDriver(pAbstractSocketConnector socketConnector);
 
     /**
      * @brief streaming Get driver component that controls streaming data/audio
@@ -75,28 +74,16 @@ public:
     void reset();
 
     /**
-     * @brief voyagerConnected returns list of connected voyagers
-     * @return returns list of serialports with connected Voyager
-     */
-    std::vector<std::string> presentVoyagers();
-
-    /**
      * @brief connect Attempts to connect to the Voyager
      * @param port port to connect to
      * @return returns true on succes
      */
-    bool connect(std::string port);
+    bool connect();
 
     /**
      * @brief disconnect Disconnects the Voyager
      */
     void disconnect();
-
-    /**
-     * @brief isConnected Checks if the driver is connected to the Voyager
-     * @return returns true if driver is connected to Voyager
-     */
-    bool isConnected();
 
 protected:
     /**
@@ -114,9 +101,8 @@ protected:
     void handleStreamStopped();
 
 private:
-    std::atomic_bool m_connected;
     std::atomic_bool m_initialized;
-    pAbstractSerialConnector m_serialConnector;
+    pAbstractSocketConnector m_socketConnector;
     std::shared_ptr<std::function<void (void)> > m_initializeCallback;
     pMessageProcessor m_messageProcessor; ///< Processes incomming and outgoing messages
     pIEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels

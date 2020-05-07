@@ -1,7 +1,7 @@
 #include "DAQDriver.h"
 
-DAQDriver::DAQDriver() :
-    m_connected(false), m_initialized(false)
+DAQDriver::DAQDriver(pAbstractSocketConnector socketConnector) :
+    m_initialized(false), m_socketConnector(socketConnector)
 {
     m_initializeCallback = m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::initialize, this));
     m_eventLoopThread.start();
@@ -49,58 +49,30 @@ void DAQDriver::reset() {
 
 }
 
-std::vector<std::string> DAQDriver::presentVoyagers() {
-    return m_serialConnector->presentVoyagers();
-}
 
-bool DAQDriver::connect(std::string port) {
-    auto currentPresentVoyagers = m_serialConnector->presentVoyagers();
-    if(std::find(currentPresentVoyagers.begin(), currentPresentVoyagers.end(), port) != currentPresentVoyagers.end()) {
-        MessageDeserializer::clear();
-        m_connected = true;
-        if(!m_serialConnector->isOpen()) {
-            m_eventLoopThread.setPollingInterval(50);
-            m_eventLoopThread.callbackHandler()->runOnce([=] {
-                m_serialConnector->open(port);
-                m_deviceControl->takeControl();
-                reset();
-            });
-        }
-        return true;
-    } else {
-        return false;
-    }
+bool DAQDriver::connect() {
+    m_deviceControl->takeControl();
+    reset();
+    return true;
 }
 
 void DAQDriver::disconnect() {
     m_eventLoopThread.callbackHandler()->runOnce([=] {
         m_eventLoopThread.setPollingInterval(500);
         m_deviceControl->releaseControl();
-        m_serialConnector->close();
         reset();
-        m_connected = false;
     });
 }
 
-bool DAQDriver::isConnected() {
-    return m_connected && !presentVoyagers().empty();
-}
 
 void DAQDriver::process() {
-    if(m_serialConnector->isOpen()) {
-        m_messageProcessor->process();
-    }
+    m_messageProcessor->process();
 }
 
 void DAQDriver::initialize()
 {
     //Create objects
-#if defined(_WIN32)
-    m_serialConnector = pAbstractSerialConnector(new GenericSerialConnector());
-#else
-    m_serialConnector = pAbstractSerialConnector(new QtSerialConnector());
-#endif
-    m_messageProcessor = pMessageProcessor(new MessageProcessor(m_serialConnector));
+    m_messageProcessor = pMessageProcessor(new MessageProcessor(m_socketConnector));
     m_iepe = pIEPE(new IEPE(m_messageProcessor));
     m_time = pTime(new Time(m_messageProcessor));
     m_streaming = pStreaming(new Streaming(m_messageProcessor));
@@ -117,7 +89,6 @@ void DAQDriver::initialize()
     m_deviceControl->addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
     m_deviceControl->addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
     m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::process, this));
-    m_eventLoopThread.callbackHandler()->addCallback(std::bind(&AbstractSerialConnector::process, m_serialConnector.get()));
 
     // Remove initialized callback
     m_eventLoopThread.callbackHandler()->removeCallback(m_initializeCallback);
