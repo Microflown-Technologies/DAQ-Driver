@@ -1,12 +1,17 @@
 #include "ClientSocketConnector.h"
 
-ClientSocketConnector::ClientSocketConnector(std::string hostname)
+ClientSocketConnector::ClientSocketConnector(std::string hostname) : m_hostname(hostname)
+{
+    startClient();
+}
+
+ClientSocketConnector::~ClientSocketConnector()
 {
 
 }
 
 void ClientSocketConnector::sendMessage(const std::vector<uint8_t> &message) {
-    m_webSocket.send(std::string(*message.data(), message.size()), true);
+    m_webSocket.sendBinary(std::string(message.begin(), message.end()));
 }
 
 size_t ClientSocketConnector::messagesAvailable() {
@@ -19,14 +24,31 @@ std::vector<uint8_t> ClientSocketConnector::nextMessage(){
     return message;
 }
 
+void ClientSocketConnector::stopClient()
+{
+    m_webSocket.close();
+    m_webSocket.stop();
+}
+
 void ClientSocketConnector::startClient()
 {
-    m_webSocket.setUrl("ws://" + m_hostname + "/");
+    m_webSocket.setUrl("ws://" + m_hostname);
     m_webSocket.setOnMessageCallback(std::bind(&ClientSocketConnector::onMessageCallback, this, std::placeholders::_1));
+    m_webSocket.start();
 }
 
 void ClientSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr &message) {
-    if(message->type == ix::WebSocketMessageType::Message) {
-        m_messageQueue.push(std::vector<uint8_t>(*message->str.data(), message->str.size()));
+    switch(message->type) {
+        case ix::WebSocketMessageType::Message:
+            m_messageQueue.push(std::vector<uint8_t>(message->str.begin(), message->str.end()));
+        break;
+        case ix::WebSocketMessageType::Open:
+            std::cout << "New connection from client" << std::endl;
+        break;
+        case ix::WebSocketMessageType::Close:
+            std::cout << "Connection was closed" << std::endl;
+        break;
+        default:
+        break;
     }
 }

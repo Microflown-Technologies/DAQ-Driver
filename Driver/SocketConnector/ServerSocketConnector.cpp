@@ -13,7 +13,7 @@ ServerSocketConnector::~ServerSocketConnector() {
 
 void ServerSocketConnector::sendMessage(const std::vector<uint8_t> &message) {
     for(auto websocket: m_connections) {
-        websocket->send(std::string(*message.data(), message.size()), true);
+        websocket->sendBinary(std::string(message.begin(), message.end()));
     }
 }
 
@@ -38,13 +38,14 @@ void ServerSocketConnector::startServer() {
     m_websocketServer = new ix::WebSocketServer(m_port);
     m_websocketServer->setOnConnectionCallback(std::bind(&ServerSocketConnector::onConnectionCallback, this, std::placeholders::_1, std::placeholders::_2));
     auto listenStatus = m_websocketServer->listen();
-    std::cout << listenStatus.second << std::endl;
+    if(listenStatus.first) std::cout << "listening on port 8080" << std::endl;
+    else std::cout << listenStatus.second << std::endl;
     m_websocketServer->start();
 }
 
 void ServerSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr& message) {
     if(message->type == ix::WebSocketMessageType::Message) {
-        m_messageQueue.push(std::vector<uint8_t>(*message->str.data(), message->str.size()));
+        m_messageQueue.push(std::vector<uint8_t>(message->str.begin(), message->str.end()));
     }
 }
 
@@ -52,4 +53,5 @@ void ServerSocketConnector::onConnectionCallback(std::shared_ptr<ix::WebSocket> 
     (void)connectionState;
     m_connections.push_back(webSocket);
     webSocket->setOnMessageCallback(std::bind(&ServerSocketConnector::onMessageCallback, this, std::placeholders::_1));
+    std::cout << "New connection from" << webSocket->getUrl() << std::endl;
 }

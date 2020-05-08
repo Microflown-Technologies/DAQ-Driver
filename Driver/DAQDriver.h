@@ -3,6 +3,7 @@
 
 //STD framework
 #include <thread>
+#include <memory>
 #include <functional>
 
 //Internal headers
@@ -115,5 +116,5 @@ private:
     pDeviceControl m_deviceControl; ///< Handles control of the device
     EventLoopThread m_eventLoopThread; ///< Threaded event loop for the driver
 };
-
+typedef std::shared_ptr<DAQDriver> pDAQDriver;
 #endif // DAQDRIVER_H

@@ -8,11 +8,9 @@ Controls::Controls(QWidget *parent) :
     ui->setupUi(this);
     connect(&m_uiTimer, &QTimer::timeout, this, &Controls::uiTimerTimeout);
     connect(&m_processTimer, &QTimer::timeout, this, &Controls::processTimerTimeout);
-    connect(m_daqDriver.time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
     m_processTimer.start(1);
     m_uiTimer.start(500);
     populateSampleRateComboBox();
-    on_btn_refresh_pressed();
 }
 
 Controls::~Controls()
@@ -41,9 +39,10 @@ void Controls::on_cmb_sampleRates_activated(int index) {
 }
 
 void Controls::on_cmb_sampleRates_currentIndexChanged(int index) {
-    DataFormat dataFormat = m_daqDriver.formatting()->dataFormat();
+    if(!m_daqDriver) return;
+    DataFormat dataFormat = m_daqDriver->formatting()->dataFormat();
     dataFormat.set_samplerate(DataFormat::SampleRate(index));
-    m_daqDriver.formatting()->setDataFormat(dataFormat);
+    m_daqDriver->formatting()->setDataFormat(dataFormat);
 }
 
 void Controls::onTimesynced(int64_t difference)
@@ -53,23 +52,24 @@ void Controls::onTimesynced(int64_t difference)
 
 void Controls::uiTimerTimeout()
 {
-    bool connected = m_daqDriver.isConnected();
+    bool connected = static_cast<bool>(m_daqDriver);
     ui->grp_Sync->setEnabled(connected);
     ui->grp_StreamControl->setEnabled(connected);
     ui->groupBox->setEnabled(connected);
     ui->btn_resetDevice->setEnabled(connected);
+    if(!connected) return;
     ui->btn_connect->setChecked(connected);
-    ui->btn_Aux1IEPE->setChecked(m_daqDriver.iepe()->getIEPE(IEPE::Aux1));
-    ui->btn_Aux2IEPE->setChecked(m_daqDriver.iepe()->getIEPE(IEPE::Aux2));
-    ui->chk_StreamEnabled->setChecked(m_daqDriver.streaming()->isStreaming());
-    ui->lbl_buffer_count->setText(QString::number(m_daqDriver.streaming()->pendingBufferCount()));
+    ui->btn_Aux1IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux1));
+    ui->btn_Aux2IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux2));
+    ui->chk_StreamEnabled->setChecked(m_daqDriver->streaming()->isStreaming());
+    ui->lbl_buffer_count->setText(QString::number(m_daqDriver->streaming()->pendingBufferCount()));
     //Update deviceinformation
-    ui->lbl_deviceName->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().devicename()));
-    ui->lbl_modelName->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().modelname()));
-    ui->lbl_driverName->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().drivername()));
-    ui->lbl_driverVersion->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().driverversion()));
-    ui->lbl_softwareVersion->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().softwareversion()));
-    ui->lbl_deviceSerial->setText(QString::fromStdString(m_daqDriver.deviceInfo()->remoteDeviceInfo().deviceserial()));
+    ui->lbl_deviceName->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().devicename()));
+    ui->lbl_modelName->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().modelname()));
+    ui->lbl_driverName->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().drivername()));
+    ui->lbl_driverVersion->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().driverversion()));
+    ui->lbl_softwareVersion->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().softwareversion()));
+    ui->lbl_deviceSerial->setText(QString::fromStdString(m_daqDriver->deviceInfo()->remoteDeviceInfo().deviceserial()));
 }
 
 void Controls::processTimerTimeout()
@@ -79,63 +79,54 @@ void Controls::processTimerTimeout()
 
 void Controls::on_btn_Sync_pressed()
 {
-    m_daqDriver.time()->sync();
+    m_daqDriver->time()->sync();
 }
 
-DAQDriver& Controls::daqDriver()
+std::shared_ptr<DAQDriver> Controls::daqDriver()
 {
     return m_daqDriver;
 }
 
 void Controls::on_chk_StreamEnabled_clicked(bool checked)
 {
-    if(checked) m_daqDriver.streaming()->start();
-    else m_daqDriver.streaming()->stop();
+    if(checked) m_daqDriver->streaming()->start();
+    else m_daqDriver->streaming()->stop();
 }
 
 void Controls::on_btn_Aux1IEPE_clicked(bool checked) {
-    m_daqDriver.iepe()->setIEPE(IEPE::Aux1, checked);
+    m_daqDriver->iepe()->setIEPE(IEPE::Aux1, checked);
 }
 
 void Controls::on_btn_Aux2IEPE_clicked(bool checked) {
-    m_daqDriver.iepe()->setIEPE(IEPE::Aux2, checked);
+    m_daqDriver->iepe()->setIEPE(IEPE::Aux2, checked);
 }
 
 void Controls::on_btn_setinputRange_clicked()
 {
-    m_daqDriver.inputRange()->setInputRange(ui->cmb_input_Channel->currentIndex(),
+    m_daqDriver->inputRange()->setInputRange(ui->cmb_input_Channel->currentIndex(),
                                            static_cast<InputRange::Voltage>(ui->cmb_inputrange->currentIndex()));
 }
 
 void Controls::on_cmb_input_Channel_currentIndexChanged(int index) {
-    ui->cmb_inputrange->setCurrentIndex(m_daqDriver.inputRange()->getInputRange(index));
+    ui->cmb_inputrange->setCurrentIndex(m_daqDriver->inputRange()->getInputRange(index));
 }
 
 void Controls::on_btn_refreshDeviceInfo_pressed() {
-    m_daqDriver.deviceInfo()->refresh();
-}
-
-void Controls::on_btn_refresh_pressed()
-{
-    bool present = !m_daqDriver.presentVoyagers().empty();
-    ui->btn_connect->setEnabled(present);
-    if(present) {
-        ui->cmb_voyagerPorts->clear();
-        for(std::string port: m_daqDriver.presentVoyagers()) {
-            ui->cmb_voyagerPorts->addItem(QString::fromStdString(port));
-        }
-        ui->lbl_present->setText("Yes");
-        ui->lbl_present->setStyleSheet("color: green;");
-    } else {
-        ui->lbl_present->setText("No");
-        ui->lbl_present->setStyleSheet("color: red;");
-    }
-    bool connected = m_daqDriver.isConnected();
-    ui->cmb_voyagerPorts->setEnabled(!connected && present);
+    m_daqDriver->deviceInfo()->refresh();
 }
 
 void Controls::on_btn_connect_pressed()
 {
-    if(!ui->btn_connect->isChecked()) ui->btn_connect->setChecked(m_daqDriver.connect(ui->cmb_voyagerPorts->currentText().toStdString()));
-    else m_daqDriver.disconnect();
+    if(!ui->btn_connect->isChecked()) {
+        m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString()))));
+        connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
+        m_daqDriver->deviceControl()->takeControl();
+    }
+    else m_daqDriver.reset();
+
+}
+
+void Controls::on_btn_connect_clicked()
+{
+
 }

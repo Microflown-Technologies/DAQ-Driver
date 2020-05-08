@@ -41,7 +41,7 @@
   <customwidget>
    <class>QtCharts::QChartView</class>
    <extends>QGraphicsView</extends>
-   <header>QtCharts/QChartView.h</header>
+   <header>QtCharts/QChartView</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>631</height>
+    <width>337</width>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -280,35 +280,14 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QComboBox" name="cmb_voyagerPorts"/>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="btn_refresh">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>21</width>
-          <height>21</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>21</width>
-          <height>21</height>
-         </size>
-        </property>
+      <item row="0" column="1" colspan="2">
+       <widget class="QLabel" name="lbl_present">
         <property name="text">
-         <string>R</string>
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="3">
+      <item row="2" column="0" colspan="3">
        <widget class="QPushButton" name="btn_connect">
         <property name="text">
          <string>Connect</string>
@@ -318,17 +297,17 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="3">
+      <item row="3" column="0" colspan="3">
        <widget class="QPushButton" name="btn_resetDevice">
         <property name="text">
          <string>Reset</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QLabel" name="lbl_present">
+      <item row="1" column="0" colspan="3">
+       <widget class="QLineEdit" name="txt_hostname">
         <property name="text">
-         <string>TextLabel</string>
+         <string>127.0.0.1:8080</string>
         </property>
        </widget>
       </item>

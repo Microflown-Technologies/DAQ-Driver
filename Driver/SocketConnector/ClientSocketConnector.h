@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <iostream>
 #include <stdint.h>
 
 //Internal headers
@@ -28,6 +29,7 @@ public:
     virtual std::vector<uint8_t> nextMessage() override;
 
 protected:
+    void stopClient();
     void startClient();
     void onMessageCallback(const ix::WebSocketMessagePtr &message);
 

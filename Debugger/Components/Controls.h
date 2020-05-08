@@ -7,6 +7,7 @@
 
 //Driver
 #include "DAQDriver.h"
+#include "SocketConnector/ClientSocketConnector.h"
 #include <google/protobuf/reflection.h>
 #include "DataFormat.pb.h"
 
@@ -22,7 +23,7 @@ public:
     explicit Controls(QWidget *parent = nullptr);
     ~Controls();
 
-    DAQDriver &daqDriver();
+    std::shared_ptr<DAQDriver> daqDriver();
 
 private:
     void populateSampleRateComboBox();
@@ -52,12 +53,12 @@ private slots:
 
     void on_btn_refreshDeviceInfo_pressed();
 
-    void on_btn_refresh_pressed();
-
     void on_btn_connect_pressed();
 
+    void on_btn_connect_clicked();
+
 private:
-    DAQDriver m_daqDriver;
+    std::shared_ptr<DAQDriver> m_daqDriver;
     QTimer m_processTimer;
     QTimer m_uiTimer;
     Ui::Controls *ui;

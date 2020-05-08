@@ -16,7 +16,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    ui->widget->daqDriver().disconnect();
     QMainWindow::closeEvent(event);
 }
 
