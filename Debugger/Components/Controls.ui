@@ -307,7 +307,7 @@
       <item row="1" column="0" colspan="3">
        <widget class="QLineEdit" name="txt_hostname">
         <property name="text">
-         <string>127.0.0.1:8080</string>
+         <string>172.20.0.1:8080</string>
         </property>
        </widget>
       </item>

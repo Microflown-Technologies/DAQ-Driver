@@ -2,6 +2,7 @@
 
 ClientSocketConnector::ClientSocketConnector(std::string hostname) : m_hostname(hostname)
 {
+    ix::initNetSystem();
     startClient();
 }
 
@@ -48,6 +49,8 @@ void ClientSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr &mes
         case ix::WebSocketMessageType::Close:
             std::cout << "Connection was closed" << std::endl;
         break;
+        case ix::WebSocketMessageType::Error:
+            std::cout << "Connection error" << message->errorInfo.reason << std::endl;
         default:
         break;
     }

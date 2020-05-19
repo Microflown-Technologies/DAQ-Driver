@@ -13,12 +13,13 @@
 #include "AbstractSocketConnector.h"
 
 //IXWebSocket
+#include "ixwebsocket/IXNetSystem.h"
 #include <ixwebsocket/IXWebSocket.h>
 
 class ClientSocketConnector : public AbstractSocketConnector
 {
 public:
-    ClientSocketConnector(std::string hostname);
+    ClientSocketConnector(std::string hostname = "172.20.0.1:8080");
     ~ClientSocketConnector();
 
 

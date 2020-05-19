@@ -1,3 +1,4 @@
+
 #include "ServerSocketConnector.h"
 
 ServerSocketConnector::ServerSocketConnector(uint16_t port) : m_port(port)
@@ -35,7 +36,7 @@ void ServerSocketConnector::stopServer() {
 }
 
 void ServerSocketConnector::startServer() {
-    m_websocketServer = new ix::WebSocketServer(m_port);
+    m_websocketServer = new ix::WebSocketServer(m_port, "0.0.0.0");
     m_websocketServer->setOnConnectionCallback(std::bind(&ServerSocketConnector::onConnectionCallback, this, std::placeholders::_1, std::placeholders::_2));
     auto listenStatus = m_websocketServer->listen();
     if(listenStatus.first) std::cout << "listening on port 8080" << std::endl;
