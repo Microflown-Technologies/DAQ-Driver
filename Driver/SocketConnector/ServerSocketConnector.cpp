@@ -28,6 +28,11 @@ std::vector<uint8_t> ServerSocketConnector::nextMessage() {
     return message;
 }
 
+bool ServerSocketConnector::isOpen()
+{
+    return true;
+}
+
 void ServerSocketConnector::stopServer() {
     for(auto webSocket: m_connections) {
         webSocket->close();

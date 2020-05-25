@@ -53,12 +53,14 @@ void Controls::onTimesynced(int64_t difference)
 void Controls::uiTimerTimeout()
 {
     bool connected = static_cast<bool>(m_daqDriver);
+    if(connected) connected &= m_daqDriver->isConnected();
     ui->grp_Sync->setEnabled(connected);
     ui->grp_StreamControl->setEnabled(connected);
     ui->groupBox->setEnabled(connected);
     ui->btn_resetDevice->setEnabled(connected);
-    if(!connected) return;
+    ui->btn_refreshDeviceInfo->setEnabled(connected);
     ui->btn_connect->setChecked(connected);
+    if(!connected) return;
     ui->btn_Aux1IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux1));
     ui->btn_Aux2IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux2));
     ui->chk_StreamEnabled->setChecked(m_daqDriver->streaming()->isStreaming());
@@ -118,15 +120,10 @@ void Controls::on_btn_refreshDeviceInfo_pressed() {
 void Controls::on_btn_connect_pressed()
 {
     if(!ui->btn_connect->isChecked()) {
-        m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString()))));
+        m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString(), ui->spn_port->value()))));
         connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
         m_daqDriver->deviceControl()->takeControl();
     }
     else m_daqDriver.reset();
-
-}
-
-void Controls::on_btn_connect_clicked()
-{
 
 }

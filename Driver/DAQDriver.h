@@ -26,6 +26,7 @@ class DAQDriver
 {
 public:
     DAQDriver(pAbstractSocketConnector socketConnector);
+    ~DAQDriver();
 
     /**
      * @brief streaming Get driver component that controls streaming data/audio
@@ -85,6 +86,13 @@ public:
      * @brief disconnect Disconnects the Voyager
      */
     void disconnect();
+
+
+    /**
+     * @brief isConnected Checks if the driver is connected to the Voyager
+     * @return returns true if driver is connected to Voyager
+     */
+    bool isConnected();
 
 protected:
     /**

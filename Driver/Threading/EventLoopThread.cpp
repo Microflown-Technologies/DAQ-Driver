@@ -33,7 +33,7 @@ void EventLoopThread::loop() {
 #ifdef QT_IS_AVAILABLE
         QCoreApplication::processEvents();
 #endif
-        std::this_thread::sleep_for(std::chrono::milliseconds(pollingInterval()));
+        std::this_thread::sleep_for(std::chrono::microseconds(pollingInterval()));
     }
 }
 
@@ -46,8 +46,8 @@ void EventLoopThread::run() {
     loop();
 }
 #endif
-void EventLoopThread::setPollingInterval(const int &milliseconds) {
-    m_pollingInterval = milliseconds;
+void EventLoopThread::setPollingInterval(const int &microseconds) {
+    m_pollingInterval = microseconds;
 }
 
 int EventLoopThread::pollingInterval() const {

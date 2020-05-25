@@ -19,7 +19,7 @@
 class ClientSocketConnector : public AbstractSocketConnector
 {
 public:
-    ClientSocketConnector(std::string hostname = "172.20.0.1:8080");
+    ClientSocketConnector(std::string hostname = AbstractSocketConnector::defaultIpAddress, uint16_t port = AbstractSocketConnector::defaultPort);
     ~ClientSocketConnector();
 
 
@@ -29,13 +29,17 @@ public:
 
     virtual std::vector<uint8_t> nextMessage() override;
 
+    virtual bool isOpen() override;
+
 protected:
     void stopClient();
-    void startClient();
+    bool startClient();
     void onMessageCallback(const ix::WebSocketMessagePtr &message);
 
 private:
+    uint16_t m_port;
     std::string m_hostname;
+    std::atomic_bool m_open;
     ix::WebSocket m_webSocket;
     std::queue<std::vector<uint8_t>> m_messageQueue;
 };

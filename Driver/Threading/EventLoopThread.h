@@ -51,16 +51,16 @@ public:
     bool isRunning() const;
 
     /**
-     * @brief pollingInterval Gets the polling interval in milliseconds
-     * @return retuns polling interval in milliseconds
+     * @brief pollingInterval Gets the polling interval in microseconds
+     * @return retuns polling interval in microseconds
      */
     int pollingInterval() const;
 
     /**
-     * @brief setPollingInterval Sets the polling interval in milliseconds
+     * @brief setPollingInterval Sets the polling interval in microseconds
      * @param milliseconds polling interval in milliseconds
      */
-    void setPollingInterval(const int &milliseconds);
+    void setPollingInterval(const int &microseconds);
 
     /**
      * @brief callbackHandler exposes the callback handler for the eventloopthread

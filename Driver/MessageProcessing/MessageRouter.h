@@ -32,6 +32,12 @@ public:
         uint16_t messageHash = MessageHashTable::hashForMessageType<T>();
         m_routeMap[messageHash].emplace_back(route);
     }
+    /**
+     * @brief clearAllRoutes Clear all message routes
+     */
+    static void clearAllRoutes() {
+        m_routeMap.clear();
+    }
     
 private:
     static std::map<uint16_t, std::vector<std::function<void(const google::protobuf::Message &message)>>> m_routeMap;

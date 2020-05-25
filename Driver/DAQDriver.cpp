@@ -8,6 +8,21 @@ DAQDriver::DAQDriver(pAbstractSocketConnector socketConnector) :
     while(!m_initialized) { std::this_thread::sleep_for(std::chrono::milliseconds(5)); };
 }
 
+DAQDriver::~DAQDriver()
+{
+    m_eventLoopThread.stop();
+#ifdef QT_IS_AVAILABLE
+    m_iepe->disconnect();
+    m_time->disconnect();
+    m_streaming->disconnect();
+    m_heartbeat->disconnect();
+    m_inputRange->disconnect();
+    m_formatting->disconnect();
+    m_deviceInfo->disconnect();
+    m_eventLoopThread.wait(10);
+#endif
+}
+
 pStreaming DAQDriver::streaming() {
     return m_streaming;
 }
@@ -64,6 +79,10 @@ void DAQDriver::disconnect() {
     });
 }
 
+bool DAQDriver::isConnected() {
+    return m_socketConnector->isOpen();
+}
+
 
 void DAQDriver::process() {
     m_messageProcessor->process();
@@ -72,6 +91,7 @@ void DAQDriver::process() {
 void DAQDriver::initialize()
 {
     //Create objects
+    MessageRouter::clearAllRoutes();
     m_messageProcessor = pMessageProcessor(new MessageProcessor(m_socketConnector));
     m_iepe = pIEPE(new IEPE(m_messageProcessor));
     m_time = pTime(new Time(m_messageProcessor));
@@ -96,11 +116,11 @@ void DAQDriver::initialize()
 }
 
 void DAQDriver::handleSteamStarted() {
-    m_eventLoopThread.setPollingInterval(1);
+    m_eventLoopThread.setPollingInterval(500);
 }
 
 void DAQDriver::handleStreamStopped() {
-    m_eventLoopThread.setPollingInterval(50);
+    m_eventLoopThread.setPollingInterval(50000);
 }
 
 

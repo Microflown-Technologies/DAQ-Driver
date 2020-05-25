@@ -55,8 +55,6 @@ private slots:
 
     void on_btn_connect_pressed();
 
-    void on_btn_connect_clicked();
-
 private:
     std::shared_ptr<DAQDriver> m_daqDriver;
     QTimer m_processTimer;

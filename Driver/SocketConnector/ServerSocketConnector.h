@@ -20,7 +20,7 @@
 class ServerSocketConnector : public AbstractSocketConnector
 {
 public:
-    ServerSocketConnector(uint16_t port = 8080);
+    ServerSocketConnector(uint16_t port = AbstractSocketConnector::defaultPort);
     ~ServerSocketConnector();
 
     virtual void sendMessage(const std::vector<uint8_t> &message) override;
@@ -28,6 +28,8 @@ public:
     virtual size_t messagesAvailable() override;
 
     virtual std::vector<uint8_t> nextMessage() override;
+
+    bool isOpen() override;
 
 protected:
     void stopServer();
