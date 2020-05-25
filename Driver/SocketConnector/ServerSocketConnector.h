@@ -15,6 +15,7 @@
 
 //Internal headers
 #include "AbstractSocketConnector.h"
+#include "Threading/CallbackHandler.h"
 
 //IXWebsocket
 #include "ixwebsocket/IXNetSystem.h"
@@ -34,6 +35,8 @@ public:
     virtual std::vector<uint8_t> nextMessage() override;
 
     bool isOpen() override;
+
+    virtual CallbackHandler & closedCallbackHandler() override;
 
 protected:
     void stopServer();

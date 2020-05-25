@@ -28,9 +28,12 @@ std::vector<uint8_t> ServerSocketConnector::nextMessage() {
     return message;
 }
 
-bool ServerSocketConnector::isOpen()
-{
-    return true;
+bool ServerSocketConnector::isOpen() {
+    return !m_connections.empty();
+}
+
+CallbackHandler &ServerSocketConnector::closedCallbackHandler() {
+    return m_closedCallbackHandler;
 }
 
 void ServerSocketConnector::stopServer() {
@@ -67,6 +70,7 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 #else
         std::cout << "Connection was closed" << std::endl;
 #endif
+        if(!isOpen()) closedCallbackHandler().invokeCallbacks();
     } else if(message->type == ix::WebSocketMessageType::Error) {
         std::find(m_connections.begin(), m_connections.end(), webSocket);
 #ifdef QT_IS_AVAILABLE
