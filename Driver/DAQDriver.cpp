@@ -103,6 +103,7 @@ void DAQDriver::initialize()
     m_deviceControl = pDeviceControl(new DeviceControl(m_messageProcessor));
 
     //Add callbacks
+    m_socketConnector->closedCallbackHandler().addCallback(std::bind(&DAQDriver::reset, this));
     m_streaming->addStreamStartedCallback(std::bind(&DAQDriver::handleSteamStarted, this));
     m_streaming->addStreamStoppedCallback(std::bind(&DAQDriver::handleStreamStopped, this));
     m_deviceControl->addResetCallback(std::bind(&DAQDriver::reset, this));
