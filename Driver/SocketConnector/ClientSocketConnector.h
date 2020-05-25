@@ -31,6 +31,8 @@ public:
 
     virtual bool isOpen() override;
 
+    virtual CallbackHandler & closedCallbackHandler() override;
+
 protected:
     void stopClient();
     bool startClient();

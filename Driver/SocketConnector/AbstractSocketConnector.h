@@ -7,6 +7,9 @@
 #include <string>
 #include <stdint.h>
 
+//Internal headers
+#include "Threading/CallbackHandler.h"
+
 /**
  * @brief The AbstractSocketConnector class Defines an generic API for a websocket connection
  */
@@ -47,8 +50,18 @@ public:
      */
     virtual bool isOpen() = 0;
 
+    /**
+     * @brief closedCallbackHandler Handler that is invoked when all connections are closed
+     * @return associated callbackhandler
+     */
+    virtual CallbackHandler &closedCallbackHandler() = 0;
+
+
+protected:
+    CallbackHandler m_closedCallbackHandler;
 
 };
 typedef std::shared_ptr<AbstractSocketConnector> pAbstractSocketConnector;
 
 #endif // ABSTRACTSOCKETCONNECTOR_H
+
