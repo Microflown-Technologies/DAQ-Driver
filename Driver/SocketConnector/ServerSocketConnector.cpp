@@ -65,12 +65,15 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
     } else if(message->type == ix::WebSocketMessageType::Close) {
         auto result = std::find(m_connections.begin(), m_connections.end(), webSocket);
         if(result != m_connections.end()) m_connections.erase(result);
+        else std::cout << "trying to delete connection that does not exist!" << std::endl;
 #ifdef QT_IS_AVAILABLE
         qInfo() << "Connection was closed";
 #else
         std::cout << "Connection was closed" << std::endl;
 #endif
-        if(!isOpen()) closedCallbackHandler().invokeCallbacks();
+        if(!isOpen()) {
+            closedCallbackHandler().invokeCallbacks();
+        }
     } else if(message->type == ix::WebSocketMessageType::Error) {
         std::find(m_connections.begin(), m_connections.end(), webSocket);
 #ifdef QT_IS_AVAILABLE
@@ -83,7 +86,6 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 
 void ServerSocketConnector::onConnectionCallback(std::shared_ptr<ix::WebSocket> webSocket, std::shared_ptr<ix::ConnectionState> connectionState) {
     (void)connectionState;
-    m_connections.push_back(webSocket);
     webSocket->setOnMessageCallback([=] (const ix::WebSocketMessagePtr& message) {
         onMessageCallback(webSocket, message);
     });

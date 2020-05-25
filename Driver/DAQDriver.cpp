@@ -52,6 +52,7 @@ pInputRange DAQDriver::inputRange() {
     return m_inputRange;
 }
 void DAQDriver::reset() {
+    std::cout << "Driver was reset" << std::endl;
     m_iepe->reset();
     m_time->reset();
     m_streaming->reset();
@@ -59,6 +60,7 @@ void DAQDriver::reset() {
     m_inputRange->reset();
     m_formatting->reset();
     m_deviceInfo->reset();
+    m_deviceControl->reset();
     MessageDeserializer::clear();
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
