@@ -17,6 +17,7 @@ void Time::sync()
 
 void Time::reset() {
     m_timeDifference = 0;
+    sync();
 }
 
 uint64_t Time::mSecSinceEpoch() const {

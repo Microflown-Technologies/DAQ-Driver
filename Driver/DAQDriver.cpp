@@ -123,7 +123,7 @@ void DAQDriver::handleSteamStarted() {
 }
 
 void DAQDriver::handleStreamStopped() {
-    m_eventLoopThread.setPollingInterval(50000);
+    m_eventLoopThread.setPollingInterval(5000);
 }
 
 

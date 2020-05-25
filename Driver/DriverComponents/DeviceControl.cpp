@@ -7,7 +7,6 @@ DeviceControl::DeviceControl(pMessageProcessor messageProcessor) : AbstractDrive
 }
 
 void DeviceControl::reset() {
-    m_messageProcessor->transmit(Reset());
     m_hasControl = false;
 #ifdef QT_IS_AVAILABLE
     emit releasedControl();
