@@ -9,6 +9,10 @@
 #include <stdint.h>
 #include <iostream>
 
+#ifdef QT_IS_AVAILABLE
+#include <QDebug>
+#endif
+
 //Internal headers
 #include "AbstractSocketConnector.h"
 
@@ -34,7 +38,7 @@ public:
 protected:
     void stopServer();
     void startServer();
-    void onMessageCallback(const ix::WebSocketMessagePtr &message);
+    void onMessageCallback(std::shared_ptr<ix::WebSocket> webSocket, const ix::WebSocketMessagePtr &message);
     void onConnectionCallback(std::shared_ptr<ix::WebSocket> webSocket, std::shared_ptr<ix::ConnectionState> connectionState);
 
 private:
