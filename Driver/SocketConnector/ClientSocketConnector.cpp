@@ -61,7 +61,6 @@ void ClientSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr &mes
         case ix::WebSocketMessageType::Close:
             m_open = false;
             std::cout << "Connection was closed" << std::endl;
-            closedCallbackHandler().invokeCallbacks();
         break;
         case ix::WebSocketMessageType::Error:
             m_open = false;
