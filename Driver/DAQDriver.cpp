@@ -126,4 +126,9 @@ void DAQDriver::handleStreamStopped() {
     m_eventLoopThread.setPollingInterval(5000);
 }
 
+pAbstractSocketConnector DAQDriver::socketConnector() const
+{
+    return m_socketConnector;
+}
+
 

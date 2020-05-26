@@ -56,6 +56,12 @@ public:
      */
     virtual CallbackHandler &closedCallbackHandler() = 0;
 
+    /**
+     * @brief port Gets the port that is used by this socket connector
+     * @return port that is used by this socket connector
+     */
+    virtual uint16_t port() = 0;
+
 
 protected:
     CallbackHandler m_closedCallbackHandler;
