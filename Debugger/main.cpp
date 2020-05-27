@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include "Discovery/DeviceDiscovery.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

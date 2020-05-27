@@ -11,6 +11,7 @@ Controls::Controls(QWidget *parent) :
     m_processTimer.start(1);
     m_uiTimer.start(500);
     populateSampleRateComboBox();
+    connect(ui->widget, &DiscoveredVoyagerList::devicePicked, this, &Controls::devicePicked);
 }
 
 Controls::~Controls()
@@ -26,6 +27,12 @@ void Controls::populateSampleRateComboBox()
         ui->cmb_sampleRates->insertItem(enumNr, QString::fromStdString(sampleRateEnum->value(enumNr)->name()));
     }
     ui->cmb_sampleRates->setCurrentIndex(DataFormat::SampleRate::DataFormat_SampleRate__48000);
+}
+
+void Controls::devicePicked(QString ip) {
+    if(ui->btn_connect->isChecked()) ui->btn_connect->click();
+    ui->txt_hostname->setText(ip);
+    ui->btn_connect->click();
 }
 
 
@@ -123,6 +130,8 @@ void Controls::on_btn_connect_pressed()
         m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString(), ui->spn_port->value()))));
         connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
         m_daqDriver->deviceControl()->takeControl();
+        on_btn_refreshDeviceInfo_pressed();
+        on_btn_Sync_pressed();
     }
     else m_daqDriver.reset();
 

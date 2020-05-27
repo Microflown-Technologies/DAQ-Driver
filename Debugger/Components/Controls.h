@@ -30,6 +30,8 @@ private:
 
 private slots:
 
+    void devicePicked(QString ip);
+
     void on_btn_resetDevice_pressed();
 
     void on_cmb_sampleRates_activated(int index);

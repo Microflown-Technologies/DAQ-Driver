@@ -20,6 +20,10 @@ endif()
 #Load websocket driver
 add_subdirectory(Libraries/IXWebSocket)
 
+#Load zeroconf driver
+add_subdirectory(Libraries/zeroconf)
+
+
 # Enable ccache
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)

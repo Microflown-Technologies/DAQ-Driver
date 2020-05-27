@@ -63,7 +63,6 @@ void DAQDriver::reset() {
     m_deviceControl->reset();
     MessageDeserializer::clear();
     std::this_thread::sleep_for(std::chrono::seconds(1));
-
 }
 
 
