@@ -5,6 +5,9 @@
 #include <string>
 #include <memory>
 
+/**
+ * @brief The DiscoveredDevice class provides info about a discovered device
+ */
 class DiscoveredDevice
 {
 public:

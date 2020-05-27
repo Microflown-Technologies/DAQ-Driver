@@ -16,6 +16,9 @@
 #include "ixwebsocket/IXNetSystem.h"
 #include <ixwebsocket/IXWebSocket.h>
 
+/**
+ * @brief The ClientSocketConnector class Provides the socket implementation of AbstractSocketConnector
+ */
 class ClientSocketConnector : public AbstractSocketConnector
 {
 public:
