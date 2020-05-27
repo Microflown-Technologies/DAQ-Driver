@@ -36,6 +36,10 @@ CallbackHandler &ServerSocketConnector::closedCallbackHandler() {
     return m_closedCallbackHandler;
 }
 
+uint16_t ServerSocketConnector::port() {
+    return m_port;
+}
+
 void ServerSocketConnector::stopServer() {
     for(auto webSocket: m_connections) {
         webSocket->close();
@@ -47,7 +51,13 @@ void ServerSocketConnector::startServer() {
     m_websocketServer = new ix::WebSocketServer(m_port, "0.0.0.0");
     m_websocketServer->setOnConnectionCallback(std::bind(&ServerSocketConnector::onConnectionCallback, this, std::placeholders::_1, std::placeholders::_2));
     auto listenStatus = m_websocketServer->listen();
-    if(listenStatus.first) std::cout << "listening on port 8080" << std::endl;
+    if(listenStatus.first) {
+#ifdef QT_IS_AVAILABLE
+        qInfo() << "DAQDriver listening on port"  << m_port;
+#else
+        std::cout << "DAQDriver listening on port"  << std::to_string(m_port) << std::endl;
+#endif
+    }
     else std::cout << listenStatus.second << std::endl;
     m_websocketServer->start();
 }

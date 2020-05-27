@@ -34,6 +34,10 @@ CallbackHandler &ClientSocketConnector::closedCallbackHandler()
     return m_closedCallbackHandler;
 }
 
+uint16_t ClientSocketConnector::port() {
+    return m_port;
+}
+
 void ClientSocketConnector::stopClient()
 {
     m_webSocket.close();

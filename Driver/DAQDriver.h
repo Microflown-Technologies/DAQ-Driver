@@ -94,6 +94,12 @@ public:
      */
     bool isConnected();
 
+    /**
+     * @brief socketConnector Gets the socket connector that is used by DAQDriver
+     * @return socket connector that is used by DAQDriver
+     */
+    pAbstractSocketConnector socketConnector() const;
+
 protected:
     /**
      * @brief process Run periodically to run the library internal functions
