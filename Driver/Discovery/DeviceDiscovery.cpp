@@ -1,11 +1,6 @@
 #include "DeviceDiscovery.h"
 
-DeviceDiscovery::DeviceDiscovery()
-{
-    initialize();
-}
-
-std::vector<pDiscoveredDevice> DeviceDiscovery::discover()
+std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
 {
    initialize();
    std::vector<pDiscoveredDevice> discoveredDevices;
@@ -13,7 +8,7 @@ std::vector<pDiscoveredDevice> DeviceDiscovery::discover()
    static const std::string MdnsQuery = "_voyager._tcp.local";
    //Execute query and store results
    std::vector<Zeroconf::mdns_responce> responces;
-   Zeroconf::Resolve(MdnsQuery, /*scanTime*/ 1, &responces);
+   Zeroconf::Resolve(MdnsQuery, scanTime, &responces);
    for(Zeroconf::mdns_responce responce: responces) {
        for(Zeroconf::Detail::mdns_record record: responce.records) {
            if(record.type == 16) {
@@ -36,6 +31,7 @@ std::vector<pDiscoveredDevice> DeviceDiscovery::discover()
            }
        }
    }
+   deinitialize();
    return discoveredDevices;
 }
 
@@ -53,7 +49,6 @@ std::map<std::string, std::string> DeviceDiscovery::parseTxtRecord(const std::st
         parsedRecords.insert(splitTxtRecord(parsedRecord));
         recordCopy = match.suffix();
     }
-    //Seperate by escape character
 
     return parsedRecords;
 }
@@ -96,10 +91,17 @@ void *DeviceDiscovery::get_in_addr(sockaddr_storage *sa) {
 void DeviceDiscovery::initialize()
 {
 #ifdef WIN32
-    WSADATA wsa = {0};
+    WSADATA wsa;
     if (WSAStartup(0x202, &wsa) != 0)
     {
         std::cout << "Unable to initialize WinSock" << std::endl;
     }
+#endif
+}
+
+void DeviceDiscovery::deinitialize()
+{
+#ifdef WIN32
+    WSACleanup();
 #endif
 }

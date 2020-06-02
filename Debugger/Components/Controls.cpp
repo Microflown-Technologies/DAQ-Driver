@@ -132,6 +132,7 @@ void Controls::on_btn_connect_pressed()
         m_daqDriver->deviceControl()->takeControl();
         on_btn_refreshDeviceInfo_pressed();
         on_btn_Sync_pressed();
+        emit connected();
     }
     else m_daqDriver.reset();
 

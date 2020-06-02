@@ -17,7 +17,7 @@
 #include <ixwebsocket/IXWebSocket.h>
 
 /**
- * @brief The ClientSocketConnector class Provides the socket implementation of AbstractSocketConnector
+ * @brief The ClientSocketConnector class Provides the client implementation of AbstractSocketConnector
  */
 class ClientSocketConnector : public AbstractSocketConnector
 {

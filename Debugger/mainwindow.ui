@@ -15,12 +15,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="WaveForm" name="widget" native="true"/>
+    </item>
     <item row="0" column="0">
-     <widget class="Controls" name="widget" native="true">
+     <widget class="Controls" name="controlWidget" native="true">
       <property name="minimumSize">
        <size>
         <width>200</width>
         <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>16777215</height>
        </size>
       </property>
      </widget>
@@ -33,6 +42,12 @@
    <class>Controls</class>
    <extends>QWidget</extends>
    <header>Components/Controls.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WaveForm</class>
+   <extends>QWidget</extends>
+   <header>Components/WaveForm.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

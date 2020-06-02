@@ -27,7 +27,6 @@ void Streaming::reset() {
 
 void Streaming::handleNewDataRecieved(const google::protobuf::Message &message) {
     if(!m_isStreaming) {
-        m_isStreaming = true;
         m_streamStartedCallbackHandler.invokeCallbacks();
     }
     m_dataQueueMutex.lock();

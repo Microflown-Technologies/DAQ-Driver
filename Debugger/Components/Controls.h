@@ -25,6 +25,9 @@ public:
 
     std::shared_ptr<DAQDriver> daqDriver();
 
+signals:
+    void connected();
+
 private:
     void populateSampleRateComboBox();
 

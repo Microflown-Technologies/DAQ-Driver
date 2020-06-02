@@ -25,6 +25,8 @@ protected:
 
 private slots:
     void on_audioTimerTimeout();
+    void on_connected();
+    void on_newBuffer();
 
 private:
     Ui::MainWindow *ui;
