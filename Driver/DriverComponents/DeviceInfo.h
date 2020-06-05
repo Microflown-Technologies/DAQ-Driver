@@ -27,14 +27,25 @@ public:
     DeviceInfo(pMessageProcessor messageProcessor);
 
     /**
-     * @brief refresh Updates the deviceInfo
+     * @brief refresh Updates the remote  deviceInfo
      */
     void refresh();
 
+    /**
+     * @brief localDeviceInfo Gets the information of the device this code is running on
+     * @return information about device this code is running on
+     */
     DeviceInfoStructure localDeviceInfo();
     void setLocalDeviceInfo(const DeviceInfoStructure &localDeviceInfo);
 
+    /**
+     * @brief remoteDeviceInfo Gets the information of the device that you are connected to
+     * @return deviceinfo of remote device
+     */
     DeviceInfoStructure remoteDeviceInfo();
+
+    std::shared_ptr<std::function<void ()> > addRemoteInfoRecievedCallback(const std::function<void ()> &newBufferCallback);
+    bool removeRemoteInfoRecievedCallback(std::shared_ptr<std::function<void(void)>> callback);
 
     void reset() override;
 
@@ -48,6 +59,7 @@ private:
     std::mutex m_remoteDeviceInfoMutex; ///< Mutex for locking device info of remote device
     DeviceInfoStructure m_localDeviceInfo; ///< Device Information of local device
     DeviceInfoStructure m_remoteDeviceInfo; ///< Device information of remote device
+    CallbackHandler m_remoteInfoRecievedCallbackHandler;
 
 };
 typedef std::shared_ptr<DeviceInfo> pDeviceInfo;

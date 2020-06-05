@@ -32,6 +32,14 @@ DeviceInfoStructure DeviceInfo::remoteDeviceInfo() {
     return m_remoteDeviceInfo;
 }
 
+std::shared_ptr<std::function<void ()> > DeviceInfo::addRemoteInfoRecievedCallback(const std::function<void ()> &newBufferCallback) {
+    return m_remoteInfoRecievedCallbackHandler.addCallback(newBufferCallback);
+}
+
+bool DeviceInfo::removeRemoteInfoRecievedCallback(std::shared_ptr<std::function<void ()> > callback) {
+    return m_remoteInfoRecievedCallbackHandler.removeCallback(callback);
+}
+
 void DeviceInfo::reset()
 {
     refresh();
@@ -50,6 +58,7 @@ void DeviceInfo::handleDeviceInfoResponseRecieved(const google::protobuf::Messag
     DeviceInfoResponse deviceInfoResponse;
     deviceInfoResponse.CopyFrom(message);
     setRemoteDeviceInfo(deviceInfoResponse.deviceinfo());
+    m_remoteInfoRecievedCallbackHandler.invokeCallbacks();
 }
 
 void DeviceInfo::setRemoteDeviceInfo(const DeviceInfoStructure &remoteDeviceInfo) {
