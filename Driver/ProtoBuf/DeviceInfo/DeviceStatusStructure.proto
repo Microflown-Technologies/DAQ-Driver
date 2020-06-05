@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message DeviceStatusStructure {
+    float chargerTemperature = 1; //Degrees celcius
+    float batteryTemperature = 2; //Degrees celcius
+    float cpuTemperature = 3; //Degrees celcius
+    float batteryCharge = 4; //Percentage
+    bool mainsPowerConnected = 5;
+    uint64 totalStorageCapacity = 6; //In bytes
+    uint64 usedStorageCapcity = 7; //In bytes
+}

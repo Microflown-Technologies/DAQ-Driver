@@ -11,10 +11,10 @@
 #include "DriverComponents/Time.h"
 #include "Threading/EventLoopThread.h"
 #include "DriverComponents/Streaming.h"
-#include "DriverComponents/Heartbeat.h"
 #include "DriverComponents/DeviceInfo.h"
 #include "DriverComponents/InputRange.h"
 #include "DriverComponents/Formatting.h"
+#include "DriverComponents/DeviceStatus.h"
 #include "DriverComponents/DeviceControl.h"
 #include "SocketConnector/AbstractSocketConnector.h"
 #include "MessageProcessing/MessageProcessor.h"
@@ -71,6 +71,12 @@ public:
     pInputRange inputRange();
 
     /**
+     * @brief deviceStatus driver component that recieves the voyager device status
+     * @return device status
+     */
+    pDeviceStatus deviceStatus() const;
+
+    /**
      * @brief reset Resets the driver
      */
     void reset();
@@ -87,7 +93,6 @@ public:
      */
     void disconnect();
 
-
     /**
      * @brief isConnected Checks if the driver is connected to the Voyager
      * @return returns true if driver is connected to Voyager
@@ -99,6 +104,7 @@ public:
      * @return socket connector that is used by DAQDriver
      */
     pAbstractSocketConnector socketConnector() const;
+
 
 protected:
     /**
@@ -123,10 +129,10 @@ private:
     pIEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels
     pTime m_time; ///< Driver component that handles time synchronisation
     pStreaming m_streaming; ///< Driver component that handles streaming data
-    pHeartbeat m_heartbeat; ///< Driver component that handles keeping alive of the connection
     pDeviceInfo m_deviceInfo; ///< Driver component that provides device information
     pInputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
     pFormatting m_formatting; ///< Driver component that handles formatting
+    pDeviceStatus m_deviceStatus; ///< Driver component that handles device status
     pDeviceControl m_deviceControl; ///< Handles control of the device
     EventLoopThread m_eventLoopThread; ///< Threaded event loop for the driver
 };

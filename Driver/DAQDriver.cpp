@@ -15,51 +15,23 @@ DAQDriver::~DAQDriver()
     m_iepe->disconnect();
     m_time->disconnect();
     m_streaming->disconnect();
-    m_heartbeat->disconnect();
     m_inputRange->disconnect();
     m_formatting->disconnect();
     m_deviceInfo->disconnect();
+    m_deviceStatus->disconnect();
     m_eventLoopThread.wait(10);
 #endif
 }
 
-pStreaming DAQDriver::streaming() {
-    return m_streaming;
-}
-
-pFormatting DAQDriver::formatting() {
-    return m_formatting;
-}
-
-pDeviceControl DAQDriver::deviceControl() {
-    return m_deviceControl;
-}
-
-pDeviceInfo DAQDriver::deviceInfo()
-{
-    return m_deviceInfo;
-}
-
-pTime DAQDriver::time(){
-    return m_time;
-}
-
-pIEPE DAQDriver::iepe() {
-    return m_iepe;
-}
-
-pInputRange DAQDriver::inputRange() {
-    return m_inputRange;
-}
 void DAQDriver::reset() {
     std::cout << "Driver was reset" << std::endl;
     m_iepe->reset();
     m_time->reset();
     m_streaming->reset();
-    m_heartbeat->reset();
     m_inputRange->reset();
     m_formatting->reset();
     m_deviceInfo->reset();
+    m_deviceStatus->reset();
     m_deviceControl->reset();
     MessageDeserializer::clear();
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -97,10 +69,10 @@ void DAQDriver::initialize()
     m_iepe = pIEPE(new IEPE(m_messageProcessor));
     m_time = pTime(new Time(m_messageProcessor));
     m_streaming = pStreaming(new Streaming(m_messageProcessor));
-    m_heartbeat = pHeartbeat(new Heartbeat(std::bind(&DAQDriver::reset,this) , m_messageProcessor));
     m_deviceInfo = pDeviceInfo(new DeviceInfo(m_messageProcessor));
     m_inputRange = pInputRange(new InputRange(m_messageProcessor));
     m_formatting = pFormatting(new Formatting(m_messageProcessor));
+    m_deviceStatus = pDeviceStatus(new DeviceStatus(m_messageProcessor));
     m_deviceControl = pDeviceControl(new DeviceControl(m_messageProcessor));
 
     //Add callbacks
@@ -123,6 +95,40 @@ void DAQDriver::handleSteamStarted() {
 
 void DAQDriver::handleStreamStopped() {
     m_eventLoopThread.setPollingInterval(5000);
+}
+
+pDeviceStatus DAQDriver::deviceStatus() const
+{
+    return m_deviceStatus;
+}
+
+pStreaming DAQDriver::streaming() {
+    return m_streaming;
+}
+
+pFormatting DAQDriver::formatting() {
+    return m_formatting;
+}
+
+pDeviceControl DAQDriver::deviceControl() {
+    return m_deviceControl;
+}
+
+pDeviceInfo DAQDriver::deviceInfo()
+{
+    return m_deviceInfo;
+}
+
+pTime DAQDriver::time(){
+    return m_time;
+}
+
+pIEPE DAQDriver::iepe() {
+    return m_iepe;
+}
+
+pInputRange DAQDriver::inputRange() {
+    return m_inputRange;
 }
 
 pAbstractSocketConnector DAQDriver::socketConnector() const

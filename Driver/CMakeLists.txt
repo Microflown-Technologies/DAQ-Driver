@@ -40,6 +40,8 @@ source_group(MessageProcessing FILES ${MessageProcessing_FILES})
 file(GLOB_RECURSE SerialConnector_FILES "SerialConnector/*.h" "SerialConnector/*.cpp")
 source_group(SerialConnector FILES ${SerialConnector_FILES})
 file(GLOB_RECURSE Threading_FILES "Threading/*.h" "Threading/*.cpp")
+source_group(Discovery FILES ${Discovery_FILES})
+file(GLOB_RECURSE Discovery_FILES "Discovery/*.h" "Discovery/*.cpp")
 source_group(Threading FILES ${Threading_FILES})
 source_group(ProtoBuf FILES ${PROTOBUF_DEFINITION_FILES} ${PROTO_HDRS} ${PROTO_SRCS})
 
