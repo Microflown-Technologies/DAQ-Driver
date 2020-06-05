@@ -11,6 +11,7 @@
 
 //Internal headers
 #include "AbstractSocketConnector.h"
+#include "Discovery/DiscoveredDevice.h"
 
 //IXWebSocket
 #include "ixwebsocket/IXNetSystem.h"
@@ -23,6 +24,7 @@ class ClientSocketConnector : public AbstractSocketConnector
 {
 public:
     ClientSocketConnector(std::string hostname = AbstractSocketConnector::defaultIpAddress, uint16_t port = AbstractSocketConnector::defaultPort);
+    ClientSocketConnector(const DiscoveredDevice &device);
     ~ClientSocketConnector();
 
 

@@ -6,6 +6,12 @@ ClientSocketConnector::ClientSocketConnector(std::string hostname, uint16_t port
     startClient();
 }
 
+ClientSocketConnector::ClientSocketConnector(const DiscoveredDevice &device) : m_port(device.port()), m_hostname(device.ipAddress()), m_open(false)
+{
+    ix::initNetSystem();
+    startClient();
+}
+
 ClientSocketConnector::~ClientSocketConnector()
 {
 
