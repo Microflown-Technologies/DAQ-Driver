@@ -3,7 +3,7 @@
 DAQDriver::DAQDriver(pAbstractSocketConnector socketConnector) :
     m_initialized(false), m_socketConnector(socketConnector)
 {
-    m_initializeCallback = m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::initialize, this));
+    m_eventLoopThread.callbackHandler()->runOnce(std::bind(&DAQDriver::initialize, this));
     m_eventLoopThread.start();
     while(!m_initialized) { std::this_thread::sleep_for(std::chrono::milliseconds(5)); };
 }
@@ -80,16 +80,21 @@ void DAQDriver::initialize()
     m_hearthBeat = pHeartbeat(new Heartbeat(std::bind(&DAQDriver::reset, this), m_messageProcessor));
 
     //Add callbacks
-    m_socketConnector->closedCallbackHandler().addCallback(std::bind(&DAQDriver::reset, this));
     m_streaming->addStreamStartedCallback(std::bind(&DAQDriver::handleSteamStarted, this));
     m_streaming->addStreamStoppedCallback(std::bind(&DAQDriver::handleStreamStopped, this));
     m_deviceControl->addResetCallback(std::bind(&DAQDriver::reset, this));
     m_deviceControl->addReleasedControlCallback(std::bind(&DAQDriver::reset, this));
     m_deviceControl->addGrabbedControlCallback(std::bind(&DAQDriver::reset, this));
     m_eventLoopThread.callbackHandler()->addCallback(std::bind(&DAQDriver::process, this));
+    if(dynamic_cast<ServerSocketConnector*>(m_socketConnector.get())) {
+        m_socketConnector->closedCallbackHandler().addCallback(std::bind(&DAQDriver::reset, this));
+    } else {
+        m_socketConnector->openedCallbackHandler().addCallback([=] {
+            m_deviceControl->takeControl();
+            m_deviceInfo->refresh();
+        });
+    }
 
-    // Remove initialized callback
-    m_eventLoopThread.callbackHandler()->removeCallback(m_initializeCallback);
     m_initialized = true;
 }
 

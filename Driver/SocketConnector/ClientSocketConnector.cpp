@@ -56,8 +56,10 @@ void ClientSocketConnector::stopClient()
 bool ClientSocketConnector::startClient()
 {
     m_webSocket.setUrl("ws://" + m_hostname + ":" + std::to_string(m_port));
+    m_webSocket.disableAutomaticReconnection();
+    m_webSocket.setPingInterval(1);
     m_webSocket.setOnMessageCallback(std::bind(&ClientSocketConnector::onMessageCallback, this, std::placeholders::_1));
-    auto result = m_webSocket.connect(1);
+    auto result = m_webSocket.connect(0);
     m_webSocket.start();
     return result.success;
 }
@@ -80,7 +82,13 @@ void ClientSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr &mes
         case ix::WebSocketMessageType::Error:
             m_open = false;
             std::cout << "Connection error" << message->errorInfo.reason << std::endl;
+            m_connectionErrorCallbackHandler.invokeCallbacks();
         default:
         break;
     }
+}
+
+CallbackHandler &ClientSocketConnector::connectionErrorCallbackHandler()
+{
+    return m_connectionErrorCallbackHandler;
 }

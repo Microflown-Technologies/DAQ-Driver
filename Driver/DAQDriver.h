@@ -17,8 +17,9 @@
 #include "DriverComponents/Formatting.h"
 #include "DriverComponents/DeviceStatus.h"
 #include "DriverComponents/DeviceControl.h"
-#include "SocketConnector/AbstractSocketConnector.h"
 #include "MessageProcessing/MessageProcessor.h"
+#include "SocketConnector/ServerSocketConnector.h"
+#include "SocketConnector/AbstractSocketConnector.h"
 
 /**
  * @brief The DAQDriver class Provides an API interface to the Voyager DAQ functionality
@@ -125,7 +126,6 @@ protected:
 private:
     std::atomic_bool m_initialized;
     pAbstractSocketConnector m_socketConnector;
-    std::shared_ptr<std::function<void (void)> > m_initializeCallback;
     pMessageProcessor m_messageProcessor; ///< Processes incomming and outgoing messages
     pIEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels
     pTime m_time; ///< Driver component that handles time synchronisation

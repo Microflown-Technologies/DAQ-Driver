@@ -36,11 +36,14 @@ public:
 
     virtual bool isOpen() override;
 
+    CallbackHandler & connectionErrorCallbackHandler();
+
     virtual CallbackHandler & closedCallbackHandler() override;
 
     virtual CallbackHandler & openedCallbackHandler() override;
 
     virtual uint16_t port() override;
+
 
 protected:
     void stopClient();
@@ -52,6 +55,7 @@ private:
     std::string m_hostname;
     std::atomic_bool m_open;
     ix::WebSocket m_webSocket;
+    CallbackHandler m_connectionErrorCallbackHandler;
     std::queue<std::vector<uint8_t>> m_messageQueue;
 };
 

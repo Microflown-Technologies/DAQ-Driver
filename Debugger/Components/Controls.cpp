@@ -143,10 +143,9 @@ void Controls::on_btn_connect_pressed()
         m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString(), ui->spn_port->value()))));
         connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
         connect(m_daqDriver->deviceStatus().get(), &DeviceStatus::remoteDeviceUpdated, this, &Controls::processDeviceStatus);
-
-        m_daqDriver->deviceControl()->takeControl();
-        on_btn_refreshDeviceInfo_pressed();
-        emit connected();
+        m_daqDriver->socketConnector()->openedCallbackHandler().addCallback([=] {
+            emit connected();
+        });
     }
     else m_daqDriver.reset();
 
