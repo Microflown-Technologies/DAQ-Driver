@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "DeviceStatusStructure.proto";
+
+message DeviceStatusResponse {
+	DeviceStatusStructure deviceInfo = 1;
+}
