@@ -29,6 +29,22 @@ void Controls::populateSampleRateComboBox()
     ui->cmb_sampleRates->setCurrentIndex(DataFormat::SampleRate::DataFormat_SampleRate__48000);
 }
 
+void Controls::processDeviceStatus()
+{
+    auto deviceStatus = m_daqDriver->deviceStatus()->remoteDeviceStatus();
+    QLocale locale;
+    uint64_t bytesTotal = deviceStatus.totalstoragecapacity();
+    uint64_t bytesUsed = deviceStatus.usedstoragecapcity();
+    QString storageString = tr("%1 of %2 left");
+    ui->lbl_storage->setText(storageString.arg(locale.formattedDataSize(bytesTotal - bytesUsed, 1, QLocale::DataSizeTraditionalFormat), locale.formattedDataSize(bytesTotal, 1, QLocale::DataSizeTraditionalFormat)));
+    ui->lbl_chargerTemperature->setText(QString::number(deviceStatus.chargertemperature()) + " °C");
+    ui->lbl_batteryTemperature->setText(QString::number(deviceStatus.batterytemperature()) + " °C");
+    ui->lbl_cpuTemperature->setText(QString::number(deviceStatus.cputemperature()) + " °C");
+    ui->lbl_batteryChargeLevel->setText(QString::number(deviceStatus.batterycharge()) + "%");
+
+
+}
+
 void Controls::devicePicked(QString ip) {
     if(ui->btn_connect->isChecked()) ui->btn_connect->click();
     ui->txt_hostname->setText(ip);
@@ -68,6 +84,7 @@ void Controls::uiTimerTimeout()
     ui->btn_refreshDeviceInfo->setEnabled(connected);
     ui->btn_connect->setChecked(connected);
     if(!connected) return;
+    m_daqDriver->time()->sync();
     ui->btn_Aux1IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux1));
     ui->btn_Aux2IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux2));
     ui->chk_StreamEnabled->setChecked(m_daqDriver->streaming()->isStreaming());
@@ -84,11 +101,6 @@ void Controls::uiTimerTimeout()
 void Controls::processTimerTimeout()
 {
 
-}
-
-void Controls::on_btn_Sync_pressed()
-{
-    m_daqDriver->time()->sync();
 }
 
 std::shared_ptr<DAQDriver> Controls::daqDriver()
@@ -129,9 +141,10 @@ void Controls::on_btn_connect_pressed()
     if(!ui->btn_connect->isChecked()) {
         m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString(), ui->spn_port->value()))));
         connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
+        connect(m_daqDriver->deviceStatus().get(), &DeviceStatus::remoteDeviceUpdated, this, &Controls::processDeviceStatus);
+
         m_daqDriver->deviceControl()->takeControl();
         on_btn_refreshDeviceInfo_pressed();
-        on_btn_Sync_pressed();
         emit connected();
     }
     else m_daqDriver.reset();

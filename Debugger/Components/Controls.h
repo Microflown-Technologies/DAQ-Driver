@@ -32,6 +32,7 @@ private:
     void populateSampleRateComboBox();
 
 private slots:
+    void processDeviceStatus();
 
     void devicePicked(QString ip);
 
@@ -44,8 +45,6 @@ private slots:
     void onTimesynced(int64_t difference);
     void uiTimerTimeout();
     void processTimerTimeout();
-    void on_btn_Sync_pressed();
-
     void on_chk_StreamEnabled_clicked(bool checked);
 
     void on_btn_Aux1IEPE_clicked(bool checked);
