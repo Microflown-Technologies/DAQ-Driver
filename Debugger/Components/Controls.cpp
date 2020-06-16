@@ -84,6 +84,7 @@ void Controls::uiTimerTimeout()
     ui->btn_refreshDeviceInfo->setEnabled(connected);
     ui->btn_connect->setChecked(connected);
     if(!connected) return;
+
     m_daqDriver->time()->sync();
     ui->btn_Aux1IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux1));
     ui->btn_Aux2IEPE->setChecked(m_daqDriver->iepe()->getIEPE(IEPE::Aux2));

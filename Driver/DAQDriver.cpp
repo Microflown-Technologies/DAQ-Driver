@@ -18,6 +18,7 @@ DAQDriver::~DAQDriver()
     m_inputRange->disconnect();
     m_formatting->disconnect();
     m_deviceInfo->disconnect();
+    m_hearthBeat->disconnect();
     m_deviceStatus->disconnect();
     m_eventLoopThread.wait(10);
 #endif
@@ -28,6 +29,7 @@ void DAQDriver::reset() {
     m_iepe->reset();
     m_time->reset();
     m_streaming->reset();
+    m_hearthBeat->reset();
     m_inputRange->reset();
     m_formatting->reset();
     m_deviceInfo->reset();
@@ -59,6 +61,7 @@ bool DAQDriver::isConnected() {
 
 void DAQDriver::process() {
     m_messageProcessor->process();
+    m_hearthBeat->process();
 }
 
 void DAQDriver::initialize()
@@ -74,6 +77,7 @@ void DAQDriver::initialize()
     m_formatting = pFormatting(new Formatting(m_messageProcessor));
     m_deviceStatus = pDeviceStatus(new DeviceStatus(m_messageProcessor));
     m_deviceControl = pDeviceControl(new DeviceControl(m_messageProcessor));
+    m_hearthBeat = pHeartbeat(new Heartbeat(std::bind(&DAQDriver::reset, this), m_messageProcessor));
 
     //Add callbacks
     m_socketConnector->closedCallbackHandler().addCallback(std::bind(&DAQDriver::reset, this));

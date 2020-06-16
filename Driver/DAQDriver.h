@@ -10,6 +10,7 @@
 #include "DriverComponents/IEPE.h"
 #include "DriverComponents/Time.h"
 #include "Threading/EventLoopThread.h"
+#include "DriverComponents/Heartbeat.h"
 #include "DriverComponents/Streaming.h"
 #include "DriverComponents/DeviceInfo.h"
 #include "DriverComponents/InputRange.h"
@@ -129,6 +130,7 @@ private:
     pIEPE m_iepe; ///< Driver component that handles configuring IEPE power for AUX channels
     pTime m_time; ///< Driver component that handles time synchronisation
     pStreaming m_streaming; ///< Driver component that handles streaming data
+    pHeartbeat m_hearthBeat; ///< Driver component that handles the lifebeat of the system
     pDeviceInfo m_deviceInfo; ///< Driver component that provides device information
     pInputRange m_inputRange; ///< Driver component that handles setting the inputrange for channels
     pFormatting m_formatting; ///< Driver component that handles formatting
