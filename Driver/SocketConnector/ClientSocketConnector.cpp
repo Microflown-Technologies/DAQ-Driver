@@ -35,9 +35,12 @@ bool ClientSocketConnector::isOpen() {
     return m_open;
 }
 
-CallbackHandler &ClientSocketConnector::closedCallbackHandler()
-{
+CallbackHandler &ClientSocketConnector::closedCallbackHandler() {
     return m_closedCallbackHandler;
+}
+
+CallbackHandler &ClientSocketConnector::openedCallbackHandler() {
+    return m_openendCallbackHandler;
 }
 
 uint16_t ClientSocketConnector::port() {
@@ -67,10 +70,12 @@ void ClientSocketConnector::onMessageCallback(const ix::WebSocketMessagePtr &mes
         case ix::WebSocketMessageType::Open:
             m_open = true;
             std::cout << "New connection from client" << std::endl;
+            m_openendCallbackHandler.invokeCallbacks();
         break;
         case ix::WebSocketMessageType::Close:
             m_open = false;
             std::cout << "Connection was closed" << std::endl;
+            m_closedCallbackHandler.invokeCallbacks();
         break;
         case ix::WebSocketMessageType::Error:
             m_open = false;

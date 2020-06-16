@@ -38,6 +38,8 @@ public:
 
     virtual CallbackHandler & closedCallbackHandler() override;
 
+    virtual CallbackHandler & openedCallbackHandler() override;
+
     virtual uint16_t port() override;
 
 protected:

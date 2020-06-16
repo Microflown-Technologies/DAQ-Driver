@@ -36,6 +36,10 @@ CallbackHandler &ServerSocketConnector::closedCallbackHandler() {
     return m_closedCallbackHandler;
 }
 
+CallbackHandler &ServerSocketConnector::openedCallbackHandler() {
+    return m_openendCallbackHandler;
+}
+
 uint16_t ServerSocketConnector::port() {
     return m_port;
 }
@@ -67,6 +71,7 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
         m_messageQueue.push(std::vector<uint8_t>(message->str.begin(), message->str.end()));
     } else if(message->type == ix::WebSocketMessageType::Open) {
         m_connections.push_back(webSocket);
+        m_openendCallbackHandler.invokeCallbacks();
 #ifdef QT_IS_AVAILABLE
         qInfo() << "New connection was openend";
 #else

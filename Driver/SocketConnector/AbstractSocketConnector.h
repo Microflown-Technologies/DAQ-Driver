@@ -57,6 +57,12 @@ public:
     virtual CallbackHandler &closedCallbackHandler() = 0;
 
     /**
+     * @brief openedCallbackHandler Handler that is invoked when a connection is openend
+     * @return associated callbackhandler
+     */
+    virtual CallbackHandler &openedCallbackHandler() = 0;
+
+    /**
      * @brief port Gets the port that is used by this socket connector
      * @return port that is used by this socket connector
      */
@@ -65,6 +71,7 @@ public:
 
 protected:
     CallbackHandler m_closedCallbackHandler;
+    CallbackHandler m_openendCallbackHandler;
 
 };
 typedef std::shared_ptr<AbstractSocketConnector> pAbstractSocketConnector;

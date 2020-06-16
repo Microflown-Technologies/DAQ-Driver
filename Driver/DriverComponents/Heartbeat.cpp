@@ -39,5 +39,5 @@ void Heartbeat::hearthbeatDieTimerTimeout() {
 
 void Heartbeat::handleHearthbeatMessage(const google::protobuf::Message &message) {
     (void)message;
-    m_hearthbeatDieTimer.start(10000);
+    m_hearthbeatDieTimer.start(3000);
 }
