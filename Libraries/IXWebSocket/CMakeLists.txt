@@ -3,15 +3,18 @@
 # Copyright (c) 2018 Machine Zone, Inc. All rights reserved.
 #
 
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.4.1...3.17.2)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 project(ixwebsocket C CXX)
-set( CMAKE_CXX_FLAGS "-fPIC" )
 
 set (CMAKE_CXX_STANDARD 14)
 set (CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
 
 if (UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
@@ -120,6 +123,11 @@ if (USE_TLS)
       if (NOT USE_MBED_TLS AND NOT USE_OPEN_SSL) # unless we want something else
         set(USE_SECURE_TRANSPORT ON)
       endif()
+    # default to mbedtls on windows if nothing is configured
+    elseif (WIN32)
+      if (NOT USE_OPEN_SSL) # unless we want something else
+        set(USE_MBED_TLS ON)
+      endif()
     else() # default to OpenSSL on all other platforms
       if (NOT USE_MBED_TLS) # Unless mbedtls is requested
         set(USE_OPEN_SSL ON)
@@ -145,12 +153,6 @@ add_library( ixwebsocket STATIC
     ${IXWEBSOCKET_HEADERS}
 )
 
-add_library ( ixwebsocket::ixwebsocket ALIAS ixwebsocket )
-
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif()
-
 if (USE_TLS)
     target_compile_definitions(ixwebsocket PUBLIC IXWEBSOCKET_USE_TLS)
     if (USE_MBED_TLS)
@@ -172,24 +174,30 @@ if (USE_TLS)
     if (APPLE)
       set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /usr/local/opt/openssl/lib)
       set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} /usr/local/opt/openssl/include)
+
+      # This is for MacPort OpenSSL 1.0
+      # set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /opt/local/lib/openssl-1.0)
+      # set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} /opt/local/include/openssl-1.0)
     endif()
 
     # This OPENSSL_FOUND check is to help find a cmake manually configured OpenSSL
     if (NOT OPENSSL_FOUND)
-	    include(FindOpenSSL)
+      find_package(OpenSSL REQUIRED)
     endif()
     message(STATUS "OpenSSL: " ${OPENSSL_VERSION})
 
-    target_link_libraries(ixwebsocket PUBLIC OpenSSL::SSL OpenSSL::Crypto)
+    add_definitions(${OPENSSL_DEFINITIONS})
+    target_include_directories(ixwebsocket PUBLIC ${OPENSSL_INCLUDE_DIR})
+    target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES})
   elseif (USE_MBED_TLS)
     message(STATUS "TLS configured to use mbedtls")
 
     find_package(MbedTLS REQUIRED)
     target_include_directories(ixwebsocket PUBLIC ${MBEDTLS_INCLUDE_DIRS})
-    target_link_libraries(ixwebsocket PUBLIC ${MBEDTLS_LIBRARIES})
+    target_link_libraries(ixwebsocket ${MBEDTLS_LIBRARIES})
   elseif (USE_SECURE_TRANSPORT)
     message(STATUS "TLS configured to use secure transport")
-    target_link_libraries(ixwebsocket PUBLIC "-framework foundation" "-framework security")
+    target_link_libraries(ixwebsocket "-framework foundation" "-framework security")
   endif()
 endif()
 
@@ -199,25 +207,25 @@ if (NOT ZLIB_FOUND)
 endif()
 if (ZLIB_FOUND)
   include_directories(${ZLIB_INCLUDE_DIRS})
-  target_link_libraries(ixwebsocket PUBLIC ${ZLIB_LIBRARIES})
+  target_link_libraries(ixwebsocket ${ZLIB_LIBRARIES})
 else()
   include_directories(third_party/zlib ${CMAKE_CURRENT_BINARY_DIR}/third_party/zlib)
-  add_subdirectory(third_party/zlib EXCLUDE_FROM_ALL)
-  target_link_libraries(ixwebsocket PRIVATE $<LINK_ONLY:zlibstatic>)
+  add_subdirectory(third_party/zlib)
+  target_link_libraries(ixwebsocket zlibstatic)
 endif()
 
 if (WIN32)
-  target_link_libraries(ixwebsocket PUBLIC wsock32 ws2_32 shlwapi)
+  target_link_libraries(ixwebsocket wsock32 ws2_32 shlwapi)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
   if (USE_TLS)
-    target_link_libraries(ixwebsocket PUBLIC Crypt32)
+    target_link_libraries(ixwebsocket Crypt32)
   endif()
 endif()
 
 if (UNIX)
   find_package(Threads)
-  target_link_libraries(ixwebsocket PUBLIC ${CMAKE_THREAD_LIBS_INIT})
+  target_link_libraries(ixwebsocket ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 
@@ -230,22 +238,29 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_options(ixwebsocket PRIVATE /MP)
 endif()
 
-target_include_directories(ixwebsocket PUBLIC $<BUILD_INTERFACE:${IXWEBSOCKET_INCLUDE_DIRS}> $<INSTALL_INTERFACE:include/ixwebsocket>)
+target_include_directories(ixwebsocket PUBLIC
+  $<BUILD_INTERFACE:${IXWEBSOCKET_INCLUDE_DIRS}/>
+  $<INSTALL_INTERFACE:include/ixwebsocket>
+)
 
 set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADERS}")
 
-install(TARGETS ixwebsocket EXPORT ixwebsocket
-	ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
+install(TARGETS ixwebsocket
+        EXPORT ixwebsocket
+        ARCHIVE DESTINATION lib
+        PUBLIC_HEADER DESTINATION include/ixwebsocket/
 )
 
-install(EXPORT ixwebsocket NAMESPACE ixwebsocket:: DESTINATION lib/cmake/ixwebsocket)
-export(EXPORT ixwebsocket NAMESPACE ixwebsocket:: FILE ixwebsocketConfig.cmake)
+install(EXPORT ixwebsocket
+        FILE ixwebsocket-config.cmake
+        NAMESPACE ixwebsocket::
+        DESTINATION lib/cmake/ixwebsocket)
 
 if (USE_WS OR USE_TEST)
   add_subdirectory(ixcore)
   add_subdirectory(ixcrypto)
   add_subdirectory(ixcobra)
+  add_subdirectory(ixredis)
   add_subdirectory(ixsnake)
   add_subdirectory(ixsentry)
   add_subdirectory(ixbots)

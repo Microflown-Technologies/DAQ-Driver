@@ -63,14 +63,9 @@ namespace ix
         }
     }
 
-    int64_t cobra_to_stdout_bot(const CobraConfig& config,
-                                const std::string& channel,
-                                const std::string& filter,
-                                const std::string& position,
+    int64_t cobra_to_stdout_bot(const ix::CobraBotConfig& config,
                                 bool fluentd,
-                                bool quiet,
-                                bool enableHeartbeat,
-                                int runtime)
+                                bool quiet)
     {
         CobraBot bot;
         auto jsonWriter = makeStreamWriter();
@@ -88,11 +83,6 @@ namespace ix
                 sentCount++;
             });
 
-        return bot.run(config,
-                       channel,
-                       filter,
-                       position,
-                       enableHeartbeat,
-                       runtime);
+        return bot.run(config);
     }
 } // namespace ix

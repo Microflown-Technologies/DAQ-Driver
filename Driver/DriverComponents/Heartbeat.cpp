@@ -14,7 +14,8 @@ Heartbeat::Heartbeat(std::function<void(void)> callback, pMessageProcessor messa
 
 void Heartbeat::reset()
 {
-
+    m_hearthbeatTimer.start(500);
+    m_hearthbeatDieTimer.start(3000);
 }
 
 void Heartbeat::process()
@@ -33,9 +34,11 @@ void Heartbeat::hearthbeatTimerTimeout() {
 
 void Heartbeat::hearthbeatDieTimerTimeout() {
 #ifdef QT_IS_AVAILABLE
+    qDebug() << "Heartbeat died, now resetting!";
     emit died();
+#else
+    std::cout << "Heartbeat died, now resetting!" << std::endl;
 #endif
-    std::cout << "Died, now resetting!" << std::endl;
     m_callback();
 }
 

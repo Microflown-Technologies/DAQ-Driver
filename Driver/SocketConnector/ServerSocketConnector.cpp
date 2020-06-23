@@ -70,6 +70,12 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
     if(message->type == ix::WebSocketMessageType::Message) {
         m_messageQueue.push(std::vector<uint8_t>(message->str.begin(), message->str.end()));
     } else if(message->type == ix::WebSocketMessageType::Open) {
+        for(auto webSocket: m_connections) {
+            webSocket->close();
+        }
+        m_connections.clear();
+        webSocket->setMaxWaitBetweenReconnectionRetries(100);
+        webSocket->enablePong();
         m_connections.push_back(webSocket);
         m_openendCallbackHandler.invokeCallbacks();
 #ifdef QT_IS_AVAILABLE
@@ -86,7 +92,7 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 #else
         std::cout << "Connection was closed" << std::endl;
 #endif
-        if(!isOpen()) {
+        if(isOpen()) {
             closedCallbackHandler().invokeCallbacks();
         }
     } else if(message->type == ix::WebSocketMessageType::Error) {
@@ -100,7 +106,7 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 }
 
 void ServerSocketConnector::onConnectionCallback(std::shared_ptr<ix::WebSocket> webSocket, std::shared_ptr<ix::ConnectionState> connectionState) {
-    (void)connectionState;
+    qDebug() << "Terminated" << connectionState->isTerminated();
     webSocket->setOnMessageCallback([=] (const ix::WebSocketMessagePtr& message) {
         onMessageCallback(webSocket, message);
     });

@@ -13,7 +13,7 @@
 #include <ixcobra/IXCobraMetricsPublisher.h>
 #include <ixcrypto/IXUuid.h>
 #include <ixsentry/IXSentryClient.h>
-#include <ixsnake/IXRedisServer.h>
+#include <ixredis/IXRedisServer.h>
 #include <ixsnake/IXSnakeServer.h>
 #include <ixwebsocket/IXHttpServer.h>
 #include <ixwebsocket/IXUserAgent.h>
@@ -85,19 +85,17 @@ TEST_CASE("Cobra_to_stdout_bot", "[cobra_bots]")
 
         std::thread publisherThread(runPublisher, config, channel);
 
-        std::string filter;
-        std::string position("$");
+        ix::CobraBotConfig cobraBotConfig;
+        cobraBotConfig.cobraConfig = config;
+        cobraBotConfig.channel = channel;
+        cobraBotConfig.runtime = 3; // Only run the bot for 3 seconds
+        cobraBotConfig.enableHeartbeat = false;
         bool quiet = false;
-        bool enableHeartbeat = false;
-
-        // Only run the bot for 3 seconds
-        int runtime = 3;
 
         // We could try to capture the output ... not sure how.
         bool fluentd = true;
 
-        int64_t sentCount = ix::cobra_to_stdout_bot(
-            config, channel, filter, position, fluentd, quiet, enableHeartbeat, runtime);
+        int64_t sentCount = ix::cobra_to_stdout_bot(cobraBotConfig, fluentd, quiet);
         //
         // We want at least 2 messages to be sent
         //

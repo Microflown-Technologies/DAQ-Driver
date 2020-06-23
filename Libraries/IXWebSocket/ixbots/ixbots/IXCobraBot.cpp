@@ -8,6 +8,7 @@
 
 #include <ixcobra/IXCobraConnection.h>
 #include <ixcore/utils/IXCoreLogger.h>
+#include <ixwebsocket/IXSetThreadName.h>
 
 #include <algorithm>
 #include <chrono>
@@ -17,13 +18,19 @@
 
 namespace ix
 {
-    int64_t CobraBot::run(const CobraConfig& config,
-                          const std::string& channel,
-                          const std::string& filter,
-                          const std::string& position,
-                          bool enableHeartbeat,
-                          int runtime)
+    int64_t CobraBot::run(const CobraBotConfig& botConfig)
     {
+        auto config = botConfig.cobraConfig;
+        auto channel = botConfig.channel;
+        auto filter = botConfig.filter;
+        auto position = botConfig.position;
+        auto enableHeartbeat = botConfig.enableHeartbeat;
+        auto heartBeatTimeout = botConfig.heartBeatTimeout;
+        auto runtime = botConfig.runtime;
+        auto maxEventsPerMinute = botConfig.maxEventsPerMinute;
+        auto limitReceivedEvents = botConfig.limitReceivedEvents;
+        auto batchSize = botConfig.batchSize;
+
         ix::CobraConnection conn;
         conn.configure(config);
         conn.connect();
@@ -34,9 +41,12 @@ namespace ix
         uint64_t receivedCountTotal(0);
         uint64_t sentCountPerSecs(0);
         uint64_t receivedCountPerSecs(0);
+        std::atomic<int> receivedCountPerMinutes(0);
         std::atomic<bool> stop(false);
         std::atomic<bool> throttled(false);
         std::atomic<bool> fatalCobraError(false);
+        std::atomic<bool> stalledConnection(false);
+        int minuteCounter = 0;
 
         auto timer = [&sentCount,
                       &receivedCount,
@@ -44,7 +54,11 @@ namespace ix
                       &receivedCountTotal,
                       &sentCountPerSecs,
                       &receivedCountPerSecs,
+                      &receivedCountPerMinutes,
+                      &minuteCounter,
+                      &conn,
                       &stop] {
+            setThreadName("Bot progress");
             while (!stop)
             {
                 //
@@ -61,16 +75,26 @@ namespace ix
                    << sentCountPerSecs
                    << " "
                    << sentCountTotal;
-                CoreLogger::info(ss.str());
+
+                if (conn.isAuthenticated())
+                {
+                    CoreLogger::info(ss.str());
+                }
 
                 receivedCountPerSecs = receivedCount - receivedCountTotal;
-                sentCountPerSecs = sentCount - receivedCountTotal;
+                sentCountPerSecs = sentCount - sentCountTotal;
 
                 receivedCountTotal += receivedCountPerSecs;
                 sentCountTotal += sentCountPerSecs;
 
                 auto duration = std::chrono::seconds(1);
                 std::this_thread::sleep_for(duration);
+
+                if (minuteCounter++ == 60)
+                {
+                    receivedCountPerMinutes = 0;
+                    minuteCounter = 0;
+                }
             }
 
             CoreLogger::info("timer thread done");
@@ -78,7 +102,14 @@ namespace ix
 
         std::thread t1(timer);
 
-        auto heartbeat = [&sentCount, &receivedCount, &stop, &enableHeartbeat] {
+        auto heartbeat = [&sentCount,
+                          &receivedCount,
+                          &stop,
+                          &enableHeartbeat,
+                          &heartBeatTimeout,
+                          &stalledConnection]
+        {
+            setThreadName("Bot heartbeat");
             std::string state("na");
 
             if (!enableHeartbeat) return;
@@ -93,12 +124,16 @@ namespace ix
 
                 if (currentState == state)
                 {
-                    CoreLogger::error("no messages received or sent for 1 minute, exiting");
-                    exit(1);
+                    ss.str("");
+                    ss << "no messages received or sent for "
+                       << heartBeatTimeout << " seconds, reconnecting";
+
+                    CoreLogger::error(ss.str());
+                    stalledConnection = true;
                 }
                 state = currentState;
 
-                auto duration = std::chrono::minutes(1);
+                auto duration = std::chrono::seconds(heartBeatTimeout);
                 std::this_thread::sleep_for(duration);
             }
 
@@ -116,6 +151,10 @@ namespace ix
                                &subscriptionPosition,
                                &throttled,
                                &receivedCount,
+                               &receivedCountPerMinutes,
+                               maxEventsPerMinute,
+                               limitReceivedEvents,
+                               batchSize,
                                &fatalCobraError,
                                &sentCount](const CobraEventPtr& event) {
             if (event->type == ix::CobraEventType::Open)
@@ -124,7 +163,7 @@ namespace ix
 
                 for (auto&& it : event->headers)
                 {
-                    CoreLogger::info(it.first + "::" + it.second);
+                    CoreLogger::info(it.first + ": " + it.second);
                 }
             }
             else if (event->type == ix::CobraEventType::Closed)
@@ -137,29 +176,34 @@ namespace ix
                 CoreLogger::info("Subscribing to " + channel);
                 CoreLogger::info("Subscribing at position " + subscriptionPosition);
                 CoreLogger::info("Subscribing with filter " + filter);
-                conn.subscribe(channel,
-                               filter,
-                               subscriptionPosition,
-                               [this,
-                                &throttled,
-                                &receivedCount,
-                                &subscriptionPosition,
-                                &fatalCobraError,
-                                &sentCount](const Json::Value& msg, const std::string& position) {
-                                   subscriptionPosition = position;
+                conn.subscribe(channel, filter, subscriptionPosition, batchSize,
+                    [&sentCount, &receivedCountPerMinutes,
+                     maxEventsPerMinute, limitReceivedEvents,
+                     &throttled, &receivedCount,
+                     &subscriptionPosition, &fatalCobraError,
+                     this](const Json::Value& msg, const std::string& position) {
+                        subscriptionPosition = position;
+                        ++receivedCount;
 
-                                   // If we cannot send to sentry fast enough, drop the message
-                                   if (throttled)
-                                   {
-                                       return;
-                                   }
+                        ++receivedCountPerMinutes;
+                        if (limitReceivedEvents)
+                        {
+                            if (receivedCountPerMinutes > maxEventsPerMinute)
+                            {
+                                return;
+                            }
+                        }
 
-                                   ++receivedCount;
+                        // If we cannot send to sentry fast enough, drop the message
+                        if (throttled)
+                        {
+                            return;
+                        }
 
-                                   _onBotMessageCallback(
-                                       msg, position, throttled,
-                                       fatalCobraError, sentCount);
-                               });
+                        _onBotMessageCallback(
+                            msg, position, throttled,
+                            fatalCobraError, sentCount);
+                    });
             }
             else if (event->type == ix::CobraEventType::Subscribed)
             {
@@ -207,6 +251,13 @@ namespace ix
                 std::this_thread::sleep_for(duration);
 
                 if (fatalCobraError) break;
+
+                if (stalledConnection)
+                {
+                    conn.disconnect();
+                    conn.connect();
+                    stalledConnection = false;
+                }
             }
         }
         // Run for a duration, used by unittesting now
@@ -218,6 +269,13 @@ namespace ix
                 std::this_thread::sleep_for(duration);
 
                 if (fatalCobraError) break;
+
+                if (stalledConnection)
+                {
+                    conn.disconnect();
+                    conn.connect();
+                    stalledConnection = false;
+                }
             }
         }
 
@@ -241,4 +299,22 @@ namespace ix
     {
         _onBotMessageCallback = callback;
     }
+
+    std::string CobraBot::getDeviceIdentifier(const Json::Value& msg)
+    {
+        std::string deviceId("na");
+
+        auto osName = msg["device"]["os_name"];
+        if (osName == "Android")
+        {
+            deviceId = msg["device"]["model"].asString();
+        }
+        else if (osName == "iOS")
+        {
+            deviceId = msg["device"]["hardware_model"].asString();
+        }
+
+        return deviceId;
+    }
+
 } // namespace ix

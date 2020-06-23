@@ -13,7 +13,7 @@
 #include <ixcobra/IXCobraMetricsPublisher.h>
 #include <ixcrypto/IXUuid.h>
 #include <ixsentry/IXSentryClient.h>
-#include <ixsnake/IXRedisServer.h>
+#include <ixredis/IXRedisServer.h>
 #include <ixsnake/IXSnakeServer.h>
 #include <ixwebsocket/IXHttpServer.h>
 #include <ixwebsocket/IXUserAgent.h>
@@ -138,10 +138,12 @@ TEST_CASE("Cobra_to_sentry_bot", "[cobra_bots]")
 
         std::thread publisherThread(runPublisher, config, channel);
 
-        std::string filter;
-        std::string position("$");
+        ix::CobraBotConfig cobraBotConfig;
+        cobraBotConfig.cobraConfig = config;
+        cobraBotConfig.channel = channel;
+        cobraBotConfig.runtime = 3; // Only run the bot for 3 seconds
+        cobraBotConfig.enableHeartbeat = false;
         bool verbose = true;
-        bool enableHeartbeat = false;
 
         // FIXME: try to get this working with https instead of http
         //        to regress the TLS 1.3 OpenSSL bug
@@ -156,11 +158,7 @@ TEST_CASE("Cobra_to_sentry_bot", "[cobra_bots]")
         SentryClient sentryClient(dsn);
         sentryClient.setTLSOptions(tlsOptionsClient);
 
-        // Only run the bot for 3 seconds
-        int runtime = 3;
-
-        int64_t sentCount = cobra_to_sentry_bot(
-            config, channel, filter, position, sentryClient, verbose, enableHeartbeat, runtime);
+        int64_t sentCount = cobra_to_sentry_bot(cobraBotConfig, sentryClient, verbose);
         //
         // We want at least 2 messages to be sent
         //
