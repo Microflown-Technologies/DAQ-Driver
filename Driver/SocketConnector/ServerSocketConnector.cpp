@@ -96,7 +96,6 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
             closedCallbackHandler().invokeCallbacks();
         }
     } else if(message->type == ix::WebSocketMessageType::Error) {
-        std::find(m_connections.begin(), m_connections.end(), webSocket);
 #ifdef QT_IS_AVAILABLE
         qWarning() << "Connection error!";
 #else
@@ -106,6 +105,7 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 }
 
 void ServerSocketConnector::onConnectionCallback(std::shared_ptr<ix::WebSocket> webSocket, std::shared_ptr<ix::ConnectionState> connectionState) {
+    (void) connectionState;
     webSocket->setOnMessageCallback([=] (const ix::WebSocketMessagePtr& message) {
         onMessageCallback(webSocket, message);
     });

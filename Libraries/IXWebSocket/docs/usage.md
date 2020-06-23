@@ -392,8 +392,6 @@ bool ok = httpClient.performRequest(args, [](const HttpResponsePtr& response)
 // ok will be false if your httpClient is not async
 ```
 
-See this [issue](https://github.com/machinezone/IXWebSocket/issues/209) for links about uploading files with HTTP multipart.
-
 ## HTTP server API
 
 ```cpp

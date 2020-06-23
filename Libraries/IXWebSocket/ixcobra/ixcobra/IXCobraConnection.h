@@ -88,7 +88,6 @@ namespace ix
         void subscribe(const std::string& channel,
                        const std::string& filter = std::string(),
                        const std::string& position = std::string(),
-                       int batchSize = 1,
                        SubscriptionCallback cb = nullptr);
 
         /// Unsubscribe from a channel

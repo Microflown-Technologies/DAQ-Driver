@@ -7,12 +7,16 @@ set (IXSNAKE_SOURCES
     ixsnake/IXSnakeServer.cpp
     ixsnake/IXSnakeProtocol.cpp
     ixsnake/IXAppConfig.cpp
+    ixsnake/IXRedisClient.cpp
+    ixsnake/IXRedisServer.cpp
 )
 
 set (IXSNAKE_HEADERS
     ixsnake/IXSnakeServer.h
     ixsnake/IXSnakeProtocol.h
     ixsnake/IXAppConfig.h
+    ixsnake/IXRedisClient.h
+    ixsnake/IXRedisServer.h
 )
 
 add_library(ixsnake STATIC
@@ -26,7 +30,6 @@ set(IXSNAKE_INCLUDE_DIRS
     ../ixcore
     ../ixcrypto
     ../ixwebsocket
-    ../ixredis
     ../third_party)
 
 target_include_directories( ixsnake PUBLIC ${IXSNAKE_INCLUDE_DIRS} )

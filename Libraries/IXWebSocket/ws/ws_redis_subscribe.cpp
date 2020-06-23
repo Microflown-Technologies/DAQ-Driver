@@ -6,7 +6,7 @@
 
 #include <atomic>
 #include <chrono>
-#include <ixredis/IXRedisClient.h>
+#include <ixsnake/IXRedisClient.h>
 #include <spdlog/spdlog.h>
 #include <sstream>
 #include <thread>

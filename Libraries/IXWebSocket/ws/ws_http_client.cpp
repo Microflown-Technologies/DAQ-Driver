@@ -109,11 +109,8 @@ namespace ix
         args->verbose = verbose;
         args->compress = compress;
         args->logger = [](const std::string& msg) { spdlog::info(msg); };
-        args->onProgressCallback = [verbose](int current, int total) -> bool {
-            if (verbose)
-            {
-                spdlog::info("Downloaded {} bytes out of {}", current, total);
-            }
+        args->onProgressCallback = [](int current, int total) -> bool {
+            spdlog::info("Downloaded {} bytes out of {}", current, total);
             return true;
         };
 

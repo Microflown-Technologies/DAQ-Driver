@@ -70,17 +70,11 @@ namespace ix
                                                      std::atomic<bool>& fatalCobraError,
                                                      std::atomic<uint64_t>& sentCount) -> void {
                 std::string id;
-                size_t idx = 0;
                 for (auto&& attr : tokens)
                 {
+                    id += ".";
                     auto val = extractAttr(attr, msg);
                     id += val.asString();
-
-                    // We add a dot separator unless we are processing the last token
-                    if (idx++ != tokens.size() - 1)
-                    {
-                        id += ".";
-                    }
                 }
 
                 if (gauge.empty() && timer.empty())

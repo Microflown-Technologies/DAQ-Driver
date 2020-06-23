@@ -20,8 +20,7 @@ namespace ix
     public:
         StatsdClient(const std::string& host = "127.0.0.1",
                      int port = 8125,
-                     const std::string& prefix = "",
-                     bool verbose = false);
+                     const std::string& prefix = "");
         ~StatsdClient();
 
         bool init(std::string& errMsg);
@@ -53,7 +52,6 @@ namespace ix
         std::mutex _mutex; // for the queue
 
         std::deque<std::string> _queue;
-        bool _verbose;
     };
 
 } // end namespace ix

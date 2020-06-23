@@ -69,7 +69,9 @@ include_directories (
   "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
+target_compile_definitions(usbp PRIVATE LIBUSBP_EXPORTS=1)
 if (WIN32)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
   target_link_libraries (usbp setupapi winusb uuid ole32)
   if (NOT BUILD_SHARED_LIBS)
     set (PC_MORE_LIBS "-lsetupapi -lwinusb -luuid -lole32")

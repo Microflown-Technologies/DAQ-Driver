@@ -19,7 +19,7 @@ namespace
     class WebSocketClient
     {
     public:
-        WebSocketClient(int port);
+        WebSocketClient(int port, bool useHeartBeatMethod);
 
         void start();
         void stop();
@@ -29,10 +29,12 @@ namespace
     private:
         ix::WebSocket _webSocket;
         int _port;
+        bool _useHeartBeatMethod;
     };
 
-    WebSocketClient::WebSocketClient(int port)
+    WebSocketClient::WebSocketClient(int port, bool useHeartBeatMethod)
         : _port(port)
+        , _useHeartBeatMethod(useHeartBeatMethod)
     {
         ;
     }
@@ -61,37 +63,49 @@ namespace
 
         // The important bit for this test.
         // Set a 1 second heartbeat with the setter method to test
-        _webSocket.setPingInterval(1);
+        if (_useHeartBeatMethod)
+        {
+            _webSocket.setPingInterval(1);
+        }
+        else
+        {
+            _webSocket.setPingInterval(1);
+        }
 
         std::stringstream ss;
         log(std::string("Connecting to url: ") + url);
 
-        _webSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr& msg) {
+        _webSocket.setOnMessageCallback([](ix::WebSocketMessageType messageType,
+                                           const std::string& str,
+                                           size_t wireSize,
+                                           const ix::WebSocketErrorInfo& error,
+                                           const ix::WebSocketOpenInfo& openInfo,
+                                           const ix::WebSocketCloseInfo& closeInfo) {
             std::stringstream ss;
-            if (msg->type == ix::WebSocketMessageType::Open)
+            if (messageType == ix::WebSocketMessageType::Open)
             {
                 log("client connected");
             }
-            else if (msg->type == ix::WebSocketMessageType::Close)
+            else if (messageType == ix::WebSocketMessageType::Close)
             {
                 log("client disconnected");
             }
-            else if (msg->type == ix::WebSocketMessageType::Error)
+            else if (messageType == ix::WebSocketMessageType::Error)
             {
-                ss << "Error ! " << msg->errorInfo.reason;
+                ss << "Error ! " << error.reason;
                 log(ss.str());
             }
-            else if (msg->type == ix::WebSocketMessageType::Pong)
+            else if (messageType == ix::WebSocketMessageType::Pong)
             {
-                ss << "Received pong message " << msg->str;
+                ss << "Received pong message " << str;
                 log(ss.str());
             }
-            else if (msg->type == ix::WebSocketMessageType::Ping)
+            else if (messageType == ix::WebSocketMessageType::Ping)
             {
-                ss << "Received ping message " << msg->str;
+                ss << "Received ping message " << str;
                 log(ss.str());
             }
-            else if (msg->type == ix::WebSocketMessageType::Message)
+            else if (messageType == ix::WebSocketMessageType::Message)
             {
                 // too many messages to log
             }
@@ -118,28 +132,33 @@ namespace
                                              std::shared_ptr<ConnectionState> connectionState) {
                 webSocket->setOnMessageCallback(
                     [webSocket, connectionState, &server, &receivedPingMessages](
-                        const ix::WebSocketMessagePtr& msg) {
-                        if (msg->type == ix::WebSocketMessageType::Open)
+                        ix::WebSocketMessageType messageType,
+                        const std::string& str,
+                        size_t wireSize,
+                        const ix::WebSocketErrorInfo& error,
+                        const ix::WebSocketOpenInfo& openInfo,
+                        const ix::WebSocketCloseInfo& closeInfo) {
+                        if (messageType == ix::WebSocketMessageType::Open)
                         {
                             TLogger() << "New server connection";
                             TLogger() << "id: " << connectionState->getId();
-                            TLogger() << "Uri: " << msg->openInfo.uri;
+                            TLogger() << "Uri: " << openInfo.uri;
                             TLogger() << "Headers:";
-                            for (auto it : msg->openInfo.headers)
+                            for (auto it : openInfo.headers)
                             {
                                 TLogger() << it.first << ": " << it.second;
                             }
                         }
-                        else if (msg->type == ix::WebSocketMessageType::Close)
+                        else if (messageType == ix::WebSocketMessageType::Close)
                         {
                             log("Server closed connection");
                         }
-                        else if (msg->type == ix::WebSocketMessageType::Ping)
+                        else if (messageType == ix::WebSocketMessageType::Ping)
                         {
                             log("Server received a ping");
                             receivedPingMessages++;
                         }
-                        else if (msg->type == ix::WebSocketMessageType::Message)
+                        else if (messageType == ix::WebSocketMessageType::Message)
                         {
                             // to many messages to log
                             for (auto client : server.getClients())
@@ -174,7 +193,8 @@ TEST_CASE("Websocket_ping_no_data_sent_setPingInterval", "[setPingInterval]")
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = false; // so use setPingInterval
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -216,7 +236,8 @@ TEST_CASE("Websocket_ping_data_sent_setPingInterval", "[setPingInterval]")
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = false; // so use setPingInterval
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -240,7 +261,7 @@ TEST_CASE("Websocket_ping_data_sent_setPingInterval", "[setPingInterval]")
         // Here we test ping interval
         // client has sent data, but ping should have been sent no matter what
         // -> expected ping messages == 3 as 900+900+1300 = 3100 seconds, 1 ping sent every second
-        REQUIRE(serverReceivedPingMessages >= 2);
+        REQUIRE(serverReceivedPingMessages == 3);
 
         // Give us 1000ms for the server to notice that clients went away
         ix::msleep(1000);
@@ -263,7 +284,8 @@ TEST_CASE("Websocket_ping_data_sent_setPingInterval_half_full", "[setPingInterva
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = false; // so use setPingInterval
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -316,7 +338,8 @@ TEST_CASE("Websocket_ping_data_sent_setPingInterval_full", "[setPingInterval]")
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = false; // so use setPingInterval
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -340,9 +363,8 @@ TEST_CASE("Websocket_ping_data_sent_setPingInterval_full", "[setPingInterval]")
 
         // Here we test ping interval
         // client has sent data, but ping should have been sent no matter what
-        // -> expected ping messages == 2, 1 ping sent every second
-        // The first ping is sent right away on connect
-        REQUIRE(serverReceivedPingMessages == 2);
+        // -> expected ping messages == 1, 1 ping sent every second
+        REQUIRE(serverReceivedPingMessages == 1);
 
         ix::msleep(100);
 
@@ -370,7 +392,8 @@ TEST_CASE("Websocket_ping_no_data_sent_setHeartBeatPeriod", "[setPingInterval]")
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = true;
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -383,13 +406,14 @@ TEST_CASE("Websocket_ping_no_data_sent_setHeartBeatPeriod", "[setPingInterval]")
 
         REQUIRE(server.getClients().size() == 1);
 
-        ix::msleep(2100);
+        ix::msleep(1900);
 
         webSocketClient.stop();
 
+
         // Here we test ping interval
-        // -> expected ping messages == 2 as 2100 seconds, 1 ping sent every second
-        REQUIRE(serverReceivedPingMessages == 2);
+        // -> expected ping messages == 1 as 1900 seconds, 1 ping sent every second
+        REQUIRE(serverReceivedPingMessages == 1);
 
         // Give us 1000ms for the server to notice that clients went away
         ix::msleep(1000);
@@ -412,7 +436,8 @@ TEST_CASE("Websocket_ping_data_sent_setHeartBeatPeriod", "[setPingInterval]")
         REQUIRE(startServer(server, serverReceivedPingMessages));
 
         std::string session = ix::generateSessionId();
-        WebSocketClient webSocketClient(port);
+        bool useSetHeartBeatPeriodMethod = true;
+        WebSocketClient webSocketClient(port, useSetHeartBeatPeriodMethod);
 
         webSocketClient.start();
 
@@ -439,7 +464,7 @@ TEST_CASE("Websocket_ping_data_sent_setHeartBeatPeriod", "[setPingInterval]")
         // Here we test ping interval
         // client has sent data, but ping should have been sent no matter what
         // -> expected ping messages == 2 as 900+900+1100 = 2900 seconds, 1 ping sent every second
-        REQUIRE(serverReceivedPingMessages >= 2);
+        REQUIRE(serverReceivedPingMessages == 2);
 
         // Give us 1000ms for the server to notice that clients went away
         ix::msleep(1000);

@@ -8,7 +8,6 @@
 
 #include <ixcobra/IXCobraConnection.h>
 #include <ixcore/utils/IXCoreLogger.h>
-#include <ixwebsocket/IXSetThreadName.h>
 
 #include <algorithm>
 #include <chrono>
@@ -29,7 +28,6 @@ namespace ix
         auto runtime = botConfig.runtime;
         auto maxEventsPerMinute = botConfig.maxEventsPerMinute;
         auto limitReceivedEvents = botConfig.limitReceivedEvents;
-        auto batchSize = botConfig.batchSize;
 
         ix::CobraConnection conn;
         conn.configure(config);
@@ -45,7 +43,6 @@ namespace ix
         std::atomic<bool> stop(false);
         std::atomic<bool> throttled(false);
         std::atomic<bool> fatalCobraError(false);
-        std::atomic<bool> stalledConnection(false);
         int minuteCounter = 0;
 
         auto timer = [&sentCount,
@@ -56,9 +53,7 @@ namespace ix
                       &receivedCountPerSecs,
                       &receivedCountPerMinutes,
                       &minuteCounter,
-                      &conn,
                       &stop] {
-            setThreadName("Bot progress");
             while (!stop)
             {
                 //
@@ -75,11 +70,7 @@ namespace ix
                    << sentCountPerSecs
                    << " "
                    << sentCountTotal;
-
-                if (conn.isAuthenticated())
-                {
-                    CoreLogger::info(ss.str());
-                }
+                CoreLogger::info(ss.str());
 
                 receivedCountPerSecs = receivedCount - receivedCountTotal;
                 sentCountPerSecs = sentCount - sentCountTotal;
@@ -102,14 +93,7 @@ namespace ix
 
         std::thread t1(timer);
 
-        auto heartbeat = [&sentCount,
-                          &receivedCount,
-                          &stop,
-                          &enableHeartbeat,
-                          &heartBeatTimeout,
-                          &stalledConnection]
-        {
-            setThreadName("Bot heartbeat");
+        auto heartbeat = [&sentCount, &receivedCount, &stop, &enableHeartbeat, &heartBeatTimeout, &fatalCobraError] {
             std::string state("na");
 
             if (!enableHeartbeat) return;
@@ -124,12 +108,9 @@ namespace ix
 
                 if (currentState == state)
                 {
-                    ss.str("");
-                    ss << "no messages received or sent for "
-                       << heartBeatTimeout << " seconds, reconnecting";
-
-                    CoreLogger::error(ss.str());
-                    stalledConnection = true;
+                    CoreLogger::error("no messages received or sent for 1 minute, exiting");
+                    fatalCobraError = true;
+                    break;
                 }
                 state = currentState;
 
@@ -154,7 +135,6 @@ namespace ix
                                &receivedCountPerMinutes,
                                maxEventsPerMinute,
                                limitReceivedEvents,
-                               batchSize,
                                &fatalCobraError,
                                &sentCount](const CobraEventPtr& event) {
             if (event->type == ix::CobraEventType::Open)
@@ -163,7 +143,7 @@ namespace ix
 
                 for (auto&& it : event->headers)
                 {
-                    CoreLogger::info(it.first + ": " + it.second);
+                    CoreLogger::info(it.first + "::" + it.second);
                 }
             }
             else if (event->type == ix::CobraEventType::Closed)
@@ -176,7 +156,7 @@ namespace ix
                 CoreLogger::info("Subscribing to " + channel);
                 CoreLogger::info("Subscribing at position " + subscriptionPosition);
                 CoreLogger::info("Subscribing with filter " + filter);
-                conn.subscribe(channel, filter, subscriptionPosition, batchSize,
+                conn.subscribe(channel, filter, subscriptionPosition,
                     [&sentCount, &receivedCountPerMinutes,
                      maxEventsPerMinute, limitReceivedEvents,
                      &throttled, &receivedCount,
@@ -251,13 +231,6 @@ namespace ix
                 std::this_thread::sleep_for(duration);
 
                 if (fatalCobraError) break;
-
-                if (stalledConnection)
-                {
-                    conn.disconnect();
-                    conn.connect();
-                    stalledConnection = false;
-                }
             }
         }
         // Run for a duration, used by unittesting now
@@ -269,13 +242,6 @@ namespace ix
                 std::this_thread::sleep_for(duration);
 
                 if (fatalCobraError) break;
-
-                if (stalledConnection)
-                {
-                    conn.disconnect();
-                    conn.connect();
-                    stalledConnection = false;
-                }
             }
         }
 
@@ -299,22 +265,4 @@ namespace ix
     {
         _onBotMessageCallback = callback;
     }
-
-    std::string CobraBot::getDeviceIdentifier(const Json::Value& msg)
-    {
-        std::string deviceId("na");
-
-        auto osName = msg["device"]["os_name"];
-        if (osName == "Android")
-        {
-            deviceId = msg["device"]["model"].asString();
-        }
-        else if (osName == "iOS")
-        {
-            deviceId = msg["device"]["hardware_model"].asString();
-        }
-
-        return deviceId;
-    }
-
 } // namespace ix

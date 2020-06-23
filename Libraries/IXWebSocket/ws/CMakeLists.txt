@@ -34,7 +34,6 @@ endif()
 
 add_executable(ws
   ../third_party/msgpack11/msgpack11.cpp
-  ../third_party/cpp-linenoise/linenoise.cpp
   ${JSONCPP_SOURCES}
 
   ws_http_client.cpp
@@ -46,13 +45,13 @@ add_executable(ws
   ws_transfer.cpp
   ws_send.cpp
   ws_receive.cpp
-  ws_redis_cli.cpp
   ws_redis_publish.cpp
   ws_redis_subscribe.cpp
   ws_redis_server.cpp
   ws_snake.cpp
   ws_cobra_metrics_publish.cpp
   ws_cobra_publish.cpp
+  ws_cobra_metrics_to_redis.cpp
   ws_httpd.cpp
   ws_autobahn.cpp
   ws_proxy_server.cpp
@@ -65,7 +64,6 @@ target_link_libraries(ws ixbots)
 target_link_libraries(ws ixsnake)
 target_link_libraries(ws ixcobra)
 target_link_libraries(ws ixsentry)
-target_link_libraries(ws ixredis)
 target_link_libraries(ws ixwebsocket)
 target_link_libraries(ws ixcrypto)
 target_link_libraries(ws ixcore)

@@ -39,28 +39,21 @@
 
 #include "IXStatsdClient.h"
 
+#include <iostream>
 #include <ixwebsocket/IXNetSystem.h>
-#include <ixwebsocket/IXSetThreadName.h>
-#include <ixcore/utils/IXCoreLogger.h>
-#include <sstream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 namespace ix
 {
-    StatsdClient::StatsdClient(const std::string& host,
-                               int port,
-                               const std::string& prefix,
-                               bool verbose)
+    StatsdClient::StatsdClient(const std::string& host, int port, const std::string& prefix)
         : _host(host)
         , _port(port)
         , _prefix(prefix)
         , _stop(false)
-        , _verbose(verbose)
     {
         _thread = std::thread([this] {
-            setThreadName("Statsd");
-
             while (!_stop)
             {
                 flushQueue();
@@ -122,15 +115,11 @@ namespace ix
     {
         cleanup(key);
 
-        std::stringstream ss;
-        ss << _prefix << "." << key << ":" << value << "|" << type;
+        char buf[256];
+        snprintf(
+            buf, sizeof(buf), "%s%s:%zd|%s\n", _prefix.c_str(), key.c_str(), value, type.c_str());
 
-        if (_verbose)
-        {
-            CoreLogger::info(ss.str());
-        }
-
-        enqueue(ss.str() + "\n");
+        enqueue(buf);
         return 0;
     }
 
@@ -148,13 +137,10 @@ namespace ix
         {
             auto message = _queue.front();
             auto ret = _socket.sendto(message);
-            if (ret == -1)
+            if (ret != 0)
             {
-                CoreLogger::error(std::string("statsd error: ") + strerror(UdpSocket::getErrno()));
+                std::cerr << "error: " << strerror(UdpSocket::getErrno()) << std::endl;
             }
-
-            // we always dequeue regardless of the ability to send the message
-            // so that we keep our queue size under control
             _queue.pop_front();
         }
     }

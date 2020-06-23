@@ -12,8 +12,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <zlib.h>
-#include <cstring>
 
 namespace
 {
@@ -39,47 +37,6 @@ namespace
         auto res = load(path);
         auto vec = res.second;
         return std::make_pair(res.first, std::string(vec.begin(), vec.end()));
-    }
-
-    std::string gzipCompress(const std::string& str)
-    {
-        z_stream zs; // z_stream is zlib's control structure
-        memset(&zs, 0, sizeof(zs));
-
-        // deflateInit2 configure the file format: request gzip instead of deflate
-        const int windowBits = 15;
-        const int GZIP_ENCODING = 16;
-
-        deflateInit2(&zs, Z_DEFAULT_COMPRESSION, Z_DEFLATED,
-                     windowBits | GZIP_ENCODING, 8,
-                     Z_DEFAULT_STRATEGY);
-
-        zs.next_in = (Bytef*) str.data();
-        zs.avail_in = (uInt) str.size(); // set the z_stream's input
-
-        int ret;
-        char outbuffer[32768];
-        std::string outstring;
-
-        // retrieve the compressed bytes blockwise
-        do
-        {
-            zs.next_out = reinterpret_cast<Bytef*>(outbuffer);
-            zs.avail_out = sizeof(outbuffer);
-
-            ret = deflate(&zs, Z_FINISH);
-
-            if(outstring.size() < zs.total_out)
-            {
-                // append the block to the output string
-                outstring.append(outbuffer,
-                                 zs.total_out - outstring.size());
-            }
-        } while(ret == Z_OK);
-
-        deflateEnd(&zs);
-
-        return outstring;
     }
 } // namespace
 
@@ -162,13 +119,6 @@ namespace ix
                 }
 
                 std::string content = res.second;
-
-                std::string acceptEncoding = request->headers["Accept-encoding"];
-                if (acceptEncoding == "*" || acceptEncoding.find("gzip") != std::string::npos)
-                {
-                    content = gzipCompress(content);
-                    headers["Content-Encoding"] = "gzip";
-                }
 
                 // Log request
                 std::stringstream ss;

@@ -8,6 +8,15 @@ set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_AUTOGEN_PARALLEL ${N})
 set (CMAKE_BUILD_PARALLEL_LEVEL ${N})
 
+if(WIN32)
+  # ensure Unicode friendly APIs are used on Windows
+  add_definitions(-DUNICODE -D_UNICODE)
+
+  # minimize windows.h content
+  add_definitions(-DWIN32_LEAN_AND_MEAN)
+endif()
+
+
 # Find protobuf
 if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/Environment/Libraries/Protobuf/protobuf-3.11.3/cmake")
     option(protobuf_BUILD_TESTS "Build tests" OFF)

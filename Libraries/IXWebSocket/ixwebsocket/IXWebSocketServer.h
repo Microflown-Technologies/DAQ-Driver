@@ -19,7 +19,7 @@
 
 namespace ix
 {
-    class WebSocketServer : public SocketServer
+    class WebSocketServer final : public SocketServer
     {
     public:
         using OnConnectionCallback =

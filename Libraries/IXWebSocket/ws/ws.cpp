@@ -14,9 +14,6 @@
 #include <ixbots/IXCobraToSentryBot.h>
 #include <ixbots/IXCobraToStatsdBot.h>
 #include <ixbots/IXCobraToStdoutBot.h>
-#include <ixbots/IXCobraMetricsToStatsdBot.h>
-#include <ixbots/IXCobraMetricsToRedisBot.h>
-#include <ixredis/IXRedisClient.h>
 #include <ixcore/utils/IXCoreLogger.h>
 #include <ixsentry/IXSentryClient.h>
 #include <ixwebsocket/IXNetSystem.h>
@@ -192,8 +189,6 @@ int main(int argc, char** argv)
             "--limit_received_events", cobraBotConfig.limitReceivedEvents, "Max events per minute");
         app->add_option(
             "--max_events_per_minute", cobraBotConfig.maxEventsPerMinute, "Max events per minute");
-        app->add_option(
-            "--batch_size", cobraBotConfig.batchSize, "Subscription batch size");
     };
 
     app.add_flag("--version", version, "Print ws version");
@@ -283,12 +278,6 @@ int main(int argc, char** argv)
     httpClientApp->add_option("--transfer-timeout", transferTimeout, "Transfer timeout");
     addTLSOptions(httpClientApp);
 
-    CLI::App* redisCliApp = app.add_subcommand("redis_cli", "Redis cli");
-    redisCliApp->fallthrough();
-    redisCliApp->add_option("--port", redisPort, "Port");
-    redisCliApp->add_option("--host", hostname, "Hostname");
-    redisCliApp->add_option("--password", password, "Password");
-
     CLI::App* redisPublishApp = app.add_subcommand("redis_publish", "Redis publisher");
     redisPublishApp->fallthrough();
     redisPublishApp->add_option("--port", redisPort, "Port");
@@ -337,7 +326,7 @@ int main(int argc, char** argv)
     addTLSOptions(cobraMetricsPublish);
     addCobraConfig(cobraMetricsPublish);
 
-    CLI::App* cobra2statsd = app.add_subcommand("cobra_to_statsd", "Cobra to statsd");
+    CLI::App* cobra2statsd = app.add_subcommand("cobra_to_statsd", "Cobra metrics to statsd");
     cobra2statsd->fallthrough();
     cobra2statsd->add_option("--host", hostname, "Statsd host");
     cobra2statsd->add_option("--port", statsdPort, "Statsd port");
@@ -352,17 +341,7 @@ int main(int argc, char** argv)
     addTLSOptions(cobra2statsd);
     addCobraBotConfig(cobra2statsd);
 
-    CLI::App* cobraMetrics2statsd = app.add_subcommand("cobra_metrics_to_statsd", "Cobra metrics to statsd");
-    cobraMetrics2statsd->fallthrough();
-    cobraMetrics2statsd->add_option("--host", hostname, "Statsd host");
-    cobraMetrics2statsd->add_option("--port", statsdPort, "Statsd port");
-    cobraMetrics2statsd->add_option("--prefix", prefix, "Statsd prefix");
-    cobraMetrics2statsd->add_flag("-v", verbose, "Verbose");
-    cobraMetrics2statsd->add_option("--pidfile", pidfile, "Pid file");
-    addTLSOptions(cobraMetrics2statsd);
-    addCobraBotConfig(cobraMetrics2statsd);
-
-    CLI::App* cobra2sentry = app.add_subcommand("cobra_to_sentry", "Cobra to sentry");
+    CLI::App* cobra2sentry = app.add_subcommand("cobra_to_sentry", "Cobra metrics to sentry");
     cobra2sentry->fallthrough();
     cobra2sentry->add_option("--dsn", dsn, "Sentry DSN");
     cobra2sentry->add_flag("-v", verbose, "Verbose");
@@ -373,12 +352,15 @@ int main(int argc, char** argv)
     CLI::App* cobra2redisApp =
         app.add_subcommand("cobra_metrics_to_redis", "Cobra metrics to redis");
     cobra2redisApp->fallthrough();
+    cobra2redisApp->add_option("channel", channel, "Channel")->required();
     cobra2redisApp->add_option("--pidfile", pidfile, "Pid file");
+    cobra2redisApp->add_option("--filter", filter, "Stream SQL Filter");
+    cobra2redisApp->add_option("--position", position, "Stream position");
     cobra2redisApp->add_option("--hostname", hostname, "Redis hostname");
     cobra2redisApp->add_option("--port", redisPort, "Redis port");
-    cobra2redisApp->add_flag("-v", verbose, "Verbose");
+    cobra2redisApp->add_flag("-q", quiet, "Quiet / only display stats");
     addTLSOptions(cobra2redisApp);
-    addCobraBotConfig(cobra2redisApp);
+    addCobraConfig(cobra2redisApp);
 
     CLI::App* snakeApp = app.add_subcommand("snake", "Snake server");
     snakeApp->fallthrough();
@@ -539,10 +521,6 @@ int main(int argc, char** argv)
                                       compress,
                                       tlsOptions);
     }
-    else if (app.got_subcommand("redis_cli"))
-    {
-        ret = ix::ws_redis_cli_main(hostname, redisPort, password);
-    }
     else if (app.got_subcommand("redis_publish"))
     {
         ret = ix::ws_redis_publish_main(hostname, redisPort, password, channel, message, count);
@@ -574,7 +552,7 @@ int main(int argc, char** argv)
         }
         else
         {
-            ix::StatsdClient statsdClient(hostname, statsdPort, prefix, verbose);
+            ix::StatsdClient statsdClient(hostname, statsdPort, prefix);
 
             std::string errMsg;
             bool initialized = statsdClient.init(errMsg);
@@ -590,23 +568,6 @@ int main(int argc, char** argv)
             }
         }
     }
-    else if (app.got_subcommand("cobra_metrics_to_statsd"))
-    {
-        ix::StatsdClient statsdClient(hostname, statsdPort, prefix, verbose);
-
-        std::string errMsg;
-        bool initialized = statsdClient.init(errMsg);
-        if (!initialized)
-        {
-            spdlog::error(errMsg);
-            ret = 1;
-        }
-        else
-        {
-            ret = (int) ix::cobra_metrics_to_statsd_bot(
-                cobraBotConfig, statsdClient, verbose);
-        }
-    }
     else if (app.got_subcommand("cobra_to_sentry"))
     {
         ix::SentryClient sentryClient(dsn);
@@ -616,18 +577,8 @@ int main(int argc, char** argv)
     }
     else if (app.got_subcommand("cobra_metrics_to_redis"))
     {
-        ix::RedisClient redisClient;
-        if (!redisClient.connect(hostname, redisPort))
-        {
-            spdlog::error("Cannot connect to redis host {}:{}",
-                          redisHosts, redisPort);
-            return 1;
-        }
-        else
-        {
-            ret = (int) ix::cobra_metrics_to_redis_bot(
-                cobraBotConfig, redisClient, verbose);
-        }
+        ret = ix::ws_cobra_metrics_to_redis(
+            cobraConfig, channel, filter, position, hostname, redisPort);
     }
     else if (app.got_subcommand("snake"))
     {

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <ixredis/IXRedisClient.h>
+#include "IXRedisClient.h"
 #include <future>
 #include <ixwebsocket/IXConnectionState.h>
 #include <string>

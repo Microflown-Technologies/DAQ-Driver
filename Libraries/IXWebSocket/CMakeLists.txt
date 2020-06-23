@@ -3,7 +3,7 @@
 # Copyright (c) 2018 Machine Zone, Inc. All rights reserved.
 #
 
-cmake_minimum_required(VERSION 3.4.1...3.17.2)
+cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 project(ixwebsocket C CXX)
@@ -238,29 +238,19 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_options(ixwebsocket PRIVATE /MP)
 endif()
 
-target_include_directories(ixwebsocket PUBLIC
-  $<BUILD_INTERFACE:${IXWEBSOCKET_INCLUDE_DIRS}/>
-  $<INSTALL_INTERFACE:include/ixwebsocket>
-)
+target_include_directories(ixwebsocket PUBLIC ${IXWEBSOCKET_INCLUDE_DIRS})
 
 set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADERS}")
 
 install(TARGETS ixwebsocket
-        EXPORT ixwebsocket
-        ARCHIVE DESTINATION lib
-        PUBLIC_HEADER DESTINATION include/ixwebsocket/
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
 )
-
-install(EXPORT ixwebsocket
-        FILE ixwebsocket-config.cmake
-        NAMESPACE ixwebsocket::
-        DESTINATION lib/cmake/ixwebsocket)
 
 if (USE_WS OR USE_TEST)
   add_subdirectory(ixcore)
   add_subdirectory(ixcrypto)
   add_subdirectory(ixcobra)
-  add_subdirectory(ixredis)
   add_subdirectory(ixsnake)
   add_subdirectory(ixsentry)
   add_subdirectory(ixbots)
