@@ -8,7 +8,7 @@ DeviceInfo::DeviceInfo(pMessageProcessor messageProcessor) : AbstractDriverCompo
     m_localDeviceInfo.set_modelname("");
     m_localDeviceInfo.set_devicename("");
     m_localDeviceInfo.set_drivername("VOYAGERV1");
-    m_localDeviceInfo.set_driverversion(DRIVER_VERSION);
+    m_localDeviceInfo.set_driverversion(DAQDRIVER_VERSION);
     m_localDeviceInfo.set_softwareversion("");
     m_localDeviceInfo.set_deviceserial("");
 }
