@@ -70,6 +70,10 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
     if(message->type == ix::WebSocketMessageType::Message) {
         m_messageQueue.push(std::vector<uint8_t>(message->str.begin(), message->str.end()));
     } else if(message->type == ix::WebSocketMessageType::Open) {
+        for(auto webSocket: m_connections) {
+            webSocket->close();
+        }
+        m_connections.clear();
         webSocket->setMaxWaitBetweenReconnectionRetries(100);
         webSocket->enablePong();
         m_connections.push_back(webSocket);

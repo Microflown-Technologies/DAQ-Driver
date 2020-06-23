@@ -5,7 +5,7 @@ Heartbeat::Heartbeat(std::function<void(void)> callback, pMessageProcessor messa
 {
     MessageRouter::addMessageRoute<Beat>(std::bind(&Heartbeat::handleHearthbeatMessage, this, std::placeholders::_1));
     m_hearthbeatTimer.setCallback(std::bind(std::bind(&Heartbeat::hearthbeatTimerTimeout, this)));
-    m_hearthbeatTimer.start(500);
+    m_hearthbeatTimer.start(1000);
     m_hearthbeatDieTimer.start(3000);
     m_hearthbeatDieTimer.setCallback(std::bind(std::bind(&Heartbeat::hearthbeatDieTimerTimeout, this)));
     m_hearthbeatDieTimer.setSingleShot(true);
@@ -14,7 +14,8 @@ Heartbeat::Heartbeat(std::function<void(void)> callback, pMessageProcessor messa
 
 void Heartbeat::reset()
 {
-
+    m_hearthbeatTimer.start(500);
+    m_hearthbeatDieTimer.start(3000);
 }
 
 void Heartbeat::process()
