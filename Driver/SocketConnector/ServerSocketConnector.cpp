@@ -106,7 +106,6 @@ void ServerSocketConnector::onMessageCallback(std::shared_ptr<ix::WebSocket> web
 }
 
 void ServerSocketConnector::onConnectionCallback(std::shared_ptr<ix::WebSocket> webSocket, std::shared_ptr<ix::ConnectionState> connectionState) {
-    qDebug() << "Terminated" << connectionState->isTerminated();
     webSocket->setOnMessageCallback([=] (const ix::WebSocketMessagePtr& message) {
         onMessageCallback(webSocket, message);
     });

@@ -42,8 +42,11 @@ public:
      */
     static std::vector<pDiscoveredDevice> discover(std::time_t scanTime = 1);
 
+    /**
+     * @brief presentVoyagers List of Voyagers that are connected through usb
+     * @return list of Voyagers that are connected through usb
+     */
     static std::vector<pDiscoveredDevice> presentVoyagers();
-
 
 protected:
     /**

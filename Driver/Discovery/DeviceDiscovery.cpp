@@ -3,7 +3,7 @@
 std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
 {
    initialize();
-   std::vector<pDiscoveredDevice> discoveredDevices = presentVoyagers();
+   std::vector<pDiscoveredDevice> discoveredDevices;
     //Prepare DNS query
    static const std::string MdnsQuery = "_voyager._tcp.local";
    //Execute query and store results
