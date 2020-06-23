@@ -8,7 +8,7 @@
 
 #include <atomic>
 #include <functional>
-#include <ixcobra/IXCobraConfig.h>
+#include "IXCobraBotConfig.h"
 #include <json/json.h>
 #include <stddef.h>
 
@@ -25,14 +25,10 @@ namespace ix
     public:
         CobraBot() = default;
 
-        int64_t run(const CobraConfig& config,
-                    const std::string& channel,
-                    const std::string& filter,
-                    const std::string& position,
-                    bool enableHeartbeat,
-                    int runtime);
-
+        int64_t run(const CobraBotConfig& botConfig);
         void setOnBotMessageCallback(const OnBotMessageCallback& callback);
+
+        std::string getDeviceIdentifier(const Json::Value& msg);
 
     private:
         OnBotMessageCallback _onBotMessageCallback;

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <ixcobra/IXCobraConnection.h>
 #include <ixcrypto/IXUuid.h>
-#include <ixsnake/IXRedisServer.h>
+#include <ixredis/IXRedisServer.h>
 #include <ixsnake/IXSnakeServer.h>
 
 using namespace ix;
@@ -125,10 +125,12 @@ namespace
     {
         std::string filter;
         std::string position("$");
+        int batchSize = 1;
 
         _conn.subscribe(channel,
                         filter,
                         position,
+                        batchSize,
                         [this](const Json::Value& msg, const std::string& /*position*/) {
                             spdlog::info("receive {}", msg.toStyledString());
 

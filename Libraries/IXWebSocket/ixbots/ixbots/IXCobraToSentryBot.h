@@ -6,18 +6,13 @@
 #pragma once
 
 #include <cstdint>
-#include <ixcobra/IXCobraConfig.h>
+#include "IXCobraBotConfig.h"
 #include <ixsentry/IXSentryClient.h>
 #include <string>
 
 namespace ix
 {
-    int64_t cobra_to_sentry_bot(const CobraConfig& config,
-                                const std::string& channel,
-                                const std::string& filter,
-                                const std::string& position,
+    int64_t cobra_to_sentry_bot(const CobraBotConfig& config,
                                 SentryClient& sentryClient,
-                                bool verbose,
-                                bool enableHeartbeat,
-                                int runtime);
+                                bool verbose);
 } // namespace ix

@@ -1,6 +1,102 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [9.8.0] - 2020-06-19
+
+(cobra metrics to statsd bot) send info about memory warnings
+
+## [9.7.9] - 2020-06-18
+
+(http client) fix deadlock when following redirects
+
+## [9.7.8] - 2020-06-18
+
+(cobra metrics to statsd bot) send info about net requests
+
+## [9.7.7] - 2020-06-17
+
+(cobra client and bots) add batch_size subscription option for retrieving multiple messages at once
+
+## [9.7.6] - 2020-06-15
+
+(websocket) WebSocketServer is not a final class, so that users can extend it (fix #215)
+
+## [9.7.5] - 2020-06-15
+
+(cobra bots) minor aesthetic change, in how we display http headers with a : then space as key value separator instead of :: with no space
+
+## [9.7.4] - 2020-06-11
+
+(cobra metrics to statsd bot) change from a statsd type of gauge to a timing one
+
+## [9.7.3] - 2020-06-11
+
+(redis cobra bots) capture most used devices in a zset
+
+## [9.7.2] - 2020-06-11
+
+(ws) add bare bone redis-cli like sub-command, with command line editing powered by libnoise
+
+## [9.7.1] - 2020-06-11
+
+(redis cobra bots) ws cobra metrics to redis / hostname invalid parsing
+
+## [9.7.0] - 2020-06-11
+
+(redis cobra bots) xadd with maxlen + fix bug in xadd client implementation and ws cobra metrics to redis command argument parsing
+
+## [9.6.9] - 2020-06-10
+
+(redis cobra bots) update the cobra to redis bot to use the bot framework, and change it to report fps metrics into redis streams.
+
+## [9.6.6] - 2020-06-04
+
+(statsd cobra bots) statsd improvement: prefix does not need a dot as a suffix, message size can be larger than 256 bytes, error handling was invalid, use core logger for logging instead of std::cerr
+
+## [9.6.5] - 2020-05-29
+
+(http server) support gzip compression
+
+## [9.6.4] - 2020-05-20
+
+(compiler fix) support clang 5 and earlier (contributed by @LunarWatcher)
+
+## [9.6.3] - 2020-05-18
+
+(cmake) revert CMake changes to fix #203 and be able to use an external OpenSSL
+
+## [9.6.2] - 2020-05-17
+
+(cmake) make install cmake files optional to not conflict with vcpkg
+
+## [9.6.1] - 2020-05-17
+
+(windows + tls) mbedtls is the default windows tls backend + add ability to load system certificates with mbdetls on windows
+
+## [9.6.0] - 2020-05-12
+
+(ixbots) add options to limit how many messages per minute should be processed
+
+## [9.5.9] - 2020-05-12
+
+(ixbots) add new class to configure a bot to simplify passing options around
+
+## [9.5.8] - 2020-05-08
+
+(openssl tls) (openssl < 1.1) logic inversion - crypto locking callback are not registered properly
+
+## [9.5.7] - 2020-05-08
+
+(cmake) default TLS back to mbedtls on Windows Universal Platform
+
+## [9.5.6] - 2020-05-06
+
+(cobra bots) add a --heartbeat_timeout option to specify when the bot should terminate because no events are received
+
+## [9.5.5] - 2020-05-06
+
+(openssl tls) when OpenSSL is older than 1.1, register the crypto locking callback to be thread safe. Should fix lots of CI failures
+
 ## [9.5.4] - 2020-05-04
 
 (cobra bots) do not use a queue to store messages pending processing, let the bot handle queuing

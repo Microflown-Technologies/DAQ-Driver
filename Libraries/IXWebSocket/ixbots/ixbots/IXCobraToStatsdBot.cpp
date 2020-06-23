@@ -53,22 +53,13 @@ namespace ix
         return val;
     }
 
-    int64_t cobra_to_statsd_bot(const ix::CobraConfig& config,
-                                const std::string& channel,
-                                const std::string& filter,
-                                const std::string& position,
+    int64_t cobra_to_statsd_bot(const ix::CobraBotConfig& config,
                                 StatsdClient& statsdClient,
                                 const std::string& fields,
                                 const std::string& gauge,
                                 const std::string& timer,
-                                bool verbose,
-                                bool enableHeartbeat,
-                                int runtime)
+                                bool verbose)
     {
-        ix::CobraConnection conn;
-        conn.configure(config);
-        conn.connect();
-
         auto tokens = parseFields(fields);
 
         CobraBot bot;
@@ -79,11 +70,17 @@ namespace ix
                                                      std::atomic<bool>& fatalCobraError,
                                                      std::atomic<uint64_t>& sentCount) -> void {
                 std::string id;
+                size_t idx = 0;
                 for (auto&& attr : tokens)
                 {
-                    id += ".";
                     auto val = extractAttr(attr, msg);
                     id += val.asString();
+
+                    // We add a dot separator unless we are processing the last token
+                    if (idx++ != tokens.size() - 1)
+                    {
+                        id += ".";
+                    }
                 }
 
                 if (gauge.empty() && timer.empty())
@@ -141,11 +138,6 @@ namespace ix
                 sentCount++;
             });
 
-        return bot.run(config,
-                       channel,
-                       filter,
-                       position,
-                       enableHeartbeat,
-                       runtime);
+        return bot.run(config);
     }
 } // namespace ix

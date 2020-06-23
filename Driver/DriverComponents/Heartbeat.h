@@ -4,6 +4,11 @@
 //Std framework
 #include <memory>
 
+#ifdef QT_IS_AVAILABLE
+//Qt framework
+#include <QDebug>
+#endif
+
 //Internal headers
 #include "AbstractDriverComponent.h"
 #include "MessageProcessing/MessageRouter.h"

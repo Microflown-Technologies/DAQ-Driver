@@ -6,18 +6,13 @@
 #pragma once
 
 #include <cstdint>
-#include <ixcobra/IXCobraConfig.h>
+#include "IXCobraBotConfig.h"
 #include <stddef.h>
 #include <string>
 
 namespace ix
 {
-    int64_t cobra_to_stdout_bot(const ix::CobraConfig& config,
-                                const std::string& channel,
-                                const std::string& filter,
-                                const std::string& position,
+    int64_t cobra_to_stdout_bot(const ix::CobraBotConfig& config,
                                 bool fluentd,
-                                bool quiet,
-                                bool enableHeartbeat,
-                                int runtime);
+                                bool quiet);
 } // namespace ix

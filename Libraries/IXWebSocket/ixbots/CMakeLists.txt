@@ -8,14 +8,19 @@ set (IXBOTS_SOURCES
     ixbots/IXCobraToSentryBot.cpp
     ixbots/IXCobraToStatsdBot.cpp
     ixbots/IXCobraToStdoutBot.cpp
+    ixbots/IXCobraMetricsToStatsdBot.cpp
+    ixbots/IXCobraMetricsToRedisBot.cpp
     ixbots/IXStatsdClient.cpp
 )
 
 set (IXBOTS_HEADERS
     ixbots/IXCobraBot.h
+    ixbots/IXCobraBotConfig.h
     ixbots/IXCobraToSentryBot.h
     ixbots/IXCobraToStatsdBot.h
     ixbots/IXCobraToStdoutBot.h
+    ixbots/IXCobraMetricsToStatsdBot.h
+    ixbots/IXCobraMetricsToRedisBot.h
     ixbots/IXStatsdClient.h
 )
 
@@ -35,6 +40,7 @@ set(IXBOTS_INCLUDE_DIRS
     ../ixcore
     ../ixwebsocket
     ../ixcobra
+    ../ixredis
     ../ixsentry
     ${JSONCPP_INCLUDE_DIRS}
     ${SPDLOG_INCLUDE_DIRS})

@@ -25,7 +25,11 @@ DAQDriver::~DAQDriver()
 }
 
 void DAQDriver::reset() {
+#ifdef QT_IS_AVAILABLE
+    qDebug() << "Driver was reset";
+#else
     std::cout << "Driver was reset" << std::endl;
+#endif
     m_iepe->reset();
     m_time->reset();
     m_streaming->reset();

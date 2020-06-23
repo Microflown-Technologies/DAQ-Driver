@@ -26,10 +26,10 @@ brew:
 # server side ?) and I can't work-around it easily, so we're using mbedtls on
 # Linux for the SSL backend, which works great.
 ws_mbedtls_install:
-	mkdir -p build && (cd build ; cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DUSE_TLS=1 -DUSE_WS=1 -DUSE_MBED_TLS=1 .. ; make -j 4 install)
+	mkdir -p build && (cd build ; cmake -GNinja -DCMAKE_BUILD_TYPE=MinSizeRel -DUSE_TLS=1 -DUSE_WS=1 -DUSE_MBED_TLS=1 .. ; ninja install)
 
 ws:
-	mkdir -p build && (cd build ; cmake -DCMAKE_BUILD_TYPE=Debug -DUSE_TLS=1 -DUSE_WS=1 .. ; make -j 4)
+	mkdir -p build && (cd build ; cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -DUSE_TLS=1 -DUSE_WS=1 .. ; ninja install)
 
 ws_install:
 	mkdir -p build && (cd build ; cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DUSE_TLS=1 -DUSE_WS=1 .. ; make -j 4 install)
@@ -148,7 +148,7 @@ test_tsan_mbedtls:
 	(cd test ; python2.7 run.py -r)
 
 build_test_openssl:
-	mkdir -p build && (cd build ; cmake -DCMAKE_BUILD_TYPE=Debug -DUSE_TLS=1 -DUSE_OPEN_SSL=1 -DUSE_TEST=1 .. ; make -j 4)
+	mkdir -p build && (cd build ; cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -DUSE_TLS=1 -DUSE_OPEN_SSL=1 -DUSE_TEST=1 .. ; ninja install)
 
 test_openssl: build_test_openssl
 	(cd test ; python2.7 run.py -r)
@@ -169,6 +169,53 @@ ws_test: ws
 autobahn_report:
 	cp -rvf ~/sandbox/reports/clients/* ../bsergean.github.io/IXWebSocket/autobahn/
 
+httpd:
+	clang++ --std=c++14 --stdlib=libc++ httpd.cpp \
+		ixwebsocket/IXSelectInterruptFactory.cpp \
+		ixwebsocket/IXCancellationRequest.cpp \
+		ixwebsocket/IXSocketTLSOptions.cpp \
+		ixwebsocket/IXUserAgent.cpp \
+		ixwebsocket/IXDNSLookup.cpp \
+		ixwebsocket/IXBench.cpp \
+		ixwebsocket/IXWebSocketHttpHeaders.cpp \
+		ixwebsocket/IXSelectInterruptPipe.cpp \
+		ixwebsocket/IXHttp.cpp \
+		ixwebsocket/IXSocketConnect.cpp \
+		ixwebsocket/IXSocket.cpp \
+		ixwebsocket/IXSocketServer.cpp \
+		ixwebsocket/IXNetSystem.cpp \
+		ixwebsocket/IXHttpServer.cpp \
+		ixwebsocket/IXSocketFactory.cpp \
+		ixwebsocket/IXConnectionState.cpp \
+		ixwebsocket/IXUrlParser.cpp \
+		ixwebsocket/IXSelectInterrupt.cpp \
+		ixwebsocket/apple/IXSetThreadName_apple.cpp \
+		-lz
+
+httpd_linux:
+	g++ --std=c++11 -o ixhttpd httpd.cpp -Iixwebsocket \
+		ixwebsocket/IXSelectInterruptFactory.cpp \
+		ixwebsocket/IXCancellationRequest.cpp \
+		ixwebsocket/IXSocketTLSOptions.cpp \
+		ixwebsocket/IXUserAgent.cpp \
+		ixwebsocket/IXDNSLookup.cpp \
+		ixwebsocket/IXBench.cpp \
+		ixwebsocket/IXWebSocketHttpHeaders.cpp \
+		ixwebsocket/IXSelectInterruptPipe.cpp \
+		ixwebsocket/IXHttp.cpp \
+		ixwebsocket/IXSocketConnect.cpp \
+		ixwebsocket/IXSocket.cpp \
+		ixwebsocket/IXSocketServer.cpp \
+		ixwebsocket/IXNetSystem.cpp \
+		ixwebsocket/IXHttpServer.cpp \
+		ixwebsocket/IXSocketFactory.cpp \
+		ixwebsocket/IXConnectionState.cpp \
+		ixwebsocket/IXUrlParser.cpp \
+		ixwebsocket/IXSelectInterrupt.cpp \
+		ixwebsocket/linux/IXSetThreadName_linux.cpp \
+		-lz -lpthread
+	cp -f ixhttpd /usr/local/bin
+
 # For the fork that is configured with appveyor
 rebase_upstream:
 	git fetch upstream
@@ -185,6 +232,9 @@ install_cmake_for_linux:
 #  pip install mkdocs
 doc:
 	mkdocs gh-deploy
+
+change:
+	vim ixwebsocket/IXWebSocketVersion.h docs/CHANGELOG.md
 
 .PHONY: test
 .PHONY: build
