@@ -9,6 +9,9 @@
 #include <sstream>
 #include <iostream>
 
+//Libusbp
+#include "libusbp.hpp"
+
 //OS Networking
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -38,6 +41,9 @@ public:
      * @param scanTime amount of seconds to scan (default 1 sec, maybe longer is needed on large networks)
      */
     static std::vector<pDiscoveredDevice> discover(std::time_t scanTime = 1);
+
+    static std::vector<pDiscoveredDevice> presentVoyagers();
+
 
 protected:
     /**

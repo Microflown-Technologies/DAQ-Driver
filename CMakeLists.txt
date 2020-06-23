@@ -23,6 +23,9 @@ add_subdirectory(Libraries/IXWebSocket)
 #Load zeroconf driver
 add_subdirectory(Libraries/zeroconf)
 
+#Load The Pololu USB Library
+set (BUILD_SHARED_LIBS FALSE)
+add_subdirectory(Libraries/libusbp)
 
 # Enable ccache
 find_program(CCACHE_PROGRAM ccache)

@@ -3,7 +3,7 @@
 std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
 {
    initialize();
-   std::vector<pDiscoveredDevice> discoveredDevices;
+   std::vector<pDiscoveredDevice> discoveredDevices = presentVoyagers();
     //Prepare DNS query
    static const std::string MdnsQuery = "_voyager._tcp.local";
    //Execute query and store results
@@ -33,6 +33,22 @@ std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
    }
    deinitialize();
    return discoveredDevices;
+}
+
+std::vector<pDiscoveredDevice> DeviceDiscovery::presentVoyagers()
+{
+    std::vector<pDiscoveredDevice> presentVoyagers;
+    std::vector<libusbp::device> connectedDevices = libusbp::list_connected_devices();
+    for(libusbp::device device : connectedDevices) {
+        if(device.get_vendor_id() == 0x1d6b && device.get_product_id() == 0x0100) {
+            pDiscoveredDevice discoveredDevice(new DiscoveredDevice());
+            discoveredDevice->setPort(8080);
+            discoveredDevice->setIpAddress("172.20.0.1");
+            discoveredDevice->setDeviceName("Voyager");
+            presentVoyagers.push_back(discoveredDevice);
+        }
+    }
+    return presentVoyagers;
 }
 
 std::map<std::string, std::string> DeviceDiscovery::parseTxtRecord(const std::string &record)

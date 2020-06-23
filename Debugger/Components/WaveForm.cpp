@@ -34,8 +34,8 @@ void WaveForm::initializeChart()
     m_chart->addAxis(m_axisY, Qt::AlignLeft);
     //Configure XAxis
     m_axisX->setRange(0, 2000);
-    m_axisY->setRange(-pow(2, 24),
-                      pow(2, 24));
+    m_axisY->setRange(-qPow(2, 24),
+                      qPow(2, 24));
     //Configure lineseries
     m_chart->addSeries(m_series);
     m_series->attachAxis(m_axisX);

@@ -3,6 +3,7 @@
 
 //Qt framework
 #include <QDebug>
+#include <QtMath>
 #include <QQueue>
 #include <QWidget>
 
