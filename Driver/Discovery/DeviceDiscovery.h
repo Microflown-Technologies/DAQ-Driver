@@ -80,8 +80,10 @@ protected:
     static void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);
 
 private:
+#ifdef WIN32
     static HANDLE m_serialHandle;
     static DCB m_serialPortParameters;
+#endif
 };
 
 #endif // DEVICEDISCOVERY_H
