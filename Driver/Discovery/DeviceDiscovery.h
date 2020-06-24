@@ -77,7 +77,9 @@ protected:
      */
     static void deinitialize();
 
+#ifdef WIN32
     static void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);
+#endif
 
 private:
 #ifdef WIN32
