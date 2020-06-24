@@ -11,9 +11,8 @@ set (CMAKE_BUILD_PARALLEL_LEVEL ${N})
 if(WIN32)
   # ensure Unicode friendly APIs are used on Windows
   add_definitions(-DUNICODE -D_UNICODE)
-
-  # minimize windows.h content
   add_definitions(-DWIN32_LEAN_AND_MEAN)
+
 endif()
 
 
@@ -31,10 +30,6 @@ add_subdirectory(Libraries/IXWebSocket)
 
 #Load zeroconf driver
 add_subdirectory(Libraries/zeroconf)
-
-#Load The Pololu USB Library
-option (BUILD_SHARED_LIBS FALSE)
-add_subdirectory(Libraries/libusbp)
 
 # Enable ccache
 find_program(CCACHE_PROGRAM ccache)

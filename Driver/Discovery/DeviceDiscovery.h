@@ -9,14 +9,16 @@
 #include <sstream>
 #include <iostream>
 
-//Libusbp
-#include "libusbp.hpp"
-
 //OS Networking
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include <tchar.h>
+#include <windows.h>
+#include <SetupAPI.h>
+#pragma once
+#pragma comment (lib, "Setupapi.lib")
 #else
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -39,8 +41,9 @@ public:
     /**
      * @brief discover Discovers all the DAQ devices on the network
      * @param scanTime amount of seconds to scan (default 1 sec, maybe longer is needed on large networks)
+     * @param localPresent if true will also return dev
      */
-    static std::vector<pDiscoveredDevice> discover(std::time_t scanTime = 1);
+    static std::vector<pDiscoveredDevice> discover(std::time_t scanTime = 1, bool localPresent = false);
 
     /**
      * @brief presentVoyagers List of Voyagers that are connected through usb
@@ -73,6 +76,12 @@ protected:
      * @brief deinitialize Deintializes/cleans up the DeviceDiscovery (Networking etc.)
      */
     static void deinitialize();
+
+    static void refreshDevicesListHandle(HDEVINFO &m_hDevInfo);
+
+private:
+    static HANDLE m_serialHandle;
+    static DCB m_serialPortParameters;
 };
 
 #endif // DEVICEDISCOVERY_H

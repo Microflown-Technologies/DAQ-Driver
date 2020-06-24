@@ -41,8 +41,6 @@ void Controls::processDeviceStatus()
     ui->lbl_batteryTemperature->setText(QString::number(deviceStatus.batterytemperature()) + " °C");
     ui->lbl_cpuTemperature->setText(QString::number(deviceStatus.cputemperature()) + " °C");
     ui->lbl_batteryChargeLevel->setText(QString::number(deviceStatus.batterycharge()) + "%");
-
-
 }
 
 void Controls::devicePicked(QString ip) {
@@ -143,6 +141,8 @@ void Controls::on_btn_connect_pressed()
         m_daqDriver = pDAQDriver(new DAQDriver(pAbstractSocketConnector(new ClientSocketConnector(ui->txt_hostname->text().toStdString(), ui->spn_port->value()))));
         connect(m_daqDriver->time().get(), &Time::timeSynced, this, &Controls::onTimesynced);
         connect(m_daqDriver->deviceStatus().get(), &DeviceStatus::remoteDeviceUpdated, this, &Controls::processDeviceStatus);
+        on_btn_refreshDeviceInfo_pressed();
+        m_daqDriver->deviceControl()->takeControl();
         m_daqDriver->socketConnector()->openedCallbackHandler().addCallback([=] {
             emit connected();
         });

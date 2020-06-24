@@ -59,7 +59,7 @@ bool ClientSocketConnector::startClient()
     m_webSocket.disableAutomaticReconnection();
     m_webSocket.setPingInterval(1);
     m_webSocket.setOnMessageCallback(std::bind(&ClientSocketConnector::onMessageCallback, this, std::placeholders::_1));
-    auto result = m_webSocket.connect(0);
+    auto result = m_webSocket.connect(1);
     m_webSocket.start();
     return result.success;
 }

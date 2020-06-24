@@ -1,9 +1,10 @@
 #include "DeviceDiscovery.h"
 
-std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
+std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime, bool localPresent)
 {
    initialize();
    std::vector<pDiscoveredDevice> discoveredDevices;
+   if(localPresent) discoveredDevices = presentVoyagers();
     //Prepare DNS query
    static const std::string MdnsQuery = "_voyager._tcp.local";
    //Execute query and store results
@@ -38,16 +39,33 @@ std::vector<pDiscoveredDevice> DeviceDiscovery::discover(time_t scanTime)
 std::vector<pDiscoveredDevice> DeviceDiscovery::presentVoyagers()
 {
     std::vector<pDiscoveredDevice> presentVoyagers;
-    std::vector<libusbp::device> connectedDevices = libusbp::list_connected_devices();
-    for(libusbp::device device : connectedDevices) {
-        if(device.get_vendor_id() == 0x1d6b && device.get_product_id() == 0x0100) {
-            pDiscoveredDevice discoveredDevice(new DiscoveredDevice());
-            discoveredDevice->setPort(8080);
-            discoveredDevice->setIpAddress("172.20.0.1");
-            discoveredDevice->setDeviceName("Voyager");
-            presentVoyagers.push_back(discoveredDevice);
+    #ifdef WIN32
+    SP_DEVINFO_DATA DeviceInfoData;
+        HDEVINFO m_hDevInfo;
+
+        //Refresh the List if currently connected devices
+        refreshDevicesListHandle(m_hDevInfo);
+
+        //Loop through all the DeviceList entries
+        for (unsigned index = 0; ; index++) {
+            DeviceInfoData.cbSize = sizeof(DeviceInfoData);
+            if (!SetupDiEnumDeviceInfo(m_hDevInfo, index, &DeviceInfoData)) {
+                SetupDiDestroyDeviceInfoList(m_hDevInfo);
+                break;						// No USB device found with hardware id of the Voyager
+            }
+
+            TCHAR HardwareID[1024];
+            SetupDiGetDeviceRegistryProperty(m_hDevInfo, &DeviceInfoData, SPDRP_HARDWAREID, nullptr, reinterpret_cast<BYTE*>(HardwareID), sizeof(HardwareID), nullptr);
+            if (_tcsstr(HardwareID, _T("VID_1D6B&PID_0100"))) {
+                pDiscoveredDevice discoveredDevice(new DiscoveredDevice());
+                discoveredDevice->setPort(8080);
+                discoveredDevice->setIpAddress("172.20.0.1");
+                discoveredDevice->setDeviceName("Voyager");
+                presentVoyagers.push_back(discoveredDevice);
+                break;
+            }
         }
-    }
+    #endif
     return presentVoyagers;
 }
 
@@ -121,3 +139,9 @@ void DeviceDiscovery::deinitialize()
     WSACleanup();
 #endif
 }
+
+#ifdef _WIN32
+void DeviceDiscovery::refreshDevicesListHandle(HDEVINFO &m_hDevInfo) {
+    m_hDevInfo = SetupDiGetClassDevs(nullptr, TEXT("USB"), nullptr, DIGCF_PRESENT | DIGCF_ALLCLASSES);
+}
+#endif

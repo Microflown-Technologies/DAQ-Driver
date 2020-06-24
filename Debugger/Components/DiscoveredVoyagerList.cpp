@@ -18,7 +18,7 @@ DiscoveredVoyagerList::~DiscoveredVoyagerList()
 void DiscoveredVoyagerList::on_btn_refresh_clicked()
 {
     ui->tableWidget->setRowCount(0);
-    auto voyagerList = DeviceDiscovery::discover();
+    auto voyagerList = DeviceDiscovery::discover(1, true);
     for(auto voyager: voyagerList) {
         ui->tableWidget->insertRow(ui->tableWidget->rowCount());
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(voyager->ipAddress())));
