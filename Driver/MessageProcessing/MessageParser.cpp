@@ -13,8 +13,13 @@ std::shared_ptr<google::protobuf::Message> MessageParser::parse(const Message &m
 const Message MessageParser::parse(const google::protobuf::Message &message) {
     Message serializedMessage;
     serializedMessage.header.messageHash = MessageHashTable::hashForMessage(message);
+#if GOOGLE_PROTOBUF_VERSION >= 3004000
     serializedMessage.header.messageSize  = static_cast<uint32_t>(message.ByteSizeLong());
     serializedMessage.data.resize(message.ByteSizeLong());
+#else
+    serializedMessage.header.messageSize  = static_cast<uint32_t>(message.ByteSize()));
+    serializedMessage.data.resize(message.ByteSize());
+#endif
     message.SerializePartialToArray(serializedMessage.data.data(), static_cast<int>(serializedMessage.data.size()));
     return serializedMessage;
 }

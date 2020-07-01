@@ -4,6 +4,7 @@
 //STD Framework
 #include <queue>
 #include <memory>
+#include <atomic>
 
 //Internal headers
 #include "AbstractDriverComponent.h"
