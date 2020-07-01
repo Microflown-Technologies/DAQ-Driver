@@ -1,6 +1,3 @@
-[submodule "Libraries/zeroconf"]
-	path = Libraries/zeroconf
-	url = https://github.com/yvz/zeroconf.git
 [submodule "Libraries/IXWebSocket"]
 	path = Libraries/IXWebSocket
 	url = https://github.com/machinezone/IXWebSocket
