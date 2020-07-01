@@ -1,4 +1,7 @@
-# DAQ-Driver ![https://github.com/Microflown-Technologies/DAQ-Driver/actions?query=workflow%3ACI](https://github.com/Microflown-Technologies/DAQ-Driver/workflows/CI/badge.svg)
+# DAQ-Driver
+![](https://github.com/Microflown-Technologies/DAQ-Driver/workflows/CI/badge.svg)
+![](https://github.com/Microflown-Technologies/DAQ-Driver/workflows/DOCS/badge.svg)
+
 Using this library you can connect to a [Voyager](https://www.microflown.com/products/portable-measuring-systems/voyager/) 
 and use it as a DAQ ([Data Acquisition](https://en.wikipedia.org/wiki/Data_acquisition)) device.
 
