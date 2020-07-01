@@ -11,7 +11,7 @@ and use it as a DAQ ([Data Acquisition](https://en.wikipedia.org/wiki/Data_acqui
 
 ## Supported platforms
 - Linux
-- Windows, Visual Studio 2017 or higher
+- Windows, Visual Studio 2019
 
 ## Building
 There are also precompiled version of this library available through NuGet or via releases.

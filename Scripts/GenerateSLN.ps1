@@ -6,8 +6,8 @@ if ( -not (Test-Path -Path 'Environment' -PathType Container) ) {
 
 # Prompt output directory
 
-# Generate solution for visual studio 2017
+# Generate solution for visual studio 2019
 mkdir -p SLN
-cd SLN 
-.\..\Environment\Applications\cmake\cmake-3.16.4-win64-x64\bin\cmake -G "Visual Studio 15" -A x64 $PSScriptRoot\..
+cd SLN
+.\..\Environment\Applications\cmake\cmake-3.16.4-win64-x64\bin\cmake -G "Visual Studio 16" -A x64 $PSScriptRoot\..
 cd ..
