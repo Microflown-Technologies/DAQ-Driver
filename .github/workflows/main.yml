@@ -20,7 +20,7 @@ jobs:
 
     # Installs depedencies necessary for building
     - name: Setup environment
-      run: sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git google-mock
+      run: sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git
 
     # Pull git submodules
     - name: Pull submodules
