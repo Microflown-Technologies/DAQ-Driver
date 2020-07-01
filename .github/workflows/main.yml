@@ -20,7 +20,7 @@ jobs:
     - name: Pull submodules
       run: |
         git submodule init
-        git submodule update    
+        git submodule update
 
     # Installs depedencies necessary for building
     - name: Setup environment
@@ -29,6 +29,10 @@ jobs:
     # Installs depedencies necessary for building
     - name: Generate Solution
       run: powershell.exe -executionpolicy remotesigned -File Scripts/GenerateSLN.ps1
+
+    # Build Solution
+    - name: Build Solution
+      run: Msbuild.exe SLN\*.sln
 
   build-ubuntu:
     # The type of runner that the job will run on
