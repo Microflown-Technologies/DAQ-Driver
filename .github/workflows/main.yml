@@ -16,6 +16,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    # Pull git submodules
+    - name: Pull submodules
+      run: |
+        git submodule init
+        git submodule update    
+
     # Installs depedencies necessary for building
     - name: Setup environment
       run: powershell.exe -executionpolicy remotesigned -File Scripts/SetupEnvironment.ps1
