@@ -57,3 +57,6 @@ compile_commands.json
 *creator.user*
 
 # End of https://www.toptal.com/developers/gitignore/api/qt
+
+# Doxygen 
+Documentation/Generated/*

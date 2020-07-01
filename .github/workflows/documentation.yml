@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: DOCS
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -20,23 +20,10 @@ jobs:
 
     # Installs depedencies necessary for building
     - name: Setup environment
-      run: sudo apt -y install build-essential cmake libprotoc-dev git protobuf-compiler
-
-    # Pull git submodules
-    - name: Pull submodules
-      run: |
-        git submodule init
-        git submodule update
+      run: sudo apt -y install doxygen graphviz
 
     # Runs cmake to generate makefiles
-    - name: Run CMake
+    - name: Run Doxygen
       run: |
-        mkdir build
-        cd build
-        cmake ..
-
-    #Invoke make to start compiling the projects
-    - name: Compile project
-      run: |
-        cd build
-        make -j16
+        cd Documentation
+        doxygen
