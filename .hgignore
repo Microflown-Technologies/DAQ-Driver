@@ -1,7 +1,0 @@
-syntax: regexp
-.user
-.vs
-Environment/
-syntax: glob
-SLN/
-Documentation/Generated
