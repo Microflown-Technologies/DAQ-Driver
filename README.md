@@ -19,7 +19,7 @@ and use it as a DAQ ([Data Acquisition](https://en.wikipedia.org/wiki/Data_acqui
 ## Building
 There are also precompiled version of this library available through NuGet or via releases.
 ### Windows
-Make sure you have Visual Studio 2017 installed. Next, run the [GenerateSLN.ps1](Scripts/GenerateSLN.ps1) using PowerShell.  
+Make sure you have Visual Studio 2019 installed. Next, run the [configure.bat](configure.bat) script.  
 The script will download any missing dependencies and generate a Visual Studio Solution (SLN).  
 You can find in the SLN folder relative to the root of this project. You can include the generated solution in your own project.  
 
