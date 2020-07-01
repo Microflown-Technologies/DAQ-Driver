@@ -20,8 +20,12 @@ jobs:
 
     # Installs depedencies necessary for building
     - name: Setup environment
-      run: sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz
+      run: sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git
 
+    # Pull git submodules
+    - name: Pull submodules
+      run: git submodule sync --recursive
+      
     # Runs cmake to generate makefiles
     - name: Run CMake
       run: |
