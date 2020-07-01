@@ -34,7 +34,7 @@ jobs:
     - name: Build Solution
       run: Msbuild.exe SLN\*.sln
 
-  build-	ubuntu-20.04:
+  build-ubuntu-20.04:
     # The type of runner that the job will run on
     runs-on: 	ubuntu-20.04
 
