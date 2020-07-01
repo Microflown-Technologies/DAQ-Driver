@@ -17,7 +17,7 @@ const Message MessageParser::parse(const google::protobuf::Message &message) {
     serializedMessage.header.messageSize  = static_cast<uint32_t>(message.ByteSizeLong());
     serializedMessage.data.resize(message.ByteSizeLong());
 #else
-    serializedMessage.header.messageSize  = static_cast<uint32_t>(message.ByteSize()));
+    serializedMessage.header.messageSize  = static_cast<uint32_t>(message.ByteSize());
     serializedMessage.data.resize(message.ByteSize());
 #endif
     message.SerializePartialToArray(serializedMessage.data.data(), static_cast<int>(serializedMessage.data.size()));
