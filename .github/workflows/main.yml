@@ -32,7 +32,9 @@ jobs:
 
     # Build Solution
     - name: Build Solution
-      run: Msbuild.exe SLN\*.sln
+      run: |
+      "%programfiles(x86)%\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild.exe" /p:Configuration=Release /p:Platform=x64
+      "%programfiles(x86)%\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild.exe" /p:Configuration=Release /p:Platform=x86
 
   build-ubuntu-20.04:
     # The type of runner that the job will run on
