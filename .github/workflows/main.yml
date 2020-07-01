@@ -27,7 +27,7 @@ jobs:
       run: |
         git submodule init
         git submodule update
-        
+
     # Runs cmake to generate makefiles
     - name: Run CMake
       run: |
@@ -37,4 +37,6 @@ jobs:
 
     #Invoke make to start compiling the projects
     - name: Compile project
-      run: make -j16
+      run: |
+        cd build
+        make -j16
