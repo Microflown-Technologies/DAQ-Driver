@@ -30,11 +30,14 @@ jobs:
     - name: Generate Solution
       run: powershell.exe -executionpolicy remotesigned -File Scripts/GenerateSLN.ps1
 
+    # Setup msbuild
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
     # Build Solution
     - name: Build Solution
-      run: |
-        powershell -command ""%programfiles(x86)%\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild.exe" /p:Configuration=Release /p:Platform=x64"
-        powershell -command ""%programfiles(x86)%\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild.exe" /p:Configuration=Release /p:Platform=x86"
+      working-directory: SLN
+      run: msbuild DAQ-Driver.sln
 
   build-ubuntu-2004:
     # The type of runner that the job will run on
