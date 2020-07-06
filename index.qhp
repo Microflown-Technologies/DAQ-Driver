@@ -1,0 +1,1903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>org.microflown.daq-driver</namespace>
+  <virtualFolder>doc</virtualFolder>
+  <customFilter name="Files">
+    <filterAttribute>&lt;files&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.png&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.css&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.html&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;/files&gt;</filterAttribute>
+  </customFilter>
+  <filterSection>
+    <filterAttribute>&gt;</filterAttribute>
+    <filterAttribute>&lt;filterAttribute&gt;Velo&lt;/filterAttribute&gt;</filterAttribute>
+    <filterAttribute>&lt;filterAttribute&gt;1.0&lt;/filterAttribute&gt;</filterAttribute>
+    <filterAttribute>&lt;/customFilter&gt;</filterAttribute>
+    <filterAttribute>&lt;filterSection&gt;</filterAttribute>
+    <filterAttribute>&lt;filterAttribute&gt;Velo&lt;/filterAttribute&gt;</filterAttribute>
+    <filterAttribute>&lt;filterAttribute&gt;1.0&lt;/filterAttribute&gt;</filterAttribute>
+    <filterAttribute>&lt;files&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.png&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.css&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;file&gt;*.html&lt;/file&gt;</filterAttribute>
+    <filterAttribute>&lt;/files&gt;</filterAttribute>
+    <filterAttribute>&lt;/filterSection&gt;&lt;/QtHelpProject&gt;</filterAttribute>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="DAQ Driver" ref="index.html">
+        <section title="DAQ-Driver" ref="index.html" />
+        <section title="Classes" ref="annotated.html">
+          <section title="Class List" ref="annotated.html">
+            <section title="AbstractDriverComponent" ref="class_abstract_driver_component.html">
+              <section title="AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+              <section title="reset" ref="class_abstract_driver_component.html#a5b7d620d59ec07a83eb2e81ebecccacb" />
+              <section title="m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+            </section>
+            <section title="AbstractSocketConnector" ref="class_abstract_socket_connector.html">
+              <section title="closedCallbackHandler" ref="class_abstract_socket_connector.html#a77fc32aafcfaba1fd392511ef6490b05" />
+              <section title="isOpen" ref="class_abstract_socket_connector.html#a01b16fa9e59efd86924b92468bf58b20" />
+              <section title="messagesAvailable" ref="class_abstract_socket_connector.html#aa6d487e9e69046c1e4e059a6d1fb3fa8" />
+              <section title="nextMessage" ref="class_abstract_socket_connector.html#a5602e0b0a955949c36324350ca1d3b2b" />
+              <section title="openedCallbackHandler" ref="class_abstract_socket_connector.html#a28d8d6edef08efc86cda63248fb35f55" />
+              <section title="port" ref="class_abstract_socket_connector.html#a1dd1006cc4b7d03fce53a4a28c598698" />
+              <section title="sendMessage" ref="class_abstract_socket_connector.html#a434428471011ff539fcec4766e19aa84" />
+              <section title="defaultIpAddress" ref="class_abstract_socket_connector.html#a878ae377c61951a68b4c27096848bfa2" />
+              <section title="defaultPort" ref="class_abstract_socket_connector.html#a782b2eb5f4d40e53e13986fff2c9280d" />
+              <section title="m_closedCallbackHandler" ref="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0" />
+              <section title="m_openendCallbackHandler" ref="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b" />
+            </section>
+            <section title="CallbackHandler" ref="class_callback_handler.html">
+              <section title="addCallback" ref="class_callback_handler.html#ae9c04adaa061aedf04e3aeb356ce5461" />
+              <section title="addCallback" ref="class_callback_handler.html#a01920e7205461f770508722e7aeb8f3c" />
+              <section title="invokeCallbacks" ref="class_callback_handler.html#a5cf949bbbba8a7fea9e632487fdad64f" />
+              <section title="removeCallback" ref="class_callback_handler.html#aeb69a7393384f0dc7820dc8b2f25443c" />
+              <section title="runOnce" ref="class_callback_handler.html#a4265d8decc9fe8c6ea0f2ce3949125f0" />
+              <section title="m_callbackFunctions" ref="class_callback_handler.html#a473a853ff3bcd9ed9a5b1c0851a94eaa" />
+              <section title="m_callbackFunctionsMutex" ref="class_callback_handler.html#a3568225efae6281876c7c142b98d34f5" />
+              <section title="m_invokeThreadID" ref="class_callback_handler.html#a08b238c911acd222700ecbab4b4db215" />
+              <section title="m_runOnceFunctions" ref="class_callback_handler.html#aa0ede07535df6140f39407d389868595" />
+            </section>
+            <section title="ClientSocketConnector" ref="class_client_socket_connector.html">
+              <section title="ClientSocketConnector" ref="class_client_socket_connector.html#a8a5f113d8422bb0ac8597b60c5a48c33" />
+              <section title="ClientSocketConnector" ref="class_client_socket_connector.html#ac838de56f9d8de332e4a3fbbd4453b7f" />
+              <section title="~ClientSocketConnector" ref="class_client_socket_connector.html#a18c63f6a8e91b185a0fc158d53b1e87d" />
+              <section title="closedCallbackHandler" ref="class_client_socket_connector.html#a9d7cb53c6857978ff180b498f7463d29" />
+              <section title="connectionErrorCallbackHandler" ref="class_client_socket_connector.html#ae98253d1b3136a9986dab684b57648bb" />
+              <section title="isOpen" ref="class_client_socket_connector.html#adc5c49c48a6043933a081ff8dc5b9a83" />
+              <section title="messagesAvailable" ref="class_client_socket_connector.html#a1c1c01257d59c9d19e4642c343da4626" />
+              <section title="nextMessage" ref="class_client_socket_connector.html#a87bc266333b4733858bbab6440f33c9a" />
+              <section title="onMessageCallback" ref="class_client_socket_connector.html#a4f2b989f7f13ab32629894b2cf6f81a4" />
+              <section title="openedCallbackHandler" ref="class_client_socket_connector.html#aaf7114ecc82caa6a58ef9df753350090" />
+              <section title="port" ref="class_client_socket_connector.html#a2d5df7721fa414c73ad10938e7602122" />
+              <section title="sendMessage" ref="class_client_socket_connector.html#aa4acf7c2fdb97d5954656f46a3928035" />
+              <section title="startClient" ref="class_client_socket_connector.html#ae4f4715b8bec392b04276607a6af2ace" />
+              <section title="stopClient" ref="class_client_socket_connector.html#af7cab90c77b89b8a9884768801604cba" />
+              <section title="m_connectionErrorCallbackHandler" ref="class_client_socket_connector.html#abf47f202e5820731a8fb30a8b58b8aeb" />
+              <section title="m_hostname" ref="class_client_socket_connector.html#ab45624bc8332deba7bab5ab5b1fb17f7" />
+              <section title="m_messageQueue" ref="class_client_socket_connector.html#a59c880aaac8a131600996c33a48eb076" />
+              <section title="m_open" ref="class_client_socket_connector.html#a568bbb6b80f01e3129298695a8264df9" />
+              <section title="m_port" ref="class_client_socket_connector.html#ab5a9401d4d430c7810b56f90061e82f0" />
+              <section title="m_webSocket" ref="class_client_socket_connector.html#a4e2ca96301a33ea76899c009b38a4733" />
+            </section>
+            <section title="CRC" ref="class_c_r_c.html">
+              <section title="Parameters" ref="struct_c_r_c_1_1_parameters.html">
+                <section title="MakeTable" ref="struct_c_r_c_1_1_parameters.html#a07a2e848a332b32b17d8eddfe5deb11a" />
+                <section title="finalXOR" ref="struct_c_r_c_1_1_parameters.html#aad1c1318b707d1be4c404b4b53b23b67" />
+                <section title="initialValue" ref="struct_c_r_c_1_1_parameters.html#a3438fb5c479f36e4c8df90cd1e143287" />
+                <section title="polynomial" ref="struct_c_r_c_1_1_parameters.html#a7f03a44c0c18d54d873573c50d4de3e5" />
+                <section title="reflectInput" ref="struct_c_r_c_1_1_parameters.html#ac069bff622f62a8b6f158ed22fd67287" />
+                <section title="reflectOutput" ref="struct_c_r_c_1_1_parameters.html#ac92c0cd24ad04cbe7fe155f001381941" />
+              </section>
+              <section title="Table" ref="struct_c_r_c_1_1_table.html">
+                <section title="Table" ref="struct_c_r_c_1_1_table.html#a875427c38c37efb633602eecc302dc6a" />
+                <section title="GetParameters" ref="struct_c_r_c_1_1_table.html#a7c32dfe94f0652bdf12faac383ad5b2e" />
+                <section title="GetTable" ref="struct_c_r_c_1_1_table.html#a46fb89a74528b52df029248a643d83c0" />
+                <section title="InitTable" ref="struct_c_r_c_1_1_table.html#ae03b374decbcda273b5b3fa9a26084f8" />
+                <section title="operator[]" ref="struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907" />
+                <section title="parameters" ref="struct_c_r_c_1_1_table.html#af58a65824eab613688852f20f6a4dce2" />
+                <section title="table" ref="struct_c_r_c_1_1_table.html#ab57321cee3a58d0c0a61bd7037edcdf7" />
+              </section>
+              <section title="CRC" ref="class_c_r_c.html#ad843a3ac8e4bc04ddd263dc493a43015" />
+              <section title="CRC" ref="class_c_r_c.html#a25faf1efb06001cb1cad810d55e71a58" />
+              <section title="Calculate" ref="class_c_r_c.html#ae37d010c92c3afcf0da63834afc51469" />
+              <section title="Calculate" ref="class_c_r_c.html#a49d563e8c4cd6d1cd8fe6991bc7feaa0" />
+              <section title="Calculate" ref="class_c_r_c.html#a82d8aa1552599d285a883c55f45dd59e" />
+              <section title="Calculate" ref="class_c_r_c.html#a89f8bd5de26eaf60dda955ac4e56fd57" />
+              <section title="CalculateRemainder" ref="class_c_r_c.html#a78e9e8d7f86f3acfd6cc8b446a305b99" />
+              <section title="CalculateRemainder" ref="class_c_r_c.html#a299e6466d0a6c91a510732880b2f7550" />
+              <section title="CRC_16_ARC" ref="class_c_r_c.html#aea3087ea6719e8eba36d6fcea3720a82" />
+              <section title="CRC_16_BUYPASS" ref="class_c_r_c.html#a7615784a91ab254f91583cddf8c0e28d" />
+              <section title="CRC_16_CCITTFALSE" ref="class_c_r_c.html#accde5e695e1eef5e7be2df81d5f37e83" />
+              <section title="CRC_16_GENIBUS" ref="class_c_r_c.html#aaf15ad266e319eb2d87d4f7ddbddef07" />
+              <section title="CRC_16_KERMIT" ref="class_c_r_c.html#a95f0f45a06b94e0cd5b92c9e550bba8a" />
+              <section title="CRC_16_X25" ref="class_c_r_c.html#ad676bda4d636e1b3a0c8dc2e2075321f" />
+              <section title="CRC_16_XMODEM" ref="class_c_r_c.html#a3035fe39bcafd47ec184b35617a46452" />
+              <section title="CRC_32" ref="class_c_r_c.html#aea541af7b4c36708b8152476e8580053" />
+              <section title="CRC_32_BZIP2" ref="class_c_r_c.html#ac503380a8c2b39ae146e17eef16f8f3c" />
+              <section title="CRC_32_MPEG2" ref="class_c_r_c.html#a5648a717486b46badac3693de0c34546" />
+              <section title="CRC_32_POSIX" ref="class_c_r_c.html#ad038d81c003f21d254964566f7f8bc61" />
+              <section title="CRC_8" ref="class_c_r_c.html#a50f1e00559defde552c58ebcc741257b" />
+              <section title="Finalize" ref="class_c_r_c.html#af3247bcac33c4422cbbd97d0eddb1fe6" />
+              <section title="operator=" ref="class_c_r_c.html#a48051d8f4dc907665ba7307d8d5c1318" />
+              <section title="Reflect" ref="class_c_r_c.html#ab508d95b45054e2471eb4a16a9458208" />
+              <section title="UndoFinalize" ref="class_c_r_c.html#a5818ddbe23b318349e59323ee03cb28f" />
+            </section>
+            <section title="DAQDriver" ref="class_d_a_q_driver.html">
+              <section title="DAQDriver" ref="class_d_a_q_driver.html#a57ee795c3421025849c77b5ad4e3ff5c" />
+              <section title="~DAQDriver" ref="class_d_a_q_driver.html#a2fd392ba774dbd47deef53c11f402b4c" />
+              <section title="connect" ref="class_d_a_q_driver.html#a30b33a078b25a9347799ad65001c2e1b" />
+              <section title="deviceControl" ref="class_d_a_q_driver.html#a877e76c9343625e7fd647fce96c45aa4" />
+              <section title="deviceInfo" ref="class_d_a_q_driver.html#aca06504e011c45b68c29b44f67757945" />
+              <section title="deviceStatus" ref="class_d_a_q_driver.html#a03ddb0ce619400bb5a94bd83405d31fc" />
+              <section title="disconnect" ref="class_d_a_q_driver.html#abf1e89a19bdd4d562127bd7b801b16d5" />
+              <section title="formatting" ref="class_d_a_q_driver.html#ae7741abbbed200560d1505f67d15f98f" />
+              <section title="handleSteamStarted" ref="class_d_a_q_driver.html#a5e34019eeeac82514d877c25b70114d9" />
+              <section title="handleStreamStopped" ref="class_d_a_q_driver.html#a6c8756ad1539e95fead55948231efda4" />
+              <section title="iepe" ref="class_d_a_q_driver.html#a7ba0f9fb6d1021939fdf89b1030ba368" />
+              <section title="initialize" ref="class_d_a_q_driver.html#af01b86a63337b5428b536b1d2103d41f" />
+              <section title="inputRange" ref="class_d_a_q_driver.html#aa67fb7d82bb2a5545157501db8aef4b4" />
+              <section title="isConnected" ref="class_d_a_q_driver.html#afea3f935f1d1357c2d42c1681457a20c" />
+              <section title="process" ref="class_d_a_q_driver.html#abb81206732a78e6e692efb9b47a352d9" />
+              <section title="reset" ref="class_d_a_q_driver.html#ad53bfe1d87d8a06a25c8a174e180b8df" />
+              <section title="socketConnector" ref="class_d_a_q_driver.html#a5ddde910522f84835dae8d99d028360c" />
+              <section title="streaming" ref="class_d_a_q_driver.html#ac40503139561fc4017744b0f67ee442b" />
+              <section title="time" ref="class_d_a_q_driver.html#aee53a88d1dfcb3418bb84f9d19b4d955" />
+              <section title="m_deviceControl" ref="class_d_a_q_driver.html#a12e4afd63c4db38f4f7cd36203ead121" />
+              <section title="m_deviceInfo" ref="class_d_a_q_driver.html#ab4eed6a96e478d6e33a287fa40c5648a" />
+              <section title="m_deviceStatus" ref="class_d_a_q_driver.html#a0b72f20b915fb561dba78b1bcbbe6783" />
+              <section title="m_eventLoopThread" ref="class_d_a_q_driver.html#a6759e064353606029971781c16d23668" />
+              <section title="m_formatting" ref="class_d_a_q_driver.html#abe53b7c7ec5439c8a82256b80b3030b2" />
+              <section title="m_hearthBeat" ref="class_d_a_q_driver.html#a1f89bbb3442fa9aee8c67fa2df0e6671" />
+              <section title="m_iepe" ref="class_d_a_q_driver.html#a896568d4828282a8921c0ba96b0f9ff4" />
+              <section title="m_initialized" ref="class_d_a_q_driver.html#a466073b6072f3bb377c978a70379a736" />
+              <section title="m_inputRange" ref="class_d_a_q_driver.html#a38019ace20d3e8282ffac7f42d3e3701" />
+              <section title="m_messageProcessor" ref="class_d_a_q_driver.html#ae9a9e003270b1b0a1a0abda8c64a9759" />
+              <section title="m_socketConnector" ref="class_d_a_q_driver.html#a01140248bef81610d79714fc80be6438" />
+              <section title="m_streaming" ref="class_d_a_q_driver.html#a18b46eae3ef1915b66153514f4297fc0" />
+              <section title="m_time" ref="class_d_a_q_driver.html#ab1d1382b3dd70e1386776540e50227bc" />
+            </section>
+            <section title="DeviceControl" ref="class_device_control.html">
+              <section title="DeviceControl" ref="class_device_control.html#a95ec44331ca07fff1edc9869fd5acaca" />
+              <section title="addGrabbedControlCallback" ref="class_device_control.html#a7b0344105cf2fc7a12737d0e6f644602" />
+              <section title="addReleasedControlCallback" ref="class_device_control.html#ae730ce81db23512a7782f5527fc8fed1" />
+              <section title="addResetCallback" ref="class_device_control.html#a209bc06148e0cecb8fbe8c993aa06ca1" />
+              <section title="handleGrabControlRecieved" ref="class_device_control.html#a13a977b19f26ce5fc596e2ead7dff202" />
+              <section title="handleReleaseControlRecieved" ref="class_device_control.html#a9da945a03cc65da2fa3597d0b0199452" />
+              <section title="handleResetRecieved" ref="class_device_control.html#a380474966a8e57ef4d6dd0af537b0c45" />
+              <section title="hasControl" ref="class_device_control.html#a65f4fe16c7593d33b3d16b9ab34cad76" />
+              <section title="releaseControl" ref="class_device_control.html#ac2a6ff489d907c39c871b7da8b290b60" />
+              <section title="removeGrabbedControlCallback" ref="class_device_control.html#abd329d4b59de6665a6e86e3f1754b08c" />
+              <section title="removeReleasedControlCallback" ref="class_device_control.html#aab082b8a848a33559414a392c4466c92" />
+              <section title="removeResetCallback" ref="class_device_control.html#a238c18399731d8b1f7f6e80af8bf22de" />
+              <section title="reset" ref="class_device_control.html#aa01f0d9536de747901cb25490cef7fc7" />
+              <section title="takeControl" ref="class_device_control.html#a8035f0a0cca65401787da31fb8ee526a" />
+              <section title="m_grabbedControlCallbackHandler" ref="class_device_control.html#a2d6d586bffd4e8f94475dd10f56b401e" />
+              <section title="m_hasControl" ref="class_device_control.html#ab89062c6057410b25c3d44d8c629d3ca" />
+              <section title="m_releasedControlCallbackHandler" ref="class_device_control.html#a67d4c3a495bbfd434efd9a12f61bef90" />
+              <section title="m_resetCallbackHandler" ref="class_device_control.html#afbc61a4ffa31460e4f4294cd83c8acdb" />
+            </section>
+            <section title="DeviceDiscovery" ref="class_device_discovery.html">
+              <section title="deinitialize" ref="class_device_discovery.html#afa4f2b087a10a08beab7548e7e9f7c49" />
+              <section title="discover" ref="class_device_discovery.html#aa3baabbe69c467cdebcf3d62e4311bf5" />
+              <section title="get_in_addr" ref="class_device_discovery.html#aef633bffcd995bd276a3550645024770" />
+              <section title="getIpForResponce" ref="class_device_discovery.html#a41ee30a7de5f5864f4ac5c70f51a3d3d" />
+              <section title="getPortForResponce" ref="class_device_discovery.html#af3082c14d8df1f96ab1abfb53dbf69e7" />
+              <section title="initialize" ref="class_device_discovery.html#a03deaba3c8e99d77255398c7972428c0" />
+              <section title="parseTxtRecord" ref="class_device_discovery.html#a0b941c83543460d86b6426c5b39d70a5" />
+              <section title="presentVoyagers" ref="class_device_discovery.html#a92170f6b6d88806af218d2f107419b3c" />
+              <section title="splitTxtRecord" ref="class_device_discovery.html#afe0cd7d3041180bb5b71d4d5e9a0e578" />
+            </section>
+            <section title="DeviceInfo" ref="class_device_info.html">
+              <section title="DeviceInfo" ref="class_device_info.html#ae9f9aee8ecf7d7c6f0a4f20cf1b7008c" />
+              <section title="addRemoteInfoRecievedCallback" ref="class_device_info.html#aa5e0d3d44eca2fce87c01a453d1bad75" />
+              <section title="handleDeviceInfoRequestRecieved" ref="class_device_info.html#a270b3cc254ca6123f6c962a4c76edc63" />
+              <section title="handleDeviceInfoResponseRecieved" ref="class_device_info.html#ac0da1e987b2e25c4317e11579440f2de" />
+              <section title="localDeviceInfo" ref="class_device_info.html#af4803b3796a24d84e2e8bd86b70ffb70" />
+              <section title="refresh" ref="class_device_info.html#a4fc0229f20a06b6a53df97eb34c7555d" />
+              <section title="remoteDeviceInfo" ref="class_device_info.html#a0723ab5a4ece94c7fa51a275ad050a46" />
+              <section title="removeRemoteInfoRecievedCallback" ref="class_device_info.html#ae7c445cc27fa4381a8e8e7935fd7da86" />
+              <section title="reset" ref="class_device_info.html#a70caaafbfdc29b97a6e3305e361c047e" />
+              <section title="setLocalDeviceInfo" ref="class_device_info.html#a565dc738da32fa8502d30836cf2971ba" />
+              <section title="setRemoteDeviceInfo" ref="class_device_info.html#a508f5ccc612ad5c7e7ff386d3b433f33" />
+              <section title="m_localDeviceInfo" ref="class_device_info.html#ab3842e1a664a7670fbab89b3fc9d33ad" />
+              <section title="m_localDeviceInfoMutex" ref="class_device_info.html#ad530debf5944bca710cc94e1c5c7e80d" />
+              <section title="m_remoteDeviceInfo" ref="class_device_info.html#aa770cf1c0ac440d658390a3098eefaf2" />
+              <section title="m_remoteDeviceInfoMutex" ref="class_device_info.html#add1952a0cc793fb3d76f1ed9db7b6656" />
+              <section title="m_remoteInfoRecievedCallbackHandler" ref="class_device_info.html#a3c0f259f04802bd83627eeeeab73b317" />
+            </section>
+            <section title="DeviceStatus" ref="class_device_status.html">
+              <section title="DeviceStatus" ref="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a" />
+              <section title="addremoteDeviceStatusUpdated" ref="class_device_status.html#abc42bc09a031d8dbd707331efb4ec459" />
+              <section title="handleDeviceStatusRecieved" ref="class_device_status.html#a8df25d4cfdce499819ea090e52b17dcf" />
+              <section title="remoteDeviceStatus" ref="class_device_status.html#ac19bf8987cd6e6e599be94c00bad6814" />
+              <section title="removeRemoteDeviceStatusUpdated" ref="class_device_status.html#ad9f0471ff7004c77bed7d5e8a5684ca3" />
+              <section title="reset" ref="class_device_status.html#ae96146e2e7074a44134eed17d0052fc0" />
+              <section title="sendStatus" ref="class_device_status.html#adfc2e2789e67e7fd9f8ebf847d73770f" />
+              <section title="m_remoteDeviceStatus" ref="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455" />
+              <section title="m_remoteDeviceStatusUpdatedCallbackHandler" ref="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf" />
+            </section>
+            <section title="DiscoveredDevice" ref="class_discovered_device.html">
+              <section title="DiscoveredDevice" ref="class_discovered_device.html#a287356d7a3ed5df369127ff0bc128dd0" />
+              <section title="deviceName" ref="class_discovered_device.html#af3572dc06f7b60f9aaa4611d4fba0fac" />
+              <section title="deviceSerial" ref="class_discovered_device.html#a6848ebc532f1166e8ceff1361bda4992" />
+              <section title="driverName" ref="class_discovered_device.html#a79104c1db44971a9885c086093ced253" />
+              <section title="driverVersion" ref="class_discovered_device.html#a422f2c5335c6cea1fcc7eaedd0ac9b2a" />
+              <section title="ipAddress" ref="class_discovered_device.html#a88cd0822e5e4037ae4ad1dd1d244c583" />
+              <section title="modelName" ref="class_discovered_device.html#aec98ab80a3f6df2cb1e419cd83470789" />
+              <section title="port" ref="class_discovered_device.html#afd10960b219fe62feb6df6c4ba27661e" />
+              <section title="setDeviceName" ref="class_discovered_device.html#a8ed53fdbb49f9f02ead872cffbbd419e" />
+              <section title="setDeviceSerial" ref="class_discovered_device.html#a70b213a4f190fa5037d5c7dbed1d3279" />
+              <section title="setDriverName" ref="class_discovered_device.html#a18a281a00ca01d1ec5c9d8e05cdda529" />
+              <section title="setDriverVersion" ref="class_discovered_device.html#a09fa487ec68b63d8448016f59bd1169c" />
+              <section title="setIpAddress" ref="class_discovered_device.html#ac3c2288c4006d4e95a2fee19266e8092" />
+              <section title="setModelName" ref="class_discovered_device.html#acec3363c11f9b55f3270497e30f6d918" />
+              <section title="setPort" ref="class_discovered_device.html#aa0ea0093e73b6390c92d06ff75ec58c7" />
+              <section title="setSoftwareVersion" ref="class_discovered_device.html#ae476ebebd0f9a923ec00baeded165c45" />
+              <section title="softwareVersion" ref="class_discovered_device.html#a8aeb216bb592acae577fdcc98d6c8751" />
+              <section title="m_deviceName" ref="class_discovered_device.html#ab52af4af75835b5993270bcbfbe31d04" />
+              <section title="m_deviceSerial" ref="class_discovered_device.html#a6df072103baa7d53ef907a970ad30395" />
+              <section title="m_driverName" ref="class_discovered_device.html#a49f1226b1a06a70dbda28c15a48d309d" />
+              <section title="m_driverVersion" ref="class_discovered_device.html#a08a5b7b1777a9e9618568f60fdadbc66" />
+              <section title="m_ipAddress" ref="class_discovered_device.html#a9c32cd8cdbb0c8510aab266272ce9478" />
+              <section title="m_modelName" ref="class_discovered_device.html#a2d1a52d6cd5f28afe2994b243709ba69" />
+              <section title="m_port" ref="class_discovered_device.html#a7850fd97873ce4b3f7fa97d58d7efafd" />
+              <section title="m_softwareVersion" ref="class_discovered_device.html#a462f443dea4ef42cfa500eb6073bfe98" />
+            </section>
+            <section title="EventLoopThread" ref="class_event_loop_thread.html">
+              <section title="EventLoopThread" ref="class_event_loop_thread.html#a63bcffbeeccdd8277bf0a4717be05b29" />
+              <section title="~EventLoopThread" ref="class_event_loop_thread.html#a25e0b31dc4fe28fc57c734b446ee1017" />
+              <section title="callbackHandler" ref="class_event_loop_thread.html#a4b0c17f87bb73a33735a1cdf5f64dfda" />
+              <section title="isRunning" ref="class_event_loop_thread.html#ad27f9a210f88ffb633a339b556dd0746" />
+              <section title="loop" ref="class_event_loop_thread.html#a57382bf0a8ce63e45e14392ca6176f42" />
+              <section title="pollingInterval" ref="class_event_loop_thread.html#a3e340e803cca025d96fb75892583518f" />
+              <section title="setPollingInterval" ref="class_event_loop_thread.html#a4583176a4254e7c584480a76ff944d5f" />
+              <section title="start" ref="class_event_loop_thread.html#a4144f41e3c3ce03c0fd2180350009043" />
+              <section title="stop" ref="class_event_loop_thread.html#afe9a38e7c9a9760b7a3ee7a1becd93c0" />
+              <section title="m_callbackHandler" ref="class_event_loop_thread.html#aad2fe8d0ac6ca74f446c0e4a10c2d3d8" />
+              <section title="m_eventLoopRunning" ref="class_event_loop_thread.html#adf397fcfbb8b134c3818ab7cf3ed50e0" />
+              <section title="m_eventloopThread" ref="class_event_loop_thread.html#a284ab41d4de730bc6d327b62399b9e9a" />
+              <section title="m_pollingInterval" ref="class_event_loop_thread.html#ade1a1f7f2613099d9cc0da06f712466f" />
+            </section>
+            <section title="Formatting" ref="class_formatting.html">
+              <section title="Formatting" ref="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423" />
+              <section title="dataFormat" ref="class_formatting.html#a3043551aaf46ea809849fc0f73a058a1" />
+              <section title="handleNewFormatRecieved" ref="class_formatting.html#a568e3b4a30a45d0f5b85f95f0c0de37d" />
+              <section title="reset" ref="class_formatting.html#a8ff984346ae245747995b41d644711c4" />
+              <section title="setDataFormat" ref="class_formatting.html#aa7ca64f97e7c00ef39b93a55ed0906ba" />
+              <section title="swapDataFormat" ref="class_formatting.html#ab482e940f681711388d77a1cccf871f1" />
+              <section title="m_dataFormat" ref="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2" />
+              <section title="m_dataFormatMutex" ref="class_formatting.html#a957841ef6e1f496def5c527c84c18d71" />
+            </section>
+            <section title="Heartbeat" ref="class_heartbeat.html">
+              <section title="Heartbeat" ref="class_heartbeat.html#a1bd4b6e1b91e7db4d9e679c57cb1b28d" />
+              <section title="handleHearthbeatMessage" ref="class_heartbeat.html#ab9148ec761e1b9623cb11434aa93a500" />
+              <section title="hearthbeatDieTimerTimeout" ref="class_heartbeat.html#a8e7fec75696758ca3e8bfbecd2e2a4ed" />
+              <section title="hearthbeatTimerTimeout" ref="class_heartbeat.html#a17167ce170f1fb8b062261bb72af8c3e" />
+              <section title="process" ref="class_heartbeat.html#a626c8ecd96f4798ccd8f7ac3bc10ec37" />
+              <section title="reset" ref="class_heartbeat.html#a2a9095f21130f22999bb2e8284269207" />
+              <section title="m_callback" ref="class_heartbeat.html#af17ac25b2e23eba1b6d848889fd16f8f" />
+              <section title="m_hearthbeatDieTimer" ref="class_heartbeat.html#ad8278e33e0f65cfc5a9a00795ae50e71" />
+              <section title="m_hearthbeatTimer" ref="class_heartbeat.html#a41b340ee81395ed1a8ecb20f7f988269" />
+            </section>
+            <section title="IEPE" ref="class_i_e_p_e.html">
+              <section title="Input" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01">
+                <section title="Aux1" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a7499d815e203debc3c1d6a96bccd69d0" />
+                <section title="Aux2" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a9c6662cf85dd61fb31af99fdadef8f64" />
+              </section>
+              <section title="IEPE" ref="class_i_e_p_e.html#abda9392c8cd365020758d0c384acd379" />
+              <section title="getIEPE" ref="class_i_e_p_e.html#a5e9f262911518b4579aba50ebcdecf1d" />
+              <section title="handleSetIEPERecieved" ref="class_i_e_p_e.html#ae88d329a70526c87d458c9b1ccf03f58" />
+              <section title="reset" ref="class_i_e_p_e.html#a780358076bb11f9d8ef293de7d8018c6" />
+              <section title="setIEPE" ref="class_i_e_p_e.html#a7f4825fa793107ce8724e1c651bfc8b2" />
+              <section title="m_iepeEnabled" ref="class_i_e_p_e.html#aced5f61010b600f1ec407b26585873db" />
+            </section>
+            <section title="InputRange" ref="class_input_range.html">
+              <section title="Voltage" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860">
+                <section title="_0_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a7b4699ec5408ff674e3031e45f172653" />
+                <section title="_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a24f0246196fc4631731ae24c6f648d68" />
+                <section title="_10" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a6279748117186df2df8d59efdd63ffb8" />
+              </section>
+              <section title="InputRange" ref="class_input_range.html#afd1fc97ee430fd4b97ea9a149b4c73b7" />
+              <section title="getInputRange" ref="class_input_range.html#a45d9597ceeac2f93dc2c80578ff14e34" />
+              <section title="handleSetInputRangeRecieved" ref="class_input_range.html#a3e7bcf3730ecb21779fd338d8ae05a29" />
+              <section title="reset" ref="class_input_range.html#a64a979a15425174331055adf734a1899" />
+              <section title="setInputRange" ref="class_input_range.html#a6e386360e6d5bec1a46e7ad187e74eea" />
+              <section title="m_inputRangeVoltages" ref="class_input_range.html#a69a3b466726ff7cc998f827950cd175f" />
+            </section>
+            <section title="Message" ref="struct_message.html">
+              <section title="data" ref="struct_message.html#a261f9014e13f5962995f6c9fe33ce146" />
+              <section title="header" ref="struct_message.html#a704863f3c71f270459d015102d61f7c8" />
+            </section>
+            <section title="MessageDeserializer" ref="class_message_deserializer.html">
+              <section title="clear" ref="class_message_deserializer.html#a71313b750457bd1970dd2c8731e4b0eb" />
+              <section title="frameHeaderFromData" ref="class_message_deserializer.html#a116876762825babd9a5f467789b6107b" />
+              <section title="hasFullMessageReady" ref="class_message_deserializer.html#ad17dbeade6fcdad82676dafa9e6f1fe9" />
+              <section title="hasMessagesAvailable" ref="class_message_deserializer.html#ac010889faef0e159cd04a319720b06af" />
+              <section title="nextMessage" ref="class_message_deserializer.html#a73e4316ee0fc149ca989fb4b51408460" />
+              <section title="processData" ref="class_message_deserializer.html#ae137e5412afd7d247ff9fe9fd4c49e78" />
+              <section title="takeFullMessageFromBuffer" ref="class_message_deserializer.html#a2993bd4588c32815c5569eb2a0eccd27" />
+              <section title="m_incommingDataBuffer" ref="class_message_deserializer.html#a989efaf9094c403c59c0269a1122c53c" />
+              <section title="m_incommingMessages" ref="class_message_deserializer.html#afee625806c7b32902289e73d77996957" />
+            </section>
+            <section title="MessageHashTable" ref="class_message_hash_table.html">
+              <section title="addMessage" ref="class_message_hash_table.html#ae8714727ad563adca3a21c049cfc629e" />
+              <section title="calculateHashForString" ref="class_message_hash_table.html#a70c6460edf658943fd12691fd8d341a0" />
+              <section title="getDescriptorForHash" ref="class_message_hash_table.html#a144e128df2b0469cf069a983a3a3a983" />
+              <section title="hasDescriptorForHash" ref="class_message_hash_table.html#a5982cbacf9f3fcb60e169faed040e713" />
+              <section title="hashForMessage" ref="class_message_hash_table.html#a9595953a83bea7e09492d5aafd247dc4" />
+              <section title="hashForMessageDescriptor" ref="class_message_hash_table.html#ad34c71abdf952aeec9240d24729d0f19" />
+              <section title="hashForMessageType" ref="class_message_hash_table.html#a0102ab2f0c30b6e26e64ec1e4989cf06" />
+              <section title="m_crcTable" ref="class_message_hash_table.html#a97339bd745e03f680bc14b0c1af77ff2" />
+              <section title="m_messageHashes" ref="class_message_hash_table.html#ac5ad255b17404d850c7773ab3b5505f6" />
+            </section>
+            <section title="MessageHeader" ref="struct_message_header.html">
+              <section title="messageHash" ref="struct_message_header.html#a64ecddce516db66fe842454cfcef3e96" />
+              <section title="messageSize" ref="struct_message_header.html#a67e16b885af802a37163641961fce410" />
+            </section>
+            <section title="MessageParser" ref="class_message_parser.html">
+              <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
+              <section title="parse" ref="class_message_parser.html#abc553be127c5fc2084c1f7ed0458c317" />
+            </section>
+            <section title="MessageProcessor" ref="class_message_processor.html">
+              <section title="MessageProcessor" ref="class_message_processor.html#a214cee5d058d461a92cd0ee4c2f4550d" />
+              <section title="process" ref="class_message_processor.html#a07958f73ccd8e83b4687772f6bb6aeed" />
+              <section title="transmit" ref="class_message_processor.html#a8bccf81d6d1333868bce48056f7724da" />
+              <section title="m_clearTimer" ref="class_message_processor.html#aa92bdc38a61c33f417a2b0444cf546cf" />
+              <section title="m_socketConnector" ref="class_message_processor.html#aa35ac7ac7457115d4ff4a077240331aa" />
+            </section>
+            <section title="MessageRouter" ref="class_message_router.html">
+              <section title="addMessageRoute" ref="class_message_router.html#aec488ecf860567d35413de1add85f761" />
+              <section title="clearAllRoutes" ref="class_message_router.html#a2df31c028ddb9c16ad06018c0aff5a46" />
+              <section title="route" ref="class_message_router.html#a1741220b45eb2e8625e14da9af36fbef" />
+              <section title="m_routeMap" ref="class_message_router.html#a4803d3cab923a71046824d45650cab3e" />
+            </section>
+            <section title="MessageSerializer" ref="class_message_serializer.html">
+              <section title="serialize" ref="class_message_serializer.html#a710deb927d61647be0f9de5709882486" />
+            </section>
+            <section title="ServerSocketConnector" ref="class_server_socket_connector.html">
+              <section title="ServerSocketConnector" ref="class_server_socket_connector.html#a3134bbd4f9e947e4e27ae00343a59fd4" />
+              <section title="~ServerSocketConnector" ref="class_server_socket_connector.html#aac053c946511239c8e7c929d8ec381f3" />
+              <section title="closedCallbackHandler" ref="class_server_socket_connector.html#a9125070b27c64cd94ee940387e8968fb" />
+              <section title="isOpen" ref="class_server_socket_connector.html#a7c2d85021374cf9d1e5c8730c2f28b1b" />
+              <section title="messagesAvailable" ref="class_server_socket_connector.html#abb74bb9add3eaf6f94080aa9532278ce" />
+              <section title="nextMessage" ref="class_server_socket_connector.html#af13da7b091b569bda5b2a644eb40f60f" />
+              <section title="onConnectionCallback" ref="class_server_socket_connector.html#a8f407513924fa6317dcda933affd73ea" />
+              <section title="onMessageCallback" ref="class_server_socket_connector.html#a7cdf90bdcc8696a2fa71016db9e8d86c" />
+              <section title="openedCallbackHandler" ref="class_server_socket_connector.html#a9d2d46762411ea8d66c779579cbf8c0a" />
+              <section title="port" ref="class_server_socket_connector.html#a7f312fda993ef1e3a7ea47b873293964" />
+              <section title="sendMessage" ref="class_server_socket_connector.html#afb83511c49e007419cbe04fad49de9f0" />
+              <section title="startServer" ref="class_server_socket_connector.html#a3cb0991a9724ad68fee2993386dad791" />
+              <section title="stopServer" ref="class_server_socket_connector.html#a5284f64a95f9f252f6e605341cfa13ae" />
+              <section title="m_connections" ref="class_server_socket_connector.html#a8538f8685bc544adc0e7bd0647a2d43b" />
+              <section title="m_messageQueue" ref="class_server_socket_connector.html#ae5b8ae54dde6035c3dbaabd4cde5bfa7" />
+              <section title="m_port" ref="class_server_socket_connector.html#ab6816b0813802f1a09038ff7ee8e85d1" />
+              <section title="m_websocketServer" ref="class_server_socket_connector.html#a26ca842a7f7d533d1b15af8353b33802" />
+            </section>
+            <section title="Streaming" ref="class_streaming.html">
+              <section title="Streaming" ref="class_streaming.html#a1c2463409632e991310157a39b301f51" />
+              <section title="addNewBufferCallback" ref="class_streaming.html#ab52e4370528b487229d7a049349c9881" />
+              <section title="addStreamStartedCallback" ref="class_streaming.html#a7afd7d34c1a04e93b881fcf4741256bb" />
+              <section title="addStreamStoppedCallback" ref="class_streaming.html#a278f3ded808a7c4066f89fbc9c6f7c1e" />
+              <section title="handleNewDataRecieved" ref="class_streaming.html#a6810c63e414062646dec1ee55ef4f8e7" />
+              <section title="handleStartStreamRecieved" ref="class_streaming.html#a9da33d43c08e94a66f1a468ef3a19f0f" />
+              <section title="handleStopStreamRecieved" ref="class_streaming.html#a81004795e97d7827eb2cd51f42aaa37b" />
+              <section title="isStreaming" ref="class_streaming.html#a8e1acd4e4c0d806a9b6089f3dadbc331" />
+              <section title="nextQueuedBuffer" ref="class_streaming.html#a9c72dcb531cefadcf2c73a485e919cba" />
+              <section title="pendingBufferCount" ref="class_streaming.html#ab6b99c9a6e6c2f0ef423804d6ff5d48e" />
+              <section title="removeNewBufferCallback" ref="class_streaming.html#a93fd53365dd99c5d5685fc46a44a89ea" />
+              <section title="removeStreamStartedCallback" ref="class_streaming.html#ac09b54e039523b2f2b869a8bb73f6285" />
+              <section title="removeStreamStoppedCallback" ref="class_streaming.html#a852d2f65c1d2a730ba8ccbbbd7f07536" />
+              <section title="reset" ref="class_streaming.html#a90540f816facd3063dd8119fea7ab385" />
+              <section title="start" ref="class_streaming.html#a61a11cae098fc67e2737f3f46fe0cb38" />
+              <section title="stop" ref="class_streaming.html#a4faf92468cfc71b7bae6e5f79bb6319e" />
+              <section title="transmit" ref="class_streaming.html#a4afc6b1df9793d61dc0fefbee607a430" />
+              <section title="m_dataQueue" ref="class_streaming.html#ada757f98e664b917f33c2e84f2634c10" />
+              <section title="m_dataQueueMutex" ref="class_streaming.html#afbb4d2128659d95a01f975a1a88abeae" />
+              <section title="m_isStreaming" ref="class_streaming.html#ae6ac8f6a765a349522b3731df95b6a9e" />
+              <section title="m_newBufferCallbackHandler" ref="class_streaming.html#a357414607f4528268b01ab17f03a80dc" />
+              <section title="m_streamStartedCallbackHandler" ref="class_streaming.html#ac75293e2d8bfe33d7d25219f9b554238" />
+              <section title="m_streamStoppedCallbackHandler" ref="class_streaming.html#a5f01b826f3e6bfa21a61a50c85273074" />
+              <section title="m_totalBufferCount" ref="class_streaming.html#a01d53b6c4b3e1ea0611e352c5968b7a1" />
+            </section>
+            <section title="Time" ref="class_time.html">
+              <section title="Time" ref="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb" />
+              <section title="addTimeSyncedCallback" ref="class_time.html#a42b3e697b8a562e6de6ec5c714092409" />
+              <section title="handleTimeRequest" ref="class_time.html#a645bc6bf911a249488880b19beb2908f" />
+              <section title="handleTimeResponse" ref="class_time.html#a8a7c036ddf77c7e51bc50acd5a06cf78" />
+              <section title="mSecSinceEpoch" ref="class_time.html#a417b896693e70f2382402de2dd8ebab4" />
+              <section title="reset" ref="class_time.html#afe661f7ba15818a24bf76e83da2889a0" />
+              <section title="sync" ref="class_time.html#a3f06458c558e501d734c68d11e253b17" />
+              <section title="timeDifference" ref="class_time.html#ab17411375b2cc6d3ed4bf3e3ca179922" />
+              <section title="m_timeDifference" ref="class_time.html#aa0eef970cf89ade078ba56c201bc15be" />
+              <section title="m_timeSyncedCallbacks" ref="class_time.html#adac50ba1b49e777c72cc9b09bb038b2c" />
+              <section title="m_timeSyncedCallbacksMutex" ref="class_time.html#ab78f7460d389ff56ce81335db19ab87c" />
+            </section>
+            <section title="Timer" ref="class_timer.html">
+              <section title="Timer" ref="class_timer.html#a5f16e8da27d2a5a5242dead46de05d97" />
+              <section title="isRunning" ref="class_timer.html#a5941489845ec3d8395d7027c2df396ad" />
+              <section title="process" ref="class_timer.html#aab292a110d22e13926b627a559929ea3" />
+              <section title="setCallback" ref="class_timer.html#a7e7f6e3f0b4b3b9212aa735515603140" />
+              <section title="setSingleShot" ref="class_timer.html#af54af839c409b7c995e73cfc00ef9478" />
+              <section title="setTimeout" ref="class_timer.html#a2675539a1a99b3663c7bd0ee79fdedab" />
+              <section title="singleShot" ref="class_timer.html#a8ef319943cab39eda3996c9356f84335" />
+              <section title="start" ref="class_timer.html#a3a8b5272198d029779dc9302a54305a8" />
+              <section title="start" ref="class_timer.html#ae0802009c876264e9119073bef4f1756" />
+              <section title="stop" ref="class_timer.html#a63f0eb44b27402196590a03781515dba" />
+              <section title="timeout" ref="class_timer.html#a4cf704503a81eac6002e3fbe5ddad599" />
+              <section title="m_callback" ref="class_timer.html#adee1b2146741f1fe173b808c94ec0dbb" />
+              <section title="m_nextTimeout" ref="class_timer.html#a098fba1380b85fb3e94bd2ab6ecd50ff" />
+              <section title="m_running" ref="class_timer.html#aaaaae685c2b6c6427301ab018bdf098f" />
+              <section title="m_singleShot" ref="class_timer.html#ad6b093c69cdc0c2474dc15057d034e89" />
+              <section title="m_timeout" ref="class_timer.html#ae0a5c9ef3955b3e3ee9d7e7710b1894f" />
+            </section>
+          </section>
+          <section title="Class Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="AbstractDriverComponent" ref="class_abstract_driver_component.html">
+              <section title="DeviceControl" ref="class_device_control.html" />
+              <section title="DeviceInfo" ref="class_device_info.html" />
+              <section title="DeviceStatus" ref="class_device_status.html" />
+              <section title="Formatting" ref="class_formatting.html" />
+              <section title="Heartbeat" ref="class_heartbeat.html" />
+              <section title="IEPE" ref="class_i_e_p_e.html" />
+              <section title="InputRange" ref="class_input_range.html" />
+              <section title="Streaming" ref="class_streaming.html" />
+              <section title="Time" ref="class_time.html" />
+            </section>
+            <section title="AbstractSocketConnector" ref="class_abstract_socket_connector.html">
+              <section title="ClientSocketConnector" ref="class_client_socket_connector.html" />
+              <section title="ServerSocketConnector" ref="class_server_socket_connector.html" />
+            </section>
+            <section title="CallbackHandler" ref="class_callback_handler.html" />
+            <section title="CRC" ref="class_c_r_c.html" />
+            <section title="DAQDriver" ref="class_d_a_q_driver.html" />
+            <section title="DeviceDiscovery" ref="class_device_discovery.html" />
+            <section title="DiscoveredDevice" ref="class_discovered_device.html" />
+            <section title="EventLoopThread" ref="class_event_loop_thread.html" />
+            <section title="Message" ref="struct_message.html" />
+            <section title="MessageDeserializer" ref="class_message_deserializer.html" />
+            <section title="MessageHashTable" ref="class_message_hash_table.html" />
+            <section title="MessageHeader" ref="struct_message_header.html" />
+            <section title="MessageParser" ref="class_message_parser.html" />
+            <section title="MessageProcessor" ref="class_message_processor.html" />
+            <section title="MessageRouter" ref="class_message_router.html" />
+            <section title="MessageSerializer" ref="class_message_serializer.html" />
+            <section title="CRC::Parameters&lt; CRCType, CRCWidth &gt;" ref="struct_c_r_c_1_1_parameters.html" />
+            <section title="CRC::Parameters&lt; std::uint16_t, CRCWidth &gt;" ref="struct_c_r_c_1_1_parameters.html" />
+            <section title="CRC::Table&lt; CRCType, CRCWidth &gt;" ref="struct_c_r_c_1_1_table.html" />
+            <section title="CRC::Table&lt; std::uint16_t, 16 &gt;" ref="struct_c_r_c_1_1_table.html" />
+            <section title="Timer" ref="class_timer.html" />
+          </section>
+          <section title="Class Members" ref="functions.html">
+            <section title="All" ref="functions.html">
+              <section title="_" ref="functions.html" />
+              <section title="a" ref="functions_a.html" />
+              <section title="c" ref="functions_c.html" />
+              <section title="d" ref="functions_d.html" />
+              <section title="e" ref="functions_e.html" />
+              <section title="f" ref="functions_f.html" />
+              <section title="g" ref="functions_g.html" />
+              <section title="h" ref="functions_h.html" />
+              <section title="i" ref="functions_i.html" />
+              <section title="l" ref="functions_l.html" />
+              <section title="m" ref="functions_m.html" />
+              <section title="n" ref="functions_n.html" />
+              <section title="o" ref="functions_o.html" />
+              <section title="p" ref="functions_p.html" />
+              <section title="r" ref="functions_r.html" />
+              <section title="s" ref="functions_s.html" />
+              <section title="t" ref="functions_t.html" />
+              <section title="u" ref="functions_u.html" />
+              <section title="v" ref="functions_v.html" />
+              <section title="~" ref="functions_0x7e.html" />
+            </section>
+            <section title="Functions" ref="functions_func.html">
+              <section title="a" ref="functions_func.html" />
+              <section title="c" ref="functions_func_c.html" />
+              <section title="d" ref="functions_func_d.html" />
+              <section title="e" ref="functions_func_e.html" />
+              <section title="f" ref="functions_func_f.html" />
+              <section title="g" ref="functions_func_g.html" />
+              <section title="h" ref="functions_func_h.html" />
+              <section title="i" ref="functions_func_i.html" />
+              <section title="l" ref="functions_func_l.html" />
+              <section title="m" ref="functions_func_m.html" />
+              <section title="n" ref="functions_func_n.html" />
+              <section title="o" ref="functions_func_o.html" />
+              <section title="p" ref="functions_func_p.html" />
+              <section title="r" ref="functions_func_r.html" />
+              <section title="s" ref="functions_func_s.html" />
+              <section title="t" ref="functions_func_t.html" />
+              <section title="u" ref="functions_func_u.html" />
+              <section title="~" ref="functions_func_0x7e.html" />
+            </section>
+            <section title="Variables" ref="functions_vars.html" />
+            <section title="Enumerations" ref="functions_enum.html" />
+            <section title="Enumerator" ref="functions_eval.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="Driver" ref="dir_7151b3cc910409bb744bd274374c738d.html">
+              <section title="Discovery" ref="dir_e640a94cedd38d7c20feec6f124bfbd5.html">
+                <section title="DeviceDiscovery.cpp" ref="_device_discovery_8cpp.html" />
+                <section title="DeviceDiscovery.h" ref="_device_discovery_8h.html">
+                  <section title="DeviceDiscovery" ref="class_device_discovery.html">
+                    <section title="deinitialize" ref="class_device_discovery.html#afa4f2b087a10a08beab7548e7e9f7c49" />
+                    <section title="discover" ref="class_device_discovery.html#aa3baabbe69c467cdebcf3d62e4311bf5" />
+                    <section title="get_in_addr" ref="class_device_discovery.html#aef633bffcd995bd276a3550645024770" />
+                    <section title="getIpForResponce" ref="class_device_discovery.html#a41ee30a7de5f5864f4ac5c70f51a3d3d" />
+                    <section title="getPortForResponce" ref="class_device_discovery.html#af3082c14d8df1f96ab1abfb53dbf69e7" />
+                    <section title="initialize" ref="class_device_discovery.html#a03deaba3c8e99d77255398c7972428c0" />
+                    <section title="parseTxtRecord" ref="class_device_discovery.html#a0b941c83543460d86b6426c5b39d70a5" />
+                    <section title="presentVoyagers" ref="class_device_discovery.html#a92170f6b6d88806af218d2f107419b3c" />
+                    <section title="splitTxtRecord" ref="class_device_discovery.html#afe0cd7d3041180bb5b71d4d5e9a0e578" />
+                  </section>
+                </section>
+                <section title="DiscoveredDevice.cpp" ref="_discovered_device_8cpp.html" />
+                <section title="DiscoveredDevice.h" ref="_discovered_device_8h.html">
+                  <section title="DiscoveredDevice" ref="class_discovered_device.html">
+                    <section title="DiscoveredDevice" ref="class_discovered_device.html#a287356d7a3ed5df369127ff0bc128dd0" />
+                    <section title="deviceName" ref="class_discovered_device.html#af3572dc06f7b60f9aaa4611d4fba0fac" />
+                    <section title="deviceSerial" ref="class_discovered_device.html#a6848ebc532f1166e8ceff1361bda4992" />
+                    <section title="driverName" ref="class_discovered_device.html#a79104c1db44971a9885c086093ced253" />
+                    <section title="driverVersion" ref="class_discovered_device.html#a422f2c5335c6cea1fcc7eaedd0ac9b2a" />
+                    <section title="ipAddress" ref="class_discovered_device.html#a88cd0822e5e4037ae4ad1dd1d244c583" />
+                    <section title="modelName" ref="class_discovered_device.html#aec98ab80a3f6df2cb1e419cd83470789" />
+                    <section title="port" ref="class_discovered_device.html#afd10960b219fe62feb6df6c4ba27661e" />
+                    <section title="setDeviceName" ref="class_discovered_device.html#a8ed53fdbb49f9f02ead872cffbbd419e" />
+                    <section title="setDeviceSerial" ref="class_discovered_device.html#a70b213a4f190fa5037d5c7dbed1d3279" />
+                    <section title="setDriverName" ref="class_discovered_device.html#a18a281a00ca01d1ec5c9d8e05cdda529" />
+                    <section title="setDriverVersion" ref="class_discovered_device.html#a09fa487ec68b63d8448016f59bd1169c" />
+                    <section title="setIpAddress" ref="class_discovered_device.html#ac3c2288c4006d4e95a2fee19266e8092" />
+                    <section title="setModelName" ref="class_discovered_device.html#acec3363c11f9b55f3270497e30f6d918" />
+                    <section title="setPort" ref="class_discovered_device.html#aa0ea0093e73b6390c92d06ff75ec58c7" />
+                    <section title="setSoftwareVersion" ref="class_discovered_device.html#ae476ebebd0f9a923ec00baeded165c45" />
+                    <section title="softwareVersion" ref="class_discovered_device.html#a8aeb216bb592acae577fdcc98d6c8751" />
+                    <section title="m_deviceName" ref="class_discovered_device.html#ab52af4af75835b5993270bcbfbe31d04" />
+                    <section title="m_deviceSerial" ref="class_discovered_device.html#a6df072103baa7d53ef907a970ad30395" />
+                    <section title="m_driverName" ref="class_discovered_device.html#a49f1226b1a06a70dbda28c15a48d309d" />
+                    <section title="m_driverVersion" ref="class_discovered_device.html#a08a5b7b1777a9e9618568f60fdadbc66" />
+                    <section title="m_ipAddress" ref="class_discovered_device.html#a9c32cd8cdbb0c8510aab266272ce9478" />
+                    <section title="m_modelName" ref="class_discovered_device.html#a2d1a52d6cd5f28afe2994b243709ba69" />
+                    <section title="m_port" ref="class_discovered_device.html#a7850fd97873ce4b3f7fa97d58d7efafd" />
+                    <section title="m_softwareVersion" ref="class_discovered_device.html#a462f443dea4ef42cfa500eb6073bfe98" />
+                  </section>
+                  <section title="pDiscoveredDevice" ref="_discovered_device_8h.html#af4a27df6da4e2891331dc19eeb953b76" />
+                </section>
+              </section>
+              <section title="DriverComponents" ref="dir_1c78f30dee02f7905ff9ab50f993fb55.html">
+                <section title="AbstractDriverComponent.cpp" ref="_abstract_driver_component_8cpp.html" />
+                <section title="AbstractDriverComponent.h" ref="_abstract_driver_component_8h.html">
+                  <section title="AbstractDriverComponent" ref="class_abstract_driver_component.html">
+                    <section title="AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+                    <section title="reset" ref="class_abstract_driver_component.html#a5b7d620d59ec07a83eb2e81ebecccacb" />
+                    <section title="m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+                  </section>
+                  <section title="pAbstractDriverComponent" ref="_abstract_driver_component_8h.html#ada861ca1c07dfe78e5c194c787f79914" />
+                </section>
+                <section title="DeviceControl.cpp" ref="_device_control_8cpp.html" />
+                <section title="DeviceControl.h" ref="_device_control_8h.html">
+                  <section title="DeviceControl" ref="class_device_control.html">
+                    <section title="DeviceControl" ref="class_device_control.html#a95ec44331ca07fff1edc9869fd5acaca" />
+                    <section title="addGrabbedControlCallback" ref="class_device_control.html#a7b0344105cf2fc7a12737d0e6f644602" />
+                    <section title="addReleasedControlCallback" ref="class_device_control.html#ae730ce81db23512a7782f5527fc8fed1" />
+                    <section title="addResetCallback" ref="class_device_control.html#a209bc06148e0cecb8fbe8c993aa06ca1" />
+                    <section title="handleGrabControlRecieved" ref="class_device_control.html#a13a977b19f26ce5fc596e2ead7dff202" />
+                    <section title="handleReleaseControlRecieved" ref="class_device_control.html#a9da945a03cc65da2fa3597d0b0199452" />
+                    <section title="handleResetRecieved" ref="class_device_control.html#a380474966a8e57ef4d6dd0af537b0c45" />
+                    <section title="hasControl" ref="class_device_control.html#a65f4fe16c7593d33b3d16b9ab34cad76" />
+                    <section title="releaseControl" ref="class_device_control.html#ac2a6ff489d907c39c871b7da8b290b60" />
+                    <section title="removeGrabbedControlCallback" ref="class_device_control.html#abd329d4b59de6665a6e86e3f1754b08c" />
+                    <section title="removeReleasedControlCallback" ref="class_device_control.html#aab082b8a848a33559414a392c4466c92" />
+                    <section title="removeResetCallback" ref="class_device_control.html#a238c18399731d8b1f7f6e80af8bf22de" />
+                    <section title="reset" ref="class_device_control.html#aa01f0d9536de747901cb25490cef7fc7" />
+                    <section title="takeControl" ref="class_device_control.html#a8035f0a0cca65401787da31fb8ee526a" />
+                    <section title="m_grabbedControlCallbackHandler" ref="class_device_control.html#a2d6d586bffd4e8f94475dd10f56b401e" />
+                    <section title="m_hasControl" ref="class_device_control.html#ab89062c6057410b25c3d44d8c629d3ca" />
+                    <section title="m_releasedControlCallbackHandler" ref="class_device_control.html#a67d4c3a495bbfd434efd9a12f61bef90" />
+                    <section title="m_resetCallbackHandler" ref="class_device_control.html#afbc61a4ffa31460e4f4294cd83c8acdb" />
+                  </section>
+                  <section title="pDeviceControl" ref="_device_control_8h.html#a3fd89024dc168fedc5f7f58f68f51512" />
+                </section>
+                <section title="DeviceInfo.cpp" ref="_device_info_8cpp.html" />
+                <section title="DeviceInfo.h" ref="_device_info_8h.html">
+                  <section title="DeviceInfo" ref="class_device_info.html">
+                    <section title="DeviceInfo" ref="class_device_info.html#ae9f9aee8ecf7d7c6f0a4f20cf1b7008c" />
+                    <section title="addRemoteInfoRecievedCallback" ref="class_device_info.html#aa5e0d3d44eca2fce87c01a453d1bad75" />
+                    <section title="handleDeviceInfoRequestRecieved" ref="class_device_info.html#a270b3cc254ca6123f6c962a4c76edc63" />
+                    <section title="handleDeviceInfoResponseRecieved" ref="class_device_info.html#ac0da1e987b2e25c4317e11579440f2de" />
+                    <section title="localDeviceInfo" ref="class_device_info.html#af4803b3796a24d84e2e8bd86b70ffb70" />
+                    <section title="refresh" ref="class_device_info.html#a4fc0229f20a06b6a53df97eb34c7555d" />
+                    <section title="remoteDeviceInfo" ref="class_device_info.html#a0723ab5a4ece94c7fa51a275ad050a46" />
+                    <section title="removeRemoteInfoRecievedCallback" ref="class_device_info.html#ae7c445cc27fa4381a8e8e7935fd7da86" />
+                    <section title="reset" ref="class_device_info.html#a70caaafbfdc29b97a6e3305e361c047e" />
+                    <section title="setLocalDeviceInfo" ref="class_device_info.html#a565dc738da32fa8502d30836cf2971ba" />
+                    <section title="setRemoteDeviceInfo" ref="class_device_info.html#a508f5ccc612ad5c7e7ff386d3b433f33" />
+                    <section title="m_localDeviceInfo" ref="class_device_info.html#ab3842e1a664a7670fbab89b3fc9d33ad" />
+                    <section title="m_localDeviceInfoMutex" ref="class_device_info.html#ad530debf5944bca710cc94e1c5c7e80d" />
+                    <section title="m_remoteDeviceInfo" ref="class_device_info.html#aa770cf1c0ac440d658390a3098eefaf2" />
+                    <section title="m_remoteDeviceInfoMutex" ref="class_device_info.html#add1952a0cc793fb3d76f1ed9db7b6656" />
+                    <section title="m_remoteInfoRecievedCallbackHandler" ref="class_device_info.html#a3c0f259f04802bd83627eeeeab73b317" />
+                  </section>
+                  <section title="pDeviceInfo" ref="_device_info_8h.html#ad63fccb6ba24545b68ed3dd06ff8cdf9" />
+                </section>
+                <section title="DeviceStatus.cpp" ref="_device_status_8cpp.html" />
+                <section title="DeviceStatus.h" ref="_device_status_8h.html">
+                  <section title="DeviceStatus" ref="class_device_status.html">
+                    <section title="DeviceStatus" ref="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a" />
+                    <section title="addremoteDeviceStatusUpdated" ref="class_device_status.html#abc42bc09a031d8dbd707331efb4ec459" />
+                    <section title="handleDeviceStatusRecieved" ref="class_device_status.html#a8df25d4cfdce499819ea090e52b17dcf" />
+                    <section title="remoteDeviceStatus" ref="class_device_status.html#ac19bf8987cd6e6e599be94c00bad6814" />
+                    <section title="removeRemoteDeviceStatusUpdated" ref="class_device_status.html#ad9f0471ff7004c77bed7d5e8a5684ca3" />
+                    <section title="reset" ref="class_device_status.html#ae96146e2e7074a44134eed17d0052fc0" />
+                    <section title="sendStatus" ref="class_device_status.html#adfc2e2789e67e7fd9f8ebf847d73770f" />
+                    <section title="m_remoteDeviceStatus" ref="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455" />
+                    <section title="m_remoteDeviceStatusUpdatedCallbackHandler" ref="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf" />
+                  </section>
+                  <section title="pDeviceStatus" ref="_device_status_8h.html#a969eb892eb7b0d855ba2cb15e986fa82" />
+                </section>
+                <section title="Formatting.cpp" ref="_formatting_8cpp.html" />
+                <section title="Formatting.h" ref="_formatting_8h.html">
+                  <section title="Formatting" ref="class_formatting.html">
+                    <section title="Formatting" ref="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423" />
+                    <section title="dataFormat" ref="class_formatting.html#a3043551aaf46ea809849fc0f73a058a1" />
+                    <section title="handleNewFormatRecieved" ref="class_formatting.html#a568e3b4a30a45d0f5b85f95f0c0de37d" />
+                    <section title="reset" ref="class_formatting.html#a8ff984346ae245747995b41d644711c4" />
+                    <section title="setDataFormat" ref="class_formatting.html#aa7ca64f97e7c00ef39b93a55ed0906ba" />
+                    <section title="swapDataFormat" ref="class_formatting.html#ab482e940f681711388d77a1cccf871f1" />
+                    <section title="m_dataFormat" ref="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2" />
+                    <section title="m_dataFormatMutex" ref="class_formatting.html#a957841ef6e1f496def5c527c84c18d71" />
+                  </section>
+                  <section title="pFormatting" ref="_formatting_8h.html#a72d05a01d3066443223767a24323b2b0" />
+                </section>
+                <section title="Heartbeat.cpp" ref="_heartbeat_8cpp.html" />
+                <section title="Heartbeat.h" ref="_heartbeat_8h.html">
+                  <section title="Heartbeat" ref="class_heartbeat.html">
+                    <section title="Heartbeat" ref="class_heartbeat.html#a1bd4b6e1b91e7db4d9e679c57cb1b28d" />
+                    <section title="handleHearthbeatMessage" ref="class_heartbeat.html#ab9148ec761e1b9623cb11434aa93a500" />
+                    <section title="hearthbeatDieTimerTimeout" ref="class_heartbeat.html#a8e7fec75696758ca3e8bfbecd2e2a4ed" />
+                    <section title="hearthbeatTimerTimeout" ref="class_heartbeat.html#a17167ce170f1fb8b062261bb72af8c3e" />
+                    <section title="process" ref="class_heartbeat.html#a626c8ecd96f4798ccd8f7ac3bc10ec37" />
+                    <section title="reset" ref="class_heartbeat.html#a2a9095f21130f22999bb2e8284269207" />
+                    <section title="m_callback" ref="class_heartbeat.html#af17ac25b2e23eba1b6d848889fd16f8f" />
+                    <section title="m_hearthbeatDieTimer" ref="class_heartbeat.html#ad8278e33e0f65cfc5a9a00795ae50e71" />
+                    <section title="m_hearthbeatTimer" ref="class_heartbeat.html#a41b340ee81395ed1a8ecb20f7f988269" />
+                  </section>
+                  <section title="pHeartbeat" ref="_heartbeat_8h.html#a643e0296fc8bb932ea3d95293382fda5" />
+                </section>
+                <section title="IEPE.cpp" ref="_i_e_p_e_8cpp.html" />
+                <section title="IEPE.h" ref="_i_e_p_e_8h.html">
+                  <section title="IEPE" ref="class_i_e_p_e.html">
+                    <section title="Input" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01">
+                      <section title="Aux1" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a7499d815e203debc3c1d6a96bccd69d0" />
+                      <section title="Aux2" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a9c6662cf85dd61fb31af99fdadef8f64" />
+                    </section>
+                    <section title="IEPE" ref="class_i_e_p_e.html#abda9392c8cd365020758d0c384acd379" />
+                    <section title="getIEPE" ref="class_i_e_p_e.html#a5e9f262911518b4579aba50ebcdecf1d" />
+                    <section title="handleSetIEPERecieved" ref="class_i_e_p_e.html#ae88d329a70526c87d458c9b1ccf03f58" />
+                    <section title="reset" ref="class_i_e_p_e.html#a780358076bb11f9d8ef293de7d8018c6" />
+                    <section title="setIEPE" ref="class_i_e_p_e.html#a7f4825fa793107ce8724e1c651bfc8b2" />
+                    <section title="m_iepeEnabled" ref="class_i_e_p_e.html#aced5f61010b600f1ec407b26585873db" />
+                  </section>
+                  <section title="pIEPE" ref="_i_e_p_e_8h.html#a4e9d52121e30606f4859023db4c82f82" />
+                </section>
+                <section title="InputRange.cpp" ref="_input_range_8cpp.html" />
+                <section title="InputRange.h" ref="_input_range_8h.html">
+                  <section title="InputRange" ref="class_input_range.html">
+                    <section title="Voltage" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860">
+                      <section title="_0_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a7b4699ec5408ff674e3031e45f172653" />
+                      <section title="_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a24f0246196fc4631731ae24c6f648d68" />
+                      <section title="_10" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a6279748117186df2df8d59efdd63ffb8" />
+                    </section>
+                    <section title="InputRange" ref="class_input_range.html#afd1fc97ee430fd4b97ea9a149b4c73b7" />
+                    <section title="getInputRange" ref="class_input_range.html#a45d9597ceeac2f93dc2c80578ff14e34" />
+                    <section title="handleSetInputRangeRecieved" ref="class_input_range.html#a3e7bcf3730ecb21779fd338d8ae05a29" />
+                    <section title="reset" ref="class_input_range.html#a64a979a15425174331055adf734a1899" />
+                    <section title="setInputRange" ref="class_input_range.html#a6e386360e6d5bec1a46e7ad187e74eea" />
+                    <section title="m_inputRangeVoltages" ref="class_input_range.html#a69a3b466726ff7cc998f827950cd175f" />
+                  </section>
+                  <section title="pInputRange" ref="_input_range_8h.html#a54f786a2fe3efbbf991db1bf9d1203bd" />
+                </section>
+                <section title="Streaming.cpp" ref="_streaming_8cpp.html" />
+                <section title="Streaming.h" ref="_streaming_8h.html">
+                  <section title="Streaming" ref="class_streaming.html">
+                    <section title="Streaming" ref="class_streaming.html#a1c2463409632e991310157a39b301f51" />
+                    <section title="addNewBufferCallback" ref="class_streaming.html#ab52e4370528b487229d7a049349c9881" />
+                    <section title="addStreamStartedCallback" ref="class_streaming.html#a7afd7d34c1a04e93b881fcf4741256bb" />
+                    <section title="addStreamStoppedCallback" ref="class_streaming.html#a278f3ded808a7c4066f89fbc9c6f7c1e" />
+                    <section title="handleNewDataRecieved" ref="class_streaming.html#a6810c63e414062646dec1ee55ef4f8e7" />
+                    <section title="handleStartStreamRecieved" ref="class_streaming.html#a9da33d43c08e94a66f1a468ef3a19f0f" />
+                    <section title="handleStopStreamRecieved" ref="class_streaming.html#a81004795e97d7827eb2cd51f42aaa37b" />
+                    <section title="isStreaming" ref="class_streaming.html#a8e1acd4e4c0d806a9b6089f3dadbc331" />
+                    <section title="nextQueuedBuffer" ref="class_streaming.html#a9c72dcb531cefadcf2c73a485e919cba" />
+                    <section title="pendingBufferCount" ref="class_streaming.html#ab6b99c9a6e6c2f0ef423804d6ff5d48e" />
+                    <section title="removeNewBufferCallback" ref="class_streaming.html#a93fd53365dd99c5d5685fc46a44a89ea" />
+                    <section title="removeStreamStartedCallback" ref="class_streaming.html#ac09b54e039523b2f2b869a8bb73f6285" />
+                    <section title="removeStreamStoppedCallback" ref="class_streaming.html#a852d2f65c1d2a730ba8ccbbbd7f07536" />
+                    <section title="reset" ref="class_streaming.html#a90540f816facd3063dd8119fea7ab385" />
+                    <section title="start" ref="class_streaming.html#a61a11cae098fc67e2737f3f46fe0cb38" />
+                    <section title="stop" ref="class_streaming.html#a4faf92468cfc71b7bae6e5f79bb6319e" />
+                    <section title="transmit" ref="class_streaming.html#a4afc6b1df9793d61dc0fefbee607a430" />
+                    <section title="m_dataQueue" ref="class_streaming.html#ada757f98e664b917f33c2e84f2634c10" />
+                    <section title="m_dataQueueMutex" ref="class_streaming.html#afbb4d2128659d95a01f975a1a88abeae" />
+                    <section title="m_isStreaming" ref="class_streaming.html#ae6ac8f6a765a349522b3731df95b6a9e" />
+                    <section title="m_newBufferCallbackHandler" ref="class_streaming.html#a357414607f4528268b01ab17f03a80dc" />
+                    <section title="m_streamStartedCallbackHandler" ref="class_streaming.html#ac75293e2d8bfe33d7d25219f9b554238" />
+                    <section title="m_streamStoppedCallbackHandler" ref="class_streaming.html#a5f01b826f3e6bfa21a61a50c85273074" />
+                    <section title="m_totalBufferCount" ref="class_streaming.html#a01d53b6c4b3e1ea0611e352c5968b7a1" />
+                  </section>
+                  <section title="pStreaming" ref="_streaming_8h.html#a6406816ebc844074c623c4f7b85b3f7e" />
+                </section>
+                <section title="Time.cpp" ref="_time_8cpp.html" />
+                <section title="Time.h" ref="_time_8h.html">
+                  <section title="Time" ref="class_time.html">
+                    <section title="Time" ref="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb" />
+                    <section title="addTimeSyncedCallback" ref="class_time.html#a42b3e697b8a562e6de6ec5c714092409" />
+                    <section title="handleTimeRequest" ref="class_time.html#a645bc6bf911a249488880b19beb2908f" />
+                    <section title="handleTimeResponse" ref="class_time.html#a8a7c036ddf77c7e51bc50acd5a06cf78" />
+                    <section title="mSecSinceEpoch" ref="class_time.html#a417b896693e70f2382402de2dd8ebab4" />
+                    <section title="reset" ref="class_time.html#afe661f7ba15818a24bf76e83da2889a0" />
+                    <section title="sync" ref="class_time.html#a3f06458c558e501d734c68d11e253b17" />
+                    <section title="timeDifference" ref="class_time.html#ab17411375b2cc6d3ed4bf3e3ca179922" />
+                    <section title="m_timeDifference" ref="class_time.html#aa0eef970cf89ade078ba56c201bc15be" />
+                    <section title="m_timeSyncedCallbacks" ref="class_time.html#adac50ba1b49e777c72cc9b09bb038b2c" />
+                    <section title="m_timeSyncedCallbacksMutex" ref="class_time.html#ab78f7460d389ff56ce81335db19ab87c" />
+                  </section>
+                  <section title="pTime" ref="_time_8h.html#aee71dd38878f33992414f37a833899d6" />
+                </section>
+              </section>
+              <section title="MessageProcessing" ref="dir_a1d2dba3c5f8004031e468786eb95c98.html">
+                <section title="CRC.h" ref="_c_r_c_8h.html">
+                  <section title="CRC" ref="class_c_r_c.html">
+                    <section title="Parameters" ref="struct_c_r_c_1_1_parameters.html">
+                      <section title="MakeTable" ref="struct_c_r_c_1_1_parameters.html#a07a2e848a332b32b17d8eddfe5deb11a" />
+                      <section title="finalXOR" ref="struct_c_r_c_1_1_parameters.html#aad1c1318b707d1be4c404b4b53b23b67" />
+                      <section title="initialValue" ref="struct_c_r_c_1_1_parameters.html#a3438fb5c479f36e4c8df90cd1e143287" />
+                      <section title="polynomial" ref="struct_c_r_c_1_1_parameters.html#a7f03a44c0c18d54d873573c50d4de3e5" />
+                      <section title="reflectInput" ref="struct_c_r_c_1_1_parameters.html#ac069bff622f62a8b6f158ed22fd67287" />
+                      <section title="reflectOutput" ref="struct_c_r_c_1_1_parameters.html#ac92c0cd24ad04cbe7fe155f001381941" />
+                    </section>
+                    <section title="Table" ref="struct_c_r_c_1_1_table.html">
+                      <section title="Table" ref="struct_c_r_c_1_1_table.html#a875427c38c37efb633602eecc302dc6a" />
+                      <section title="GetParameters" ref="struct_c_r_c_1_1_table.html#a7c32dfe94f0652bdf12faac383ad5b2e" />
+                      <section title="GetTable" ref="struct_c_r_c_1_1_table.html#a46fb89a74528b52df029248a643d83c0" />
+                      <section title="InitTable" ref="struct_c_r_c_1_1_table.html#ae03b374decbcda273b5b3fa9a26084f8" />
+                      <section title="operator[]" ref="struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907" />
+                      <section title="parameters" ref="struct_c_r_c_1_1_table.html#af58a65824eab613688852f20f6a4dce2" />
+                      <section title="table" ref="struct_c_r_c_1_1_table.html#ab57321cee3a58d0c0a61bd7037edcdf7" />
+                    </section>
+                    <section title="CRC" ref="class_c_r_c.html#ad843a3ac8e4bc04ddd263dc493a43015" />
+                    <section title="CRC" ref="class_c_r_c.html#a25faf1efb06001cb1cad810d55e71a58" />
+                    <section title="Calculate" ref="class_c_r_c.html#ae37d010c92c3afcf0da63834afc51469" />
+                    <section title="Calculate" ref="class_c_r_c.html#a49d563e8c4cd6d1cd8fe6991bc7feaa0" />
+                    <section title="Calculate" ref="class_c_r_c.html#a82d8aa1552599d285a883c55f45dd59e" />
+                    <section title="Calculate" ref="class_c_r_c.html#a89f8bd5de26eaf60dda955ac4e56fd57" />
+                    <section title="CalculateRemainder" ref="class_c_r_c.html#a78e9e8d7f86f3acfd6cc8b446a305b99" />
+                    <section title="CalculateRemainder" ref="class_c_r_c.html#a299e6466d0a6c91a510732880b2f7550" />
+                    <section title="CRC_16_ARC" ref="class_c_r_c.html#aea3087ea6719e8eba36d6fcea3720a82" />
+                    <section title="CRC_16_BUYPASS" ref="class_c_r_c.html#a7615784a91ab254f91583cddf8c0e28d" />
+                    <section title="CRC_16_CCITTFALSE" ref="class_c_r_c.html#accde5e695e1eef5e7be2df81d5f37e83" />
+                    <section title="CRC_16_GENIBUS" ref="class_c_r_c.html#aaf15ad266e319eb2d87d4f7ddbddef07" />
+                    <section title="CRC_16_KERMIT" ref="class_c_r_c.html#a95f0f45a06b94e0cd5b92c9e550bba8a" />
+                    <section title="CRC_16_X25" ref="class_c_r_c.html#ad676bda4d636e1b3a0c8dc2e2075321f" />
+                    <section title="CRC_16_XMODEM" ref="class_c_r_c.html#a3035fe39bcafd47ec184b35617a46452" />
+                    <section title="CRC_32" ref="class_c_r_c.html#aea541af7b4c36708b8152476e8580053" />
+                    <section title="CRC_32_BZIP2" ref="class_c_r_c.html#ac503380a8c2b39ae146e17eef16f8f3c" />
+                    <section title="CRC_32_MPEG2" ref="class_c_r_c.html#a5648a717486b46badac3693de0c34546" />
+                    <section title="CRC_32_POSIX" ref="class_c_r_c.html#ad038d81c003f21d254964566f7f8bc61" />
+                    <section title="CRC_8" ref="class_c_r_c.html#a50f1e00559defde552c58ebcc741257b" />
+                    <section title="Finalize" ref="class_c_r_c.html#af3247bcac33c4422cbbd97d0eddb1fe6" />
+                    <section title="operator=" ref="class_c_r_c.html#a48051d8f4dc907665ba7307d8d5c1318" />
+                    <section title="Reflect" ref="class_c_r_c.html#ab508d95b45054e2471eb4a16a9458208" />
+                    <section title="UndoFinalize" ref="class_c_r_c.html#a5818ddbe23b318349e59323ee03cb28f" />
+                  </section>
+                  <section title="Table" ref="struct_c_r_c_1_1_table.html">
+                    <section title="Table" ref="struct_c_r_c_1_1_table.html#a875427c38c37efb633602eecc302dc6a" />
+                    <section title="GetParameters" ref="struct_c_r_c_1_1_table.html#a7c32dfe94f0652bdf12faac383ad5b2e" />
+                    <section title="GetTable" ref="struct_c_r_c_1_1_table.html#a46fb89a74528b52df029248a643d83c0" />
+                    <section title="InitTable" ref="struct_c_r_c_1_1_table.html#ae03b374decbcda273b5b3fa9a26084f8" />
+                    <section title="operator[]" ref="struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907" />
+                    <section title="parameters" ref="struct_c_r_c_1_1_table.html#af58a65824eab613688852f20f6a4dce2" />
+                    <section title="table" ref="struct_c_r_c_1_1_table.html#ab57321cee3a58d0c0a61bd7037edcdf7" />
+                  </section>
+                  <section title="Parameters" ref="struct_c_r_c_1_1_parameters.html">
+                    <section title="MakeTable" ref="struct_c_r_c_1_1_parameters.html#a07a2e848a332b32b17d8eddfe5deb11a" />
+                    <section title="finalXOR" ref="struct_c_r_c_1_1_parameters.html#aad1c1318b707d1be4c404b4b53b23b67" />
+                    <section title="initialValue" ref="struct_c_r_c_1_1_parameters.html#a3438fb5c479f36e4c8df90cd1e143287" />
+                    <section title="polynomial" ref="struct_c_r_c_1_1_parameters.html#a7f03a44c0c18d54d873573c50d4de3e5" />
+                    <section title="reflectInput" ref="struct_c_r_c_1_1_parameters.html#ac069bff622f62a8b6f158ed22fd67287" />
+                    <section title="reflectOutput" ref="struct_c_r_c_1_1_parameters.html#ac92c0cd24ad04cbe7fe155f001381941" />
+                  </section>
+                  <section title="Table" ref="struct_c_r_c_1_1_table.html">
+                    <section title="Table" ref="struct_c_r_c_1_1_table.html#a875427c38c37efb633602eecc302dc6a" />
+                    <section title="GetParameters" ref="struct_c_r_c_1_1_table.html#a7c32dfe94f0652bdf12faac383ad5b2e" />
+                    <section title="GetTable" ref="struct_c_r_c_1_1_table.html#a46fb89a74528b52df029248a643d83c0" />
+                    <section title="InitTable" ref="struct_c_r_c_1_1_table.html#ae03b374decbcda273b5b3fa9a26084f8" />
+                    <section title="operator[]" ref="struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907" />
+                    <section title="parameters" ref="struct_c_r_c_1_1_table.html#af58a65824eab613688852f20f6a4dce2" />
+                    <section title="table" ref="struct_c_r_c_1_1_table.html#ab57321cee3a58d0c0a61bd7037edcdf7" />
+                  </section>
+                  <section title="crcpp_constexpr" ref="_c_r_c_8h.html#ac53723d95b5c8c7d707e8e3ebcb4e143" />
+                  <section title="crcpp_size" ref="_c_r_c_8h.html#af44cfa9e71356f05c42b363cf04ea9a6" />
+                  <section title="crcpp_uint16" ref="_c_r_c_8h.html#add273674b22f031b158220eeb560c7a0" />
+                  <section title="crcpp_uint32" ref="_c_r_c_8h.html#a4469d365469b254f21fb50316e079094" />
+                  <section title="crcpp_uint64" ref="_c_r_c_8h.html#a3541074ba795d31a40f13e78c77c0e7c" />
+                  <section title="crcpp_uint8" ref="_c_r_c_8h.html#a28cd0a17324a479874c3bdd5387d6b04" />
+                </section>
+                <section title="Message.h" ref="_message_8h.html">
+                  <section title="MessageHeader" ref="struct_message_header.html">
+                    <section title="messageHash" ref="struct_message_header.html#a64ecddce516db66fe842454cfcef3e96" />
+                    <section title="messageSize" ref="struct_message_header.html#a67e16b885af802a37163641961fce410" />
+                  </section>
+                  <section title="Message" ref="struct_message.html">
+                    <section title="data" ref="struct_message.html#a261f9014e13f5962995f6c9fe33ce146" />
+                    <section title="header" ref="struct_message.html#a704863f3c71f270459d015102d61f7c8" />
+                  </section>
+                </section>
+                <section title="MessageDeserializer.cpp" ref="_message_deserializer_8cpp.html" />
+                <section title="MessageDeserializer.h" ref="_message_deserializer_8h.html">
+                  <section title="MessageDeserializer" ref="class_message_deserializer.html">
+                    <section title="clear" ref="class_message_deserializer.html#a71313b750457bd1970dd2c8731e4b0eb" />
+                    <section title="frameHeaderFromData" ref="class_message_deserializer.html#a116876762825babd9a5f467789b6107b" />
+                    <section title="hasFullMessageReady" ref="class_message_deserializer.html#ad17dbeade6fcdad82676dafa9e6f1fe9" />
+                    <section title="hasMessagesAvailable" ref="class_message_deserializer.html#ac010889faef0e159cd04a319720b06af" />
+                    <section title="nextMessage" ref="class_message_deserializer.html#a73e4316ee0fc149ca989fb4b51408460" />
+                    <section title="processData" ref="class_message_deserializer.html#ae137e5412afd7d247ff9fe9fd4c49e78" />
+                    <section title="takeFullMessageFromBuffer" ref="class_message_deserializer.html#a2993bd4588c32815c5569eb2a0eccd27" />
+                    <section title="m_incommingDataBuffer" ref="class_message_deserializer.html#a989efaf9094c403c59c0269a1122c53c" />
+                    <section title="m_incommingMessages" ref="class_message_deserializer.html#afee625806c7b32902289e73d77996957" />
+                  </section>
+                </section>
+                <section title="MessageHashTable.cpp" ref="_message_hash_table_8cpp.html" />
+                <section title="MessageHashTable.h" ref="_message_hash_table_8h.html">
+                  <section title="MessageHashTable" ref="class_message_hash_table.html">
+                    <section title="addMessage" ref="class_message_hash_table.html#ae8714727ad563adca3a21c049cfc629e" />
+                    <section title="calculateHashForString" ref="class_message_hash_table.html#a70c6460edf658943fd12691fd8d341a0" />
+                    <section title="getDescriptorForHash" ref="class_message_hash_table.html#a144e128df2b0469cf069a983a3a3a983" />
+                    <section title="hasDescriptorForHash" ref="class_message_hash_table.html#a5982cbacf9f3fcb60e169faed040e713" />
+                    <section title="hashForMessage" ref="class_message_hash_table.html#a9595953a83bea7e09492d5aafd247dc4" />
+                    <section title="hashForMessageDescriptor" ref="class_message_hash_table.html#ad34c71abdf952aeec9240d24729d0f19" />
+                    <section title="hashForMessageType" ref="class_message_hash_table.html#a0102ab2f0c30b6e26e64ec1e4989cf06" />
+                    <section title="m_crcTable" ref="class_message_hash_table.html#a97339bd745e03f680bc14b0c1af77ff2" />
+                    <section title="m_messageHashes" ref="class_message_hash_table.html#ac5ad255b17404d850c7773ab3b5505f6" />
+                  </section>
+                </section>
+                <section title="MessageParser.cpp" ref="_message_parser_8cpp.html" />
+                <section title="MessageParser.h" ref="_message_parser_8h.html">
+                  <section title="MessageParser" ref="class_message_parser.html">
+                    <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
+                    <section title="parse" ref="class_message_parser.html#abc553be127c5fc2084c1f7ed0458c317" />
+                  </section>
+                </section>
+                <section title="MessageProcessor.cpp" ref="_message_processor_8cpp.html" />
+                <section title="MessageProcessor.h" ref="_message_processor_8h.html">
+                  <section title="MessageProcessor" ref="class_message_processor.html">
+                    <section title="MessageProcessor" ref="class_message_processor.html#a214cee5d058d461a92cd0ee4c2f4550d" />
+                    <section title="process" ref="class_message_processor.html#a07958f73ccd8e83b4687772f6bb6aeed" />
+                    <section title="transmit" ref="class_message_processor.html#a8bccf81d6d1333868bce48056f7724da" />
+                    <section title="m_clearTimer" ref="class_message_processor.html#aa92bdc38a61c33f417a2b0444cf546cf" />
+                    <section title="m_socketConnector" ref="class_message_processor.html#aa35ac7ac7457115d4ff4a077240331aa" />
+                  </section>
+                  <section title="pMessageProcessor" ref="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7" />
+                </section>
+                <section title="MessageRouter.cpp" ref="_message_router_8cpp.html" />
+                <section title="MessageRouter.h" ref="_message_router_8h.html">
+                  <section title="MessageRouter" ref="class_message_router.html">
+                    <section title="addMessageRoute" ref="class_message_router.html#aec488ecf860567d35413de1add85f761" />
+                    <section title="clearAllRoutes" ref="class_message_router.html#a2df31c028ddb9c16ad06018c0aff5a46" />
+                    <section title="route" ref="class_message_router.html#a1741220b45eb2e8625e14da9af36fbef" />
+                    <section title="m_routeMap" ref="class_message_router.html#a4803d3cab923a71046824d45650cab3e" />
+                  </section>
+                </section>
+                <section title="MessageSerializer.cpp" ref="_message_serializer_8cpp.html" />
+                <section title="MessageSerializer.h" ref="_message_serializer_8h.html">
+                  <section title="MessageSerializer" ref="class_message_serializer.html">
+                    <section title="serialize" ref="class_message_serializer.html#a710deb927d61647be0f9de5709882486" />
+                  </section>
+                </section>
+                <section title="Timer.cpp" ref="_timer_8cpp.html" />
+                <section title="Timer.h" ref="_timer_8h.html">
+                  <section title="Timer" ref="class_timer.html">
+                    <section title="Timer" ref="class_timer.html#a5f16e8da27d2a5a5242dead46de05d97" />
+                    <section title="isRunning" ref="class_timer.html#a5941489845ec3d8395d7027c2df396ad" />
+                    <section title="process" ref="class_timer.html#aab292a110d22e13926b627a559929ea3" />
+                    <section title="setCallback" ref="class_timer.html#a7e7f6e3f0b4b3b9212aa735515603140" />
+                    <section title="setSingleShot" ref="class_timer.html#af54af839c409b7c995e73cfc00ef9478" />
+                    <section title="setTimeout" ref="class_timer.html#a2675539a1a99b3663c7bd0ee79fdedab" />
+                    <section title="singleShot" ref="class_timer.html#a8ef319943cab39eda3996c9356f84335" />
+                    <section title="start" ref="class_timer.html#a3a8b5272198d029779dc9302a54305a8" />
+                    <section title="start" ref="class_timer.html#ae0802009c876264e9119073bef4f1756" />
+                    <section title="stop" ref="class_timer.html#a63f0eb44b27402196590a03781515dba" />
+                    <section title="timeout" ref="class_timer.html#a4cf704503a81eac6002e3fbe5ddad599" />
+                    <section title="m_callback" ref="class_timer.html#adee1b2146741f1fe173b808c94ec0dbb" />
+                    <section title="m_nextTimeout" ref="class_timer.html#a098fba1380b85fb3e94bd2ab6ecd50ff" />
+                    <section title="m_running" ref="class_timer.html#aaaaae685c2b6c6427301ab018bdf098f" />
+                    <section title="m_singleShot" ref="class_timer.html#ad6b093c69cdc0c2474dc15057d034e89" />
+                    <section title="m_timeout" ref="class_timer.html#ae0a5c9ef3955b3e3ee9d7e7710b1894f" />
+                  </section>
+                  <section title="pTimer" ref="_timer_8h.html#ac0bd8f55200df3dd5fab49321da20f2a" />
+                </section>
+              </section>
+              <section title="SocketConnector" ref="dir_f6048eb709d35e3c128f83f410b1bc67.html">
+                <section title="AbstractSocketConnector.h" ref="_abstract_socket_connector_8h.html">
+                  <section title="AbstractSocketConnector" ref="class_abstract_socket_connector.html">
+                    <section title="closedCallbackHandler" ref="class_abstract_socket_connector.html#a77fc32aafcfaba1fd392511ef6490b05" />
+                    <section title="isOpen" ref="class_abstract_socket_connector.html#a01b16fa9e59efd86924b92468bf58b20" />
+                    <section title="messagesAvailable" ref="class_abstract_socket_connector.html#aa6d487e9e69046c1e4e059a6d1fb3fa8" />
+                    <section title="nextMessage" ref="class_abstract_socket_connector.html#a5602e0b0a955949c36324350ca1d3b2b" />
+                    <section title="openedCallbackHandler" ref="class_abstract_socket_connector.html#a28d8d6edef08efc86cda63248fb35f55" />
+                    <section title="port" ref="class_abstract_socket_connector.html#a1dd1006cc4b7d03fce53a4a28c598698" />
+                    <section title="sendMessage" ref="class_abstract_socket_connector.html#a434428471011ff539fcec4766e19aa84" />
+                    <section title="defaultIpAddress" ref="class_abstract_socket_connector.html#a878ae377c61951a68b4c27096848bfa2" />
+                    <section title="defaultPort" ref="class_abstract_socket_connector.html#a782b2eb5f4d40e53e13986fff2c9280d" />
+                    <section title="m_closedCallbackHandler" ref="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0" />
+                    <section title="m_openendCallbackHandler" ref="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b" />
+                  </section>
+                  <section title="pAbstractSocketConnector" ref="_abstract_socket_connector_8h.html#a5ad8016022b916e3b9e2b0cfa056fa29" />
+                </section>
+                <section title="ClientSocketConnector.cpp" ref="_client_socket_connector_8cpp.html" />
+                <section title="ClientSocketConnector.h" ref="_client_socket_connector_8h.html">
+                  <section title="ClientSocketConnector" ref="class_client_socket_connector.html">
+                    <section title="ClientSocketConnector" ref="class_client_socket_connector.html#a8a5f113d8422bb0ac8597b60c5a48c33" />
+                    <section title="ClientSocketConnector" ref="class_client_socket_connector.html#ac838de56f9d8de332e4a3fbbd4453b7f" />
+                    <section title="~ClientSocketConnector" ref="class_client_socket_connector.html#a18c63f6a8e91b185a0fc158d53b1e87d" />
+                    <section title="closedCallbackHandler" ref="class_client_socket_connector.html#a9d7cb53c6857978ff180b498f7463d29" />
+                    <section title="connectionErrorCallbackHandler" ref="class_client_socket_connector.html#ae98253d1b3136a9986dab684b57648bb" />
+                    <section title="isOpen" ref="class_client_socket_connector.html#adc5c49c48a6043933a081ff8dc5b9a83" />
+                    <section title="messagesAvailable" ref="class_client_socket_connector.html#a1c1c01257d59c9d19e4642c343da4626" />
+                    <section title="nextMessage" ref="class_client_socket_connector.html#a87bc266333b4733858bbab6440f33c9a" />
+                    <section title="onMessageCallback" ref="class_client_socket_connector.html#a4f2b989f7f13ab32629894b2cf6f81a4" />
+                    <section title="openedCallbackHandler" ref="class_client_socket_connector.html#aaf7114ecc82caa6a58ef9df753350090" />
+                    <section title="port" ref="class_client_socket_connector.html#a2d5df7721fa414c73ad10938e7602122" />
+                    <section title="sendMessage" ref="class_client_socket_connector.html#aa4acf7c2fdb97d5954656f46a3928035" />
+                    <section title="startClient" ref="class_client_socket_connector.html#ae4f4715b8bec392b04276607a6af2ace" />
+                    <section title="stopClient" ref="class_client_socket_connector.html#af7cab90c77b89b8a9884768801604cba" />
+                    <section title="m_connectionErrorCallbackHandler" ref="class_client_socket_connector.html#abf47f202e5820731a8fb30a8b58b8aeb" />
+                    <section title="m_hostname" ref="class_client_socket_connector.html#ab45624bc8332deba7bab5ab5b1fb17f7" />
+                    <section title="m_messageQueue" ref="class_client_socket_connector.html#a59c880aaac8a131600996c33a48eb076" />
+                    <section title="m_open" ref="class_client_socket_connector.html#a568bbb6b80f01e3129298695a8264df9" />
+                    <section title="m_port" ref="class_client_socket_connector.html#ab5a9401d4d430c7810b56f90061e82f0" />
+                    <section title="m_webSocket" ref="class_client_socket_connector.html#a4e2ca96301a33ea76899c009b38a4733" />
+                  </section>
+                </section>
+                <section title="ServerSocketConnector.cpp" ref="_server_socket_connector_8cpp.html" />
+                <section title="ServerSocketConnector.h" ref="_server_socket_connector_8h.html">
+                  <section title="ServerSocketConnector" ref="class_server_socket_connector.html">
+                    <section title="ServerSocketConnector" ref="class_server_socket_connector.html#a3134bbd4f9e947e4e27ae00343a59fd4" />
+                    <section title="~ServerSocketConnector" ref="class_server_socket_connector.html#aac053c946511239c8e7c929d8ec381f3" />
+                    <section title="closedCallbackHandler" ref="class_server_socket_connector.html#a9125070b27c64cd94ee940387e8968fb" />
+                    <section title="isOpen" ref="class_server_socket_connector.html#a7c2d85021374cf9d1e5c8730c2f28b1b" />
+                    <section title="messagesAvailable" ref="class_server_socket_connector.html#abb74bb9add3eaf6f94080aa9532278ce" />
+                    <section title="nextMessage" ref="class_server_socket_connector.html#af13da7b091b569bda5b2a644eb40f60f" />
+                    <section title="onConnectionCallback" ref="class_server_socket_connector.html#a8f407513924fa6317dcda933affd73ea" />
+                    <section title="onMessageCallback" ref="class_server_socket_connector.html#a7cdf90bdcc8696a2fa71016db9e8d86c" />
+                    <section title="openedCallbackHandler" ref="class_server_socket_connector.html#a9d2d46762411ea8d66c779579cbf8c0a" />
+                    <section title="port" ref="class_server_socket_connector.html#a7f312fda993ef1e3a7ea47b873293964" />
+                    <section title="sendMessage" ref="class_server_socket_connector.html#afb83511c49e007419cbe04fad49de9f0" />
+                    <section title="startServer" ref="class_server_socket_connector.html#a3cb0991a9724ad68fee2993386dad791" />
+                    <section title="stopServer" ref="class_server_socket_connector.html#a5284f64a95f9f252f6e605341cfa13ae" />
+                    <section title="m_connections" ref="class_server_socket_connector.html#a8538f8685bc544adc0e7bd0647a2d43b" />
+                    <section title="m_messageQueue" ref="class_server_socket_connector.html#ae5b8ae54dde6035c3dbaabd4cde5bfa7" />
+                    <section title="m_port" ref="class_server_socket_connector.html#ab6816b0813802f1a09038ff7ee8e85d1" />
+                    <section title="m_websocketServer" ref="class_server_socket_connector.html#a26ca842a7f7d533d1b15af8353b33802" />
+                  </section>
+                </section>
+              </section>
+              <section title="Threading" ref="dir_cd821c13e189c3b64f5411e1052dbbd7.html">
+                <section title="CallbackHandler.cpp" ref="_callback_handler_8cpp.html" />
+                <section title="CallbackHandler.h" ref="_callback_handler_8h.html">
+                  <section title="CallbackHandler" ref="class_callback_handler.html">
+                    <section title="addCallback" ref="class_callback_handler.html#ae9c04adaa061aedf04e3aeb356ce5461" />
+                    <section title="addCallback" ref="class_callback_handler.html#a01920e7205461f770508722e7aeb8f3c" />
+                    <section title="invokeCallbacks" ref="class_callback_handler.html#a5cf949bbbba8a7fea9e632487fdad64f" />
+                    <section title="removeCallback" ref="class_callback_handler.html#aeb69a7393384f0dc7820dc8b2f25443c" />
+                    <section title="runOnce" ref="class_callback_handler.html#a4265d8decc9fe8c6ea0f2ce3949125f0" />
+                    <section title="m_callbackFunctions" ref="class_callback_handler.html#a473a853ff3bcd9ed9a5b1c0851a94eaa" />
+                    <section title="m_callbackFunctionsMutex" ref="class_callback_handler.html#a3568225efae6281876c7c142b98d34f5" />
+                    <section title="m_invokeThreadID" ref="class_callback_handler.html#a08b238c911acd222700ecbab4b4db215" />
+                    <section title="m_runOnceFunctions" ref="class_callback_handler.html#aa0ede07535df6140f39407d389868595" />
+                  </section>
+                  <section title="pCallbackHandler" ref="_callback_handler_8h.html#a06d371ad48119fa10fb48916d98d97b4" />
+                </section>
+                <section title="EventLoopThread.cpp" ref="_event_loop_thread_8cpp.html" />
+                <section title="EventLoopThread.h" ref="_event_loop_thread_8h.html">
+                  <section title="EventLoopThread" ref="class_event_loop_thread.html">
+                    <section title="EventLoopThread" ref="class_event_loop_thread.html#a63bcffbeeccdd8277bf0a4717be05b29" />
+                    <section title="~EventLoopThread" ref="class_event_loop_thread.html#a25e0b31dc4fe28fc57c734b446ee1017" />
+                    <section title="callbackHandler" ref="class_event_loop_thread.html#a4b0c17f87bb73a33735a1cdf5f64dfda" />
+                    <section title="isRunning" ref="class_event_loop_thread.html#ad27f9a210f88ffb633a339b556dd0746" />
+                    <section title="loop" ref="class_event_loop_thread.html#a57382bf0a8ce63e45e14392ca6176f42" />
+                    <section title="pollingInterval" ref="class_event_loop_thread.html#a3e340e803cca025d96fb75892583518f" />
+                    <section title="setPollingInterval" ref="class_event_loop_thread.html#a4583176a4254e7c584480a76ff944d5f" />
+                    <section title="start" ref="class_event_loop_thread.html#a4144f41e3c3ce03c0fd2180350009043" />
+                    <section title="stop" ref="class_event_loop_thread.html#afe9a38e7c9a9760b7a3ee7a1becd93c0" />
+                    <section title="m_callbackHandler" ref="class_event_loop_thread.html#aad2fe8d0ac6ca74f446c0e4a10c2d3d8" />
+                    <section title="m_eventLoopRunning" ref="class_event_loop_thread.html#adf397fcfbb8b134c3818ab7cf3ed50e0" />
+                    <section title="m_eventloopThread" ref="class_event_loop_thread.html#a284ab41d4de730bc6d327b62399b9e9a" />
+                    <section title="m_pollingInterval" ref="class_event_loop_thread.html#ade1a1f7f2613099d9cc0da06f712466f" />
+                  </section>
+                  <section title="pEventLoopThread" ref="_event_loop_thread_8h.html#a9e68569b5f46b69def4060837fd5d2b1" />
+                </section>
+              </section>
+              <section title="DAQDriver.cpp" ref="_d_a_q_driver_8cpp.html" />
+              <section title="DAQDriver.h" ref="_d_a_q_driver_8h.html">
+                <section title="DAQDriver" ref="class_d_a_q_driver.html">
+                  <section title="DAQDriver" ref="class_d_a_q_driver.html#a57ee795c3421025849c77b5ad4e3ff5c" />
+                  <section title="~DAQDriver" ref="class_d_a_q_driver.html#a2fd392ba774dbd47deef53c11f402b4c" />
+                  <section title="connect" ref="class_d_a_q_driver.html#a30b33a078b25a9347799ad65001c2e1b" />
+                  <section title="deviceControl" ref="class_d_a_q_driver.html#a877e76c9343625e7fd647fce96c45aa4" />
+                  <section title="deviceInfo" ref="class_d_a_q_driver.html#aca06504e011c45b68c29b44f67757945" />
+                  <section title="deviceStatus" ref="class_d_a_q_driver.html#a03ddb0ce619400bb5a94bd83405d31fc" />
+                  <section title="disconnect" ref="class_d_a_q_driver.html#abf1e89a19bdd4d562127bd7b801b16d5" />
+                  <section title="formatting" ref="class_d_a_q_driver.html#ae7741abbbed200560d1505f67d15f98f" />
+                  <section title="handleSteamStarted" ref="class_d_a_q_driver.html#a5e34019eeeac82514d877c25b70114d9" />
+                  <section title="handleStreamStopped" ref="class_d_a_q_driver.html#a6c8756ad1539e95fead55948231efda4" />
+                  <section title="iepe" ref="class_d_a_q_driver.html#a7ba0f9fb6d1021939fdf89b1030ba368" />
+                  <section title="initialize" ref="class_d_a_q_driver.html#af01b86a63337b5428b536b1d2103d41f" />
+                  <section title="inputRange" ref="class_d_a_q_driver.html#aa67fb7d82bb2a5545157501db8aef4b4" />
+                  <section title="isConnected" ref="class_d_a_q_driver.html#afea3f935f1d1357c2d42c1681457a20c" />
+                  <section title="process" ref="class_d_a_q_driver.html#abb81206732a78e6e692efb9b47a352d9" />
+                  <section title="reset" ref="class_d_a_q_driver.html#ad53bfe1d87d8a06a25c8a174e180b8df" />
+                  <section title="socketConnector" ref="class_d_a_q_driver.html#a5ddde910522f84835dae8d99d028360c" />
+                  <section title="streaming" ref="class_d_a_q_driver.html#ac40503139561fc4017744b0f67ee442b" />
+                  <section title="time" ref="class_d_a_q_driver.html#aee53a88d1dfcb3418bb84f9d19b4d955" />
+                  <section title="m_deviceControl" ref="class_d_a_q_driver.html#a12e4afd63c4db38f4f7cd36203ead121" />
+                  <section title="m_deviceInfo" ref="class_d_a_q_driver.html#ab4eed6a96e478d6e33a287fa40c5648a" />
+                  <section title="m_deviceStatus" ref="class_d_a_q_driver.html#a0b72f20b915fb561dba78b1bcbbe6783" />
+                  <section title="m_eventLoopThread" ref="class_d_a_q_driver.html#a6759e064353606029971781c16d23668" />
+                  <section title="m_formatting" ref="class_d_a_q_driver.html#abe53b7c7ec5439c8a82256b80b3030b2" />
+                  <section title="m_hearthBeat" ref="class_d_a_q_driver.html#a1f89bbb3442fa9aee8c67fa2df0e6671" />
+                  <section title="m_iepe" ref="class_d_a_q_driver.html#a896568d4828282a8921c0ba96b0f9ff4" />
+                  <section title="m_initialized" ref="class_d_a_q_driver.html#a466073b6072f3bb377c978a70379a736" />
+                  <section title="m_inputRange" ref="class_d_a_q_driver.html#a38019ace20d3e8282ffac7f42d3e3701" />
+                  <section title="m_messageProcessor" ref="class_d_a_q_driver.html#ae9a9e003270b1b0a1a0abda8c64a9759" />
+                  <section title="m_socketConnector" ref="class_d_a_q_driver.html#a01140248bef81610d79714fc80be6438" />
+                  <section title="m_streaming" ref="class_d_a_q_driver.html#a18b46eae3ef1915b66153514f4297fc0" />
+                  <section title="m_time" ref="class_d_a_q_driver.html#ab1d1382b3dd70e1386776540e50227bc" />
+                </section>
+                <section title="pDAQDriver" ref="_d_a_q_driver_8h.html#a37df561a5b4327fededca90f5d14cc8f" />
+              </section>
+              <section title="DriverInfo.h" ref="_driver_info_8h.html">
+                <section title="DAQDRIVER_VERSION" ref="_driver_info_8h.html#a99a2c120c3d3f5fdff8eadf59b368ca2" />
+              </section>
+            </section>
+          </section>
+          <section title="File Members" ref="globals.html">
+            <section title="All" ref="globals.html" />
+            <section title="Typedefs" ref="globals_type.html" />
+            <section title="Macros" ref="globals_defs.html" />
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="pDAQDriver" id="DAQDriver.h::pDAQDriver" ref="_d_a_q_driver_8h.html#a37df561a5b4327fededca90f5d14cc8f" />
+      <keyword name="pDiscoveredDevice" id="DiscoveredDevice.h::pDiscoveredDevice" ref="_discovered_device_8h.html#af4a27df6da4e2891331dc19eeb953b76" />
+      <keyword name="pAbstractDriverComponent" id="AbstractDriverComponent.h::pAbstractDriverComponent" ref="_abstract_driver_component_8h.html#ada861ca1c07dfe78e5c194c787f79914" />
+      <keyword name="pDeviceControl" id="DeviceControl.h::pDeviceControl" ref="_device_control_8h.html#a3fd89024dc168fedc5f7f58f68f51512" />
+      <keyword name="pDeviceInfo" id="DeviceInfo.h::pDeviceInfo" ref="_device_info_8h.html#ad63fccb6ba24545b68ed3dd06ff8cdf9" />
+      <keyword name="pDeviceStatus" id="DeviceStatus.h::pDeviceStatus" ref="_device_status_8h.html#a969eb892eb7b0d855ba2cb15e986fa82" />
+      <keyword name="pFormatting" id="Formatting.h::pFormatting" ref="_formatting_8h.html#a72d05a01d3066443223767a24323b2b0" />
+      <keyword name="pHeartbeat" id="Heartbeat.h::pHeartbeat" ref="_heartbeat_8h.html#a643e0296fc8bb932ea3d95293382fda5" />
+      <keyword name="pIEPE" id="IEPE.h::pIEPE" ref="_i_e_p_e_8h.html#a4e9d52121e30606f4859023db4c82f82" />
+      <keyword name="pInputRange" id="InputRange.h::pInputRange" ref="_input_range_8h.html#a54f786a2fe3efbbf991db1bf9d1203bd" />
+      <keyword name="pStreaming" id="Streaming.h::pStreaming" ref="_streaming_8h.html#a6406816ebc844074c623c4f7b85b3f7e" />
+      <keyword name="pTime" id="Time.h::pTime" ref="_time_8h.html#aee71dd38878f33992414f37a833899d6" />
+      <keyword name="DAQDRIVER_VERSION" id="DriverInfo.h::DAQDRIVER_VERSION" ref="_driver_info_8h.html#a99a2c120c3d3f5fdff8eadf59b368ca2" />
+      <keyword name="crcpp_uint8" id="CRC.h::crcpp_uint8" ref="_c_r_c_8h.html#a28cd0a17324a479874c3bdd5387d6b04" />
+      <keyword name="crcpp_uint16" id="CRC.h::crcpp_uint16" ref="_c_r_c_8h.html#add273674b22f031b158220eeb560c7a0" />
+      <keyword name="crcpp_uint32" id="CRC.h::crcpp_uint32" ref="_c_r_c_8h.html#a4469d365469b254f21fb50316e079094" />
+      <keyword name="crcpp_uint64" id="CRC.h::crcpp_uint64" ref="_c_r_c_8h.html#a3541074ba795d31a40f13e78c77c0e7c" />
+      <keyword name="crcpp_size" id="CRC.h::crcpp_size" ref="_c_r_c_8h.html#af44cfa9e71356f05c42b363cf04ea9a6" />
+      <keyword name="crcpp_constexpr" id="CRC.h::crcpp_constexpr" ref="_c_r_c_8h.html#ac53723d95b5c8c7d707e8e3ebcb4e143" />
+      <keyword name="pMessageProcessor" id="MessageProcessor.h::pMessageProcessor" ref="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7" />
+      <keyword name="pTimer" id="Timer.h::pTimer" ref="_timer_8h.html#ac0bd8f55200df3dd5fab49321da20f2a" />
+      <keyword name="pAbstractSocketConnector" id="AbstractSocketConnector.h::pAbstractSocketConnector" ref="_abstract_socket_connector_8h.html#a5ad8016022b916e3b9e2b0cfa056fa29" />
+      <keyword name="pCallbackHandler" id="CallbackHandler.h::pCallbackHandler" ref="_callback_handler_8h.html#a06d371ad48119fa10fb48916d98d97b4" />
+      <keyword name="pEventLoopThread" id="EventLoopThread.h::pEventLoopThread" ref="_event_loop_thread_8h.html#a9e68569b5f46b69def4060837fd5d2b1" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent" ref="class_abstract_driver_component.html" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="reset" id="AbstractDriverComponent::reset" ref="class_abstract_driver_component.html#a5b7d620d59ec07a83eb2e81ebecccacb" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="AbstractSocketConnector" id="AbstractSocketConnector" ref="class_abstract_socket_connector.html" />
+      <keyword name="sendMessage" id="AbstractSocketConnector::sendMessage" ref="class_abstract_socket_connector.html#a434428471011ff539fcec4766e19aa84" />
+      <keyword name="messagesAvailable" id="AbstractSocketConnector::messagesAvailable" ref="class_abstract_socket_connector.html#aa6d487e9e69046c1e4e059a6d1fb3fa8" />
+      <keyword name="nextMessage" id="AbstractSocketConnector::nextMessage" ref="class_abstract_socket_connector.html#a5602e0b0a955949c36324350ca1d3b2b" />
+      <keyword name="isOpen" id="AbstractSocketConnector::isOpen" ref="class_abstract_socket_connector.html#a01b16fa9e59efd86924b92468bf58b20" />
+      <keyword name="closedCallbackHandler" id="AbstractSocketConnector::closedCallbackHandler" ref="class_abstract_socket_connector.html#a77fc32aafcfaba1fd392511ef6490b05" />
+      <keyword name="openedCallbackHandler" id="AbstractSocketConnector::openedCallbackHandler" ref="class_abstract_socket_connector.html#a28d8d6edef08efc86cda63248fb35f55" />
+      <keyword name="port" id="AbstractSocketConnector::port" ref="class_abstract_socket_connector.html#a1dd1006cc4b7d03fce53a4a28c598698" />
+      <keyword name="defaultIpAddress" id="AbstractSocketConnector::defaultIpAddress" ref="class_abstract_socket_connector.html#a878ae377c61951a68b4c27096848bfa2" />
+      <keyword name="defaultPort" id="AbstractSocketConnector::defaultPort" ref="class_abstract_socket_connector.html#a782b2eb5f4d40e53e13986fff2c9280d" />
+      <keyword name="m_closedCallbackHandler" id="AbstractSocketConnector::m_closedCallbackHandler" ref="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0" />
+      <keyword name="m_openendCallbackHandler" id="AbstractSocketConnector::m_openendCallbackHandler" ref="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b" />
+      <keyword name="CallbackHandler" id="CallbackHandler" ref="class_callback_handler.html" />
+      <keyword name="runOnce" id="CallbackHandler::runOnce" ref="class_callback_handler.html#a4265d8decc9fe8c6ea0f2ce3949125f0" />
+      <keyword name="addCallback" id="CallbackHandler::addCallback" ref="class_callback_handler.html#ae9c04adaa061aedf04e3aeb356ce5461" />
+      <keyword name="addCallback" id="CallbackHandler::addCallback" ref="class_callback_handler.html#a01920e7205461f770508722e7aeb8f3c" />
+      <keyword name="removeCallback" id="CallbackHandler::removeCallback" ref="class_callback_handler.html#aeb69a7393384f0dc7820dc8b2f25443c" />
+      <keyword name="invokeCallbacks" id="CallbackHandler::invokeCallbacks" ref="class_callback_handler.html#a5cf949bbbba8a7fea9e632487fdad64f" />
+      <keyword name="m_invokeThreadID" id="CallbackHandler::m_invokeThreadID" ref="class_callback_handler.html#a08b238c911acd222700ecbab4b4db215" />
+      <keyword name="m_callbackFunctionsMutex" id="CallbackHandler::m_callbackFunctionsMutex" ref="class_callback_handler.html#a3568225efae6281876c7c142b98d34f5" />
+      <keyword name="m_runOnceFunctions" id="CallbackHandler::m_runOnceFunctions" ref="class_callback_handler.html#aa0ede07535df6140f39407d389868595" />
+      <keyword name="m_callbackFunctions" id="CallbackHandler::m_callbackFunctions" ref="class_callback_handler.html#a473a853ff3bcd9ed9a5b1c0851a94eaa" />
+      <keyword name="ClientSocketConnector" id="ClientSocketConnector" ref="class_client_socket_connector.html" />
+      <keyword name="ClientSocketConnector" id="ClientSocketConnector::ClientSocketConnector" ref="class_client_socket_connector.html#a8a5f113d8422bb0ac8597b60c5a48c33" />
+      <keyword name="ClientSocketConnector" id="ClientSocketConnector::ClientSocketConnector" ref="class_client_socket_connector.html#ac838de56f9d8de332e4a3fbbd4453b7f" />
+      <keyword name="~ClientSocketConnector" id="ClientSocketConnector::~ClientSocketConnector" ref="class_client_socket_connector.html#a18c63f6a8e91b185a0fc158d53b1e87d" />
+      <keyword name="sendMessage" id="ClientSocketConnector::sendMessage" ref="class_client_socket_connector.html#aa4acf7c2fdb97d5954656f46a3928035" />
+      <keyword name="messagesAvailable" id="ClientSocketConnector::messagesAvailable" ref="class_client_socket_connector.html#a1c1c01257d59c9d19e4642c343da4626" />
+      <keyword name="nextMessage" id="ClientSocketConnector::nextMessage" ref="class_client_socket_connector.html#a87bc266333b4733858bbab6440f33c9a" />
+      <keyword name="isOpen" id="ClientSocketConnector::isOpen" ref="class_client_socket_connector.html#adc5c49c48a6043933a081ff8dc5b9a83" />
+      <keyword name="connectionErrorCallbackHandler" id="ClientSocketConnector::connectionErrorCallbackHandler" ref="class_client_socket_connector.html#ae98253d1b3136a9986dab684b57648bb" />
+      <keyword name="closedCallbackHandler" id="ClientSocketConnector::closedCallbackHandler" ref="class_client_socket_connector.html#a9d7cb53c6857978ff180b498f7463d29" />
+      <keyword name="openedCallbackHandler" id="ClientSocketConnector::openedCallbackHandler" ref="class_client_socket_connector.html#aaf7114ecc82caa6a58ef9df753350090" />
+      <keyword name="port" id="ClientSocketConnector::port" ref="class_client_socket_connector.html#a2d5df7721fa414c73ad10938e7602122" />
+      <keyword name="stopClient" id="ClientSocketConnector::stopClient" ref="class_client_socket_connector.html#af7cab90c77b89b8a9884768801604cba" />
+      <keyword name="startClient" id="ClientSocketConnector::startClient" ref="class_client_socket_connector.html#ae4f4715b8bec392b04276607a6af2ace" />
+      <keyword name="onMessageCallback" id="ClientSocketConnector::onMessageCallback" ref="class_client_socket_connector.html#a4f2b989f7f13ab32629894b2cf6f81a4" />
+      <keyword name="m_port" id="ClientSocketConnector::m_port" ref="class_client_socket_connector.html#ab5a9401d4d430c7810b56f90061e82f0" />
+      <keyword name="m_hostname" id="ClientSocketConnector::m_hostname" ref="class_client_socket_connector.html#ab45624bc8332deba7bab5ab5b1fb17f7" />
+      <keyword name="m_open" id="ClientSocketConnector::m_open" ref="class_client_socket_connector.html#a568bbb6b80f01e3129298695a8264df9" />
+      <keyword name="m_webSocket" id="ClientSocketConnector::m_webSocket" ref="class_client_socket_connector.html#a4e2ca96301a33ea76899c009b38a4733" />
+      <keyword name="m_connectionErrorCallbackHandler" id="ClientSocketConnector::m_connectionErrorCallbackHandler" ref="class_client_socket_connector.html#abf47f202e5820731a8fb30a8b58b8aeb" />
+      <keyword name="m_messageQueue" id="ClientSocketConnector::m_messageQueue" ref="class_client_socket_connector.html#a59c880aaac8a131600996c33a48eb076" />
+      <keyword name="defaultIpAddress" id="AbstractSocketConnector::defaultIpAddress" ref="class_abstract_socket_connector.html#a878ae377c61951a68b4c27096848bfa2" />
+      <keyword name="defaultPort" id="AbstractSocketConnector::defaultPort" ref="class_abstract_socket_connector.html#a782b2eb5f4d40e53e13986fff2c9280d" />
+      <keyword name="m_closedCallbackHandler" id="AbstractSocketConnector::m_closedCallbackHandler" ref="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0" />
+      <keyword name="m_openendCallbackHandler" id="AbstractSocketConnector::m_openendCallbackHandler" ref="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b" />
+      <keyword name="CRC" id="CRC" ref="class_c_r_c.html" />
+      <keyword name="Calculate" id="CRC::Calculate" ref="class_c_r_c.html#ae37d010c92c3afcf0da63834afc51469" />
+      <keyword name="Calculate" id="CRC::Calculate" ref="class_c_r_c.html#a49d563e8c4cd6d1cd8fe6991bc7feaa0" />
+      <keyword name="Calculate" id="CRC::Calculate" ref="class_c_r_c.html#a82d8aa1552599d285a883c55f45dd59e" />
+      <keyword name="Calculate" id="CRC::Calculate" ref="class_c_r_c.html#a89f8bd5de26eaf60dda955ac4e56fd57" />
+      <keyword name="CRC_8" id="CRC::CRC_8" ref="class_c_r_c.html#a50f1e00559defde552c58ebcc741257b" />
+      <keyword name="CRC_16_ARC" id="CRC::CRC_16_ARC" ref="class_c_r_c.html#aea3087ea6719e8eba36d6fcea3720a82" />
+      <keyword name="CRC_16_BUYPASS" id="CRC::CRC_16_BUYPASS" ref="class_c_r_c.html#a7615784a91ab254f91583cddf8c0e28d" />
+      <keyword name="CRC_16_CCITTFALSE" id="CRC::CRC_16_CCITTFALSE" ref="class_c_r_c.html#accde5e695e1eef5e7be2df81d5f37e83" />
+      <keyword name="CRC_16_GENIBUS" id="CRC::CRC_16_GENIBUS" ref="class_c_r_c.html#aaf15ad266e319eb2d87d4f7ddbddef07" />
+      <keyword name="CRC_16_KERMIT" id="CRC::CRC_16_KERMIT" ref="class_c_r_c.html#a95f0f45a06b94e0cd5b92c9e550bba8a" />
+      <keyword name="CRC_16_X25" id="CRC::CRC_16_X25" ref="class_c_r_c.html#ad676bda4d636e1b3a0c8dc2e2075321f" />
+      <keyword name="CRC_16_XMODEM" id="CRC::CRC_16_XMODEM" ref="class_c_r_c.html#a3035fe39bcafd47ec184b35617a46452" />
+      <keyword name="CRC_32" id="CRC::CRC_32" ref="class_c_r_c.html#aea541af7b4c36708b8152476e8580053" />
+      <keyword name="CRC_32_BZIP2" id="CRC::CRC_32_BZIP2" ref="class_c_r_c.html#ac503380a8c2b39ae146e17eef16f8f3c" />
+      <keyword name="CRC_32_MPEG2" id="CRC::CRC_32_MPEG2" ref="class_c_r_c.html#a5648a717486b46badac3693de0c34546" />
+      <keyword name="CRC_32_POSIX" id="CRC::CRC_32_POSIX" ref="class_c_r_c.html#ad038d81c003f21d254964566f7f8bc61" />
+      <keyword name="CRC" id="CRC::CRC" ref="class_c_r_c.html#ad843a3ac8e4bc04ddd263dc493a43015" />
+      <keyword name="CRC" id="CRC::CRC" ref="class_c_r_c.html#a25faf1efb06001cb1cad810d55e71a58" />
+      <keyword name="operator=" id="CRC::operator=" ref="class_c_r_c.html#a48051d8f4dc907665ba7307d8d5c1318" />
+      <keyword name="Reflect" id="CRC::Reflect" ref="class_c_r_c.html#ab508d95b45054e2471eb4a16a9458208" />
+      <keyword name="Finalize" id="CRC::Finalize" ref="class_c_r_c.html#af3247bcac33c4422cbbd97d0eddb1fe6" />
+      <keyword name="UndoFinalize" id="CRC::UndoFinalize" ref="class_c_r_c.html#a5818ddbe23b318349e59323ee03cb28f" />
+      <keyword name="CalculateRemainder" id="CRC::CalculateRemainder" ref="class_c_r_c.html#a78e9e8d7f86f3acfd6cc8b446a305b99" />
+      <keyword name="CalculateRemainder" id="CRC::CalculateRemainder" ref="class_c_r_c.html#a299e6466d0a6c91a510732880b2f7550" />
+      <keyword name="CRC::Parameters" id="CRC::Parameters" ref="struct_c_r_c_1_1_parameters.html" />
+      <keyword name="MakeTable" id="CRC::Parameters::MakeTable" ref="struct_c_r_c_1_1_parameters.html#a07a2e848a332b32b17d8eddfe5deb11a" />
+      <keyword name="polynomial" id="CRC::Parameters::polynomial" ref="struct_c_r_c_1_1_parameters.html#a7f03a44c0c18d54d873573c50d4de3e5" />
+      <keyword name="initialValue" id="CRC::Parameters::initialValue" ref="struct_c_r_c_1_1_parameters.html#a3438fb5c479f36e4c8df90cd1e143287" />
+      <keyword name="finalXOR" id="CRC::Parameters::finalXOR" ref="struct_c_r_c_1_1_parameters.html#aad1c1318b707d1be4c404b4b53b23b67" />
+      <keyword name="reflectInput" id="CRC::Parameters::reflectInput" ref="struct_c_r_c_1_1_parameters.html#ac069bff622f62a8b6f158ed22fd67287" />
+      <keyword name="reflectOutput" id="CRC::Parameters::reflectOutput" ref="struct_c_r_c_1_1_parameters.html#ac92c0cd24ad04cbe7fe155f001381941" />
+      <keyword name="CRC::Table" id="CRC::Table" ref="struct_c_r_c_1_1_table.html" />
+      <keyword name="Table" id="CRC::Table::Table" ref="struct_c_r_c_1_1_table.html#a875427c38c37efb633602eecc302dc6a" />
+      <keyword name="GetParameters" id="CRC::Table::GetParameters" ref="struct_c_r_c_1_1_table.html#a7c32dfe94f0652bdf12faac383ad5b2e" />
+      <keyword name="GetTable" id="CRC::Table::GetTable" ref="struct_c_r_c_1_1_table.html#a46fb89a74528b52df029248a643d83c0" />
+      <keyword name="operator[]" id="CRC::Table::operator[]" ref="struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907" />
+      <keyword name="InitTable" id="CRC::Table::InitTable" ref="struct_c_r_c_1_1_table.html#ae03b374decbcda273b5b3fa9a26084f8" />
+      <keyword name="parameters" id="CRC::Table::parameters" ref="struct_c_r_c_1_1_table.html#af58a65824eab613688852f20f6a4dce2" />
+      <keyword name="table" id="CRC::Table::table" ref="struct_c_r_c_1_1_table.html#ab57321cee3a58d0c0a61bd7037edcdf7" />
+      <keyword name="DAQDriver" id="DAQDriver" ref="class_d_a_q_driver.html" />
+      <keyword name="DAQDriver" id="DAQDriver::DAQDriver" ref="class_d_a_q_driver.html#a57ee795c3421025849c77b5ad4e3ff5c" />
+      <keyword name="~DAQDriver" id="DAQDriver::~DAQDriver" ref="class_d_a_q_driver.html#a2fd392ba774dbd47deef53c11f402b4c" />
+      <keyword name="streaming" id="DAQDriver::streaming" ref="class_d_a_q_driver.html#ac40503139561fc4017744b0f67ee442b" />
+      <keyword name="formatting" id="DAQDriver::formatting" ref="class_d_a_q_driver.html#ae7741abbbed200560d1505f67d15f98f" />
+      <keyword name="deviceControl" id="DAQDriver::deviceControl" ref="class_d_a_q_driver.html#a877e76c9343625e7fd647fce96c45aa4" />
+      <keyword name="deviceInfo" id="DAQDriver::deviceInfo" ref="class_d_a_q_driver.html#aca06504e011c45b68c29b44f67757945" />
+      <keyword name="time" id="DAQDriver::time" ref="class_d_a_q_driver.html#aee53a88d1dfcb3418bb84f9d19b4d955" />
+      <keyword name="iepe" id="DAQDriver::iepe" ref="class_d_a_q_driver.html#a7ba0f9fb6d1021939fdf89b1030ba368" />
+      <keyword name="inputRange" id="DAQDriver::inputRange" ref="class_d_a_q_driver.html#aa67fb7d82bb2a5545157501db8aef4b4" />
+      <keyword name="deviceStatus" id="DAQDriver::deviceStatus" ref="class_d_a_q_driver.html#a03ddb0ce619400bb5a94bd83405d31fc" />
+      <keyword name="reset" id="DAQDriver::reset" ref="class_d_a_q_driver.html#ad53bfe1d87d8a06a25c8a174e180b8df" />
+      <keyword name="connect" id="DAQDriver::connect" ref="class_d_a_q_driver.html#a30b33a078b25a9347799ad65001c2e1b" />
+      <keyword name="disconnect" id="DAQDriver::disconnect" ref="class_d_a_q_driver.html#abf1e89a19bdd4d562127bd7b801b16d5" />
+      <keyword name="isConnected" id="DAQDriver::isConnected" ref="class_d_a_q_driver.html#afea3f935f1d1357c2d42c1681457a20c" />
+      <keyword name="socketConnector" id="DAQDriver::socketConnector" ref="class_d_a_q_driver.html#a5ddde910522f84835dae8d99d028360c" />
+      <keyword name="process" id="DAQDriver::process" ref="class_d_a_q_driver.html#abb81206732a78e6e692efb9b47a352d9" />
+      <keyword name="initialize" id="DAQDriver::initialize" ref="class_d_a_q_driver.html#af01b86a63337b5428b536b1d2103d41f" />
+      <keyword name="handleSteamStarted" id="DAQDriver::handleSteamStarted" ref="class_d_a_q_driver.html#a5e34019eeeac82514d877c25b70114d9" />
+      <keyword name="handleStreamStopped" id="DAQDriver::handleStreamStopped" ref="class_d_a_q_driver.html#a6c8756ad1539e95fead55948231efda4" />
+      <keyword name="m_initialized" id="DAQDriver::m_initialized" ref="class_d_a_q_driver.html#a466073b6072f3bb377c978a70379a736" />
+      <keyword name="m_socketConnector" id="DAQDriver::m_socketConnector" ref="class_d_a_q_driver.html#a01140248bef81610d79714fc80be6438" />
+      <keyword name="m_messageProcessor" id="DAQDriver::m_messageProcessor" ref="class_d_a_q_driver.html#ae9a9e003270b1b0a1a0abda8c64a9759" />
+      <keyword name="m_iepe" id="DAQDriver::m_iepe" ref="class_d_a_q_driver.html#a896568d4828282a8921c0ba96b0f9ff4" />
+      <keyword name="m_time" id="DAQDriver::m_time" ref="class_d_a_q_driver.html#ab1d1382b3dd70e1386776540e50227bc" />
+      <keyword name="m_streaming" id="DAQDriver::m_streaming" ref="class_d_a_q_driver.html#a18b46eae3ef1915b66153514f4297fc0" />
+      <keyword name="m_hearthBeat" id="DAQDriver::m_hearthBeat" ref="class_d_a_q_driver.html#a1f89bbb3442fa9aee8c67fa2df0e6671" />
+      <keyword name="m_deviceInfo" id="DAQDriver::m_deviceInfo" ref="class_d_a_q_driver.html#ab4eed6a96e478d6e33a287fa40c5648a" />
+      <keyword name="m_inputRange" id="DAQDriver::m_inputRange" ref="class_d_a_q_driver.html#a38019ace20d3e8282ffac7f42d3e3701" />
+      <keyword name="m_formatting" id="DAQDriver::m_formatting" ref="class_d_a_q_driver.html#abe53b7c7ec5439c8a82256b80b3030b2" />
+      <keyword name="m_deviceStatus" id="DAQDriver::m_deviceStatus" ref="class_d_a_q_driver.html#a0b72f20b915fb561dba78b1bcbbe6783" />
+      <keyword name="m_deviceControl" id="DAQDriver::m_deviceControl" ref="class_d_a_q_driver.html#a12e4afd63c4db38f4f7cd36203ead121" />
+      <keyword name="m_eventLoopThread" id="DAQDriver::m_eventLoopThread" ref="class_d_a_q_driver.html#a6759e064353606029971781c16d23668" />
+      <keyword name="DeviceControl" id="DeviceControl" ref="class_device_control.html" />
+      <keyword name="DeviceControl" id="DeviceControl::DeviceControl" ref="class_device_control.html#a95ec44331ca07fff1edc9869fd5acaca" />
+      <keyword name="reset" id="DeviceControl::reset" ref="class_device_control.html#aa01f0d9536de747901cb25490cef7fc7" />
+      <keyword name="takeControl" id="DeviceControl::takeControl" ref="class_device_control.html#a8035f0a0cca65401787da31fb8ee526a" />
+      <keyword name="releaseControl" id="DeviceControl::releaseControl" ref="class_device_control.html#ac2a6ff489d907c39c871b7da8b290b60" />
+      <keyword name="hasControl" id="DeviceControl::hasControl" ref="class_device_control.html#a65f4fe16c7593d33b3d16b9ab34cad76" />
+      <keyword name="removeResetCallback" id="DeviceControl::removeResetCallback" ref="class_device_control.html#a238c18399731d8b1f7f6e80af8bf22de" />
+      <keyword name="addResetCallback" id="DeviceControl::addResetCallback" ref="class_device_control.html#a209bc06148e0cecb8fbe8c993aa06ca1" />
+      <keyword name="removeGrabbedControlCallback" id="DeviceControl::removeGrabbedControlCallback" ref="class_device_control.html#abd329d4b59de6665a6e86e3f1754b08c" />
+      <keyword name="addGrabbedControlCallback" id="DeviceControl::addGrabbedControlCallback" ref="class_device_control.html#a7b0344105cf2fc7a12737d0e6f644602" />
+      <keyword name="removeReleasedControlCallback" id="DeviceControl::removeReleasedControlCallback" ref="class_device_control.html#aab082b8a848a33559414a392c4466c92" />
+      <keyword name="addReleasedControlCallback" id="DeviceControl::addReleasedControlCallback" ref="class_device_control.html#ae730ce81db23512a7782f5527fc8fed1" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleResetRecieved" id="DeviceControl::handleResetRecieved" ref="class_device_control.html#a380474966a8e57ef4d6dd0af537b0c45" />
+      <keyword name="handleGrabControlRecieved" id="DeviceControl::handleGrabControlRecieved" ref="class_device_control.html#a13a977b19f26ce5fc596e2ead7dff202" />
+      <keyword name="handleReleaseControlRecieved" id="DeviceControl::handleReleaseControlRecieved" ref="class_device_control.html#a9da945a03cc65da2fa3597d0b0199452" />
+      <keyword name="m_hasControl" id="DeviceControl::m_hasControl" ref="class_device_control.html#ab89062c6057410b25c3d44d8c629d3ca" />
+      <keyword name="m_resetCallbackHandler" id="DeviceControl::m_resetCallbackHandler" ref="class_device_control.html#afbc61a4ffa31460e4f4294cd83c8acdb" />
+      <keyword name="m_grabbedControlCallbackHandler" id="DeviceControl::m_grabbedControlCallbackHandler" ref="class_device_control.html#a2d6d586bffd4e8f94475dd10f56b401e" />
+      <keyword name="m_releasedControlCallbackHandler" id="DeviceControl::m_releasedControlCallbackHandler" ref="class_device_control.html#a67d4c3a495bbfd434efd9a12f61bef90" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="DeviceDiscovery" id="DeviceDiscovery" ref="class_device_discovery.html" />
+      <keyword name="discover" id="DeviceDiscovery::discover" ref="class_device_discovery.html#aa3baabbe69c467cdebcf3d62e4311bf5" />
+      <keyword name="presentVoyagers" id="DeviceDiscovery::presentVoyagers" ref="class_device_discovery.html#a92170f6b6d88806af218d2f107419b3c" />
+      <keyword name="parseTxtRecord" id="DeviceDiscovery::parseTxtRecord" ref="class_device_discovery.html#a0b941c83543460d86b6426c5b39d70a5" />
+      <keyword name="splitTxtRecord" id="DeviceDiscovery::splitTxtRecord" ref="class_device_discovery.html#afe0cd7d3041180bb5b71d4d5e9a0e578" />
+      <keyword name="getIpForResponce" id="DeviceDiscovery::getIpForResponce" ref="class_device_discovery.html#a41ee30a7de5f5864f4ac5c70f51a3d3d" />
+      <keyword name="getPortForResponce" id="DeviceDiscovery::getPortForResponce" ref="class_device_discovery.html#af3082c14d8df1f96ab1abfb53dbf69e7" />
+      <keyword name="get_in_addr" id="DeviceDiscovery::get_in_addr" ref="class_device_discovery.html#aef633bffcd995bd276a3550645024770" />
+      <keyword name="initialize" id="DeviceDiscovery::initialize" ref="class_device_discovery.html#a03deaba3c8e99d77255398c7972428c0" />
+      <keyword name="deinitialize" id="DeviceDiscovery::deinitialize" ref="class_device_discovery.html#afa4f2b087a10a08beab7548e7e9f7c49" />
+      <keyword name="DeviceInfo" id="DeviceInfo" ref="class_device_info.html" />
+      <keyword name="DeviceInfo" id="DeviceInfo::DeviceInfo" ref="class_device_info.html#ae9f9aee8ecf7d7c6f0a4f20cf1b7008c" />
+      <keyword name="refresh" id="DeviceInfo::refresh" ref="class_device_info.html#a4fc0229f20a06b6a53df97eb34c7555d" />
+      <keyword name="localDeviceInfo" id="DeviceInfo::localDeviceInfo" ref="class_device_info.html#af4803b3796a24d84e2e8bd86b70ffb70" />
+      <keyword name="setLocalDeviceInfo" id="DeviceInfo::setLocalDeviceInfo" ref="class_device_info.html#a565dc738da32fa8502d30836cf2971ba" />
+      <keyword name="remoteDeviceInfo" id="DeviceInfo::remoteDeviceInfo" ref="class_device_info.html#a0723ab5a4ece94c7fa51a275ad050a46" />
+      <keyword name="addRemoteInfoRecievedCallback" id="DeviceInfo::addRemoteInfoRecievedCallback" ref="class_device_info.html#aa5e0d3d44eca2fce87c01a453d1bad75" />
+      <keyword name="removeRemoteInfoRecievedCallback" id="DeviceInfo::removeRemoteInfoRecievedCallback" ref="class_device_info.html#ae7c445cc27fa4381a8e8e7935fd7da86" />
+      <keyword name="reset" id="DeviceInfo::reset" ref="class_device_info.html#a70caaafbfdc29b97a6e3305e361c047e" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="setRemoteDeviceInfo" id="DeviceInfo::setRemoteDeviceInfo" ref="class_device_info.html#a508f5ccc612ad5c7e7ff386d3b433f33" />
+      <keyword name="handleDeviceInfoRequestRecieved" id="DeviceInfo::handleDeviceInfoRequestRecieved" ref="class_device_info.html#a270b3cc254ca6123f6c962a4c76edc63" />
+      <keyword name="handleDeviceInfoResponseRecieved" id="DeviceInfo::handleDeviceInfoResponseRecieved" ref="class_device_info.html#ac0da1e987b2e25c4317e11579440f2de" />
+      <keyword name="m_localDeviceInfoMutex" id="DeviceInfo::m_localDeviceInfoMutex" ref="class_device_info.html#ad530debf5944bca710cc94e1c5c7e80d" />
+      <keyword name="m_remoteDeviceInfoMutex" id="DeviceInfo::m_remoteDeviceInfoMutex" ref="class_device_info.html#add1952a0cc793fb3d76f1ed9db7b6656" />
+      <keyword name="m_localDeviceInfo" id="DeviceInfo::m_localDeviceInfo" ref="class_device_info.html#ab3842e1a664a7670fbab89b3fc9d33ad" />
+      <keyword name="m_remoteDeviceInfo" id="DeviceInfo::m_remoteDeviceInfo" ref="class_device_info.html#aa770cf1c0ac440d658390a3098eefaf2" />
+      <keyword name="m_remoteInfoRecievedCallbackHandler" id="DeviceInfo::m_remoteInfoRecievedCallbackHandler" ref="class_device_info.html#a3c0f259f04802bd83627eeeeab73b317" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="DeviceStatus" id="DeviceStatus" ref="class_device_status.html" />
+      <keyword name="DeviceStatus" id="DeviceStatus::DeviceStatus" ref="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a" />
+      <keyword name="remoteDeviceStatus" id="DeviceStatus::remoteDeviceStatus" ref="class_device_status.html#ac19bf8987cd6e6e599be94c00bad6814" />
+      <keyword name="sendStatus" id="DeviceStatus::sendStatus" ref="class_device_status.html#adfc2e2789e67e7fd9f8ebf847d73770f" />
+      <keyword name="addremoteDeviceStatusUpdated" id="DeviceStatus::addremoteDeviceStatusUpdated" ref="class_device_status.html#abc42bc09a031d8dbd707331efb4ec459" />
+      <keyword name="removeRemoteDeviceStatusUpdated" id="DeviceStatus::removeRemoteDeviceStatusUpdated" ref="class_device_status.html#ad9f0471ff7004c77bed7d5e8a5684ca3" />
+      <keyword name="reset" id="DeviceStatus::reset" ref="class_device_status.html#ae96146e2e7074a44134eed17d0052fc0" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleDeviceStatusRecieved" id="DeviceStatus::handleDeviceStatusRecieved" ref="class_device_status.html#a8df25d4cfdce499819ea090e52b17dcf" />
+      <keyword name="m_remoteDeviceStatus" id="DeviceStatus::m_remoteDeviceStatus" ref="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455" />
+      <keyword name="m_remoteDeviceStatusUpdatedCallbackHandler" id="DeviceStatus::m_remoteDeviceStatusUpdatedCallbackHandler" ref="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="DiscoveredDevice" id="DiscoveredDevice" ref="class_discovered_device.html" />
+      <keyword name="DiscoveredDevice" id="DiscoveredDevice::DiscoveredDevice" ref="class_discovered_device.html#a287356d7a3ed5df369127ff0bc128dd0" />
+      <keyword name="ipAddress" id="DiscoveredDevice::ipAddress" ref="class_discovered_device.html#a88cd0822e5e4037ae4ad1dd1d244c583" />
+      <keyword name="setIpAddress" id="DiscoveredDevice::setIpAddress" ref="class_discovered_device.html#ac3c2288c4006d4e95a2fee19266e8092" />
+      <keyword name="driverVersion" id="DiscoveredDevice::driverVersion" ref="class_discovered_device.html#a422f2c5335c6cea1fcc7eaedd0ac9b2a" />
+      <keyword name="setDriverVersion" id="DiscoveredDevice::setDriverVersion" ref="class_discovered_device.html#a09fa487ec68b63d8448016f59bd1169c" />
+      <keyword name="deviceName" id="DiscoveredDevice::deviceName" ref="class_discovered_device.html#af3572dc06f7b60f9aaa4611d4fba0fac" />
+      <keyword name="setDeviceName" id="DiscoveredDevice::setDeviceName" ref="class_discovered_device.html#a8ed53fdbb49f9f02ead872cffbbd419e" />
+      <keyword name="deviceSerial" id="DiscoveredDevice::deviceSerial" ref="class_discovered_device.html#a6848ebc532f1166e8ceff1361bda4992" />
+      <keyword name="setDeviceSerial" id="DiscoveredDevice::setDeviceSerial" ref="class_discovered_device.html#a70b213a4f190fa5037d5c7dbed1d3279" />
+      <keyword name="driverName" id="DiscoveredDevice::driverName" ref="class_discovered_device.html#a79104c1db44971a9885c086093ced253" />
+      <keyword name="setDriverName" id="DiscoveredDevice::setDriverName" ref="class_discovered_device.html#a18a281a00ca01d1ec5c9d8e05cdda529" />
+      <keyword name="modelName" id="DiscoveredDevice::modelName" ref="class_discovered_device.html#aec98ab80a3f6df2cb1e419cd83470789" />
+      <keyword name="setModelName" id="DiscoveredDevice::setModelName" ref="class_discovered_device.html#acec3363c11f9b55f3270497e30f6d918" />
+      <keyword name="softwareVersion" id="DiscoveredDevice::softwareVersion" ref="class_discovered_device.html#a8aeb216bb592acae577fdcc98d6c8751" />
+      <keyword name="setSoftwareVersion" id="DiscoveredDevice::setSoftwareVersion" ref="class_discovered_device.html#ae476ebebd0f9a923ec00baeded165c45" />
+      <keyword name="port" id="DiscoveredDevice::port" ref="class_discovered_device.html#afd10960b219fe62feb6df6c4ba27661e" />
+      <keyword name="setPort" id="DiscoveredDevice::setPort" ref="class_discovered_device.html#aa0ea0093e73b6390c92d06ff75ec58c7" />
+      <keyword name="m_port" id="DiscoveredDevice::m_port" ref="class_discovered_device.html#a7850fd97873ce4b3f7fa97d58d7efafd" />
+      <keyword name="m_ipAddress" id="DiscoveredDevice::m_ipAddress" ref="class_discovered_device.html#a9c32cd8cdbb0c8510aab266272ce9478" />
+      <keyword name="m_deviceName" id="DiscoveredDevice::m_deviceName" ref="class_discovered_device.html#ab52af4af75835b5993270bcbfbe31d04" />
+      <keyword name="m_deviceSerial" id="DiscoveredDevice::m_deviceSerial" ref="class_discovered_device.html#a6df072103baa7d53ef907a970ad30395" />
+      <keyword name="m_driverName" id="DiscoveredDevice::m_driverName" ref="class_discovered_device.html#a49f1226b1a06a70dbda28c15a48d309d" />
+      <keyword name="m_driverVersion" id="DiscoveredDevice::m_driverVersion" ref="class_discovered_device.html#a08a5b7b1777a9e9618568f60fdadbc66" />
+      <keyword name="m_modelName" id="DiscoveredDevice::m_modelName" ref="class_discovered_device.html#a2d1a52d6cd5f28afe2994b243709ba69" />
+      <keyword name="m_softwareVersion" id="DiscoveredDevice::m_softwareVersion" ref="class_discovered_device.html#a462f443dea4ef42cfa500eb6073bfe98" />
+      <keyword name="EventLoopThread" id="EventLoopThread" ref="class_event_loop_thread.html" />
+      <keyword name="EventLoopThread" id="EventLoopThread::EventLoopThread" ref="class_event_loop_thread.html#a63bcffbeeccdd8277bf0a4717be05b29" />
+      <keyword name="~EventLoopThread" id="EventLoopThread::~EventLoopThread" ref="class_event_loop_thread.html#a25e0b31dc4fe28fc57c734b446ee1017" />
+      <keyword name="start" id="EventLoopThread::start" ref="class_event_loop_thread.html#a4144f41e3c3ce03c0fd2180350009043" />
+      <keyword name="stop" id="EventLoopThread::stop" ref="class_event_loop_thread.html#afe9a38e7c9a9760b7a3ee7a1becd93c0" />
+      <keyword name="isRunning" id="EventLoopThread::isRunning" ref="class_event_loop_thread.html#ad27f9a210f88ffb633a339b556dd0746" />
+      <keyword name="pollingInterval" id="EventLoopThread::pollingInterval" ref="class_event_loop_thread.html#a3e340e803cca025d96fb75892583518f" />
+      <keyword name="setPollingInterval" id="EventLoopThread::setPollingInterval" ref="class_event_loop_thread.html#a4583176a4254e7c584480a76ff944d5f" />
+      <keyword name="callbackHandler" id="EventLoopThread::callbackHandler" ref="class_event_loop_thread.html#a4b0c17f87bb73a33735a1cdf5f64dfda" />
+      <keyword name="loop" id="EventLoopThread::loop" ref="class_event_loop_thread.html#a57382bf0a8ce63e45e14392ca6176f42" />
+      <keyword name="m_pollingInterval" id="EventLoopThread::m_pollingInterval" ref="class_event_loop_thread.html#ade1a1f7f2613099d9cc0da06f712466f" />
+      <keyword name="m_eventloopThread" id="EventLoopThread::m_eventloopThread" ref="class_event_loop_thread.html#a284ab41d4de730bc6d327b62399b9e9a" />
+      <keyword name="m_callbackHandler" id="EventLoopThread::m_callbackHandler" ref="class_event_loop_thread.html#aad2fe8d0ac6ca74f446c0e4a10c2d3d8" />
+      <keyword name="m_eventLoopRunning" id="EventLoopThread::m_eventLoopRunning" ref="class_event_loop_thread.html#adf397fcfbb8b134c3818ab7cf3ed50e0" />
+      <keyword name="Formatting" id="Formatting" ref="class_formatting.html" />
+      <keyword name="Formatting" id="Formatting::Formatting" ref="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423" />
+      <keyword name="setDataFormat" id="Formatting::setDataFormat" ref="class_formatting.html#aa7ca64f97e7c00ef39b93a55ed0906ba" />
+      <keyword name="dataFormat" id="Formatting::dataFormat" ref="class_formatting.html#a3043551aaf46ea809849fc0f73a058a1" />
+      <keyword name="reset" id="Formatting::reset" ref="class_formatting.html#a8ff984346ae245747995b41d644711c4" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleNewFormatRecieved" id="Formatting::handleNewFormatRecieved" ref="class_formatting.html#a568e3b4a30a45d0f5b85f95f0c0de37d" />
+      <keyword name="swapDataFormat" id="Formatting::swapDataFormat" ref="class_formatting.html#ab482e940f681711388d77a1cccf871f1" />
+      <keyword name="m_dataFormat" id="Formatting::m_dataFormat" ref="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2" />
+      <keyword name="m_dataFormatMutex" id="Formatting::m_dataFormatMutex" ref="class_formatting.html#a957841ef6e1f496def5c527c84c18d71" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="Heartbeat" id="Heartbeat" ref="class_heartbeat.html" />
+      <keyword name="Heartbeat" id="Heartbeat::Heartbeat" ref="class_heartbeat.html#a1bd4b6e1b91e7db4d9e679c57cb1b28d" />
+      <keyword name="reset" id="Heartbeat::reset" ref="class_heartbeat.html#a2a9095f21130f22999bb2e8284269207" />
+      <keyword name="process" id="Heartbeat::process" ref="class_heartbeat.html#a626c8ecd96f4798ccd8f7ac3bc10ec37" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="hearthbeatTimerTimeout" id="Heartbeat::hearthbeatTimerTimeout" ref="class_heartbeat.html#a17167ce170f1fb8b062261bb72af8c3e" />
+      <keyword name="hearthbeatDieTimerTimeout" id="Heartbeat::hearthbeatDieTimerTimeout" ref="class_heartbeat.html#a8e7fec75696758ca3e8bfbecd2e2a4ed" />
+      <keyword name="handleHearthbeatMessage" id="Heartbeat::handleHearthbeatMessage" ref="class_heartbeat.html#ab9148ec761e1b9623cb11434aa93a500" />
+      <keyword name="m_hearthbeatTimer" id="Heartbeat::m_hearthbeatTimer" ref="class_heartbeat.html#a41b340ee81395ed1a8ecb20f7f988269" />
+      <keyword name="m_hearthbeatDieTimer" id="Heartbeat::m_hearthbeatDieTimer" ref="class_heartbeat.html#ad8278e33e0f65cfc5a9a00795ae50e71" />
+      <keyword name="m_callback" id="Heartbeat::m_callback" ref="class_heartbeat.html#af17ac25b2e23eba1b6d848889fd16f8f" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="IEPE" id="IEPE" ref="class_i_e_p_e.html" />
+      <keyword name="IEPE" id="IEPE::IEPE" ref="class_i_e_p_e.html#abda9392c8cd365020758d0c384acd379" />
+      <keyword name="setIEPE" id="IEPE::setIEPE" ref="class_i_e_p_e.html#a7f4825fa793107ce8724e1c651bfc8b2" />
+      <keyword name="getIEPE" id="IEPE::getIEPE" ref="class_i_e_p_e.html#a5e9f262911518b4579aba50ebcdecf1d" />
+      <keyword name="reset" id="IEPE::reset" ref="class_i_e_p_e.html#a780358076bb11f9d8ef293de7d8018c6" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleSetIEPERecieved" id="IEPE::handleSetIEPERecieved" ref="class_i_e_p_e.html#ae88d329a70526c87d458c9b1ccf03f58" />
+      <keyword name="m_iepeEnabled" id="IEPE::m_iepeEnabled" ref="class_i_e_p_e.html#aced5f61010b600f1ec407b26585873db" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="Aux1" id="IEPE::Aux1" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a7499d815e203debc3c1d6a96bccd69d0" />
+      <keyword name="Aux2" id="IEPE::Aux2" ref="class_i_e_p_e.html#aa3f19fb9a684445bb1816fc998c8bc01a9c6662cf85dd61fb31af99fdadef8f64" />
+      <keyword name="InputRange" id="InputRange" ref="class_input_range.html" />
+      <keyword name="InputRange" id="InputRange::InputRange" ref="class_input_range.html#afd1fc97ee430fd4b97ea9a149b4c73b7" />
+      <keyword name="setInputRange" id="InputRange::setInputRange" ref="class_input_range.html#a6e386360e6d5bec1a46e7ad187e74eea" />
+      <keyword name="getInputRange" id="InputRange::getInputRange" ref="class_input_range.html#a45d9597ceeac2f93dc2c80578ff14e34" />
+      <keyword name="reset" id="InputRange::reset" ref="class_input_range.html#a64a979a15425174331055adf734a1899" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleSetInputRangeRecieved" id="InputRange::handleSetInputRangeRecieved" ref="class_input_range.html#a3e7bcf3730ecb21779fd338d8ae05a29" />
+      <keyword name="m_inputRangeVoltages" id="InputRange::m_inputRangeVoltages" ref="class_input_range.html#a69a3b466726ff7cc998f827950cd175f" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="_0_1" id="InputRange::_0_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a7b4699ec5408ff674e3031e45f172653" />
+      <keyword name="_1" id="InputRange::_1" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a24f0246196fc4631731ae24c6f648d68" />
+      <keyword name="_10" id="InputRange::_10" ref="class_input_range.html#a42034bedbd6a168fcfcd0659b9af6860a6279748117186df2df8d59efdd63ffb8" />
+      <keyword name="Message" id="Message" ref="struct_message.html" />
+      <keyword name="header" id="Message::header" ref="struct_message.html#a704863f3c71f270459d015102d61f7c8" />
+      <keyword name="data" id="Message::data" ref="struct_message.html#a261f9014e13f5962995f6c9fe33ce146" />
+      <keyword name="MessageDeserializer" id="MessageDeserializer" ref="class_message_deserializer.html" />
+      <keyword name="processData" id="MessageDeserializer::processData" ref="class_message_deserializer.html#ae137e5412afd7d247ff9fe9fd4c49e78" />
+      <keyword name="clear" id="MessageDeserializer::clear" ref="class_message_deserializer.html#a71313b750457bd1970dd2c8731e4b0eb" />
+      <keyword name="hasMessagesAvailable" id="MessageDeserializer::hasMessagesAvailable" ref="class_message_deserializer.html#ac010889faef0e159cd04a319720b06af" />
+      <keyword name="nextMessage" id="MessageDeserializer::nextMessage" ref="class_message_deserializer.html#a73e4316ee0fc149ca989fb4b51408460" />
+      <keyword name="hasFullMessageReady" id="MessageDeserializer::hasFullMessageReady" ref="class_message_deserializer.html#ad17dbeade6fcdad82676dafa9e6f1fe9" />
+      <keyword name="frameHeaderFromData" id="MessageDeserializer::frameHeaderFromData" ref="class_message_deserializer.html#a116876762825babd9a5f467789b6107b" />
+      <keyword name="takeFullMessageFromBuffer" id="MessageDeserializer::takeFullMessageFromBuffer" ref="class_message_deserializer.html#a2993bd4588c32815c5569eb2a0eccd27" />
+      <keyword name="m_incommingMessages" id="MessageDeserializer::m_incommingMessages" ref="class_message_deserializer.html#afee625806c7b32902289e73d77996957" />
+      <keyword name="m_incommingDataBuffer" id="MessageDeserializer::m_incommingDataBuffer" ref="class_message_deserializer.html#a989efaf9094c403c59c0269a1122c53c" />
+      <keyword name="MessageHashTable" id="MessageHashTable" ref="class_message_hash_table.html" />
+      <keyword name="hashForMessageDescriptor" id="MessageHashTable::hashForMessageDescriptor" ref="class_message_hash_table.html#ad34c71abdf952aeec9240d24729d0f19" />
+      <keyword name="hashForMessage" id="MessageHashTable::hashForMessage" ref="class_message_hash_table.html#a9595953a83bea7e09492d5aafd247dc4" />
+      <keyword name="getDescriptorForHash" id="MessageHashTable::getDescriptorForHash" ref="class_message_hash_table.html#a144e128df2b0469cf069a983a3a3a983" />
+      <keyword name="hasDescriptorForHash" id="MessageHashTable::hasDescriptorForHash" ref="class_message_hash_table.html#a5982cbacf9f3fcb60e169faed040e713" />
+      <keyword name="hashForMessageType" id="MessageHashTable::hashForMessageType" ref="class_message_hash_table.html#a0102ab2f0c30b6e26e64ec1e4989cf06" />
+      <keyword name="addMessage" id="MessageHashTable::addMessage" ref="class_message_hash_table.html#ae8714727ad563adca3a21c049cfc629e" />
+      <keyword name="calculateHashForString" id="MessageHashTable::calculateHashForString" ref="class_message_hash_table.html#a70c6460edf658943fd12691fd8d341a0" />
+      <keyword name="m_crcTable" id="MessageHashTable::m_crcTable" ref="class_message_hash_table.html#a97339bd745e03f680bc14b0c1af77ff2" />
+      <keyword name="m_messageHashes" id="MessageHashTable::m_messageHashes" ref="class_message_hash_table.html#ac5ad255b17404d850c7773ab3b5505f6" />
+      <keyword name="MessageHeader" id="MessageHeader" ref="struct_message_header.html" />
+      <keyword name="messageHash" id="MessageHeader::messageHash" ref="struct_message_header.html#a64ecddce516db66fe842454cfcef3e96" />
+      <keyword name="messageSize" id="MessageHeader::messageSize" ref="struct_message_header.html#a67e16b885af802a37163641961fce410" />
+      <keyword name="MessageParser" id="MessageParser" ref="class_message_parser.html" />
+      <keyword name="parse" id="MessageParser::parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
+      <keyword name="parse" id="MessageParser::parse" ref="class_message_parser.html#abc553be127c5fc2084c1f7ed0458c317" />
+      <keyword name="MessageProcessor" id="MessageProcessor" ref="class_message_processor.html" />
+      <keyword name="MessageProcessor" id="MessageProcessor::MessageProcessor" ref="class_message_processor.html#a214cee5d058d461a92cd0ee4c2f4550d" />
+      <keyword name="transmit" id="MessageProcessor::transmit" ref="class_message_processor.html#a8bccf81d6d1333868bce48056f7724da" />
+      <keyword name="process" id="MessageProcessor::process" ref="class_message_processor.html#a07958f73ccd8e83b4687772f6bb6aeed" />
+      <keyword name="m_clearTimer" id="MessageProcessor::m_clearTimer" ref="class_message_processor.html#aa92bdc38a61c33f417a2b0444cf546cf" />
+      <keyword name="m_socketConnector" id="MessageProcessor::m_socketConnector" ref="class_message_processor.html#aa35ac7ac7457115d4ff4a077240331aa" />
+      <keyword name="MessageRouter" id="MessageRouter" ref="class_message_router.html" />
+      <keyword name="route" id="MessageRouter::route" ref="class_message_router.html#a1741220b45eb2e8625e14da9af36fbef" />
+      <keyword name="addMessageRoute" id="MessageRouter::addMessageRoute" ref="class_message_router.html#aec488ecf860567d35413de1add85f761" />
+      <keyword name="clearAllRoutes" id="MessageRouter::clearAllRoutes" ref="class_message_router.html#a2df31c028ddb9c16ad06018c0aff5a46" />
+      <keyword name="m_routeMap" id="MessageRouter::m_routeMap" ref="class_message_router.html#a4803d3cab923a71046824d45650cab3e" />
+      <keyword name="MessageSerializer" id="MessageSerializer" ref="class_message_serializer.html" />
+      <keyword name="serialize" id="MessageSerializer::serialize" ref="class_message_serializer.html#a710deb927d61647be0f9de5709882486" />
+      <keyword name="ServerSocketConnector" id="ServerSocketConnector" ref="class_server_socket_connector.html" />
+      <keyword name="ServerSocketConnector" id="ServerSocketConnector::ServerSocketConnector" ref="class_server_socket_connector.html#a3134bbd4f9e947e4e27ae00343a59fd4" />
+      <keyword name="~ServerSocketConnector" id="ServerSocketConnector::~ServerSocketConnector" ref="class_server_socket_connector.html#aac053c946511239c8e7c929d8ec381f3" />
+      <keyword name="sendMessage" id="ServerSocketConnector::sendMessage" ref="class_server_socket_connector.html#afb83511c49e007419cbe04fad49de9f0" />
+      <keyword name="messagesAvailable" id="ServerSocketConnector::messagesAvailable" ref="class_server_socket_connector.html#abb74bb9add3eaf6f94080aa9532278ce" />
+      <keyword name="nextMessage" id="ServerSocketConnector::nextMessage" ref="class_server_socket_connector.html#af13da7b091b569bda5b2a644eb40f60f" />
+      <keyword name="isOpen" id="ServerSocketConnector::isOpen" ref="class_server_socket_connector.html#a7c2d85021374cf9d1e5c8730c2f28b1b" />
+      <keyword name="closedCallbackHandler" id="ServerSocketConnector::closedCallbackHandler" ref="class_server_socket_connector.html#a9125070b27c64cd94ee940387e8968fb" />
+      <keyword name="openedCallbackHandler" id="ServerSocketConnector::openedCallbackHandler" ref="class_server_socket_connector.html#a9d2d46762411ea8d66c779579cbf8c0a" />
+      <keyword name="port" id="ServerSocketConnector::port" ref="class_server_socket_connector.html#a7f312fda993ef1e3a7ea47b873293964" />
+      <keyword name="stopServer" id="ServerSocketConnector::stopServer" ref="class_server_socket_connector.html#a5284f64a95f9f252f6e605341cfa13ae" />
+      <keyword name="startServer" id="ServerSocketConnector::startServer" ref="class_server_socket_connector.html#a3cb0991a9724ad68fee2993386dad791" />
+      <keyword name="onMessageCallback" id="ServerSocketConnector::onMessageCallback" ref="class_server_socket_connector.html#a7cdf90bdcc8696a2fa71016db9e8d86c" />
+      <keyword name="onConnectionCallback" id="ServerSocketConnector::onConnectionCallback" ref="class_server_socket_connector.html#a8f407513924fa6317dcda933affd73ea" />
+      <keyword name="m_port" id="ServerSocketConnector::m_port" ref="class_server_socket_connector.html#ab6816b0813802f1a09038ff7ee8e85d1" />
+      <keyword name="m_websocketServer" id="ServerSocketConnector::m_websocketServer" ref="class_server_socket_connector.html#a26ca842a7f7d533d1b15af8353b33802" />
+      <keyword name="m_messageQueue" id="ServerSocketConnector::m_messageQueue" ref="class_server_socket_connector.html#ae5b8ae54dde6035c3dbaabd4cde5bfa7" />
+      <keyword name="m_connections" id="ServerSocketConnector::m_connections" ref="class_server_socket_connector.html#a8538f8685bc544adc0e7bd0647a2d43b" />
+      <keyword name="defaultIpAddress" id="AbstractSocketConnector::defaultIpAddress" ref="class_abstract_socket_connector.html#a878ae377c61951a68b4c27096848bfa2" />
+      <keyword name="defaultPort" id="AbstractSocketConnector::defaultPort" ref="class_abstract_socket_connector.html#a782b2eb5f4d40e53e13986fff2c9280d" />
+      <keyword name="m_closedCallbackHandler" id="AbstractSocketConnector::m_closedCallbackHandler" ref="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0" />
+      <keyword name="m_openendCallbackHandler" id="AbstractSocketConnector::m_openendCallbackHandler" ref="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b" />
+      <keyword name="Streaming" id="Streaming" ref="class_streaming.html" />
+      <keyword name="Streaming" id="Streaming::Streaming" ref="class_streaming.html#a1c2463409632e991310157a39b301f51" />
+      <keyword name="start" id="Streaming::start" ref="class_streaming.html#a61a11cae098fc67e2737f3f46fe0cb38" />
+      <keyword name="stop" id="Streaming::stop" ref="class_streaming.html#a4faf92468cfc71b7bae6e5f79bb6319e" />
+      <keyword name="reset" id="Streaming::reset" ref="class_streaming.html#a90540f816facd3063dd8119fea7ab385" />
+      <keyword name="isStreaming" id="Streaming::isStreaming" ref="class_streaming.html#a8e1acd4e4c0d806a9b6089f3dadbc331" />
+      <keyword name="transmit" id="Streaming::transmit" ref="class_streaming.html#a4afc6b1df9793d61dc0fefbee607a430" />
+      <keyword name="pendingBufferCount" id="Streaming::pendingBufferCount" ref="class_streaming.html#ab6b99c9a6e6c2f0ef423804d6ff5d48e" />
+      <keyword name="nextQueuedBuffer" id="Streaming::nextQueuedBuffer" ref="class_streaming.html#a9c72dcb531cefadcf2c73a485e919cba" />
+      <keyword name="addNewBufferCallback" id="Streaming::addNewBufferCallback" ref="class_streaming.html#ab52e4370528b487229d7a049349c9881" />
+      <keyword name="removeNewBufferCallback" id="Streaming::removeNewBufferCallback" ref="class_streaming.html#a93fd53365dd99c5d5685fc46a44a89ea" />
+      <keyword name="addStreamStartedCallback" id="Streaming::addStreamStartedCallback" ref="class_streaming.html#a7afd7d34c1a04e93b881fcf4741256bb" />
+      <keyword name="removeStreamStartedCallback" id="Streaming::removeStreamStartedCallback" ref="class_streaming.html#ac09b54e039523b2f2b869a8bb73f6285" />
+      <keyword name="addStreamStoppedCallback" id="Streaming::addStreamStoppedCallback" ref="class_streaming.html#a278f3ded808a7c4066f89fbc9c6f7c1e" />
+      <keyword name="removeStreamStoppedCallback" id="Streaming::removeStreamStoppedCallback" ref="class_streaming.html#a852d2f65c1d2a730ba8ccbbbd7f07536" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="handleNewDataRecieved" id="Streaming::handleNewDataRecieved" ref="class_streaming.html#a6810c63e414062646dec1ee55ef4f8e7" />
+      <keyword name="handleStopStreamRecieved" id="Streaming::handleStopStreamRecieved" ref="class_streaming.html#a81004795e97d7827eb2cd51f42aaa37b" />
+      <keyword name="handleStartStreamRecieved" id="Streaming::handleStartStreamRecieved" ref="class_streaming.html#a9da33d43c08e94a66f1a468ef3a19f0f" />
+      <keyword name="m_streamStoppedCallbackHandler" id="Streaming::m_streamStoppedCallbackHandler" ref="class_streaming.html#a5f01b826f3e6bfa21a61a50c85273074" />
+      <keyword name="m_streamStartedCallbackHandler" id="Streaming::m_streamStartedCallbackHandler" ref="class_streaming.html#ac75293e2d8bfe33d7d25219f9b554238" />
+      <keyword name="m_newBufferCallbackHandler" id="Streaming::m_newBufferCallbackHandler" ref="class_streaming.html#a357414607f4528268b01ab17f03a80dc" />
+      <keyword name="m_totalBufferCount" id="Streaming::m_totalBufferCount" ref="class_streaming.html#a01d53b6c4b3e1ea0611e352c5968b7a1" />
+      <keyword name="m_dataQueue" id="Streaming::m_dataQueue" ref="class_streaming.html#ada757f98e664b917f33c2e84f2634c10" />
+      <keyword name="m_isStreaming" id="Streaming::m_isStreaming" ref="class_streaming.html#ae6ac8f6a765a349522b3731df95b6a9e" />
+      <keyword name="m_dataQueueMutex" id="Streaming::m_dataQueueMutex" ref="class_streaming.html#afbb4d2128659d95a01f975a1a88abeae" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="Time" id="Time" ref="class_time.html" />
+      <keyword name="Time" id="Time::Time" ref="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb" />
+      <keyword name="sync" id="Time::sync" ref="class_time.html#a3f06458c558e501d734c68d11e253b17" />
+      <keyword name="reset" id="Time::reset" ref="class_time.html#afe661f7ba15818a24bf76e83da2889a0" />
+      <keyword name="timeDifference" id="Time::timeDifference" ref="class_time.html#ab17411375b2cc6d3ed4bf3e3ca179922" />
+      <keyword name="addTimeSyncedCallback" id="Time::addTimeSyncedCallback" ref="class_time.html#a42b3e697b8a562e6de6ec5c714092409" />
+      <keyword name="AbstractDriverComponent" id="AbstractDriverComponent::AbstractDriverComponent" ref="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa" />
+      <keyword name="mSecSinceEpoch" id="Time::mSecSinceEpoch" ref="class_time.html#a417b896693e70f2382402de2dd8ebab4" />
+      <keyword name="handleTimeRequest" id="Time::handleTimeRequest" ref="class_time.html#a645bc6bf911a249488880b19beb2908f" />
+      <keyword name="handleTimeResponse" id="Time::handleTimeResponse" ref="class_time.html#a8a7c036ddf77c7e51bc50acd5a06cf78" />
+      <keyword name="m_timeSyncedCallbacks" id="Time::m_timeSyncedCallbacks" ref="class_time.html#adac50ba1b49e777c72cc9b09bb038b2c" />
+      <keyword name="m_timeSyncedCallbacksMutex" id="Time::m_timeSyncedCallbacksMutex" ref="class_time.html#ab78f7460d389ff56ce81335db19ab87c" />
+      <keyword name="m_timeDifference" id="Time::m_timeDifference" ref="class_time.html#aa0eef970cf89ade078ba56c201bc15be" />
+      <keyword name="m_messageProcessor" id="AbstractDriverComponent::m_messageProcessor" ref="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea" />
+      <keyword name="Timer" id="Timer" ref="class_timer.html" />
+      <keyword name="Timer" id="Timer::Timer" ref="class_timer.html#a5f16e8da27d2a5a5242dead46de05d97" />
+      <keyword name="start" id="Timer::start" ref="class_timer.html#a3a8b5272198d029779dc9302a54305a8" />
+      <keyword name="start" id="Timer::start" ref="class_timer.html#ae0802009c876264e9119073bef4f1756" />
+      <keyword name="stop" id="Timer::stop" ref="class_timer.html#a63f0eb44b27402196590a03781515dba" />
+      <keyword name="setCallback" id="Timer::setCallback" ref="class_timer.html#a7e7f6e3f0b4b3b9212aa735515603140" />
+      <keyword name="isRunning" id="Timer::isRunning" ref="class_timer.html#a5941489845ec3d8395d7027c2df396ad" />
+      <keyword name="timeout" id="Timer::timeout" ref="class_timer.html#a4cf704503a81eac6002e3fbe5ddad599" />
+      <keyword name="setTimeout" id="Timer::setTimeout" ref="class_timer.html#a2675539a1a99b3663c7bd0ee79fdedab" />
+      <keyword name="process" id="Timer::process" ref="class_timer.html#aab292a110d22e13926b627a559929ea3" />
+      <keyword name="singleShot" id="Timer::singleShot" ref="class_timer.html#a8ef319943cab39eda3996c9356f84335" />
+      <keyword name="setSingleShot" id="Timer::setSingleShot" ref="class_timer.html#af54af839c409b7c995e73cfc00ef9478" />
+      <keyword name="m_running" id="Timer::m_running" ref="class_timer.html#aaaaae685c2b6c6427301ab018bdf098f" />
+      <keyword name="m_singleShot" id="Timer::m_singleShot" ref="class_timer.html#ad6b093c69cdc0c2474dc15057d034e89" />
+      <keyword name="m_timeout" id="Timer::m_timeout" ref="class_timer.html#ae0a5c9ef3955b3e3ee9d7e7710b1894f" />
+      <keyword name="m_callback" id="Timer::m_callback" ref="class_timer.html#adee1b2146741f1fe173b808c94ec0dbb" />
+      <keyword name="m_nextTimeout" id="Timer::m_nextTimeout" ref="class_timer.html#a098fba1380b85fb3e94bd2ab6ecd50ff" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>doxygen.css</file>
+      <file>jquery.js</file>
+      <file>dynsections.js</file>
+      <file>search/search_l.png</file>
+      <file>search/search_m.png</file>
+      <file>search/search_r.png</file>
+      <file>search/close.png</file>
+      <file>search/mag_sel.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>_d_a_q_driver_8cpp_source.html</file>
+      <file>_d_a_q_driver_8h_source.html</file>
+      <file>_device_discovery_8cpp_source.html</file>
+      <file>_device_discovery_8h_source.html</file>
+      <file>_discovered_device_8cpp_source.html</file>
+      <file>_discovered_device_8h_source.html</file>
+      <file>_abstract_driver_component_8cpp_source.html</file>
+      <file>_abstract_driver_component_8h_source.html</file>
+      <file>_device_control_8cpp_source.html</file>
+      <file>_device_control_8h_source.html</file>
+      <file>_device_info_8cpp_source.html</file>
+      <file>_device_info_8h_source.html</file>
+      <file>_device_status_8cpp_source.html</file>
+      <file>_device_status_8h_source.html</file>
+      <file>_formatting_8cpp_source.html</file>
+      <file>_formatting_8h_source.html</file>
+      <file>_heartbeat_8cpp_source.html</file>
+      <file>_heartbeat_8h_source.html</file>
+      <file>_i_e_p_e_8cpp_source.html</file>
+      <file>_i_e_p_e_8h_source.html</file>
+      <file>_input_range_8cpp_source.html</file>
+      <file>_input_range_8h_source.html</file>
+      <file>_streaming_8cpp_source.html</file>
+      <file>_streaming_8h_source.html</file>
+      <file>_time_8cpp_source.html</file>
+      <file>_time_8h_source.html</file>
+      <file>_driver_info_8h_source.html</file>
+      <file>_c_r_c_8h_source.html</file>
+      <file>_message_8h_source.html</file>
+      <file>_message_deserializer_8cpp_source.html</file>
+      <file>_message_deserializer_8h_source.html</file>
+      <file>_message_hash_table_8cpp_source.html</file>
+      <file>_message_hash_table_8h_source.html</file>
+      <file>_message_parser_8cpp_source.html</file>
+      <file>_message_parser_8h_source.html</file>
+      <file>_message_processor_8cpp_source.html</file>
+      <file>_message_processor_8h_source.html</file>
+      <file>_message_router_8cpp_source.html</file>
+      <file>_message_router_8h_source.html</file>
+      <file>_message_serializer_8cpp_source.html</file>
+      <file>_message_serializer_8h_source.html</file>
+      <file>_timer_8cpp_source.html</file>
+      <file>_timer_8h_source.html</file>
+      <file>_abstract_socket_connector_8h_source.html</file>
+      <file>_client_socket_connector_8cpp_source.html</file>
+      <file>_client_socket_connector_8h_source.html</file>
+      <file>_server_socket_connector_8cpp_source.html</file>
+      <file>_server_socket_connector_8h_source.html</file>
+      <file>_callback_handler_8cpp_source.html</file>
+      <file>_callback_handler_8h_source.html</file>
+      <file>_event_loop_thread_8cpp_source.html</file>
+      <file>_event_loop_thread_8h_source.html</file>
+      <file>_r_e_a_d_m_e_8md_source.html</file>
+      <file>_d_a_q_driver_8cpp.html</file>
+      <file>_d_a_q_driver_8cpp__incl.png</file>
+      <file>_d_a_q_driver_8h.html</file>
+      <file>_d_a_q_driver_8h__incl.png</file>
+      <file>_d_a_q_driver_8h__dep__incl.png</file>
+      <file>_device_discovery_8cpp.html</file>
+      <file>_device_discovery_8cpp__incl.png</file>
+      <file>_device_discovery_8h.html</file>
+      <file>_device_discovery_8h__incl.png</file>
+      <file>_device_discovery_8h__dep__incl.png</file>
+      <file>_discovered_device_8cpp.html</file>
+      <file>_discovered_device_8cpp__incl.png</file>
+      <file>_discovered_device_8h.html</file>
+      <file>_discovered_device_8h__incl.png</file>
+      <file>_discovered_device_8h__dep__incl.png</file>
+      <file>_abstract_driver_component_8cpp.html</file>
+      <file>_abstract_driver_component_8cpp__incl.png</file>
+      <file>_abstract_driver_component_8h.html</file>
+      <file>_abstract_driver_component_8h__incl.png</file>
+      <file>_abstract_driver_component_8h__dep__incl.png</file>
+      <file>_device_control_8cpp.html</file>
+      <file>_device_control_8cpp__incl.png</file>
+      <file>_device_control_8h.html</file>
+      <file>_device_control_8h__incl.png</file>
+      <file>_device_control_8h__dep__incl.png</file>
+      <file>_device_info_8cpp.html</file>
+      <file>_device_info_8cpp__incl.png</file>
+      <file>_device_info_8h.html</file>
+      <file>_device_info_8h__incl.png</file>
+      <file>_device_info_8h__dep__incl.png</file>
+      <file>_device_status_8cpp.html</file>
+      <file>_device_status_8cpp__incl.png</file>
+      <file>_device_status_8h.html</file>
+      <file>_device_status_8h__incl.png</file>
+      <file>_device_status_8h__dep__incl.png</file>
+      <file>_formatting_8cpp.html</file>
+      <file>_formatting_8cpp__incl.png</file>
+      <file>_formatting_8h.html</file>
+      <file>_formatting_8h__incl.png</file>
+      <file>_formatting_8h__dep__incl.png</file>
+      <file>_heartbeat_8cpp.html</file>
+      <file>_heartbeat_8cpp__incl.png</file>
+      <file>_heartbeat_8h.html</file>
+      <file>_heartbeat_8h__incl.png</file>
+      <file>_heartbeat_8h__dep__incl.png</file>
+      <file>_i_e_p_e_8cpp.html</file>
+      <file>_i_e_p_e_8cpp__incl.png</file>
+      <file>_i_e_p_e_8h.html</file>
+      <file>_i_e_p_e_8h__incl.png</file>
+      <file>_i_e_p_e_8h__dep__incl.png</file>
+      <file>_input_range_8cpp.html</file>
+      <file>_input_range_8cpp__incl.png</file>
+      <file>_input_range_8h.html</file>
+      <file>_input_range_8h__incl.png</file>
+      <file>_input_range_8h__dep__incl.png</file>
+      <file>_streaming_8cpp.html</file>
+      <file>_streaming_8cpp__incl.png</file>
+      <file>_streaming_8h.html</file>
+      <file>_streaming_8h__incl.png</file>
+      <file>_streaming_8h__dep__incl.png</file>
+      <file>_time_8cpp.html</file>
+      <file>_time_8cpp__incl.png</file>
+      <file>_time_8h.html</file>
+      <file>_time_8h__incl.png</file>
+      <file>_time_8h__dep__incl.png</file>
+      <file>_driver_info_8h.html</file>
+      <file>_driver_info_8h__dep__incl.png</file>
+      <file>_c_r_c_8h.html</file>
+      <file>_c_r_c_8h__incl.png</file>
+      <file>_c_r_c_8h__dep__incl.png</file>
+      <file>_message_8h.html</file>
+      <file>_message_8h__incl.png</file>
+      <file>_message_8h__dep__incl.png</file>
+      <file>_message_deserializer_8cpp.html</file>
+      <file>_message_deserializer_8cpp__incl.png</file>
+      <file>_message_deserializer_8h.html</file>
+      <file>_message_deserializer_8h__incl.png</file>
+      <file>_message_deserializer_8h__dep__incl.png</file>
+      <file>_message_hash_table_8cpp.html</file>
+      <file>_message_hash_table_8cpp__incl.png</file>
+      <file>_message_hash_table_8h.html</file>
+      <file>_message_hash_table_8h__incl.png</file>
+      <file>_message_hash_table_8h__dep__incl.png</file>
+      <file>_message_parser_8cpp.html</file>
+      <file>_message_parser_8cpp__incl.png</file>
+      <file>_message_parser_8h.html</file>
+      <file>_message_parser_8h__incl.png</file>
+      <file>_message_parser_8h__dep__incl.png</file>
+      <file>_message_processor_8cpp.html</file>
+      <file>_message_processor_8cpp__incl.png</file>
+      <file>_message_processor_8h.html</file>
+      <file>_message_processor_8h__incl.png</file>
+      <file>_message_processor_8h__dep__incl.png</file>
+      <file>_message_router_8cpp.html</file>
+      <file>_message_router_8cpp__incl.png</file>
+      <file>_message_router_8h.html</file>
+      <file>_message_router_8h__incl.png</file>
+      <file>_message_router_8h__dep__incl.png</file>
+      <file>_message_serializer_8cpp.html</file>
+      <file>_message_serializer_8cpp__incl.png</file>
+      <file>_message_serializer_8h.html</file>
+      <file>_message_serializer_8h__incl.png</file>
+      <file>_message_serializer_8h__dep__incl.png</file>
+      <file>_timer_8cpp.html</file>
+      <file>_timer_8cpp__incl.png</file>
+      <file>_timer_8h.html</file>
+      <file>_timer_8h__incl.png</file>
+      <file>_timer_8h__dep__incl.png</file>
+      <file>_abstract_socket_connector_8h.html</file>
+      <file>_abstract_socket_connector_8h__incl.png</file>
+      <file>_abstract_socket_connector_8h__dep__incl.png</file>
+      <file>_client_socket_connector_8cpp.html</file>
+      <file>_client_socket_connector_8cpp__incl.png</file>
+      <file>_client_socket_connector_8h.html</file>
+      <file>_client_socket_connector_8h__incl.png</file>
+      <file>_client_socket_connector_8h__dep__incl.png</file>
+      <file>_server_socket_connector_8cpp.html</file>
+      <file>_server_socket_connector_8cpp__incl.png</file>
+      <file>_server_socket_connector_8h.html</file>
+      <file>_server_socket_connector_8h__incl.png</file>
+      <file>_server_socket_connector_8h__dep__incl.png</file>
+      <file>_callback_handler_8cpp.html</file>
+      <file>_callback_handler_8cpp__incl.png</file>
+      <file>_callback_handler_8h.html</file>
+      <file>_callback_handler_8h__incl.png</file>
+      <file>_callback_handler_8h__dep__incl.png</file>
+      <file>_event_loop_thread_8cpp.html</file>
+      <file>_event_loop_thread_8cpp__incl.png</file>
+      <file>_event_loop_thread_8h.html</file>
+      <file>_event_loop_thread_8h__incl.png</file>
+      <file>_event_loop_thread_8h__dep__incl.png</file>
+      <file>_r_e_a_d_m_e_8md.html</file>
+      <file>class_abstract_driver_component.html</file>
+      <file>class_abstract_driver_component__inherit__graph.png</file>
+      <file>class_abstract_driver_component-members.html</file>
+      <file>class_abstract_socket_connector.html</file>
+      <file>class_abstract_socket_connector__inherit__graph.png</file>
+      <file>class_abstract_socket_connector__coll__graph.png</file>
+      <file>class_abstract_socket_connector-members.html</file>
+      <file>class_callback_handler.html</file>
+      <file>class_callback_handler-members.html</file>
+      <file>class_client_socket_connector.html</file>
+      <file>class_client_socket_connector__inherit__graph.png</file>
+      <file>class_client_socket_connector__coll__graph.png</file>
+      <file>class_client_socket_connector-members.html</file>
+      <file>class_c_r_c.html</file>
+      <file>class_c_r_c-members.html</file>
+      <file>struct_c_r_c_1_1_parameters.html</file>
+      <file>struct_c_r_c_1_1_parameters__coll__graph.png</file>
+      <file>struct_c_r_c_1_1_parameters-members.html</file>
+      <file>struct_c_r_c_1_1_table.html</file>
+      <file>struct_c_r_c_1_1_table__coll__graph.png</file>
+      <file>struct_c_r_c_1_1_table-members.html</file>
+      <file>class_d_a_q_driver.html</file>
+      <file>class_d_a_q_driver__coll__graph.png</file>
+      <file>class_d_a_q_driver-members.html</file>
+      <file>class_device_control.html</file>
+      <file>class_device_control__inherit__graph.png</file>
+      <file>class_device_control__coll__graph.png</file>
+      <file>class_device_control-members.html</file>
+      <file>class_device_discovery.html</file>
+      <file>class_device_discovery-members.html</file>
+      <file>class_device_info.html</file>
+      <file>class_device_info__inherit__graph.png</file>
+      <file>class_device_info__coll__graph.png</file>
+      <file>class_device_info-members.html</file>
+      <file>class_device_status.html</file>
+      <file>class_device_status__inherit__graph.png</file>
+      <file>class_device_status__coll__graph.png</file>
+      <file>class_device_status-members.html</file>
+      <file>class_discovered_device.html</file>
+      <file>class_discovered_device-members.html</file>
+      <file>class_event_loop_thread.html</file>
+      <file>class_event_loop_thread-members.html</file>
+      <file>class_formatting.html</file>
+      <file>class_formatting__inherit__graph.png</file>
+      <file>class_formatting__coll__graph.png</file>
+      <file>class_formatting-members.html</file>
+      <file>class_heartbeat.html</file>
+      <file>class_heartbeat__inherit__graph.png</file>
+      <file>class_heartbeat__coll__graph.png</file>
+      <file>class_heartbeat-members.html</file>
+      <file>class_i_e_p_e.html</file>
+      <file>class_i_e_p_e__inherit__graph.png</file>
+      <file>class_i_e_p_e__coll__graph.png</file>
+      <file>class_i_e_p_e-members.html</file>
+      <file>class_input_range.html</file>
+      <file>class_input_range__inherit__graph.png</file>
+      <file>class_input_range__coll__graph.png</file>
+      <file>class_input_range-members.html</file>
+      <file>struct_message.html</file>
+      <file>struct_message__coll__graph.png</file>
+      <file>struct_message-members.html</file>
+      <file>class_message_deserializer.html</file>
+      <file>class_message_deserializer-members.html</file>
+      <file>class_message_hash_table.html</file>
+      <file>class_message_hash_table__coll__graph.png</file>
+      <file>class_message_hash_table-members.html</file>
+      <file>struct_message_header.html</file>
+      <file>struct_message_header-members.html</file>
+      <file>class_message_parser.html</file>
+      <file>class_message_parser-members.html</file>
+      <file>class_message_processor.html</file>
+      <file>class_message_processor__coll__graph.png</file>
+      <file>class_message_processor-members.html</file>
+      <file>class_message_router.html</file>
+      <file>class_message_router-members.html</file>
+      <file>class_message_serializer.html</file>
+      <file>class_message_serializer-members.html</file>
+      <file>class_server_socket_connector.html</file>
+      <file>class_server_socket_connector__inherit__graph.png</file>
+      <file>class_server_socket_connector__coll__graph.png</file>
+      <file>class_server_socket_connector-members.html</file>
+      <file>class_streaming.html</file>
+      <file>class_streaming__inherit__graph.png</file>
+      <file>class_streaming__coll__graph.png</file>
+      <file>class_streaming-members.html</file>
+      <file>class_time.html</file>
+      <file>class_time__inherit__graph.png</file>
+      <file>class_time__coll__graph.png</file>
+      <file>class_time-members.html</file>
+      <file>class_timer.html</file>
+      <file>class_timer-members.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>dir_e640a94cedd38d7c20feec6f124bfbd5.html</file>
+      <file>dir_e640a94cedd38d7c20feec6f124bfbd5_dep.png</file>
+      <file>dir_7151b3cc910409bb744bd274374c738d.html</file>
+      <file>dir_7151b3cc910409bb744bd274374c738d_dep.png</file>
+      <file>dir_1c78f30dee02f7905ff9ab50f993fb55.html</file>
+      <file>dir_1c78f30dee02f7905ff9ab50f993fb55_dep.png</file>
+      <file>dir_a1d2dba3c5f8004031e468786eb95c98.html</file>
+      <file>dir_a1d2dba3c5f8004031e468786eb95c98_dep.png</file>
+      <file>dir_f6048eb709d35e3c128f83f410b1bc67.html</file>
+      <file>dir_f6048eb709d35e3c128f83f410b1bc67_dep.png</file>
+      <file>dir_cd821c13e189c3b64f5411e1052dbbd7.html</file>
+      <file>dir_000004_000001.html</file>
+      <file>dir_000001_000004.html</file>
+      <file>dir_000002_000005.html</file>
+      <file>dir_000002_000003.html</file>
+      <file>dir_000000_000002.html</file>
+      <file>dir_000000_000005.html</file>
+      <file>dir_000000_000003.html</file>
+      <file>dir_000004_000005.html</file>
+      <file>dir_000003_000004.html</file>
+      <file>index.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>inherit_graph_8.png</file>
+      <file>inherit_graph_9.png</file>
+      <file>inherit_graph_10.png</file>
+      <file>inherit_graph_11.png</file>
+      <file>inherit_graph_12.png</file>
+      <file>inherit_graph_13.png</file>
+      <file>inherit_graph_14.png</file>
+      <file>inherit_graph_15.png</file>
+      <file>inherit_graph_16.png</file>
+      <file>inherit_graph_17.png</file>
+      <file>inherit_graph_18.png</file>
+      <file>inherit_graph_19.png</file>
+      <file>inherit_graph_20.png</file>
+      <file>functions.html</file>
+      <file>functions_a.html</file>
+      <file>functions_c.html</file>
+      <file>functions_d.html</file>
+      <file>functions_e.html</file>
+      <file>functions_f.html</file>
+      <file>functions_g.html</file>
+      <file>functions_h.html</file>
+      <file>functions_i.html</file>
+      <file>functions_l.html</file>
+      <file>functions_m.html</file>
+      <file>functions_n.html</file>
+      <file>functions_o.html</file>
+      <file>functions_p.html</file>
+      <file>functions_r.html</file>
+      <file>functions_s.html</file>
+      <file>functions_t.html</file>
+      <file>functions_u.html</file>
+      <file>functions_v.html</file>
+      <file>functions_0x7e.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func_c.html</file>
+      <file>functions_func_d.html</file>
+      <file>functions_func_e.html</file>
+      <file>functions_func_f.html</file>
+      <file>functions_func_g.html</file>
+      <file>functions_func_h.html</file>
+      <file>functions_func_i.html</file>
+      <file>functions_func_l.html</file>
+      <file>functions_func_m.html</file>
+      <file>functions_func_n.html</file>
+      <file>functions_func_o.html</file>
+      <file>functions_func_p.html</file>
+      <file>functions_func_r.html</file>
+      <file>functions_func_s.html</file>
+      <file>functions_func_t.html</file>
+      <file>functions_func_u.html</file>
+      <file>functions_func_0x7e.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_vars.html</file>
+      <file>functions_enum.html</file>
+      <file>functions_enum.html</file>
+      <file>functions_eval.html</file>
+      <file>functions_eval.html</file>
+      <file>files.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals.html</file>
+      <file>globals_type.html</file>
+      <file>globals_defs.html</file>
+      <file>globals_defs.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>
