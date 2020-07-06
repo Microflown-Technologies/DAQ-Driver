@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: DAQ-Driver
+description: Using this library you can connect to a Voyager and use it as a DAQ (Data Acquisition) device.
+show_downloads: true
