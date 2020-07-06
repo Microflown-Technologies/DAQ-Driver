@@ -85,10 +85,10 @@ $(document).ready(function(){initNavTree('index.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><div class="image">
-<object type="image/svg+xml" data="https://github.com/Microflown-Technologies/DAQ-Driver/workflows/CI/badge.svg"></object>
+<object type="image/svg+xml" data="https://github.com/Microflown-Technologies/DAQ-Driver/workflows/CI/badge.svg" alt="CI Status"></object>
 </div>
  <div class="image">
-<object type="image/svg+xml" data="https://github.com/Microflown-Technologies/DAQ-Driver/workflows/DOCS/badge.svg"></object>
+<object type="image/svg+xml" data="https://github.com/Microflown-Technologies/DAQ-Driver/workflows/DOCS/badge.svg" alt="Documentation status"></object>
 </div>
 <p>Using this library you can connect to a <a href="https://www.microflown.com/products/portable-measuring-systems/voyager/">Voyager</a> and use it as a DAQ (<a href="https://en.wikipedia.org/wiki/Data_acquisition">Data Acquisition</a>) device.</p>
 <h2>Dependencies</h2>
@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 <p>There are also precompiled version of this library available through NuGet or via releases. </p><h3>Windows</h3>
 <p>Make sure you have <a href="https://visualstudio.microsoft.com/vs/">Visual Studio 2019</a> installed. Next, run the <a href="configure.bat">configure.bat</a> script. The script will download any missing dependencies and generate a Visual Studio Solution (SLN). You can find in the SLN folder relative to the root of this project. You can include the generated solution in your own project.</p>
 <h3>Linux</h3>
-<p>Make sure you have the required packages installed, preferably using your distro's package manager. On Debian (or Debian based distro's like Ubuntu or Linux Mint) you can run this command to install all needed dependencies. </p><div class="fragment"><div class="line">{r,}</div><div class="line">sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git protobuf-compiler</div></div><!-- fragment --><p> Open a terminal and navigate to the root of this project and run the following commands. </p><div class="fragment"><div class="line">{r,}</div><div class="line">mkdir Build  </div><div class="line">cmake ..  </div><div class="line">make -j4  </div><div class="line">sudo make install  </div></div><!-- fragment --><h2>Debugger</h2>
+<p>Make sure you have the required packages installed, preferably using your distro's package manager. On Debian (or Debian based distro's like Ubuntu or Linux Mint) you can run this command to install all needed dependencies. </p><div class="fragment"><div class="line">{engine=&#39;bash&#39;,}</div><div class="line">sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git protobuf-compiler</div></div><!-- fragment --><p> Open a terminal and navigate to the root of this project and run the following commands. </p><div class="fragment"><div class="line">{engine=&#39;bash&#39;,}</div><div class="line">mkdir Build  </div><div class="line">cmake ..  </div><div class="line">make -j4  </div><div class="line">sudo make install  </div></div><!-- fragment --><h2>Debugger</h2>
 <p>Optionaly you can also build the debugger. The debugger can be used to check the basic functionality of the DAQ driver. To build the debugger you need Qt. You can <a href="(https://www.qt.io/download)">download Qt for free</a>. Open the <a href="CMakeList.txt">CMakeList.txt</a> file using Qt Creator. Select a kit and go to the Projects tab, and change the 'BUILD_DEBUGGER' option from OFF to ON. If you've configured your environment properly, it should now be possible to compile and run the project. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
