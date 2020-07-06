@@ -1,6 +1,6 @@
 # DAQ-Driver
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Microflown-Technologies/DAQ-Driver/CI)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Microflown-Technologies/DAQ-Driver/DOCS)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Microflown-Technologies/DAQ-DRIVER/DOCS?label=Documentation)
 
 Using this library you can connect to a [Voyager](https://www.microflown.com/products/portable-measuring-systems/voyager/) 
 and use it as a DAQ ([Data Acquisition](https://en.wikipedia.org/wiki/Data_acquisition)) device.
