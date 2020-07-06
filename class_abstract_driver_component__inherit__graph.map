@@ -1,11 +1,12 @@
 <map id="AbstractDriverComponent" name="AbstractDriverComponent">
-<area shape="rect" id="node2" href="$class_device_control.html" title="The DeviceControl class Controls the Voyager. " alt="" coords="227,5,332,32"/>
-<area shape="rect" id="node3" href="$class_device_info.html" title="The DeviceInfo class Provides information about the Voyager. " alt="" coords="237,56,322,83"/>
-<area shape="rect" id="node4" href="$class_device_status.html" title="The DeviceStatus class can be used to retrieve the status of the Voyager such as temperature or batte..." alt="" coords="229,107,330,133"/>
-<area shape="rect" id="node5" href="$class_formatting.html" title="The Formatting class Handled anything related to the format of the streaming data. " alt="" coords="237,157,321,184"/>
-<area shape="rect" id="node6" href="$class_heartbeat.html" title="The Heartbeat class Make sure both devices are still alive. " alt="" coords="240,208,319,235"/>
-<area shape="rect" id="node7" href="$class_i_e_p_e.html" title="The IEPE class Can be used to control IEPE power on the AUX Channels. " alt="" coords="253,259,306,285"/>
-<area shape="rect" id="node8" href="$class_input_range.html" title="The InputRange class Handles controlling the inputrange (V) for induvidual channels. " alt="" coords="235,309,324,336"/>
-<area shape="rect" id="node9" href="$class_streaming.html" title="The Streaming class can be used to stream audio data. " alt="" coords="239,360,320,387"/>
-<area shape="rect" id="node10" href="$class_time.html" title="The Time class Is used to sync time between devices. " alt="" coords="254,411,305,437"/>
+<area shape="rect" id="node1" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie." alt="" coords="5,208,196,235"/>
+<area shape="rect" id="node2" href="$class_device_control.html" title="The DeviceControl class Controls the Voyager." alt="" coords="244,5,359,32"/>
+<area shape="rect" id="node3" href="$class_device_info.html" title="The DeviceInfo class Provides information about the Voyager." alt="" coords="255,56,347,83"/>
+<area shape="rect" id="node4" href="$class_device_status.html" title="The DeviceStatus class can be used to retrieve the status of the Voyager such as temperature or batte..." alt="" coords="247,107,355,133"/>
+<area shape="rect" id="node5" href="$class_formatting.html" title="The Formatting class Handled anything related to the format of the streaming data." alt="" coords="255,157,348,184"/>
+<area shape="rect" id="node6" href="$class_heartbeat.html" title="The Heartbeat class Make sure both devices are still alive." alt="" coords="258,208,345,235"/>
+<area shape="rect" id="node7" href="$class_i_e_p_e.html" title="The IEPE class Can be used to control IEPE power on the AUX Channels." alt="" coords="276,259,327,285"/>
+<area shape="rect" id="node8" href="$class_input_range.html" title="The InputRange class Handles controlling the inputrange (V) for induvidual channels." alt="" coords="253,309,349,336"/>
+<area shape="rect" id="node9" href="$class_streaming.html" title="The Streaming class can be used to stream audio data." alt="" coords="257,360,346,387"/>
+<area shape="rect" id="node10" href="$class_time.html" title="The Time class Is used to sync time between devices." alt="" coords="274,411,329,437"/>
 </map>

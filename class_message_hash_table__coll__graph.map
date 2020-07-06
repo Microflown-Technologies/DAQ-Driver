@@ -1,4 +1,5 @@
 <map id="MessageHashTable" name="MessageHashTable">
-<area shape="rect" id="node2" href="$struct_c_r_c_1_1_table.html" title="CRC::Table\&lt; std::uint16\l_t, 16 \&gt;" alt="" coords="5,109,171,151"/>
-<area shape="rect" id="node3" href="$struct_c_r_c_1_1_parameters.html" title="CRC::Parameters\&lt; std\l::uint16_t, CRCWidth \&gt;" alt="" coords="8,5,168,47"/>
+<area shape="rect" id="node1" title="The MessageHashTable class Generates hashes for messages names." alt="" coords="19,213,166,240"/>
+<area shape="rect" id="node2" href="$struct_c_r_c_1_1_table.html" title=" " alt="" coords="5,109,180,151"/>
+<area shape="rect" id="node3" href="$struct_c_r_c_1_1_parameters.html" title=" " alt="" coords="7,5,178,47"/>
 </map>

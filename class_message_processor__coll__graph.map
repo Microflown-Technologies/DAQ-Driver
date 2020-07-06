@@ -1,3 +1,4 @@
 <map id="MessageProcessor" name="MessageProcessor">
-<area shape="rect" id="node2" href="$class_timer.html" title="The Timer class Provides a generic timer. " alt="" coords="45,5,100,32"/>
+<area shape="rect" id="node1" title="The MessageProcessor class Handles and processes all incomming and outgoing messages." alt="" coords="5,95,148,121"/>
+<area shape="rect" id="node2" href="$class_timer.html" title="The Timer class Provides a generic timer." alt="" coords="47,5,107,32"/>
 </map>

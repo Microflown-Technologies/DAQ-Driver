@@ -1,4 +1,5 @@
 <map id="ClientSocketConnector" name="ClientSocketConnector">
-<area shape="rect" id="node2" href="$class_abstract_socket_connector.html" title="The AbstractSocketConnector class Defines an generic API for a websocket connection. " alt="" coords="233,111,405,137"/>
-<area shape="rect" id="node3" href="$class_callback_handler.html" title="The CallbackHandler class processes callback functions. " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node1" title="The ClientSocketConnector class Provides the client implementation of AbstractSocketConnector." alt="" coords="47,188,216,215"/>
+<area shape="rect" id="node2" href="$class_abstract_socket_connector.html" title="The AbstractSocketConnector class Defines an generic API for a websocket connection." alt="" coords="256,111,441,137"/>
+<area shape="rect" id="node3" href="$class_callback_handler.html" title="The CallbackHandler class processes callback functions." alt="" coords="5,5,135,32"/>
 </map>

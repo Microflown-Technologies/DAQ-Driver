@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['formatting',['Formatting',['../class_formatting.html',1,'']]]
+  ['formatting_379',['Formatting',['../class_formatting.html',1,'']]]
 ];

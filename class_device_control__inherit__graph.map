@@ -1,3 +1,4 @@
 <map id="DeviceControl" name="DeviceControl">
-<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie..." alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node1" title="The DeviceControl class Controls the Voyager." alt="" coords="43,80,158,107"/>
+<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie." alt="" coords="5,5,196,32"/>
 </map>

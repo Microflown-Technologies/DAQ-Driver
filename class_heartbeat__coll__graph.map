@@ -1,4 +1,5 @@
 <map id="Heartbeat" name="Heartbeat">
-<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie..." alt="" coords="5,5,179,32"/>
-<area shape="rect" id="node3" href="$class_timer.html" title="The Timer class Provides a generic timer. " alt="" coords="203,5,258,32"/>
+<area shape="rect" id="node1" title="The Heartbeat class Make sure both devices are still alive." alt="" coords="132,109,219,136"/>
+<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node3" href="$class_timer.html" title="The Timer class Provides a generic timer." alt="" coords="220,5,280,32"/>
 </map>

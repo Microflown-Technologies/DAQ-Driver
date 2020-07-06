@@ -1,3 +1,4 @@
 <map id="InputRange" name="InputRange">
-<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie..." alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node1" title="The InputRange class Handles controlling the inputrange (V) for induvidual channels." alt="" coords="53,80,149,107"/>
+<area shape="rect" id="node2" href="$class_abstract_driver_component.html" title="The AbstractDriverComponent class Is the base class for all driver components hallo Bennie." alt="" coords="5,5,196,32"/>
 </map>

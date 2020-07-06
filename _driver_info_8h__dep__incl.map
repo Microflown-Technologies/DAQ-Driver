@@ -1,6 +1,7 @@
 <map id="Driver/DriverInfo.h" name="Driver/DriverInfo.h">
-<area shape="rect" id="node2" href="$_device_info_8h.html" title="Driver/DriverComponents\l/DeviceInfo.h" alt="" coords="83,80,254,121"/>
-<area shape="rect" id="node3" href="$_d_a_q_driver_8h.html" title="Driver/DAQDriver.h" alt="" coords="13,177,149,203"/>
-<area shape="rect" id="node5" href="$_device_info_8cpp.html" title="Driver/DriverComponents\l/DeviceInfo.cpp" alt="" coords="173,169,343,211"/>
-<area shape="rect" id="node4" href="$_d_a_q_driver_8cpp.html" title="Driver/DAQDriver.cpp" alt="" coords="5,259,156,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="111,5,253,32"/>
+<area shape="rect" id="node2" href="$_device_info_8h.html" title=" " alt="" coords="88,80,276,121"/>
+<area shape="rect" id="node3" href="$_d_a_q_driver_8h.html" title=" " alt="" coords="13,177,159,203"/>
+<area shape="rect" id="node5" href="$_device_info_8cpp.html" title=" " alt="" coords="184,169,372,211"/>
+<area shape="rect" id="node4" href="$_d_a_q_driver_8cpp.html" title=" " alt="" coords="5,259,167,285"/>
 </map>

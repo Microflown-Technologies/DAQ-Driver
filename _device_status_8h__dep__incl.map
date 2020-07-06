@@ -1,5 +1,6 @@
 <map id="Driver/DriverComponents/DeviceStatus.h" name="Driver/DriverComponents/DeviceStatus.h">
-<area shape="rect" id="node2" href="$_d_a_q_driver_8h.html" title="Driver/DAQDriver.h" alt="" coords="13,102,149,129"/>
-<area shape="rect" id="node4" href="$_device_status_8cpp.html" title="Driver/DriverComponents\l/DeviceStatus.cpp" alt="" coords="173,95,343,136"/>
-<area shape="rect" id="node3" href="$_d_a_q_driver_8cpp.html" title="Driver/DAQDriver.cpp" alt="" coords="5,184,156,211"/>
+<area shape="rect" id="node1" title=" " alt="" coords="88,5,276,47"/>
+<area shape="rect" id="node2" href="$_d_a_q_driver_8h.html" title=" " alt="" coords="13,102,159,129"/>
+<area shape="rect" id="node4" href="$_device_status_8cpp.html" title=" " alt="" coords="184,95,372,136"/>
+<area shape="rect" id="node3" href="$_d_a_q_driver_8cpp.html" title=" " alt="" coords="5,184,167,211"/>
 </map>

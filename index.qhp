@@ -336,8 +336,8 @@
               <section title="messageSize" ref="struct_message_header.html#a67e16b885af802a37163641961fce410" />
             </section>
             <section title="MessageParser" ref="class_message_parser.html">
-              <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
               <section title="parse" ref="class_message_parser.html#abc553be127c5fc2084c1f7ed0458c317" />
+              <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
             </section>
             <section title="MessageProcessor" ref="class_message_processor.html">
               <section title="MessageProcessor" ref="class_message_processor.html#a214cee5d058d461a92cd0ee4c2f4550d" />
@@ -490,7 +490,7 @@
               <section title="t" ref="functions_t.html" />
               <section title="u" ref="functions_u.html" />
               <section title="v" ref="functions_v.html" />
-              <section title="~" ref="functions_0x7e.html" />
+              <section title="~" ref="functions_~.html" />
             </section>
             <section title="Functions" ref="functions_func.html">
               <section title="a" ref="functions_func.html" />
@@ -510,14 +510,14 @@
               <section title="s" ref="functions_func_s.html" />
               <section title="t" ref="functions_func_t.html" />
               <section title="u" ref="functions_func_u.html" />
-              <section title="~" ref="functions_func_0x7e.html" />
+              <section title="~" ref="functions_func_~.html" />
             </section>
             <section title="Variables" ref="functions_vars.html" />
             <section title="Enumerations" ref="functions_enum.html" />
             <section title="Enumerator" ref="functions_eval.html" />
           </section>
         </section>
-        <section title="Files">
+        <section title="Files" ref="files.html">
           <section title="File List" ref="files.html">
             <section title="Driver" ref="dir_7151b3cc910409bb744bd274374c738d.html">
               <section title="Discovery" ref="dir_e640a94cedd38d7c20feec6f124bfbd5.html">
@@ -867,8 +867,8 @@
                 <section title="MessageParser.cpp" ref="_message_parser_8cpp.html" />
                 <section title="MessageParser.h" ref="_message_parser_8h.html">
                   <section title="MessageParser" ref="class_message_parser.html">
-                    <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
                     <section title="parse" ref="class_message_parser.html#abc553be127c5fc2084c1f7ed0458c317" />
+                    <section title="parse" ref="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a" />
                   </section>
                 </section>
                 <section title="MessageProcessor.cpp" ref="_message_processor_8cpp.html" />
@@ -1569,7 +1569,6 @@
       <file>_callback_handler_8h_source.html</file>
       <file>_event_loop_thread_8cpp_source.html</file>
       <file>_event_loop_thread_8h_source.html</file>
-      <file>_r_e_a_d_m_e_8md_source.html</file>
       <file>_d_a_q_driver_8cpp.html</file>
       <file>_d_a_q_driver_8cpp__incl.png</file>
       <file>_d_a_q_driver_8h.html</file>
@@ -1718,10 +1717,8 @@
       <file>class_c_r_c.html</file>
       <file>class_c_r_c-members.html</file>
       <file>struct_c_r_c_1_1_parameters.html</file>
-      <file>struct_c_r_c_1_1_parameters__coll__graph.png</file>
       <file>struct_c_r_c_1_1_parameters-members.html</file>
       <file>struct_c_r_c_1_1_table.html</file>
-      <file>struct_c_r_c_1_1_table__coll__graph.png</file>
       <file>struct_c_r_c_1_1_table-members.html</file>
       <file>class_d_a_q_driver.html</file>
       <file>class_d_a_q_driver__coll__graph.png</file>
@@ -1860,7 +1857,7 @@
       <file>functions_t.html</file>
       <file>functions_u.html</file>
       <file>functions_v.html</file>
-      <file>functions_0x7e.html</file>
+      <file>functions_~.html</file>
       <file>functions_func.html</file>
       <file>functions_func_c.html</file>
       <file>functions_func_d.html</file>
@@ -1878,7 +1875,7 @@
       <file>functions_func_s.html</file>
       <file>functions_func_t.html</file>
       <file>functions_func_u.html</file>
-      <file>functions_func_0x7e.html</file>
+      <file>functions_func_~.html</file>
       <file>functions_vars.html</file>
       <file>functions_vars.html</file>
       <file>functions_vars.html</file>

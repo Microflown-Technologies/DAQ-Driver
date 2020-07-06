@@ -1,3 +1,4 @@
 <map id="Message" name="Message">
-<area shape="rect" id="node2" href="$struct_message_header.html" title="The MessageHeader struct Defines the binary format of a message header. " alt="" coords="5,5,123,32"/>
+<area shape="rect" id="node1" title="The Message struct Defines the binary format of a message." alt="" coords="29,95,109,121"/>
+<area shape="rect" id="node2" href="$struct_message_header.html" title="The MessageHeader struct Defines the binary format of a message header." alt="" coords="5,5,132,32"/>
 </map>
