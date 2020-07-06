@@ -1,6 +1,6 @@
 # DAQ-Driver
-![CI Status](https://github.com/Microflown-Technologies/DAQ-Driver/workflows/CI/badge.svg)
-![Documentation status](https://github.com/Microflown-Technologies/DAQ-Driver/workflows/DOCS/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Microflown-Technologies/DAQ-Driver/CI)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Microflown-Technologies/DAQ-Driver/DOCS)
 
 Using this library you can connect to a [Voyager](https://www.microflown.com/products/portable-measuring-systems/voyager/) 
 and use it as a DAQ ([Data Acquisition](https://en.wikipedia.org/wiki/Data_acquisition)) device.
@@ -26,11 +26,11 @@ You can find in the SLN folder relative to the root of this project. You can inc
 ### Linux
 Make sure you have the required packages installed, preferably using your distro's package manager.  
 On Debian (or Debian based distro's like Ubuntu or Linux Mint) you can run this command to install all needed dependencies.
-```{engine='bash', count_lines}
+```
 sudo apt -y install build-essential cmake libprotoc-dev doxygen graphviz git protobuf-compiler
 ```
 Open a terminal and navigate to the root of this project and run the following commands.
-```{engine='bash', count_lines}
+```
 mkdir Build  
 cmake ..  
 make -j4  
