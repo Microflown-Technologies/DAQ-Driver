@@ -118,7 +118,7 @@ Collaboration diagram for Streaming:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1c2463409632e991310157a39b301f51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_streaming.html#a1c2463409632e991310157a39b301f51">Streaming</a> (<a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor)</td></tr>
+<tr class="memitem:a1c2463409632e991310157a39b301f51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_streaming.html#a1c2463409632e991310157a39b301f51">Streaming</a> (pMessageProcessor messageProcessor)</td></tr>
 <tr class="separator:a1c2463409632e991310157a39b301f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61a11cae098fc67e2737f3f46fe0cb38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_streaming.html#a61a11cae098fc67e2737f3f46fe0cb38">start</a> ()</td></tr>
 <tr class="memdesc:a61a11cae098fc67e2737f3f46fe0cb38"><td class="mdescLeft">&#160;</td><td class="mdescRight">start Start the audio stream  <a href="class_streaming.html#a61a11cae098fc67e2737f3f46fe0cb38">More...</a><br /></td></tr>
@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a852d2f65c1d2a730ba8ccbbbd7f07536"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_streaming.html#a852d2f65c1d2a730ba8ccbbbd7f07536">removeStreamStoppedCallback</a> (std::shared_ptr&lt; std::function&lt; void(void)&gt;&gt; callback)</td></tr>
 <tr class="separator:a852d2f65c1d2a730ba8ccbbbd7f07536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_abstract_driver_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstract_driver_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstract_driver_component.html">AbstractDriverComponent</a></td></tr>
-<tr class="memitem:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa">AbstractDriverComponent</a> (<a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor)</td></tr>
+<tr class="memitem:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa">AbstractDriverComponent</a> (pMessageProcessor messageProcessor)</td></tr>
 <tr class="separator:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -187,7 +187,7 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_abstract_driver_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_abstract_driver_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_abstract_driver_component.html">AbstractDriverComponent</a></td></tr>
-<tr class="memitem:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea">m_messageProcessor</a></td></tr>
+<tr class="memitem:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">pMessageProcessor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea">m_messageProcessor</a></td></tr>
 <tr class="separator:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -204,7 +204,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Streaming::Streaming </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a>&#160;</td>
+          <td class="paramtype">pMessageProcessor&#160;</td>
           <td class="paramname"><em>messageProcessor</em></td><td>)</td>
           <td></td>
         </tr>
@@ -764,10 +764,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>Driver/DriverComponents/<a class="el" href="_streaming_8h_source.html">Streaming.h</a></li>
-<li>Driver/DriverComponents/<a class="el" href="_streaming_8cpp_source.html">Streaming.cpp</a></li>
-</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

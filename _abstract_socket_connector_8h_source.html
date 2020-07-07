@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_abstract_socket_connector_8h_source.h
 <div class="title">AbstractSocketConnector.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_abstract_socket_connector_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ABSTRACTSOCKETCONNECTOR_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ABSTRACTSOCKETCONNECTOR_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ABSTRACTSOCKETCONNECTOR_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//STD framework</span></div>
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('_abstract_socket_connector_8h_source.h
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//Internal headers</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_callback_handler_8h.html">Threading/CallbackHandler.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Threading/CallbackHandler.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * @brief The AbstractSocketConnector class Defines an generic API for a websocket connection</span></div>
@@ -162,7 +162,7 @@ $(document).ready(function(){initNavTree('_abstract_socket_connector_8h_source.h
 <div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b">   74</a></span>&#160;    <a class="code" href="class_callback_handler.html">CallbackHandler</a> <a class="code" href="class_abstract_socket_connector.html#aef9d55f74d2d42b38b89b311cf51323b">m_openendCallbackHandler</a>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="_abstract_socket_connector_8h.html#a5ad8016022b916e3b9e2b0cfa056fa29">   77</a></span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;AbstractSocketConnector&gt; <a class="code" href="_abstract_socket_connector_8h.html#a5ad8016022b916e3b9e2b0cfa056fa29">pAbstractSocketConnector</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;AbstractSocketConnector&gt; pAbstractSocketConnector;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif // ABSTRACTSOCKETCONNECTOR_H</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
@@ -177,16 +177,14 @@ $(document).ready(function(){initNavTree('_abstract_socket_connector_8h_source.h
 <div class="ttc" id="aclass_abstract_socket_connector_html_a01b16fa9e59efd86924b92468bf58b20"><div class="ttname"><a href="class_abstract_socket_connector.html#a01b16fa9e59efd86924b92468bf58b20">AbstractSocketConnector::isOpen</a></div><div class="ttdeci">virtual bool isOpen()=0</div><div class="ttdoc">isOpen Checks if the connection to the Voyager is open</div></div>
 <div class="ttc" id="aclass_abstract_socket_connector_html_a434428471011ff539fcec4766e19aa84"><div class="ttname"><a href="class_abstract_socket_connector.html#a434428471011ff539fcec4766e19aa84">AbstractSocketConnector::sendMessage</a></div><div class="ttdeci">virtual void sendMessage(const std::vector&lt; uint8_t &gt; &amp;message)=0</div><div class="ttdoc">sendMessage Sends message to the Voyager through the socket connection</div></div>
 <div class="ttc" id="aclass_abstract_socket_connector_html_a8404ea84cb1a87598e2a13f918ffced0"><div class="ttname"><a href="class_abstract_socket_connector.html#a8404ea84cb1a87598e2a13f918ffced0">AbstractSocketConnector::m_closedCallbackHandler</a></div><div class="ttdeci">CallbackHandler m_closedCallbackHandler</div><div class="ttdef"><b>Definition:</b> <a href="_abstract_socket_connector_8h_source.html#l00073">AbstractSocketConnector.h:73</a></div></div>
-<div class="ttc" id="a_callback_handler_8h_html"><div class="ttname"><a href="_callback_handler_8h.html">CallbackHandler.h</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html"><div class="ttname"><a href="class_callback_handler.html">CallbackHandler</a></div><div class="ttdoc">The CallbackHandler class processes callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00013">CallbackHandler.h:13</a></div></div>
 <div class="ttc" id="aclass_abstract_socket_connector_html_a77fc32aafcfaba1fd392511ef6490b05"><div class="ttname"><a href="class_abstract_socket_connector.html#a77fc32aafcfaba1fd392511ef6490b05">AbstractSocketConnector::closedCallbackHandler</a></div><div class="ttdeci">virtual CallbackHandler &amp; closedCallbackHandler()=0</div><div class="ttdoc">closedCallbackHandler Handler that is invoked when all connections are closed</div></div>
-<div class="ttc" id="a_abstract_socket_connector_8h_html_a5ad8016022b916e3b9e2b0cfa056fa29"><div class="ttname"><a href="_abstract_socket_connector_8h.html#a5ad8016022b916e3b9e2b0cfa056fa29">pAbstractSocketConnector</a></div><div class="ttdeci">std::shared_ptr&lt; AbstractSocketConnector &gt; pAbstractSocketConnector</div><div class="ttdef"><b>Definition:</b> <a href="_abstract_socket_connector_8h_source.html#l00077">AbstractSocketConnector.h:77</a></div></div>
 <div class="ttc" id="aclass_abstract_socket_connector_html_a1dd1006cc4b7d03fce53a4a28c598698"><div class="ttname"><a href="class_abstract_socket_connector.html#a1dd1006cc4b7d03fce53a4a28c598698">AbstractSocketConnector::port</a></div><div class="ttdeci">virtual uint16_t port()=0</div><div class="ttdoc">port Gets the port that is used by this socket connector</div></div>
 <div class="ttc" id="aclass_abstract_socket_connector_html_a28d8d6edef08efc86cda63248fb35f55"><div class="ttname"><a href="class_abstract_socket_connector.html#a28d8d6edef08efc86cda63248fb35f55">AbstractSocketConnector::openedCallbackHandler</a></div><div class="ttdeci">virtual CallbackHandler &amp; openedCallbackHandler()=0</div><div class="ttdoc">openedCallbackHandler Handler that is invoked when a connection is openend</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_f6048eb709d35e3c128f83f410b1bc67.html">SocketConnector</a></li><li class="navelem"><a class="el" href="_abstract_socket_connector_8h.html">AbstractSocketConnector.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_f6048eb709d35e3c128f83f410b1bc67.html">SocketConnector</a></li><li class="navelem"><b>AbstractSocketConnector.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

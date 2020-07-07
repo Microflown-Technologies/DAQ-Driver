@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_callback_handler_8h_source.html','');
 <div class="title">CallbackHandler.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_callback_handler_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CALLBACKHANDLER_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CALLBACKHANDLER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CALLBACKHANDLER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//Internal headers</span></div>
@@ -140,7 +140,7 @@ $(document).ready(function(){initNavTree('_callback_handler_8h_source.html','');
 <div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_callback_handler.html#a473a853ff3bcd9ed9a5b1c0851a94eaa">   52</a></span>&#160;<span class="comment"></span>    std::vector&lt;std::shared_ptr&lt;std::function&lt;void(<span class="keywordtype">void</span>)&gt;&gt;&gt; <a class="code" href="class_callback_handler.html#a473a853ff3bcd9ed9a5b1c0851a94eaa">m_callbackFunctions</a>; <span class="comment">///&lt; Holds list of shared pointers to callbacks</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_callback_handler_8h.html#a06d371ad48119fa10fb48916d98d97b4">   55</a></span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;CallbackHandler&gt; <a class="code" href="_callback_handler_8h.html#a06d371ad48119fa10fb48916d98d97b4">pCallbackHandler</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;CallbackHandler&gt; pCallbackHandler;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // CALLBACKHANDLER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -150,7 +150,6 @@ $(document).ready(function(){initNavTree('_callback_handler_8h_source.html','');
 <div class="ttc" id="aclass_callback_handler_html_aa0ede07535df6140f39407d389868595"><div class="ttname"><a href="class_callback_handler.html#aa0ede07535df6140f39407d389868595">CallbackHandler::m_runOnceFunctions</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; std::function&lt; void(void)&gt; &gt; &gt; m_runOnceFunctions</div><div class="ttdoc">Holds list of shared pointers to callbacks.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00051">CallbackHandler.h:51</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html_a08b238c911acd222700ecbab4b4db215"><div class="ttname"><a href="class_callback_handler.html#a08b238c911acd222700ecbab4b4db215">CallbackHandler::m_invokeThreadID</a></div><div class="ttdeci">std::thread::id m_invokeThreadID</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00049">CallbackHandler.h:49</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html_a3568225efae6281876c7c142b98d34f5"><div class="ttname"><a href="class_callback_handler.html#a3568225efae6281876c7c142b98d34f5">CallbackHandler::m_callbackFunctionsMutex</a></div><div class="ttdeci">std::mutex m_callbackFunctionsMutex</div><div class="ttdoc">Mutex that protects m_callbackFunction.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00050">CallbackHandler.h:50</a></div></div>
-<div class="ttc" id="a_callback_handler_8h_html_a06d371ad48119fa10fb48916d98d97b4"><div class="ttname"><a href="_callback_handler_8h.html#a06d371ad48119fa10fb48916d98d97b4">pCallbackHandler</a></div><div class="ttdeci">std::shared_ptr&lt; CallbackHandler &gt; pCallbackHandler</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00055">CallbackHandler.h:55</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html_aeb69a7393384f0dc7820dc8b2f25443c"><div class="ttname"><a href="class_callback_handler.html#aeb69a7393384f0dc7820dc8b2f25443c">CallbackHandler::removeCallback</a></div><div class="ttdeci">bool removeCallback(std::shared_ptr&lt; std::function&lt; void(void)&gt;&gt; callback)</div><div class="ttdoc">removeCallback Removes a callback function</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8cpp_source.html#l00026">CallbackHandler.cpp:26</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html"><div class="ttname"><a href="class_callback_handler.html">CallbackHandler</a></div><div class="ttdoc">The CallbackHandler class processes callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00013">CallbackHandler.h:13</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html_a5cf949bbbba8a7fea9e632487fdad64f"><div class="ttname"><a href="class_callback_handler.html#a5cf949bbbba8a7fea9e632487fdad64f">CallbackHandler::invokeCallbacks</a></div><div class="ttdeci">void invokeCallbacks()</div><div class="ttdoc">invokeCallbacks Invokes all callback functions in m_callbackFunctions</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8cpp_source.html#l00040">CallbackHandler.cpp:40</a></div></div>
@@ -158,7 +157,7 @@ $(document).ready(function(){initNavTree('_callback_handler_8h_source.html','');
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_cd821c13e189c3b64f5411e1052dbbd7.html">Threading</a></li><li class="navelem"><a class="el" href="_callback_handler_8h.html">CallbackHandler.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_cd821c13e189c3b64f5411e1052dbbd7.html">Threading</a></li><li class="navelem"><b>CallbackHandler.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

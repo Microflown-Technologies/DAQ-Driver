@@ -86,15 +86,15 @@ $(document).ready(function(){initNavTree('_device_status_8h_source.html',''); in
 <div class="title">DeviceStatus.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_device_status_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DEVICESTATUS_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DEVICESTATUS_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DEVICESTATUS_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//Std framework</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//Internal headers</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_abstract_driver_component_8h.html">AbstractDriverComponent.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_callback_handler_8h.html">Threading/CallbackHandler.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;AbstractDriverComponent.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;Threading/CallbackHandler.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//Protobuff messages</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;DeviceStatusStructure.pb.h&quot;</span></div>
@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('_device_status_8h_source.html',''); in
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a">DeviceStatus</a>(<a class="code" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a">DeviceStatus</a>(pMessageProcessor messageProcessor);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     * @brief remoteDeviceStatus Retrieves the current remote device status</span></div>
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('_device_status_8h_source.html',''); in
 <div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455">   55</a></span>&#160;    DeviceStatusStructure <a class="code" href="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455">m_remoteDeviceStatus</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf">   56</a></span>&#160;    <a class="code" href="class_callback_handler.html">CallbackHandler</a> <a class="code" href="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf">m_remoteDeviceStatusUpdatedCallbackHandler</a>;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="_device_status_8h.html#a969eb892eb7b0d855ba2cb15e986fa82">   58</a></span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;DeviceStatus&gt; <a class="code" href="_device_status_8h.html#a969eb892eb7b0d855ba2cb15e986fa82">pDeviceStatus</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;DeviceStatus&gt; pDeviceStatus;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif // DEVICESTATUS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -153,21 +153,17 @@ $(document).ready(function(){initNavTree('_device_status_8h_source.html',''); in
 <div class="ttc" id="aclass_device_status_html_ad953f49ecca0b3184dffb6959f52e455"><div class="ttname"><a href="class_device_status.html#ad953f49ecca0b3184dffb6959f52e455">DeviceStatus::m_remoteDeviceStatus</a></div><div class="ttdeci">DeviceStatusStructure m_remoteDeviceStatus</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8h_source.html#l00055">DeviceStatus.h:55</a></div></div>
 <div class="ttc" id="aclass_device_status_html_ae96146e2e7074a44134eed17d0052fc0"><div class="ttname"><a href="class_device_status.html#ae96146e2e7074a44134eed17d0052fc0">DeviceStatus::reset</a></div><div class="ttdeci">virtual void reset() override</div><div class="ttdoc">reset Resets the components</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00024">DeviceStatus.cpp:24</a></div></div>
 <div class="ttc" id="aclass_device_status_html_ad9f0471ff7004c77bed7d5e8a5684ca3"><div class="ttname"><a href="class_device_status.html#ad9f0471ff7004c77bed7d5e8a5684ca3">DeviceStatus::removeRemoteDeviceStatusUpdated</a></div><div class="ttdeci">bool removeRemoteDeviceStatusUpdated(std::shared_ptr&lt; std::function&lt; void(void)&gt;&gt; callback)</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00020">DeviceStatus.cpp:20</a></div></div>
-<div class="ttc" id="a_device_status_8h_html_a969eb892eb7b0d855ba2cb15e986fa82"><div class="ttname"><a href="_device_status_8h.html#a969eb892eb7b0d855ba2cb15e986fa82">pDeviceStatus</a></div><div class="ttdeci">std::shared_ptr&lt; DeviceStatus &gt; pDeviceStatus</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8h_source.html#l00058">DeviceStatus.h:58</a></div></div>
 <div class="ttc" id="aclass_device_status_html_adfc2e2789e67e7fd9f8ebf847d73770f"><div class="ttname"><a href="class_device_status.html#adfc2e2789e67e7fd9f8ebf847d73770f">DeviceStatus::sendStatus</a></div><div class="ttdeci">void sendStatus(const DeviceStatusStructure status)</div><div class="ttdoc">sendStatus Sends device status to other remote device</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00012">DeviceStatus.cpp:12</a></div></div>
 <div class="ttc" id="aclass_device_status_html_a13376419ea2c9ed0df0c5cb7e2883a3a"><div class="ttname"><a href="class_device_status.html#a13376419ea2c9ed0df0c5cb7e2883a3a">DeviceStatus::DeviceStatus</a></div><div class="ttdeci">DeviceStatus(pMessageProcessor messageProcessor)</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00003">DeviceStatus.cpp:3</a></div></div>
-<div class="ttc" id="a_abstract_driver_component_8h_html"><div class="ttname"><a href="_abstract_driver_component_8h.html">AbstractDriverComponent.h</a></div></div>
 <div class="ttc" id="aclass_device_status_html_ac19bf8987cd6e6e599be94c00bad6814"><div class="ttname"><a href="class_device_status.html#ac19bf8987cd6e6e599be94c00bad6814">DeviceStatus::remoteDeviceStatus</a></div><div class="ttdeci">DeviceStatusStructure remoteDeviceStatus() const</div><div class="ttdoc">remoteDeviceStatus Retrieves the current remote device status</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00008">DeviceStatus.cpp:8</a></div></div>
-<div class="ttc" id="a_message_processor_8h_html_ab1ce61cbd5596cfa8958b4789a6b67f7"><div class="ttname"><a href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a></div><div class="ttdeci">std::shared_ptr&lt; MessageProcessor &gt; pMessageProcessor</div><div class="ttdef"><b>Definition:</b> <a href="_message_processor_8h_source.html#l00045">MessageProcessor.h:45</a></div></div>
 <div class="ttc" id="aclass_device_status_html"><div class="ttname"><a href="class_device_status.html">DeviceStatus</a></div><div class="ttdoc">The DeviceStatus class can be used to retrieve the status of the Voyager such as temperature or batte...</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8h_source.html#l00017">DeviceStatus.h:17</a></div></div>
 <div class="ttc" id="aclass_device_status_html_abc42bc09a031d8dbd707331efb4ec459"><div class="ttname"><a href="class_device_status.html#abc42bc09a031d8dbd707331efb4ec459">DeviceStatus::addremoteDeviceStatusUpdated</a></div><div class="ttdeci">std::shared_ptr&lt; std::function&lt; void()&gt; &gt; addremoteDeviceStatusUpdated(const std::function&lt; void()&gt; &amp;newBufferCallback)</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8cpp_source.html#l00016">DeviceStatus.cpp:16</a></div></div>
-<div class="ttc" id="a_callback_handler_8h_html"><div class="ttname"><a href="_callback_handler_8h.html">CallbackHandler.h</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html"><div class="ttname"><a href="class_callback_handler.html">CallbackHandler</a></div><div class="ttdoc">The CallbackHandler class processes callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00013">CallbackHandler.h:13</a></div></div>
 <div class="ttc" id="aclass_device_status_html_a107f642fa46c6c0a9bcdf7b43be51fcf"><div class="ttname"><a href="class_device_status.html#a107f642fa46c6c0a9bcdf7b43be51fcf">DeviceStatus::m_remoteDeviceStatusUpdatedCallbackHandler</a></div><div class="ttdeci">CallbackHandler m_remoteDeviceStatusUpdatedCallbackHandler</div><div class="ttdef"><b>Definition:</b> <a href="_device_status_8h_source.html#l00056">DeviceStatus.h:56</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><a class="el" href="_device_status_8h.html">DeviceStatus.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><b>DeviceStatus.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

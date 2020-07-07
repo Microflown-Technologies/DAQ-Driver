@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_message_parser_8cpp_source.html','');
 <div class="title">MessageParser.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_message_parser_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_message_parser_8h.html">MessageParser.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;MessageParser.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a">    3</a></span>&#160;std::shared_ptr&lt;google::protobuf::Message&gt; <a class="code" href="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a">MessageParser::parse</a>(<span class="keyword">const</span> <a class="code" href="struct_message.html">Message</a> &amp;message) {</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_message_hash_table.html#a5982cbacf9f3fcb60e169faed040e713">MessageHashTable::hasDescriptorForHash</a>(message.<a class="code" href="struct_message.html#a704863f3c71f270459d015102d61f7c8">header</a>.<a class="code" href="struct_message_header.html#a64ecddce516db66fe842454cfcef3e96">messageHash</a>)) {</div>
@@ -118,7 +118,6 @@ $(document).ready(function(){initNavTree('_message_parser_8cpp_source.html','');
 <div class="ttc" id="aclass_message_parser_html_a7a00927e56d932f4beb0111eb3fa4a6a"><div class="ttname"><a href="class_message_parser.html#a7a00927e56d932f4beb0111eb3fa4a6a">MessageParser::parse</a></div><div class="ttdeci">static std::shared_ptr&lt; google::protobuf::Message &gt; parse(const Message &amp;message)</div><div class="ttdoc">parse parses message to a protobuf message</div><div class="ttdef"><b>Definition:</b> <a href="_message_parser_8cpp_source.html#l00003">MessageParser.cpp:3</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a9595953a83bea7e09492d5aafd247dc4"><div class="ttname"><a href="class_message_hash_table.html#a9595953a83bea7e09492d5aafd247dc4">MessageHashTable::hashForMessage</a></div><div class="ttdeci">static uint16_t hashForMessage(const google::protobuf::Message &amp;message)</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8cpp_source.html#l00016">MessageHashTable.cpp:16</a></div></div>
 <div class="ttc" id="astruct_message_html_a704863f3c71f270459d015102d61f7c8"><div class="ttname"><a href="struct_message.html#a704863f3c71f270459d015102d61f7c8">Message::header</a></div><div class="ttdeci">MessageHeader header</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00018">Message.h:18</a></div></div>
-<div class="ttc" id="a_message_parser_8h_html"><div class="ttname"><a href="_message_parser_8h.html">MessageParser.h</a></div></div>
 <div class="ttc" id="astruct_message_header_html_a67e16b885af802a37163641961fce410"><div class="ttname"><a href="struct_message_header.html#a67e16b885af802a37163641961fce410">MessageHeader::messageSize</a></div><div class="ttdeci">uint32_t messageSize</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00012">Message.h:12</a></div></div>
 <div class="ttc" id="astruct_message_html"><div class="ttname"><a href="struct_message.html">Message</a></div><div class="ttdoc">The Message struct Defines the binary format of a message.</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00017">Message.h:17</a></div></div>
 <div class="ttc" id="astruct_message_html_a261f9014e13f5962995f6c9fe33ce146"><div class="ttname"><a href="struct_message.html#a261f9014e13f5962995f6c9fe33ce146">Message::data</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; data</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00019">Message.h:19</a></div></div>
@@ -126,7 +125,7 @@ $(document).ready(function(){initNavTree('_message_parser_8cpp_source.html','');
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><a class="el" href="_message_parser_8cpp.html">MessageParser.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><b>MessageParser.cpp</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

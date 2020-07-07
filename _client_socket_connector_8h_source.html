@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_client_socket_connector_8h_source.htm
 <div class="title">ClientSocketConnector.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_client_socket_connector_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CLIENTSOCKETCONNECTOR_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CLIENTSOCKETCONNECTOR_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CLIENTSOCKETCONNECTOR_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//STD framework</span></div>
@@ -98,8 +98,8 @@ $(document).ready(function(){initNavTree('_client_socket_connector_8h_source.htm
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//Internal headers</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_abstract_socket_connector_8h.html">AbstractSocketConnector.h</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_discovered_device_8h.html">Discovery/DiscoveredDevice.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;AbstractSocketConnector.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Discovery/DiscoveredDevice.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//IXWebSocket</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;ixwebsocket/IXNetSystem.h&quot;</span></div>
@@ -167,9 +167,7 @@ $(document).ready(function(){initNavTree('_client_socket_connector_8h_source.htm
 <div class="ttc" id="aclass_client_socket_connector_html_ae4f4715b8bec392b04276607a6af2ace"><div class="ttname"><a href="class_client_socket_connector.html#ae4f4715b8bec392b04276607a6af2ace">ClientSocketConnector::startClient</a></div><div class="ttdeci">bool startClient()</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8cpp_source.html#l00056">ClientSocketConnector.cpp:56</a></div></div>
 <div class="ttc" id="aclass_client_socket_connector_html_a87bc266333b4733858bbab6440f33c9a"><div class="ttname"><a href="class_client_socket_connector.html#a87bc266333b4733858bbab6440f33c9a">ClientSocketConnector::nextMessage</a></div><div class="ttdeci">virtual std::vector&lt; uint8_t &gt; nextMessage() override</div><div class="ttdoc">nextMessage Returns the next queued message</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8cpp_source.html#l00028">ClientSocketConnector.cpp:28</a></div></div>
 <div class="ttc" id="aclass_client_socket_connector_html"><div class="ttname"><a href="class_client_socket_connector.html">ClientSocketConnector</a></div><div class="ttdoc">The ClientSocketConnector class Provides the client implementation of AbstractSocketConnector.</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8h_source.html#l00023">ClientSocketConnector.h:23</a></div></div>
-<div class="ttc" id="a_discovered_device_8h_html"><div class="ttname"><a href="_discovered_device_8h.html">DiscoveredDevice.h</a></div></div>
 <div class="ttc" id="aclass_client_socket_connector_html_ab45624bc8332deba7bab5ab5b1fb17f7"><div class="ttname"><a href="class_client_socket_connector.html#ab45624bc8332deba7bab5ab5b1fb17f7">ClientSocketConnector::m_hostname</a></div><div class="ttdeci">std::string m_hostname</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8h_source.html#l00055">ClientSocketConnector.h:55</a></div></div>
-<div class="ttc" id="a_abstract_socket_connector_8h_html"><div class="ttname"><a href="_abstract_socket_connector_8h.html">AbstractSocketConnector.h</a></div></div>
 <div class="ttc" id="aclass_callback_handler_html"><div class="ttname"><a href="class_callback_handler.html">CallbackHandler</a></div><div class="ttdoc">The CallbackHandler class processes callback functions.</div><div class="ttdef"><b>Definition:</b> <a href="_callback_handler_8h_source.html#l00013">CallbackHandler.h:13</a></div></div>
 <div class="ttc" id="aclass_client_socket_connector_html_aa4acf7c2fdb97d5954656f46a3928035"><div class="ttname"><a href="class_client_socket_connector.html#aa4acf7c2fdb97d5954656f46a3928035">ClientSocketConnector::sendMessage</a></div><div class="ttdeci">virtual void sendMessage(const std::vector&lt; uint8_t &gt; &amp;message) override</div><div class="ttdoc">sendMessage Sends message to the Voyager through the socket connection</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8cpp_source.html#l00020">ClientSocketConnector.cpp:20</a></div></div>
 <div class="ttc" id="aclass_client_socket_connector_html_ae98253d1b3136a9986dab684b57648bb"><div class="ttname"><a href="class_client_socket_connector.html#ae98253d1b3136a9986dab684b57648bb">ClientSocketConnector::connectionErrorCallbackHandler</a></div><div class="ttdeci">CallbackHandler &amp; connectionErrorCallbackHandler()</div><div class="ttdef"><b>Definition:</b> <a href="_client_socket_connector_8cpp_source.html#l00091">ClientSocketConnector.cpp:91</a></div></div>
@@ -180,7 +178,7 @@ $(document).ready(function(){initNavTree('_client_socket_connector_8h_source.htm
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_f6048eb709d35e3c128f83f410b1bc67.html">SocketConnector</a></li><li class="navelem"><a class="el" href="_client_socket_connector_8h.html">ClientSocketConnector.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_f6048eb709d35e3c128f83f410b1bc67.html">SocketConnector</a></li><li class="navelem"><b>ClientSocketConnector.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

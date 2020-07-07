@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_formatting_8h_source.html',''); initR
 <div class="title">Formatting.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_formatting_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FORMATTING_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FORMATTING_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FORMATTING_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//Std framework</span></div>
@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('_formatting_8h_source.html',''); initR
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//Internal headers</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_abstract_driver_component_8h.html">AbstractDriverComponent.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;AbstractDriverComponent.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//Protobuf</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;DataFormat.pb.h&quot;</span></div>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('_formatting_8h_source.html',''); initR
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423">Formatting</a>(<a class="code" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> &amp;messageProcessor);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423">Formatting</a>(pMessageProcessor &amp;messageProcessor);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     * @brief setDataFormat Sets a new data format</span></div>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('_formatting_8h_source.html',''); initR
 <div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2">   54</a></span>&#160;    DataFormat <a class="code" href="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2">m_dataFormat</a>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_formatting.html#a957841ef6e1f496def5c527c84c18d71">   55</a></span>&#160;    std::mutex <a class="code" href="class_formatting.html#a957841ef6e1f496def5c527c84c18d71">m_dataFormatMutex</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="_formatting_8h.html#a72d05a01d3066443223767a24323b2b0">   57</a></span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;Formatting&gt; <a class="code" href="_formatting_8h.html#a72d05a01d3066443223767a24323b2b0">pFormatting</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">typedef</span> std::shared_ptr&lt;Formatting&gt; pFormatting;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // FORMATTING_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -153,16 +153,13 @@ $(document).ready(function(){initNavTree('_formatting_8h_source.html',''); initR
 <div class="ttc" id="aclass_formatting_html_a3043551aaf46ea809849fc0f73a058a1"><div class="ttname"><a href="class_formatting.html#a3043551aaf46ea809849fc0f73a058a1">Formatting::dataFormat</a></div><div class="ttdeci">DataFormat dataFormat() const</div><div class="ttdoc">dataFormat Gets the current data form</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8cpp_source.html#l00016">Formatting.cpp:16</a></div></div>
 <div class="ttc" id="aclass_formatting_html_a42c8d48a65ee267e5e9c02dee2c99423"><div class="ttname"><a href="class_formatting.html#a42c8d48a65ee267e5e9c02dee2c99423">Formatting::Formatting</a></div><div class="ttdeci">Formatting(pMessageProcessor &amp;messageProcessor)</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8cpp_source.html#l00003">Formatting.cpp:3</a></div></div>
 <div class="ttc" id="aclass_formatting_html_a568e3b4a30a45d0f5b85f95f0c0de37d"><div class="ttname"><a href="class_formatting.html#a568e3b4a30a45d0f5b85f95f0c0de37d">Formatting::handleNewFormatRecieved</a></div><div class="ttdeci">void handleNewFormatRecieved(const google::protobuf::Message &amp;message)</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8cpp_source.html#l00027">Formatting.cpp:27</a></div></div>
-<div class="ttc" id="a_abstract_driver_component_8h_html"><div class="ttname"><a href="_abstract_driver_component_8h.html">AbstractDriverComponent.h</a></div></div>
 <div class="ttc" id="aclass_formatting_html_a8ff984346ae245747995b41d644711c4"><div class="ttname"><a href="class_formatting.html#a8ff984346ae245747995b41d644711c4">Formatting::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">reset Resets the formatting to default</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8cpp_source.html#l00020">Formatting.cpp:20</a></div></div>
-<div class="ttc" id="a_message_processor_8h_html_ab1ce61cbd5596cfa8958b4789a6b67f7"><div class="ttname"><a href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a></div><div class="ttdeci">std::shared_ptr&lt; MessageProcessor &gt; pMessageProcessor</div><div class="ttdef"><b>Definition:</b> <a href="_message_processor_8h_source.html#l00045">MessageProcessor.h:45</a></div></div>
 <div class="ttc" id="aclass_formatting_html_ab482e940f681711388d77a1cccf871f1"><div class="ttname"><a href="class_formatting.html#ab482e940f681711388d77a1cccf871f1">Formatting::swapDataFormat</a></div><div class="ttdeci">void swapDataFormat(const DataFormat &amp;newFormat)</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8cpp_source.html#l00034">Formatting.cpp:34</a></div></div>
 <div class="ttc" id="aclass_formatting_html_a8413ef500437af5bbb83bef053d5fce2"><div class="ttname"><a href="class_formatting.html#a8413ef500437af5bbb83bef053d5fce2">Formatting::m_dataFormat</a></div><div class="ttdeci">DataFormat m_dataFormat</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8h_source.html#l00054">Formatting.h:54</a></div></div>
-<div class="ttc" id="a_formatting_8h_html_a72d05a01d3066443223767a24323b2b0"><div class="ttname"><a href="_formatting_8h.html#a72d05a01d3066443223767a24323b2b0">pFormatting</a></div><div class="ttdeci">std::shared_ptr&lt; Formatting &gt; pFormatting</div><div class="ttdef"><b>Definition:</b> <a href="_formatting_8h_source.html#l00057">Formatting.h:57</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><a class="el" href="_formatting_8h.html">Formatting.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><b>Formatting.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

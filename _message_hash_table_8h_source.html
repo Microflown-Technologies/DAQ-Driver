@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_message_hash_table_8h_source.html',''
 <div class="title">MessageHashTable.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_message_hash_table_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MESSAGEHASHTABLE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MESSAGEHASHTABLE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MESSAGEHASHTABLE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// STD framework</span></div>
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('_message_hash_table_8h_source.html',''
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;google/protobuf/message.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// CRC</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_c_r_c_8h.html">CRC.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;CRC.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/**</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * @brief The MessageHashTable class Generates hashes for messages names</span></div>
@@ -165,7 +165,6 @@ $(document).ready(function(){initNavTree('_message_hash_table_8h_source.html',''
 <div class="ttc" id="aclass_message_hash_table_html"><div class="ttname"><a href="class_message_hash_table.html">MessageHashTable</a></div><div class="ttdoc">The MessageHashTable class Generates hashes for messages names.</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8h_source.html#l00019">MessageHashTable.h:19</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a5982cbacf9f3fcb60e169faed040e713"><div class="ttname"><a href="class_message_hash_table.html#a5982cbacf9f3fcb60e169faed040e713">MessageHashTable::hasDescriptorForHash</a></div><div class="ttdeci">static bool hasDescriptorForHash(const uint16_t hash)</div><div class="ttdoc">hasDescriptorForHash Checks if the hash table contains a descriptor for this hash</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8cpp_source.html#l00027">MessageHashTable.cpp:27</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a0102ab2f0c30b6e26e64ec1e4989cf06"><div class="ttname"><a href="class_message_hash_table.html#a0102ab2f0c30b6e26e64ec1e4989cf06">MessageHashTable::hashForMessageType</a></div><div class="ttdeci">static uint16_t hashForMessageType()</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8h_source.html#l00048">MessageHashTable.h:48</a></div></div>
-<div class="ttc" id="a_c_r_c_8h_html"><div class="ttname"><a href="_c_r_c_8h.html">CRC.h</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a9595953a83bea7e09492d5aafd247dc4"><div class="ttname"><a href="class_message_hash_table.html#a9595953a83bea7e09492d5aafd247dc4">MessageHashTable::hashForMessage</a></div><div class="ttdeci">static uint16_t hashForMessage(const google::protobuf::Message &amp;message)</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8cpp_source.html#l00016">MessageHashTable.cpp:16</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a70c6460edf658943fd12691fd8d341a0"><div class="ttname"><a href="class_message_hash_table.html#a70c6460edf658943fd12691fd8d341a0">MessageHashTable::calculateHashForString</a></div><div class="ttdeci">static uint16_t calculateHashForString(const std::string &amp;string)</div><div class="ttdoc">calculateHashForString calculate hash for string</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8cpp_source.html#l00034">MessageHashTable.cpp:34</a></div></div>
 <div class="ttc" id="aclass_message_hash_table_html_a97339bd745e03f680bc14b0c1af77ff2"><div class="ttname"><a href="class_message_hash_table.html#a97339bd745e03f680bc14b0c1af77ff2">MessageHashTable::m_crcTable</a></div><div class="ttdeci">static CRC::Table&lt; std::uint16_t, 16 &gt; m_crcTable</div><div class="ttdef"><b>Definition:</b> <a href="_message_hash_table_8h_source.html#l00069">MessageHashTable.h:69</a></div></div>
@@ -176,7 +175,7 @@ $(document).ready(function(){initNavTree('_message_hash_table_8h_source.html',''
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><a class="el" href="_message_hash_table_8h.html">MessageHashTable.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><b>MessageHashTable.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

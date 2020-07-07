@@ -118,7 +118,7 @@ Collaboration diagram for DeviceControl:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a95ec44331ca07fff1edc9869fd5acaca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device_control.html#a95ec44331ca07fff1edc9869fd5acaca">DeviceControl</a> (<a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor)</td></tr>
+<tr class="memitem:a95ec44331ca07fff1edc9869fd5acaca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device_control.html#a95ec44331ca07fff1edc9869fd5acaca">DeviceControl</a> (pMessageProcessor messageProcessor)</td></tr>
 <tr class="separator:a95ec44331ca07fff1edc9869fd5acaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa01f0d9536de747901cb25490cef7fc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device_control.html#aa01f0d9536de747901cb25490cef7fc7">reset</a> ()</td></tr>
 <tr class="memdesc:aa01f0d9536de747901cb25490cef7fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset resets communication between the penis devices  <a href="class_device_control.html#aa01f0d9536de747901cb25490cef7fc7">More...</a><br /></td></tr>
@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae730ce81db23512a7782f5527fc8fed1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; std::function&lt; void(void)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_device_control.html#ae730ce81db23512a7782f5527fc8fed1">addReleasedControlCallback</a> (const std::function&lt; void()&gt; &amp;releasedControlCallback)</td></tr>
 <tr class="separator:ae730ce81db23512a7782f5527fc8fed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_abstract_driver_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstract_driver_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstract_driver_component.html">AbstractDriverComponent</a></td></tr>
-<tr class="memitem:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa">AbstractDriverComponent</a> (<a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor)</td></tr>
+<tr class="memitem:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#a18decda5d46def423fd400a74a6a06fa">AbstractDriverComponent</a> (pMessageProcessor messageProcessor)</td></tr>
 <tr class="separator:a18decda5d46def423fd400a74a6a06fa inherit pub_methods_class_abstract_driver_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -171,7 +171,7 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_abstract_driver_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_abstract_driver_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_abstract_driver_component.html">AbstractDriverComponent</a></td></tr>
-<tr class="memitem:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea">m_messageProcessor</a></td></tr>
+<tr class="memitem:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memItemLeft" align="right" valign="top">pMessageProcessor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea">m_messageProcessor</a></td></tr>
 <tr class="separator:afc30430fbd8a7112853d2bb646d22eea inherit pro_attribs_class_abstract_driver_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -188,7 +188,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">DeviceControl::DeviceControl </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a>&#160;</td>
+          <td class="paramtype">pMessageProcessor&#160;</td>
           <td class="paramname"><em>messageProcessor</em></td><td>)</td>
           <td></td>
         </tr>
@@ -596,10 +596,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>Driver/DriverComponents/<a class="el" href="_device_control_8h_source.html">DeviceControl.h</a></li>
-<li>Driver/DriverComponents/<a class="el" href="_device_control_8cpp_source.html">DeviceControl.cpp</a></li>
-</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

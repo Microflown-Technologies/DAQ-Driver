@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('_message_deserializer_8cpp_source.html
 <div class="title">MessageDeserializer.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_message_deserializer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_message_deserializer_8h.html">MessageDeserializer.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;MessageDeserializer.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;std::queue&lt;Message&gt;     <a class="code" href="class_message_deserializer.html#afee625806c7b32902289e73d77996957">MessageDeserializer::m_incommingMessages</a>; <span class="comment">///&lt; Temporarily stores incomming messages</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span>std::vector&lt;uint8_t&gt;    <a class="code" href="class_message_deserializer.html#a989efaf9094c403c59c0269a1122c53c">MessageDeserializer::m_incommingDataBuffer</a>; <span class="comment">///&lt; Temporarily buffers incomming data</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span> </div>
@@ -164,7 +164,6 @@ $(document).ready(function(){initNavTree('_message_deserializer_8cpp_source.html
 <div class="ttc" id="aclass_message_deserializer_html_a2993bd4588c32815c5569eb2a0eccd27"><div class="ttname"><a href="class_message_deserializer.html#a2993bd4588c32815c5569eb2a0eccd27">MessageDeserializer::takeFullMessageFromBuffer</a></div><div class="ttdeci">static Message takeFullMessageFromBuffer()</div><div class="ttdoc">takeFullMessageFromBuffer Gets a full message from the m_incommingDataBuffer</div><div class="ttdef"><b>Definition:</b> <a href="_message_deserializer_8cpp_source.html#l00048">MessageDeserializer.cpp:48</a></div></div>
 <div class="ttc" id="astruct_message_header_html_a67e16b885af802a37163641961fce410"><div class="ttname"><a href="struct_message_header.html#a67e16b885af802a37163641961fce410">MessageHeader::messageSize</a></div><div class="ttdeci">uint32_t messageSize</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00012">Message.h:12</a></div></div>
 <div class="ttc" id="aclass_message_deserializer_html_a989efaf9094c403c59c0269a1122c53c"><div class="ttname"><a href="class_message_deserializer.html#a989efaf9094c403c59c0269a1122c53c">MessageDeserializer::m_incommingDataBuffer</a></div><div class="ttdeci">static std::vector&lt; uint8_t &gt; m_incommingDataBuffer</div><div class="ttdoc">Temporarily buffers incomming data.</div><div class="ttdef"><b>Definition:</b> <a href="_message_deserializer_8h_source.html#l00067">MessageDeserializer.h:67</a></div></div>
-<div class="ttc" id="a_message_deserializer_8h_html"><div class="ttname"><a href="_message_deserializer_8h.html">MessageDeserializer.h</a></div></div>
 <div class="ttc" id="astruct_message_html"><div class="ttname"><a href="struct_message.html">Message</a></div><div class="ttdoc">The Message struct Defines the binary format of a message.</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00017">Message.h:17</a></div></div>
 <div class="ttc" id="astruct_message_html_a261f9014e13f5962995f6c9fe33ce146"><div class="ttname"><a href="struct_message.html#a261f9014e13f5962995f6c9fe33ce146">Message::data</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; data</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00019">Message.h:19</a></div></div>
 <div class="ttc" id="astruct_message_header_html"><div class="ttname"><a href="struct_message_header.html">MessageHeader</a></div><div class="ttdoc">The MessageHeader struct Defines the binary format of a message header.</div><div class="ttdef"><b>Definition:</b> <a href="_message_8h_source.html#l00010">Message.h:10</a></div></div>
@@ -172,7 +171,7 @@ $(document).ready(function(){initNavTree('_message_deserializer_8cpp_source.html
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><a class="el" href="_message_deserializer_8cpp.html">MessageDeserializer.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_a1d2dba3c5f8004031e468786eb95c98.html">MessageProcessing</a></li><li class="navelem"><b>MessageDeserializer.cpp</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

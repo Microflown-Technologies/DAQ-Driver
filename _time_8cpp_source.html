@@ -86,9 +86,9 @@ $(document).ready(function(){initNavTree('_time_8cpp_source.html',''); initResiz
 <div class="title">Time.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_time_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_time_8h.html">Time.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;Time.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb">    3</a></span>&#160;<a class="code" href="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb">Time::Time</a>(<a class="code" href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a> messageProcessor) : <a class="code" href="class_abstract_driver_component.html">AbstractDriverComponent</a>(messageProcessor), m_timeDifference(0)</div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb">    3</a></span>&#160;<a class="code" href="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb">Time::Time</a>(pMessageProcessor messageProcessor) : <a class="code" href="class_abstract_driver_component.html">AbstractDriverComponent</a>(messageProcessor), m_timeDifference(0)</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="comment">// Set callbacks</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    MessageRouter::addMessageRoute&lt;TimeRequest&gt;(std::bind(&amp;<a class="code" href="class_time.html#a645bc6bf911a249488880b19beb2908f">Time::handleTimeRequest</a>, <span class="keyword">this</span>, std::placeholders::_1));</div>
@@ -166,14 +166,12 @@ $(document).ready(function(){initNavTree('_time_8cpp_source.html',''); initResiz
 <div class="ttc" id="aclass_time_html_ab78f7460d389ff56ce81335db19ab87c"><div class="ttname"><a href="class_time.html#ab78f7460d389ff56ce81335db19ab87c">Time::m_timeSyncedCallbacksMutex</a></div><div class="ttdeci">std::mutex m_timeSyncedCallbacksMutex</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00062">Time.h:62</a></div></div>
 <div class="ttc" id="aclass_abstract_driver_component_html_afc30430fbd8a7112853d2bb646d22eea"><div class="ttname"><a href="class_abstract_driver_component.html#afc30430fbd8a7112853d2bb646d22eea">AbstractDriverComponent::m_messageProcessor</a></div><div class="ttdeci">pMessageProcessor m_messageProcessor</div><div class="ttdef"><b>Definition:</b> <a href="_abstract_driver_component_8h_source.html#l00036">AbstractDriverComponent.h:36</a></div></div>
 <div class="ttc" id="aclass_time_html_adac50ba1b49e777c72cc9b09bb038b2c"><div class="ttname"><a href="class_time.html#adac50ba1b49e777c72cc9b09bb038b2c">Time::m_timeSyncedCallbacks</a></div><div class="ttdeci">std::vector&lt; std::function&lt; void(void)&gt; &gt; m_timeSyncedCallbacks</div><div class="ttdef"><b>Definition:</b> <a href="_time_8h_source.html#l00061">Time.h:61</a></div></div>
-<div class="ttc" id="a_message_processor_8h_html_ab1ce61cbd5596cfa8958b4789a6b67f7"><div class="ttname"><a href="_message_processor_8h.html#ab1ce61cbd5596cfa8958b4789a6b67f7">pMessageProcessor</a></div><div class="ttdeci">std::shared_ptr&lt; MessageProcessor &gt; pMessageProcessor</div><div class="ttdef"><b>Definition:</b> <a href="_message_processor_8h_source.html#l00045">MessageProcessor.h:45</a></div></div>
-<div class="ttc" id="a_time_8h_html"><div class="ttname"><a href="_time_8h.html">Time.h</a></div></div>
 <div class="ttc" id="aclass_time_html_afd99fc1bb3b31dfa7deee98539dc4bbb"><div class="ttname"><a href="class_time.html#afd99fc1bb3b31dfa7deee98539dc4bbb">Time::Time</a></div><div class="ttdeci">Time(pMessageProcessor messageProcessor)</div><div class="ttdef"><b>Definition:</b> <a href="_time_8cpp_source.html#l00003">Time.cpp:3</a></div></div>
 <div class="ttc" id="aclass_time_html_a3f06458c558e501d734c68d11e253b17"><div class="ttname"><a href="class_time.html#a3f06458c558e501d734c68d11e253b17">Time::sync</a></div><div class="ttdeci">void sync()</div><div class="ttdoc">sync Synchronizes time between devives through calculating clock difference in ms</div><div class="ttdef"><b>Definition:</b> <a href="_time_8cpp_source.html#l00011">Time.cpp:11</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><a class="el" href="_time_8cpp.html">Time.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_7151b3cc910409bb744bd274374c738d.html">Driver</a></li><li class="navelem"><a class="el" href="dir_1c78f30dee02f7905ff9ab50f993fb55.html">DriverComponents</a></li><li class="navelem"><b>Time.cpp</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
