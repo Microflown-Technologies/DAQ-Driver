@@ -34,13 +34,25 @@ public:
      * @param voltage input range in Volts
      */
     void setInputRange(uint8_t channel, Voltage voltage);
-
+    /**
+     * @brief setInputRange Sets inputrange for channel
+     * @param channel channel to set inputrange for
+     * @param voltage input range in Volts
+     */
+    void setActualInputRange(uint8_t channel, float voltage);
     /**
      * @brief getInputRange Gets input range for channel in Volts
      * @param channel channel to get inputrange for
      * @return inputrange in volts
      */
     Voltage getInputRange(uint8_t channel);
+
+    /**
+     * @brief getInputRange Gets input range for channel in Volts
+     * @param channel channel to get inputrange for
+     * @return inputrange in volts
+     */
+    float getActualInputRange(uint8_t channel);
 
     void reset() override;
 
@@ -54,6 +66,8 @@ protected:
 
 private:
     std::atomic<Voltage> m_inputRangeVoltages[6];
+    std::atomic<float> m_actualInputRangeVoltages[6];
+
 };
 typedef std::shared_ptr<InputRange> pInputRange;
 

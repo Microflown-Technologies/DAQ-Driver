@@ -19,13 +19,28 @@ void InputRange::setInputRange(uint8_t channel, InputRange::Voltage voltage) {
 #endif
 }
 
+void InputRange::setActualInputRange(uint8_t channel, float voltage)
+{
+#ifdef QT_IS_AVAILABLE
+    m_actualInputRangeVoltages[channel] = voltage;
+#endif
+}
+
 InputRange::Voltage InputRange::getInputRange(uint8_t channel) {
     return m_inputRangeVoltages[channel];
+}
+
+float InputRange::getActualInputRange(uint8_t channel)
+{
+    return m_actualInputRangeVoltages[channel];
 }
 
 void InputRange::reset() {
     for(uint8_t channel = 0; channel < 6; channel++) {
         setInputRange(channel, _10);
+#ifdef QT_IS_AVAILABLE
+        emit inputRangeChanged(channel, _10);
+#endif
     }
 }
 
