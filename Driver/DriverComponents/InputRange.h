@@ -8,6 +8,7 @@
 
 //Internal headers
 #include "AbstractDriverComponent.h"
+#include "Threading/CallbackHandler.h"
 
 //Protobuf
 #include "SetInputRange.pb.h"
@@ -56,6 +57,9 @@ public:
 
     void reset() override;
 
+    std::shared_ptr<std::function<void ()> > addInputRangeRecievedCallback(const std::function<void ()> &newBufferCallback);
+    bool removeInputRangeRecievedCallback(std::shared_ptr<std::function<void(void)>> callback);
+
 #ifdef QT_IS_AVAILABLE
 signals:
     void inputRangeChanged(uint8_t channel, Voltage voltage);
@@ -67,6 +71,7 @@ protected:
 private:
     std::atomic<Voltage> m_inputRangeVoltages[6];
     std::atomic<float> m_actualInputRangeVoltages[6];
+    CallbackHandler m_InputRangeRecievedCallbackHandler;
 
 };
 typedef std::shared_ptr<InputRange> pInputRange;
