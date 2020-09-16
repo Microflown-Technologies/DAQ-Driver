@@ -8,5 +8,4 @@ message SetInputRange {
     }
     uint32 Channel = 1;
     Voltage voltage = 2;
-    float actualVoltage = 3;
 }
