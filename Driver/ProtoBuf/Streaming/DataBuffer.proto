@@ -5,4 +5,10 @@ message DataBuffer {
         uint64 frameCounter = 2;
         bytes data = 3;
         uint32 sampleRate = 4;
+        float chanRange_0 = 5;
+        float chanRange_1 = 6;
+        float chanRange_2  = 7;
+        float chanRange_3  = 8;
+        float chanRange_4  = 9;
+        float chanRange_5  = 10;
 }
